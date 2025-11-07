@@ -228,7 +228,7 @@ Copilot is early. The features, pricing, and competitive landscape will evolve r
 
 **Cons:**
 - Competitors who adopt early may gain productivity advantages
-- Employees may use unapproved AI tools if you don't provide alternatives ([LINK: Sandboxing: Safe Early Access])
+- Employees may use unapproved AI tools if you don't provide alternatives ([Sandboxing: Safe Early Access](/blog/sandboxing-safe-early-access))
 
 ## The Questions You Should Ask Microsoft
 

@@ -138,7 +138,7 @@ When employees across your organization can safely experiment with AI tools, the
 
 But if you don't have a way to capture and share those learnings, you end up with the same problem solved five times in five different divisions, with no one aware of each other's work.
 
-The sandbox enables the experiment. The [LINK: The AI Budget] funds it. The [The Duplicated Solution Problem: Centralizing Decentralized Innovation](/blog/duplicated-solution-problem) ensures the organization learns from it.
+The sandbox enables the experiment. The [The AI Budget](/blog/ai-budget-democratizing-innovation) funds it. The [The Duplicated Solution Problem: Centralizing Decentralized Innovation](/blog/duplicated-solution-problem) ensures the organization learns from it.
 
 This is how intelligent organizations operate.
 

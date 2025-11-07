@@ -294,10 +294,10 @@ These lock-in strategies might work in the short term. But they're fundamentally
 
 This isn't just about SAAS vendors. It's about how organizations build intelligent systems.
 
-**Siloed Information Prevents Intelligence** ([LINK: Siloed Information])
+**Siloed Information Prevents Intelligence** ([Siloed Information](/blog/siloed-information-saas-moat))
 When data is trapped, organizations can't become intelligent. Vendors that enable data freedom become strategic partners.
 
-**MCPs Are the Technical Solution** ([LINK: Model Context Protocols])
+**MCPs Are the Technical Solution** ([Model Context Protocols](/blog/model-context-protocols))
 This is the infrastructure that makes real interoperability possible.
 
 **Organizations Are Diversifying** ([Multi-Cloud in the AI Era: Strategic Hedging or Complexity Trap?](/blog/cloud-provider-diversification))

@@ -110,7 +110,7 @@ Search, trending topics, recommended solutions based on what you're working on. 
 **4. A Recognition System**
 When someone's solution gets reused, they should know about it. And they should be rewarded for it.
 
-[LINK: Compensation in the AI Era] explores this in detail, but the incentive structure is critical. If sharing solutions is invisible and unrewarded, people stop doing it.
+[Compensation in the AI Era](/blog/compensation-ai-era) explores this in detail, but the incentive structure is critical. If sharing solutions is invisible and unrewarded, people stop doing it.
 
 **5. A Feedback Loop**
 Solutions that get used get stronger. Feedback from implementations improves the original. This creates a virtuous cycle where solutions evolve and improve over time.
@@ -161,7 +161,7 @@ Ideas are submitted and evaluated anonymously during initial stages. This preven
 
 But once an idea advances, the contributor is revealed and celebrated. This creates visibility and incentivizes contribution.
 
-[LINK: Compensation in the AI Era] explores why this matters for organizational culture.
+[Compensation in the AI Era](/blog/compensation-ai-era) explores why this matters for organizational culture.
 
 **Trending Topics and Visibility**
 Solutions that are getting traction appear on a "trending" feed. This creates social proof and encourages others to engage.
@@ -244,29 +244,31 @@ Traditional ROI calculations don't capture the full value here. You're not just 
 **Example Metrics Framework:**
 
 | Metric | Target | Why It Matters |
-|--------|--------|----------------|
+| --- | --- | --- |
 | Submissions per month | 50+ | Indicates people see value in contributing |
 | Solutions reused | 30% | Shows discovery mechanism works |
 | Time to pilot | <30 days | Proves low friction for advancement |
 | Cross-team adoption | 40% | Indicates solutions scale beyond origin |
 
+
+
 ## Connecting to the Bigger Picture
 
 This system doesn't exist in isolation. It's part of how organizations become intelligent.
 
-**The AI Budget Enables Experimentation** ([LINK: The AI Budget])
+**The AI Budget Enables Experimentation** ([The AI Budget](/blog/ai-budget-democratizing-innovation))
 Employees use their budgets to experiment and build solutions. The centralized knowledge system captures what they learn.
 
-**Sandboxing Provides Safety** ([LINK: Sandboxing: Safe Early Access])
+**Sandboxing Provides Safety** ([Sandboxing: Safe Early Access](/blog/sandboxing-safe-early-access))
 Experiments happen in controlled environments. Successful ones get promoted to production through the stage-gate process.
 
-**Compensation Rewards Contribution** ([LINK: Compensation in the AI Era])
+**Compensation Rewards Contribution** ([Compensation in the AI Era](/blog/compensation-ai-era))
 When your solution saves the organization $1M, you get compensated accordingly. This creates the incentive loop.
 
-**Data Storage Supports the Archive** ([LINK: The Data Storage Reality])
+**Data Storage Supports the Archive** ([The Data Storage Reality](/blog/data-storage-reality))
 Every solution, every iteration, every piece of feedback gets stored. This is part of the organizational memory.
 
-**Metadata Makes It Discoverable** ([LINK: Metadata Matters])
+**Metadata Makes It Discoverable** ([Metadata Matters](/blog/metadata-matters))
 Without proper tagging and classification, the repository becomes a graveyard. Metadata is what makes centralized knowledge actually useful.
 
 This is how intelligent organizations operate: interconnected systems that enable, capture, and amplify learning.

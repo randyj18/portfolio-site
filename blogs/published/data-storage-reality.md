@@ -77,7 +77,7 @@ The power differential tells the story. When a single rack consumes 60-120 kilow
 
 We're using GenAI to create content. That content takes up storage. And as GenAI gets cheaper and more accessible, usage—and storage—will continue to grow exponentially.
 
-[LINK: The AI Budget] funds employees to experiment. Every experiment generates storage. This is a feature, not a bug.
+[The AI Budget](/blog/ai-budget-democratizing-innovation) funds employees to experiment. Every experiment generates storage. This is a feature, not a bug.
 
 ## The Balancing Act
 
@@ -113,7 +113,7 @@ This isn't about restricting AI use. It's about teaching people proper content m
 Instead of saving "Draft v1, v2, v3...v30," use version control systems that track changes without duplicating the entire file.
 
 **2. Expiration Dates and Review Cycles**
-[LINK: Metadata Matters] discussed this: every document should have metadata indicating when it should be reviewed or archived.
+[Metadata Matters](/blog/metadata-matters) discussed this: every document should have metadata indicating when it should be reviewed or archived.
 
 Example: AI-generated brainstorming outputs might have a 30-day retention. Final deliverables might be kept indefinitely. Intermediate drafts get archived after 90 days.
 
@@ -164,13 +164,13 @@ Organizations that avoid storage costs to limit AI adoption will fall behind com
 
 Data storage doesn't exist in isolation. It's part of how intelligent organizations operate.
 
-**AI Budget Includes Storage** ([LINK: The AI Budget])
+**AI Budget Includes Storage** ([The AI Budget](/blog/ai-budget-democratizing-innovation))
 When you allocate $50-150/month per employee for AI experimentation, part of that budget is storage. Make it explicit.
 
-**Metadata Enables Better Management** ([LINK: Metadata Matters])
+**Metadata Enables Better Management** ([Metadata Matters](/blog/metadata-matters))
 You can't manage what you can't classify. Metadata lets you implement intelligent lifecycle policies based on document type, age, and value.
 
-**Siloed Data Prevents Global Optimization** ([LINK: Siloed Information])
+**Siloed Data Prevents Global Optimization** ([Siloed Information](/blog/siloed-information-saas-moat))
 If your data is trapped in different SAAS platforms, you can't optimize storage globally. Each silo manages its own storage, leading to duplication and inefficiency.
 
 **Centralized Knowledge Requires Storage** ([The Duplicated Solution Problem](/blog/duplicated-solution-problem))

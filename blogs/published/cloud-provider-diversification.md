@@ -89,7 +89,7 @@ Going deep with one provider unlocks capabilities you can't get by spreading thi
 - **Expertise development** - Your team becomes expert in one platform rather than mediocre across three
 
 **Example:**
-Organization A uses Claude exclusively. They build deep expertise, create custom MCPs ([LINK: Model Context Protocols]), optimize prompts, train employees thoroughly. Claude becomes a strategic capability.
+Organization A uses Claude exclusively. They build deep expertise, create custom MCPs ([Model Context Protocols](/blog/model-context-protocols)), optimize prompts, train employees thoroughly. Claude becomes a strategic capability.
 
 Organization B uses Claude, GPT, and Gemini. They have basic competence across all three but mastery of none. When a complex use case arises, they struggle because no one has deep expertise.
 
@@ -140,7 +140,7 @@ This is more complex, but it's also more capable.
 **Pricing comparison (per 1M tokens, 2025):**
 
 | Provider | Model Tier | Input Cost | Output Cost | Best Use Case |
-|----------|-----------|------------|-------------|---------------|
+| --- | --- | --- | --- | --- |
 | OpenAI | GPT-4o | $3.00 | $10.00 | General purpose, high volume |
 | Anthropic | Claude Sonnet 4.5 | $3.00 | $15.00 | Long-context, coding |
 | Anthropic | Claude Opus 4.1 | $15.00 | $75.00 | Complex reasoning |
@@ -148,6 +148,8 @@ This is more complex, but it's also more capable.
 | OpenAI/Google | GPT-4o Mini / Gemini Flash | $0.15 | $0.60 | Cost-sensitive, high-volume |
 | Anthropic | Claude Haiku 4.5 | $1.00 | $5.00 | Speed + efficiency |
 | AWS Bedrock | Llama 2 (13B) | $0.75 | $1.00 | Open-source, cost-effective |
+
+
 
 **Key insight:** Pricing is remarkably similar at the mid-tier ($3/1M tokens for both GPT-4o and Claude Sonnet), but performance characteristics differ significantly. This means the "best value" depends on your specific use cases—making single-provider optimization more nuanced than it appears.
 
@@ -350,16 +352,16 @@ Shift workloads based on performance, cost, and strategic fit.
 
 This decision doesn't exist in isolation.
 
-**Model Context Protocols** ([LINK: Model Context Protocols])
+**Model Context Protocols** ([Model Context Protocols](/blog/model-context-protocols))
 MCPs make multi-provider easier. If your integrations use MCP, they work across providers without custom rebuilding.
 
 **Custom Chat Interfaces** ([Custom Chat Interfaces](/blog/custom-chat-interfaces))
 If you build your own interface, multi-provider is easier. If you rely on vendor UIs (Claude.ai, ChatGPT), switching is harder.
 
-**SAAS Lock-In** ([LINK: Siloed Information])
+**SAAS Lock-In** ([Siloed Information](/blog/siloed-information-saas-moat))
 The same dynamics that make SAAS lock-in problematic apply to AI providers. Data portability and interoperability are strategic.
 
-**Copilot Strategy** ([LINK: Understanding Copilot])
+**Copilot Strategy** ([Understanding Copilot](/blog/copilot-microsoft-play))
 If you go all-in on Microsoft Copilot, you're locked into Microsoft's model choices. Multi-cloud is harder.
 
 ## The Bottom Line

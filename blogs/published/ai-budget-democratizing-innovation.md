@@ -141,9 +141,9 @@ Employees experiment within controlled environments where risks are contained. T
 When employees across the organization are experimenting, someone needs to be tracking what's being learned, what's working, and what's being duplicated. Without this, you get isolated pockets of knowledge that never scale.
 
 **3. Gamification Drives Engagement** (covered in [The Duplicated Solution Problem: Centralizing Decentralized Innovation](/blog/duplicated-solution-problem))
-The AI Budget becomes more powerful when paired with recognition systems. Employees who find valuable use cases, share learnings, or contribute to organizational knowledge get rewarded—not just with budget, but with visibility and compensation (see [LINK: Compensation in the AI Era]).
+The AI Budget becomes more powerful when paired with recognition systems. Employees who find valuable use cases, share learnings, or contribute to organizational knowledge get rewarded—not just with budget, but with visibility and compensation (see [Compensation in the AI Era](/blog/compensation-ai-era)).
 
-**4. Data Storage Costs Are Real** ([LINK: The Data Storage Reality])
+**4. Data Storage Costs Are Real** ([The Data Storage Reality](/blog/data-storage-reality))
 Part of the AI Budget is storage. Every experiment generates artifacts—outputs, logs, iterations. These need to be stored, managed, and eventually archived. This is part of the cost structure you need to plan for.
 
 This is how intelligent organizations operate: interconnected systems that enable, capture, and amplify learning.
@@ -155,11 +155,14 @@ Let's be realistic about what this actually costs and what you get for it.
 **Sample Structure for 1,000-Person Organization:**
 
 | Category | Monthly Per-Employee | Annual Total (1,000 employees) |
-|----------|---------------------|-------------------------------|
+| --- | --- | --- |
 | API Credits | $40 | $480,000 |
 | Compute Time | $30 | $360,000 |
 | Data Storage | $20 | $240,000 |
 | **Total** | **$90** | **$1,080,000** |
+
+
+
 
 These numbers align with actual 2025 pricing from major providers. API costs vary dramatically based on model selection—from $0.10-$60 per million input tokens—giving organizations flexibility to calibrate spend based on use cases. Compute and storage costs similarly scale based on actual utilization.
 

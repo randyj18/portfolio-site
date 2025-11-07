@@ -138,7 +138,7 @@ What should take 5 minutes takes 5 hours.
 
 **Cost 5: Limited AI Capabilities**
 
-[LINK: Metadata Matters] and [The Duplicated Solution Problem](/blog/duplicated-solution-problem) explore this: AI systems need access to comprehensive, well-structured data.
+[Metadata Matters](/blog/metadata-matters) and [The Duplicated Solution Problem](/blog/duplicated-solution-problem) explore this: AI systems need access to comprehensive, well-structured data.
 
 If your data is locked in silos, your AI is limited to whatever narrow view each silo provides.
 
@@ -188,7 +188,7 @@ Instead:
 
 This requires infrastructure investment, but it's worth it. You regain control.
 
-[LINK: The Data Storage Reality] discusses the costs. But the ROI from having unified, accessible data exceeds those costs significantly.
+[The Data Storage Reality](/blog/data-storage-reality) discusses the costs. But the ROI from having unified, accessible data exceeds those costs significantly.
 
 ### Solution 3: Adopt Open Standards
 
@@ -292,7 +292,7 @@ Data silos don't just affect SAAS relationships. They're endemic to how organiza
 
 [The Duplicated Solution Problem](/blog/duplicated-solution-problem) shows how knowledge gets siloed within organizations, leading to duplicated work.
 
-[LINK: Metadata Matters] explains how lack of metadata prevents discovery across silos.
+[Metadata Matters](/blog/metadata-matters) explains how lack of metadata prevents discovery across silos.
 
 [The Duplicated Solution Problem: Centralizing Decentralized Innovation](/blog/duplicated-solution-problem) outlines how to capture and share knowledge across organizational boundaries.
 

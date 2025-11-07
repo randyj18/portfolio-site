@@ -17,7 +17,10 @@ No metadata. No way to connect the dots.
 
 That document might as well not exist.
 
-Now imagine that same document has metadata: `Topic: Customer Onboarding | Type: Process Automation | Department: Sales Operations | Status: Implemented | Impact: High | Last Updated: 2024-03 | Permissions: Internal Only`
+| Now imagine that same document has metadata: `Topic: Customer Onboarding | Type: Process Automation | Department: Sales Operations | Status: Implemented | Impact: High | Last Updated: 2024-03 | Permissions: Internal Only` |
+| --- | --- | --- | --- | --- | --- | --- |
+
+
 
 Suddenly it's discoverable. Searchable. Valuable.
 
@@ -108,7 +111,7 @@ Don't try to tag everything. Start with the essentials:
 
 **Optional Fields:**
 - Keywords/Tags (freeform)
-- Expiration/Review Date ([LINK: The Data Storage Reality] discusses lifecycle management)
+- Expiration/Review Date ([The Data Storage Reality](/blog/data-storage-reality) discusses lifecycle management)
 - Version Number
 - Related Documents (links to dependencies)
 

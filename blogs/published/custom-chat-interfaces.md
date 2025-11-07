@@ -57,7 +57,7 @@ So why are you building it?
 - Is your custom build actually more secure, or does it just feel more secure?
 
 **4. "We want to integrate with our internal systems"**
-- This is the closest to a legitimate reason, but even here: MCPs exist ([LINK: Model Context Protocols]).
+- This is the closest to a legitimate reason, but even here: MCPs exist ([Model Context Protocols](/blog/model-context-protocols)).
 - You don't need a custom interface to integrate with internal data. You need an MCP server.
 
 **The cautionary tales:**
@@ -112,7 +112,7 @@ If your AI needs to interact with internal systems in ways that require custom o
 
 This isn't just "connect to our CRM." This is "orchestrate complex multi-system interactions that are unique to our business."
 
-[LINK: Model Context Protocols] can handle much of this, but there's a threshold where the orchestration logic is so complex that you need a custom client.
+[Model Context Protocols](/blog/model-context-protocols) can handle much of this, but there's a threshold where the orchestration logic is so complex that you need a custom client.
 
 **The test:**
 If you can describe your integration needs in a 2-page document, you probably don't need a custom interface. If it takes 20 pages to describe the orchestration logic, maybe you do.
@@ -173,12 +173,14 @@ Before building custom, exhaust these options:
 **Pricing comparison (2024-2025):**
 
 | Provider | Team/Standard | Enterprise |
-|----------|--------------|------------|
+| --- | --- | --- |
 | ChatGPT | $25-30/user/month | $30-60/user/month (150+ seats) |
 | Claude | $25/user/month | $60+/user/month (70-user minimum) |
 | Microsoft 365 Copilot | N/A | $30/user/month (requires M365 base subscription) |
 | Google Gemini for Workspace | Included FREE | Included FREE (major 2025 shift) |
 | Perplexity Enterprise Pro | $40/user/month | $325/user/month (Max tier) |
+
+
 
 **Notable shift:** Google now includes Gemini at no extra charge with Business and Enterprise Workspace tiers—a significant competitive move that changes the economics for many organizations.
 
@@ -293,7 +295,7 @@ If you build custom and it doesn't work out, can you migrate to a commercial pro
 - Are your integrations modular enough to reuse?
 - Have you avoided lock-in to your own custom solution?
 
-If you can't exit gracefully, you've created a new silo. ([LINK: Siloed Information])
+If you can't exit gracefully, you've created a new silo. ([Siloed Information](/blog/siloed-information-saas-moat))
 
 ## What Success Looks Like
 
@@ -349,7 +351,7 @@ The key is intellectual honesty: are you solving a real problem that third-party
 
 Most organizations would be better served by:
 1. Using ChatGPT Enterprise or Claude for Work for general use
-2. Building MCP servers to integrate with internal data ([LINK: Model Context Protocols])
+2. Building MCP servers to integrate with internal data ([Model Context Protocols](/blog/model-context-protocols))
 3. Investing engineering time in domain-specific applications, not reinventing chat UIs
 
 But if you're in the 10% of cases where custom genuinely makes sense—do it well. Don't half-ass it.

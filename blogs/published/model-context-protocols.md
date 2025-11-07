@@ -471,7 +471,7 @@ The momentum is undeniable: when OpenAI, Google, and Microsoft all adopt the sam
 
 MCP doesn't exist in isolation. It's part of how organizations become intelligent systems.
 
-**Siloed Information** ([LINK: Siloed Information])
+**Siloed Information** ([Siloed Information](/blog/siloed-information-saas-moat))
 MCP is the technical solution to breaking silos. If every system has an MCP server, AI can access everything (with proper permissions).
 
 **SAAS Evolution** ([LINK: The SAAS Reckoning])
@@ -483,7 +483,7 @@ You can't leverage MCP fully through third-party chat UIs. You need control over
 **Cloud Diversification** ([LINK: Multi-Cloud Strategy])
 MCP enables switching between AI providers (Claude, GPT, Gemini) without rebuilding integrations. This is critical for avoiding lock-in.
 
-**Metadata Matters** ([LINK: Metadata Matters])
+**Metadata Matters** ([Metadata Matters](/blog/metadata-matters))
 MCP servers return data, but that data needs metadata to be useful. Rich, well-structured metadata makes MCP responses actionable.
 
 ---
