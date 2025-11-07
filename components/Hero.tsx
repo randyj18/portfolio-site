@@ -35,16 +35,16 @@ export default function Hero() {
           {/* Key metrics - minimal, left-aligned */}
           <div className="flex flex-col sm:flex-row gap-8 sm:gap-16 mb-16 pt-4 border-t border-slate/20">
             <div>
-              <div className="text-4xl lg:text-5xl font-bold text-gold-light mb-1">12+</div>
-              <div className="text-sm uppercase tracking-widest text-beige">Years Leading AI/Tech</div>
+              <div className="text-4xl lg:text-5xl font-bold text-gold-light mb-1">14</div>
+              <div className="text-sm uppercase tracking-widest text-beige">Research Topics</div>
             </div>
             <div>
-              <div className="text-4xl lg:text-5xl font-bold text-green-forest mb-1">50+</div>
-              <div className="text-sm uppercase tracking-widest text-beige">Enterprise Engagements</div>
+              <div className="text-4xl lg:text-5xl font-bold text-green-forest mb-1">8</div>
+              <div className="text-sm uppercase tracking-widest text-beige">Topic Clusters</div>
             </div>
             <div>
-              <div className="text-4xl lg:text-5xl font-bold text-orange-burnt mb-1">6</div>
-              <div className="text-sm uppercase tracking-widest text-beige">Figure Cost Savings Delivered</div>
+              <div className="text-4xl lg:text-5xl font-bold text-orange-burnt mb-1">12+</div>
+              <div className="text-sm uppercase tracking-widest text-beige">Years Expertise</div>
             </div>
           </div>
 

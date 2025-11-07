@@ -13,6 +13,19 @@ export default function BlogPage() {
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-navy via-gray-dark to-navy">
+      {/* Back to Home - Top Navigation */}
+      <section className="section-container pt-12 pb-4">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 text-slate hover:text-gold-light transition-colors duration-300 group mb-8"
+        >
+          <svg className="w-5 h-5 transform group-hover:-translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+          Back to Home
+        </Link>
+      </section>
+
       {/* Hero Section */}
       <section className="section-container py-20 lg:py-32 border-b border-slate/20">
         <div className="max-w-4xl">
