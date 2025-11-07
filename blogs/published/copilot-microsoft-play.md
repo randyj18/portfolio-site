@@ -282,7 +282,7 @@ That doesn't make it bad. But it does make it something you need to evaluate wit
 
 The key is understanding what you're buying and what you're giving up.
 
-Copilot is Microsoft's bet on the future of work. The question is whether you're making the same bet.
+**TLDR:** Copilot delivers measurable productivity gains (116-353% ROI) but executes a four-layer strategic lock-in: ecosystem moat, workflow capture, data leverage, and platform control. It's the right choice if you're already deep in Microsoft 365 and value integration over flexibility. For others, the single-vendor dependency risk may outweigh the productivity gains—especially if you need model choice, flexibility, or custom governance.
 
 ---
 

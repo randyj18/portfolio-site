@@ -356,7 +356,7 @@ Most organizations would be better served by:
 
 But if you're in the 10% of cases where custom genuinely makes sense—do it well. Don't half-ass it.
 
-Build something that's genuinely better, or don't build at all.
+**TLDR:** Custom chat interfaces are rarely justified. Only ~10% of organizations have genuine needs: compliance requirements no vendor meets, deep proprietary system integration, novel UX for domain-specific workflows, or learning exercises. Build cost: $300K-600K year one + $75-200K ongoing vs. ChatGPT Enterprise at $72K/year. Most organizations should build MCP servers for integration instead of reinventing commodity UI. If you do build custom, ensure clear ROI, measurable adoption (>30%), and exit strategy—don't create a new silo.
 
 ---
 

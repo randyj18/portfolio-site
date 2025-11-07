@@ -191,6 +191,10 @@ Make it yours.
 
 ---
 
+**TLDR:** Model rankings are contextual frameworks, not universal truths—rankings matter less than fit for your specific use case. Rather than seeking "the best model," evaluate across dimensions that matter to you: reasoning capability, context window, coding ability, writing quality, instruction following, speed, cost, reliability, and multimodal capabilities. The "best" model for long-form writing differs from the best for coding, which differs from the best for real-time analysis. Use models in combination (Claude for structured analysis, GPT-4 for creative writing, Gemini Flash for high-volume queries) rather than forcing one tool to handle everything. Keep assessments updated as models evolve and your needs change.
+
+---
+
 **Published:** [Date]
 **Word Count:** [To be determined based on your content]
 **Status:** Shell created - awaiting Randy's personal content

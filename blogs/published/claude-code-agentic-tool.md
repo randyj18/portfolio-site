@@ -478,9 +478,7 @@ As one developer put it: "Agentic coding isn't just accelerating traditional dev
 
 If you're still thinking of AI as "autocomplete with extra steps," you're missing the shift.
 
-Claude Code is agency, not assistance.
-
-And that changes everything.
+**TLDR:** Claude Code enables autonomous multi-step task execution with iteration loops (not just autocomplete), delivering 20-40% productivity gains on routine tasks and 5-10x on complex work. The real shift: it dissolves the boundary between technical and non-technical work—anyone who can describe a problem can now build a solution.
 
 ---
 

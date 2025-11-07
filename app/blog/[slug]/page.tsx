@@ -54,14 +54,22 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
     .replace(/^---+\s*\n/gm, '')
     .replace(/^##\s+The Draft\s*\n+/m, '');
 
-  // Extract TLDR (complete paragraph before first double newline or heading)
-  // Using alternative to 's' flag for compatibility
-  const tldrMatch = contentToRender.match(/^([^\n#][\s\S]*?)(?=\n\n|\n#|$)/);
-  const tldr = tldrMatch ? tldrMatch[1].trim() : post.excerpt || '';
+  // Extract TLDR section (marked with **TLDR:** in markdown)
+  const tldrSectionMatch = contentToRender.match(/\*\*TLDR:\*\*\s*(.+?)(?=\n\n---|\n\n\*\*|$)/s);
+  let tldr = '';
 
-  // Remove the TLDR from content to avoid duplication
-  if (tldr) {
-    contentToRender = contentToRender.replace(tldr, '').trimStart();
+  if (tldrSectionMatch) {
+    // Clean up the extracted TLDR text
+    tldr = tldrSectionMatch[1]
+      .replace(/\n+/g, ' ') // Replace newlines with spaces
+      .replace(/\*\*/g, '') // Remove markdown bold markers
+      .trim();
+
+    // Remove the TLDR section from content to avoid duplication
+    contentToRender = contentToRender.replace(/\n*\*\*TLDR:\*\*[\s\S]*?(?=\n\n---|\n\n\*\*|$)/, '').trim();
+  } else {
+    // Fallback to excerpt if no TLDR section found
+    tldr = post.excerpt || '';
   }
 
   return (
