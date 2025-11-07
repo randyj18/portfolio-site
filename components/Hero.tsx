@@ -1,9 +1,11 @@
-"use client";
+'use client';
+
+import ProfilePhoto from './ProfilePhoto';
 
 export default function Hero() {
   return (
     <section className="min-h-screen bg-gradient-to-b from-navy via-gray-dark to-navy relative overflow-hidden flex items-center">
-      {/* Animated background elements (inspired by Extropic's organic approach) */}
+      {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 right-1/4 w-96 h-96 bg-green-forest/5 rounded-full blur-3xl animate-pulse" />
         <div className="absolute bottom-40 left-1/3 w-80 h-80 bg-bronze/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}} />
@@ -11,7 +13,9 @@ export default function Hero() {
       </div>
 
       <div className="section-container py-20 lg:py-32 relative z-10">
-        <div className="max-w-4xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
+          {/* Text content */}
+          <div className="max-w-2xl">
           {/* Eyebrow statement */}
           <div className="mb-8 flex items-center gap-3">
             <div className="w-12 h-1 bg-gradient-to-r from-gold-light to-orange-burnt rounded-full" />
@@ -69,7 +73,18 @@ export default function Hero() {
               Start Conversation
             </a>
           </div>
+          </div>
+
+          {/* Profile Photo - hidden on mobile, shown on lg screens */}
+          <div className="hidden lg:flex justify-center items-center">
+            <ProfilePhoto />
+          </div>
         </div>
+      </div>
+
+      {/* Profile Photo for mobile - below text */}
+      <div className="lg:hidden section-container py-12 relative z-10">
+        <ProfilePhoto />
       </div>
 
       {/* Scroll indicator - minimal */}
