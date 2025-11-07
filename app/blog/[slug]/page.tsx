@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { getAllBlogSlugs, getBlogBySlug, getRelatedPosts } from '@/lib/blog';
 import BlogLayout from '@/components/BlogLayout';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import 'highlight.js/styles/atom-one-dark.css';
 
@@ -65,7 +66,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
 
   return (
     <BlogLayout post={post} tldr={tldr} relatedPosts={relatedPosts}>
-      <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
+      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
         {contentToRender}
       </ReactMarkdown>
     </BlogLayout>
