@@ -13,7 +13,7 @@ export default function Hero() {
       </div>
 
       <div className="section-container py-20 lg:py-32 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto mb-16">
           {/* Text content */}
           <div className="max-w-2xl">
           {/* Eyebrow statement */}
@@ -37,7 +37,7 @@ export default function Hero() {
           </p>
 
           {/* Key metrics - minimal, left-aligned */}
-          <div className="flex flex-col sm:flex-row gap-8 sm:gap-16 mb-16 pt-4 border-t border-slate/20">
+          <div className="flex flex-col sm:flex-row gap-8 sm:gap-16 pt-4 border-t border-slate/20">
             <div>
               <div className="text-4xl lg:text-5xl font-bold text-gold-light mb-1">14</div>
               <div className="text-sm uppercase tracking-widest text-beige">Research Topics</div>
@@ -51,34 +51,34 @@ export default function Hero() {
               <div className="text-sm uppercase tracking-widest text-beige">Years Expertise</div>
             </div>
           </div>
-
-          {/* CTA Buttons - minimal, elegant */}
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a
-              href="#philosophy"
-              className="px-8 py-4 bg-gradient-to-r from-gold-light to-orange-burnt text-navy font-semibold rounded-sm hover:shadow-lg hover:shadow-orange-burnt/50 transition-all duration-300 hover:scale-105"
-            >
-              Explore Approach →
-            </a>
-            <a
-              href="/blog"
-              className="px-8 py-4 border border-slate text-slate rounded-sm hover:bg-slate/10 transition-all duration-300 font-semibold"
-            >
-              Read Blog
-            </a>
-            <a
-              href="#contact"
-              className="px-8 py-4 border border-slate text-slate rounded-sm hover:bg-slate/10 transition-all duration-300 font-semibold"
-            >
-              Start Conversation
-            </a>
-          </div>
           </div>
 
           {/* Profile Photo - hidden on mobile, shown on lg screens */}
           <div className="hidden lg:flex justify-center items-center">
             <ProfilePhoto />
           </div>
+        </div>
+
+        {/* CTA Buttons - full width section */}
+        <div className="flex flex-col sm:flex-row gap-4 max-w-6xl mx-auto">
+          <a
+            href="#philosophy"
+            className="flex-1 px-8 py-4 bg-gradient-to-r from-gold-light to-orange-burnt text-navy font-semibold rounded-sm hover:shadow-lg hover:shadow-orange-burnt/50 transition-all duration-300 hover:scale-105 text-center"
+          >
+            Explore Approach →
+          </a>
+          <a
+            href="/blog"
+            className="flex-1 px-8 py-4 border border-slate text-slate rounded-sm hover:bg-slate/10 transition-all duration-300 font-semibold text-center"
+          >
+            Read Blog
+          </a>
+          <a
+            href="#contact"
+            className="flex-1 px-8 py-4 border border-slate text-slate rounded-sm hover:bg-slate/10 transition-all duration-300 font-semibold text-center"
+          >
+            Start Conversation
+          </a>
         </div>
       </div>
 
