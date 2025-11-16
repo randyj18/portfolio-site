@@ -137,8 +137,17 @@ export default function PlaygroundAuth({
           </form>
 
           <div className="mt-6 pt-6 border-t border-slate/20">
-            <p className="text-xs text-slate text-center">
+            <p className="text-xs text-slate text-center mb-4">
               Usage is monitored and rate-limited to ensure fair access for all visitors.
+            </p>
+            <p className="text-xs text-center">
+              <span className="text-slate">Don&apos;t have access? </span>
+              <a
+                href="/#contact"
+                className="text-gold-dark hover:text-orange-burnt transition-colors duration-300 font-semibold"
+              >
+                Request access here
+              </a>
             </p>
           </div>
         </div>
