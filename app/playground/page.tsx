@@ -94,61 +94,65 @@ export default function PlaygroundPage() {
               </motion.div>
             </Link>
 
-            {/* Placeholder for future demo 2 */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="bg-white rounded-sm border border-slate/20 p-8 hover:shadow-lg hover:shadow-orange-burnt/10 transition-all duration-300 hover:scale-105 group"
-            >
-              <div className="flex items-start justify-between mb-4">
-                <div className="text-4xl font-bold text-gold-dark/30 group-hover:text-gold-dark transition-colors duration-300">
-                  02
+            {/* VOICE-Relay Demo */}
+            <Link href="/playground/voice-relay">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="bg-white rounded-sm border border-slate/20 p-8 hover:shadow-lg hover:shadow-orange-burnt/10 transition-all duration-300 hover:scale-105 group cursor-pointer"
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <div className="text-4xl font-bold text-gold-dark/30 group-hover:text-gold-dark transition-colors duration-300">
+                    02
+                  </div>
+                  <span className="text-xs font-semibold text-green-forest px-3 py-1 bg-green-forest/10 rounded-full">
+                    Auth Required
+                  </span>
                 </div>
-                <span className="text-xs font-semibold text-slate/60 px-3 py-1 bg-slate/10 rounded-full">
-                  Coming Soon
-                </span>
-              </div>
-              <h3 className="text-xl font-bold text-navy mb-3 group-hover:text-gold-dark transition-colors duration-300">
-                Next Solution
-              </h3>
-              <p className="text-slate text-sm leading-relaxed mb-4">
-                Additional AI-powered business solutions are being prepared for demonstration.
-                Check back soon for more practical applications.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="text-xs text-navy/60 bg-beige px-2 py-1 rounded">AI</span>
-                <span className="text-xs text-navy/60 bg-beige px-2 py-1 rounded">Automation</span>
-              </div>
-            </motion.div>
+                <h3 className="text-xl font-bold text-navy mb-3 group-hover:text-gold-dark transition-colors duration-300">
+                  VOICE-Relay
+                </h3>
+                <p className="text-slate text-sm leading-relaxed mb-4">
+                  The fastest, simplest, and most secure relay for voice conversations. End-to-end encrypted communication between AI agents and users.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="text-xs text-navy/60 bg-beige px-2 py-1 rounded">E2E Encryption</span>
+                  <span className="text-xs text-navy/60 bg-beige px-2 py-1 rounded">Voice AI</span>
+                  <span className="text-xs text-navy/60 bg-beige px-2 py-1 rounded">Security</span>
+                </div>
+              </motion.div>
+            </Link>
 
-            {/* Placeholder for future demo 3 */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="bg-white rounded-sm border border-slate/20 p-8 hover:shadow-lg hover:shadow-orange-burnt/10 transition-all duration-300 hover:scale-105 group"
-            >
-              <div className="flex items-start justify-between mb-4">
-                <div className="text-4xl font-bold text-gold-dark/30 group-hover:text-gold-dark transition-colors duration-300">
-                  03
+            {/* Game Card Creator Demo */}
+            <Link href="/playground/game-card-creator">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="bg-white rounded-sm border border-slate/20 p-8 hover:shadow-lg hover:shadow-orange-burnt/10 transition-all duration-300 hover:scale-105 group cursor-pointer"
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <div className="text-4xl font-bold text-gold-dark/30 group-hover:text-gold-dark transition-colors duration-300">
+                    03
+                  </div>
+                  <span className="text-xs font-semibold text-green-forest px-3 py-1 bg-green-forest/10 rounded-full">
+                    Auth Required
+                  </span>
                 </div>
-                <span className="text-xs font-semibold text-slate/60 px-3 py-1 bg-slate/10 rounded-full">
-                  Coming Soon
-                </span>
-              </div>
-              <h3 className="text-xl font-bold text-navy mb-3 group-hover:text-gold-dark transition-colors duration-300">
-                Future Demo
-              </h3>
-              <p className="text-slate text-sm leading-relaxed mb-4">
-                More innovative solutions are in development. Each demo will showcase
-                practical applications for real business challenges.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                <span className="text-xs text-navy/60 bg-beige px-2 py-1 rounded">Full-Stack</span>
-                <span className="text-xs text-navy/60 bg-beige px-2 py-1 rounded">Cloud</span>
-              </div>
-            </motion.div>
+                <h3 className="text-xl font-bold text-navy mb-3 group-hover:text-gold-dark transition-colors duration-300">
+                  Game Card Creator
+                </h3>
+                <p className="text-slate text-sm leading-relaxed mb-4">
+                  Agentic AI workflow that transforms unstructured card ideas into structured game assets with automated art generation and template-based card design.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  <span className="text-xs text-navy/60 bg-beige px-2 py-1 rounded">AI Agents</span>
+                  <span className="text-xs text-navy/60 bg-beige px-2 py-1 rounded">Game Dev</span>
+                  <span className="text-xs text-navy/60 bg-beige px-2 py-1 rounded">Automation</span>
+                </div>
+              </motion.div>
+            </Link>
           </div>
 
           {/* Info Note */}
