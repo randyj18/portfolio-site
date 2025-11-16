@@ -22,6 +22,12 @@ export default function Footer() {
           {/* Right: Links */}
           <div className="flex gap-6">
             <a
+              href="/playground"
+              className="text-sm text-slate hover:text-gold-light transition-colors duration-300"
+            >
+              Playground
+            </a>
+            <a
               href="mailto:randyjones87@gmail.com"
               className="text-sm text-slate hover:text-gold-light transition-colors duration-300"
             >
