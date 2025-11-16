@@ -68,6 +68,12 @@ export default function Hero() {
             Explore Approach →
           </a>
           <a
+            href="/playground"
+            className="flex-1 px-8 py-4 border border-gold-light text-gold-light rounded-sm hover:bg-gold-light/10 hover:border-gold-light/50 transition-all duration-300 font-semibold text-center"
+          >
+            Dev Playground
+          </a>
+          <a
             href="/blog"
             className="flex-1 px-8 py-4 border border-slate text-slate rounded-sm hover:bg-slate/10 transition-all duration-300 font-semibold text-center"
           >
