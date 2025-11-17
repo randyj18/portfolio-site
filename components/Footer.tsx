@@ -22,6 +22,18 @@ export default function Footer() {
           {/* Right: Links */}
           <div className="flex gap-6">
             <a
+              href="/research"
+              className="text-sm text-slate hover:text-gold-light transition-colors duration-300"
+            >
+              Research
+            </a>
+            <a
+              href="/blog"
+              className="text-sm text-slate hover:text-gold-light transition-colors duration-300"
+            >
+              Blog
+            </a>
+            <a
               href="/playground"
               className="text-sm text-slate hover:text-gold-light transition-colors duration-300"
             >
