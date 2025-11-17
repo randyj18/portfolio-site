@@ -9,7 +9,7 @@
 
 I watched the same solution get built three times in 18 months.
 
-When I moved from Canadian Division knowledge enablement to a global role, I expected to see different problems at different scales. What I saw instead was the same problem being solved repeatedly—different teams, different regions, zero awareness of each other's work.
+When I moved from Canadian Division knowledge enablement to a global role, I expected to see different problems at different scales. What I saw instead was the same problem being solved repeatedly: different teams, different regions, zero awareness of each other's work.
 
 The Canadian team built a workflow automation for processing customer feedback. Three months later, the European team built an identical solution. Six months after that, the Asia-Pacific team started building the exact same thing.
 
@@ -35,11 +35,11 @@ Each solution takes weeks or months to build. Each requires budget, resources, a
 
 But from an organizational perspective? You just paid for the same solution three, four, or five times.
 
-The numbers are staggering. Research shows data workers waste **50% of their time every week** on unsuccessful activities or repeating efforts. Specifically, they spend 20% of their time—10 hours per week—building information assets that already exist, and another 30% trying to find, protect, or prepare data that should be readily available.
+The numbers are staggering. Research shows data workers waste **50% of their time every week** on unsuccessful activities or repeating efforts. Specifically, they spend 20% of their time (10 hours per week) building information assets that already exist, and another 30% trying to find, protect, or prepare data that should be readily available.
 
 The financial impact is equally brutal: poor data quality and duplicated work costs organizations an average of **$15 million per year** in lost revenue. For every 100 employees, U.S. organizations lose $1.7 million annually to data inefficiencies alone.
 
-But perhaps the most telling statistic: businesses miss out on 45% of potential leads due to poor data quality and duplicated systems. When five different teams build separate dashboards from the same data source, or three regional offices each develop their own compliance workflows, the organization isn't just paying for solutions multiple times—it's hemorrhaging opportunity.
+But perhaps the most telling statistic: businesses miss out on 45% of potential leads due to poor data quality and duplicated systems. When five different teams build separate dashboards from the same data source, or three regional offices each develop their own compliance workflows, the organization isn't just paying for solutions multiple times; it's hemorrhaging opportunity.
 
 As one study on distributed innovation notes: "Teams working on related projects without knowing about each other's work leads to billions of dollars in wasted time and resources."
 
@@ -51,7 +51,7 @@ When you solve a problem five times independently, you don't get five times the 
 
 Organizations are designed to create silos.
 
-It's not malicious—it's structural. Different teams, different geographies, different reporting lines, different communication channels. Everyone stays in their lane.
+It's not malicious; it's structural. Different teams, different geographies, different reporting lines, different communication channels. Everyone stays in their lane.
 
 But AI doesn't respect silos. An automation opportunity in marketing looks identical to one in operations. A workflow optimization for customer service could work just as well for sales.
 
@@ -63,7 +63,7 @@ The knowledge is there, scattered across the organization. The problem is no one
 Ideas and solutions live in:
 - Slack channels that expire after 90 days
 - Email threads buried in inboxes
-- SharePoint sites no one can find (research shows workers take over 30 minutes to find documents—so they often create new ones instead)
+- SharePoint sites no one can find (research shows workers take over 30 minutes to find documents, so they often create new ones instead)
 - Individual hard drives and notebooks
 - The heads of people who've since left the company
 
@@ -77,7 +77,7 @@ The incentive structure rewards individual heroics, not organizational efficienc
 **3. No Mechanism for Discovery**
 Even if solutions are documented somewhere, how do you find them?
 
-Traditional search doesn't work because you don't know what keywords to use. You're not searching for a solution—you're searching for an approach to a problem you're just now defining.
+Traditional search doesn't work because you don't know what keywords to use. You're not searching for a solution; you're searching for an approach to a problem you're just now defining.
 
 **4. Governance and Approval Friction**
 [Sandboxing: Safe Early Access to AI Tools](/blog/sandboxing-safe-early-access) explores this, but here's the connection: by the time you navigate approvals to access another team's solution, it's often faster to just build it yourself.
@@ -100,12 +100,12 @@ You don't need a complex system. You need:
 One place where anyone can submit an idea, solution, or approach they've built. Simple form, minimal friction.
 
 **2. Categorization and Tagging**
-Not complex taxonomy—just enough structure that people can find relevant solutions. Think tags, not elaborate hierarchies.
+Not complex taxonomy; just enough structure that people can find relevant solutions. Think tags, not elaborate hierarchies.
 
 [Metadata Matters: The Overlooked Foundation of Knowledge Systems](/blog/metadata-matters) dives deeper into why this matters, but the short version: without metadata, nothing is discoverable.
 
 **3. A Discovery Mechanism**
-Search, trending topics, recommended solutions based on what you're working on. AI-powered search helps here—you can describe your problem and find relevant solutions even if the keywords don't match.
+Search, trending topics, recommended solutions based on what you're working on. AI-powered search helps here: you can describe your problem and find relevant solutions even if the keywords don't match.
 
 **4. A Recognition System**
 When someone's solution gets reused, they should know about it. And they should be rewarded for it.
@@ -119,7 +119,7 @@ This doesn't take months to build. With modern no-code tools or simple web apps,
 
 ### Validation from Organizations That Got It Right
 
-Organizations like NASA, LEGO, and GlaxoSmithKline have proven this model works. NASA's Center of Excellence, studied by Harvard Business School, successfully scaled innovation by providing infrastructure that addressed both technical and cultural challenges. The key insight: the CoE wasn't a siloed innovation unit—it was a hub that empowered distributed innovation across the entire organization.
+Organizations like NASA, LEGO, and GlaxoSmithKline have proven this model works. NASA's Center of Excellence, studied by Harvard Business School, successfully scaled innovation by providing infrastructure that addressed both technical and cultural challenges. The key insight: the CoE wasn't a siloed innovation unit; it was a hub that empowered distributed innovation across the entire organization.
 
 Research on distributed innovation confirms: centralized processes and decentralized execution are not in competition; they're complementary. The organizations that succeed combine both.
 
@@ -150,11 +150,11 @@ Each stage unlocks recognition and potential rewards.
 **Voting and Signals**
 Employees can upvote ideas they think are valuable. Ideas that hit a certain threshold (say, 20 votes) automatically move to the next stage for review.
 
-This democratizes innovation. You don't need executive approval to get attention—you need your peers to think it's valuable.
+This democratizes innovation. You don't need executive approval to get attention; you need your peers to think it's valuable.
 
-Research on organizational decision-making shows that voting systems work best when they combine deliberation with aggregation. The key is voter motivation: when employees are genuinely engaged, voting results in smart choices through information aggregation. This is why the gamification elements matter—they maintain the motivation that makes democratic prioritization effective.
+Research on organizational decision-making shows that voting systems work best when they combine deliberation with aggregation. The key is voter motivation: when employees are genuinely engaged, voting results in smart choices through information aggregation. This is why the gamification elements matter; they maintain the motivation that makes democratic prioritization effective.
 
-Studies comparing voting systems reveal that preferential systems (like upvoting) are more accurate and democratic than simple yes/no choices. By allowing peers to signal value through votes, you're not just democratizing innovation—you're leveraging collective intelligence to identify the highest-impact solutions.
+Studies comparing voting systems reveal that preferential systems (like upvoting) are more accurate and democratic than simple yes/no choices. By allowing peers to signal value through votes, you're not just democratizing innovation; you're leveraging collective intelligence to identify the highest-impact solutions.
 
 **Anonymous Submission, Public Recognition**
 Ideas are submitted and evaluated anonymously during initial stages. This prevents bias based on who submitted it.
@@ -180,11 +180,11 @@ But here's the critical nuance: effective gamification is based on Self-Determin
 - **Competence**: Feeling capable and effective
 - **Relatedness**: Social connection and belonging
 
-The highest-performing gamification systems combine mechanics, dynamics, and aesthetics—not just points and prizes. Research shows 67% of employees prefer collaborative over competitive tasks, which is why peer voting and community validation work better than leaderboards and rankings.
+The highest-performing gamification systems combine mechanics, dynamics, and aesthetics (not just points and prizes). Research shows 67% of employees prefer collaborative over competitive tasks, which is why peer voting and community validation work better than leaderboards and rankings.
 
 The warning: overly extrinsic reward systems (constant badges, rankings, prizes) create short-term motivation but can erode intrinsic motivation over time. The novelty fades, and what felt engaging becomes transactional.
 
-This is why the system emphasizes meaningful rewards (actual compensation tied to measurable impact), collaborative evaluation (peer review rather than competition), and immediate recognition (notification when your solution gets reused). You're not gamifying for the sake of points—you're creating visibility and incentives that align with how people actually want to work.
+This is why the system emphasizes meaningful rewards (actual compensation tied to measurable impact), collaborative evaluation (peer review rather than competition), and immediate recognition (notification when your solution gets reused). You're not gamifying for the sake of points; you're creating visibility and incentives that align with how people actually want to work.
 
 ## The Stage-Gate Process
 
@@ -200,7 +200,7 @@ Peers review and vote. Ideas that get traction (defined threshold) move forward 
 A cross-functional committee reviews trending ideas. They assess feasibility, potential impact, and alignment with organizational priorities.
 
 **Stage 4: Pilot Implementation (Medium Barrier)**
-Approved ideas get resources for a pilot. This could be funding, time, access to tools—whatever's needed to test it.
+Approved ideas get resources for a pilot. This could be funding, time, access to tools (whatever's needed to test it).
 
 At this stage, the contributor gets an automatic reward. They've reached a meaningful checkpoint.
 
@@ -219,15 +219,15 @@ As impact is demonstrated, rewards scale accordingly.
 
 ### What Works (and What Doesn't)
 
-The 20-vote threshold for advancing from community review to expert evaluation proved effective—high enough to ensure genuine interest, low enough to avoid popularity contests. Ideas that stalled at 8-12 votes typically had merit but needed refinement; the system allowed contributors to iterate and resubmit.
+The 20-vote threshold for advancing from community review to expert evaluation proved effective (high enough to ensure genuine interest, low enough to avoid popularity contests). Ideas that stalled at 8-12 votes typically had merit but needed refinement; the system allowed contributors to iterate and resubmit.
 
-The automatic reward at pilot stage was critical. Waiting until full implementation meant contributors went 6-8 months without recognition, which killed motivation. Moving rewards earlier—when ideas reached pilot—kept engagement high.
+The automatic reward at pilot stage was critical. Waiting until full implementation meant contributors went 6-8 months without recognition, which killed motivation. Moving rewards earlier (when ideas reached pilot) kept engagement high.
 
 What failed: complex approval processes at early stages. When we required detailed business cases for submission, participation dropped 70%. The barrier was too high. Simplifying to just "problem, solution, value" brought submissions back.
 
 ## Measurement: What Success Looks Like
 
-Traditional ROI calculations don't capture the full value here. You're not just measuring cost savings—you're measuring organizational learning velocity.
+Traditional ROI calculations don't capture the full value here. You're not just measuring cost savings; you're measuring organizational learning velocity.
 
 **Leading Indicators:**
 - Submission rate (are people contributing?)
@@ -278,7 +278,7 @@ This is how intelligent organizations operate: interconnected systems that enabl
 Let's get practical. If you're reading this and thinking "we should do this," here's the path:
 
 **Week 1-2: Build the Minimum Viable System**
-- Simple submission form (Google Forms, Airtable, custom app—doesn't matter)
+- Simple submission form (Google Forms, Airtable, custom app, doesn't matter)
 - Basic categorization (tags or simple taxonomy)
 - Voting mechanism (upvotes, comments, basic engagement)
 - Dashboard showing submissions, trending ideas, implemented solutions
@@ -328,7 +328,7 @@ When this works, you stop seeing teams as isolated units and start seeing the or
 
 Employees shift from "I need to solve this" to "I wonder if someone's already solved this?"
 
-That shift in mindset—from reinvention to reuse—is worth far more than the cost savings from not building duplicate solutions.
+That shift in mindset (from reinvention to reuse) is worth far more than the cost savings from not building duplicate solutions.
 
 It's a shift toward becoming a learning organization. One that gets smarter over time, not just bigger.
 

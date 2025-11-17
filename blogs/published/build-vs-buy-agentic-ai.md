@@ -1,29 +1,25 @@
 # The $1.5 Million Question: A Practitioner's Framework for Build vs Buy in the Agentic AI Era
 
-**Subtitle:** When custom AI agents justify the cost—and when they're just expensive theater
+**Subtitle:** When custom AI agents justify the cost, and when they're just expensive theater
 **Target Length:** 2,600-3,000 words
 **Cluster:** Strategy & Market Analysis
 **Status:** Complete
 
 ---
 
-## The Decision Every Executive Is Facing
+## The Decision Every Executive Faces
 
-You're sitting in a conference room. Your CTO just presented a proposal: build a custom AI agent tailored to your organization's workflows. Price tag: $600K-$1.5M for development, plus $5K-$20K per month in maintenance.
+A common scenario: Your CTO proposes building a custom AI agent tailored to organizational workflows. Cost: $600K-$1.5M for development, plus $5K-$20K monthly maintenance.
 
-Alternative option: off-the-shelf AI subscriptions at $200-$400 per month.
+Alternative: off-the-shelf AI subscriptions at $200-$400 monthly.
 
-That's a 100x cost difference.
+A 100x cost difference.
 
-Your CTO argues the custom solution will deliver 10x value. Your CFO is skeptical. Your Head of Product wants both.
+Your CTO claims the custom solution delivers 10x value. Your CFO remains skeptical. Your Head of Product wants both.
 
-Which path do you choose?
+The choice matters: **67% of software projects fail due to incorrect build versus buy decisions.** Organizations either over-invest in custom development that doesn't deliver ROI, or under-invest while competitors build genuine differentiation.
 
-Here's the uncomfortable truth: **67% of software projects fail due to wrong build vs buy decisions.** Most organizations either over-invest in custom development that doesn't deliver ROI, or under-invest and watch competitors build genuine differentiation.
-
-The stakes are higher now because agentic AI changes the equation entirely.
-
-Let me show you exactly how to know which camp you're in.
+Agentic AI changes this equation fundamentally.
 
 ## Why Agentic AI Changes Everything
 
@@ -140,38 +136,15 @@ For 90% of organizations, the honest answer is no.
 
 But for the 10% where the answer is yes, the ROI is transformational.
 
-## When Custom Makes Sense: The 10%
+## When Custom May Make Sense: The 10%
 
-I've built custom agentic systems. I've also analyzed when commercial alternatives would have been smarter.
+Based on building custom agentic systems and analyzing when commercial alternatives would have been more effective, several scenarios potentially justify custom development:
 
-Here are the only scenarios where custom justifies the cost:
+**Compliance Requirements No Vendor Meets:** Some regulatory constraints make third-party AI impractical: defense contractors requiring data stay off commercial cloud infrastructure, classified government work in air-gapped environments, highly regulated finance with specific data residency requirements unsupported by vendors (e.g., certain countries lacking major AI vendor data centers), or healthcare research with IRB requirements prohibiting external data transmission.
 
-### Reason 1: Compliance Requirements No Vendor Can Meet
+Enterprise AI typically offers SOC 2 Type II certification, HIPAA compliance via BAA, GDPR compliance, data residency options, SSO, audit logs, and contractual guarantees against training on customer data. What's typically unavailable: true on-premise deployment, arbitrary geographic deployment, custom encryption beyond AES-256, or air-gapped operation.
 
-Some organizations have regulatory constraints that make third-party AI impossible.
-
-**Examples:**
-- **Defense contractors:** Data cannot touch commercial cloud infrastructure under any circumstances
-- **Classified government work:** Air-gapped environments with zero external connectivity
-- **Highly regulated finance:** Specific data residency requirements that no vendor supports (e.g., Saudi financial data must stay in-country, but no major AI vendor has Saudi data centers)
-- **Healthcare with extreme constraints:** Beyond standard HIPAA—some research institutions have IRB requirements that prohibit any external data transmission
-
-**What enterprise AI already offers:**
-- SOC 2 Type II certification
-- HIPAA compliance via BAA
-- GDPR compliance and data residency options
-- SSO, audit logs, role-based access control
-- Contractual guarantees that data won't be used for model training
-
-**What they DON'T offer:**
-- True on-premise deployment (though Google Gemini on Google Distributed Cloud is coming)
-- Deployment in arbitrary geographic locations
-- Custom encryption beyond AES-256
-- Air-gapped operation
-
-If you're in the gap between what vendors offer and what you need, custom might be justified.
-
-**The test:** Can you get a vendor to sign a contract that meets your requirements? If yes, don't build custom. If no, and you genuinely need AI, build it.
+Consider: Can a vendor sign a contract meeting your requirements? If yes, building custom may be unnecessary. If no and you genuinely need AI, custom becomes worth evaluating.
 
 ### Reason 2: Deep Integration with Proprietary Systems
 
@@ -491,49 +464,39 @@ If you do build custom, here's what good looks like:
 
 **Not:** "We've built a monolith that we're stuck with forever."
 
-## The Contrarian Truth
+## The Honest Assessment
 
-Here's what nobody wants to say:
+Consider why many organizations pursue custom AI:
 
-**90% of organizations planning custom AI agents are doing it for the wrong reasons:**
-- "We want control" (control of what? The UI? That's not where value is)
-- "We want our own AI" (vanity, not strategy)
-- "We don't trust third parties" (but you're using their models anyway)
-- "We want to differentiate" (but you're building commodity infrastructure, not differentiation)
+Common justifications that may not hold up: "We want control" (control of UI rather than value creation), "We want our own AI" (potentially vanity versus strategy), "We don't trust third parties" (while using their models), "We want to differentiate" (by building commodity infrastructure versus actual differentiation).
 
-These are theatrical justifications for expensive projects that won't deliver ROI.
+These may represent theatrical justifications for expensive projects unlikely to deliver ROI.
 
-**But the 10% who genuinely need custom—who have compliance requirements no vendor meets, who have proprietary workflows that create real competitive moats, who have novel UX that transforms user productivity—they're going to achieve 10x advantages competitors can't replicate.**
+The genuine 10% (with compliance requirements no vendor meets, proprietary workflows creating real competitive moats, novel UX transforming productivity) may achieve significant advantages competitors can't replicate.
 
-The difference between the 90% and the 10% is intellectual honesty.
+The distinction: intellectual honesty about whether you're solving problems commercial AI can't address, or building because it feels transformative.
 
-Are you solving a real problem that commercial AI can't address?
+## Key Considerations
 
-Or are you building because it feels like "transformation"?
+**Consider off-the-shelf when:**
+- Commercial platforms (ChatGPT Enterprise, Claude for Work, Microsoft Copilot) meet 80%+ of needs
+- Internal system integration possible via MCP servers
+- Speed, lower cost, and reduced risk valued over marginal customization
+- AI serves as productivity tool versus core product
 
-## The Bottom Line
-
-The build vs buy decision for agentic AI isn't complicated:
-
-**Buy off-the-shelf if:**
-- Commercial platforms (ChatGPT Enterprise, Claude for Work, Microsoft Copilot) meet 80%+ of your needs
-- You can integrate with internal systems via MCP servers
-- You value speed, lower cost, and reduced risk over marginal customization
-- AI is a productivity tool, not your core product
-
-**Build custom if:**
-- You have compliance requirements no vendor can meet
-- You have proprietary workflows that create genuine competitive advantage
-- You have novel UX requirements that transform productivity
-- AI is your core product differentiation
-- You have organizational capability to build and maintain for 3+ years
+**Consider custom when:**
+- Compliance requirements no vendor can meet exist
+- Proprietary workflows create genuine competitive advantage
+- Novel UX requirements transform productivity
+- AI represents core product differentiation
+- Organizational capability exists for 3+ year build and maintenance
 - TCO analysis shows clear ROI despite 2-3x higher cost
 
-For the 90%: save $750K-$1.88M over three years and invest that capital in actual differentiation.
+For most organizations: potential savings of $750K-$1.88M over three years could fund actual differentiation.
 
-For the 10%: build it right, measure ROI ruthlessly, and create competitive moats competitors can't replicate.
+For the genuine 10%: measured implementation creating competitive moats competitors can't replicate.
 
-The worst outcome is being the 90% who think they're the 10%.
+The challenge: accurately assessing which category applies.
 
 ([The SAAS Reckoning: Evolution in the AI Era](/blog/saas-evolution-ai-era) explores how this dynamic is reshaping the entire software industry.)
 

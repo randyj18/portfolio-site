@@ -17,8 +17,7 @@ No metadata. No way to connect the dots.
 
 That document might as well not exist.
 
-| Now imagine that same document has metadata: `Topic: Customer Onboarding | Type: Process Automation | Department: Sales Operations | Status: Implemented | Impact: High | Last Updated: 2024-03 | Permissions: Internal Only` |
-| --- | --- | --- | --- | --- | --- | --- |
+Now imagine that same document has metadata: `Topic: Customer Onboarding | Type: Process Automation | Department: Sales Operations | Status: Implemented | Impact: High | Last Updated: 2024-03 | Permissions: Internal Only`
 
 
 
@@ -28,7 +27,7 @@ That's metadata. And every organization is sitting on a goldmine of knowledge th
 
 ## The Bigger Undertaking
 
-Organizations are going through—or about to go through—a massive undertaking: uncovering knowledge gems scattered across every corner of the company.
+Organizations are going through (or about to go through) a massive undertaking: uncovering knowledge gems scattered across every corner of the company.
 
 These gems are everywhere:
 - Buried in email threads from 2019
@@ -45,7 +44,7 @@ And as AI systems get more sophisticated, the opportunity to leverage this decen
 
 ## Why Metadata Is Critical in the AI Era
 
-If you want to do anything sophisticated with AI—RAG (Retrieval-Augmented Generation), fine-tuning, training models on your data—you need metadata.
+If you want to do anything sophisticated with AI (RAG, fine-tuning, training models on your data), you need metadata.
 
 Here's why:
 
@@ -57,7 +56,7 @@ Without metadata classifying this, you're playing Russian roulette with complian
 **2. Relevance Filtering**
 Not all knowledge is relevant to every use case. If you're building a customer support RAG system, you don't want it pulling from internal HR policies or financial projections.
 
-Metadata lets you filter to the relevant corpus. This is critical: retrieval errors are the number one cause of hallucinations in RAG systems. When your retrieval step surfaces irrelevant or outdated documents, the generation step compounds the problem by synthesizing answers from bad sources. Metadata filtering—restricting retrieval by topic, recency, and relevance—is how you prevent this. Organizations implementing proper metadata filtering in their RAG pipelines report 40% faster response times and dramatically improved answer quality.
+Metadata lets you filter to the relevant corpus. This is critical: retrieval errors are the number one cause of hallucinations in RAG systems. When your retrieval step surfaces irrelevant or outdated documents, the generation step compounds the problem by synthesizing answers from bad sources. Metadata filtering (restricting retrieval by topic, recency, and relevance) is how you prevent this. Organizations implementing proper metadata filtering in their RAG pipelines report 40% faster response times and dramatically improved answer quality.
 
 **3. Context and Recency**
 A solution from 2018 might be outdated. A best practice from Q1 might have been superseded in Q3. Metadata like "Last Updated" or "Status: Deprecated" prevents AI from surfacing stale information.
@@ -87,7 +86,7 @@ Older systems don't support rich metadata. Or they do, but it's locked in propri
 **Gap 4: No Enforcement**
 Even when metadata standards exist, there's no mechanism to enforce them. Documents get uploaded without tags. Fields get left blank. The system degrades over time.
 
-The data bears this out: studies show that optional metadata fields have completion rates below 30% in most organizations. When metadata entry is manual and voluntary, adoption crumbles within weeks of rollout. The problem isn't that people don't see the value—it's that the overhead exceeds their immediate pain threshold.
+The data bears this out: studies show that optional metadata fields have completion rates below 30% in most organizations. When metadata entry is manual and voluntary, adoption crumbles within weeks of rollout. The problem isn't that people don't see the value; it's that the overhead exceeds their immediate pain threshold.
 
 ## Practical Steps to Get There
 
@@ -107,7 +106,7 @@ Don't try to tag everything. Start with the essentials:
 - Topic/Category (from controlled vocabulary)
 - Status (Draft, In Review, Approved, Deprecated)
 - Related Projects or Initiatives
-- Impact Level (High, Medium, Low—subjective but useful)
+- Impact Level (High, Medium, Low, subjective but useful)
 
 **Optional Fields:**
 - Keywords/Tags (freeform)
@@ -132,7 +131,7 @@ Modern tools can analyze document content and automatically suggest:
 
 The metadata management landscape has matured significantly. Enterprise platforms like Collibra (10.1% market share) and Alation (5.9%) dominate the commercial space, while open-source alternatives like OpenMetadata and Apache Atlas offer robust capabilities without vendor lock-in. These platforms combine AI-powered auto-tagging with governance workflows, cataloging, and lineage tracking.
 
-The numbers are compelling: AI-powered metadata generation achieves 85-95% accuracy when paired with human review, reducing tagging time by roughly 50%. NASA demonstrated this at scale, processing 3.5 million scientific documents with 7,000 controlled keywords, achieving 84% accuracy on domain-specific topics like volcanology research—a task that would have taken years manually.
+The numbers are compelling: AI-powered metadata generation achieves 85-95% accuracy when paired with human review, reducing tagging time by roughly 50%. NASA demonstrated this at scale, processing 3.5 million scientific documents with 7,000 controlled keywords, achieving 84% accuracy on domain-specific topics like volcanology research (a task that would have taken years manually).
 
 The workflow: employee uploads document → AI suggests metadata → employee reviews and approves → document is tagged consistently.
 
@@ -186,7 +185,7 @@ This is why [The SAAS Reckoning: Evolution in the AI Era](/blog/saas-evolution-a
 
 ## The Connection to Data Storage
 
-Every piece of metadata you add uses storage. Not much—a few kilobytes per document—but at scale, it adds up.
+Every piece of metadata you add uses storage. Not much (a few kilobytes per document), but at scale, it adds up.
 
 [The Data Storage Reality: Adapt or Become Uncompetitive](/blog/data-storage-reality) explores how GenAI is changing storage economics. Metadata is part of that equation.
 

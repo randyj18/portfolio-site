@@ -29,7 +29,7 @@ Let's start with the basics.
 - **Bing** - Search with AI
 - **GitHub Copilot** - Code completion and generation
 
-As of 2025, Copilot has reached 100 million monthly active users, with adoption by over 60% of Fortune 500 companies—a remarkable penetration rate for enterprise AI. The integration spans virtually every Microsoft product, creating a unified AI experience across the entire ecosystem.
+As of 2025, Copilot has reached 100 million monthly active users, with adoption by over 60% of Fortune 500 companies (a remarkable penetration rate for enterprise AI). The integration spans virtually every Microsoft product, creating a unified AI experience across the entire ecosystem.
 
 The pitch: "AI everywhere you work, seamlessly integrated."
 
@@ -43,7 +43,7 @@ Microsoft is not just adding AI to their products. They're executing a multi-lay
 
 ### Layer 1: Extend the Microsoft 365 Moat
 
-Microsoft 365 is already deeply embedded in enterprises. Email, documents, collaboration—switching costs are enormous.
+Microsoft 365 is already deeply embedded in enterprises. Email, documents, collaboration: switching costs are enormous.
 
 Copilot makes switching even harder.
 
@@ -73,7 +73,7 @@ But here's the strategic implication: Microsoft is positioning themselves as the
 
 You're not directly using GPT-4 or Claude. You're using Copilot, which orchestrates these models under the hood.
 
-Copilot primarily runs on OpenAI's GPT-4 and GPT-5 models (Microsoft is OpenAI's largest investor), but they've also integrated Claude for specific capabilities and use proprietary Microsoft models for certain features. This multi-model approach gives Microsoft flexibility, but it also means when they switch models, adjust capabilities, or change which AI handles which tasks, you have no choice in the matter. You get what Microsoft gives you.
+Copilot primarily runs on OpenAI's GPT-4 and GPT-5 models (Microsoft is OpenAI's largest investor), but they've also integrated Claude for specific capabilities and use proprietary Microsoft models for certain features. This multi-model approach gives Microsoft flexibility, but it also means when they switch models, adjust capabilities, or change which AI handles which tasks, you have no choice in the matter: you get what Microsoft gives you.
 
 ### Layer 3: Data Leverage
 
@@ -90,7 +90,7 @@ That data is enormously valuable for training AI.
 
 **The question:** What is Microsoft doing with that data?
 
-**Microsoft's official position:** They contractually guarantee that they do not train AI models on customer data. Your organization's emails, documents, and files are used only for retrieval-augmented generation (RAG) during your Copilot sessions—not for model training.
+**Microsoft's official position:** They contractually guarantee that they do not train AI models on customer data. Your organization's emails, documents, and files are used only for retrieval-augmented generation (RAG) during your Copilot sessions, not for model training.
 
 They also offer EU Data Boundary compliance for European customers, ensuring data doesn't leave specified regions. These are genuine privacy protections that matter for regulated industries.
 
@@ -125,7 +125,7 @@ Let's be clear: Copilot can genuinely improve productivity.
 - Data analysis in Excel (if you know what you're asking for)
 - Quick research synthesis
 
-The ROI data is compelling: organizations report returns ranging from 116% to 353% depending on deployment scale and user adoption. Early adopters have seen measurable time savings—some employees reclaim 10-15 hours per week on routine tasks.
+The ROI data is compelling: organizations report returns ranging from 116% to 353% depending on deployment scale and user adoption. Early adopters have seen measurable time savings, with some employees reclaiming 10-15 hours per week on routine tasks.
 
 These aren't just theoretical gains. For organizations deep in the Microsoft ecosystem, Copilot might be the fastest path to AI adoption.
 
@@ -147,7 +147,7 @@ You get the features Microsoft builds. If Copilot doesn't support a workflow you
 3. Use a different tool (which means leaving the Microsoft ecosystem for that use case)
 
 **Cost Dependency**
-Copilot costs $30 per user per month—on top of your existing Microsoft 365 license. For a 1,000-person organization, that's $360,000 annually just for the AI layer.
+Copilot costs $30 per user per month, on top of your existing Microsoft 365 license. For a 1,000-person organization, that's $360,000 annually just for the AI layer.
 
 Microsoft can increase pricing at renewal. If you're deep into Copilot workflows, switching costs are high, so you'll likely pay.
 
@@ -160,7 +160,7 @@ Switching AI providers means starting from scratch.
 Microsoft offers enterprise-grade controls, but with limitations:
 - **On-premise deployment:** No. Copilot is cloud-only.
 - **Audit logs:** Yes. You can track Copilot usage through Microsoft 365 admin tools.
-- **Granular permissions:** Partial. You can control which users have Copilot access and leverage existing Microsoft 365 permissions, but Copilot inherits the user's permissions—if they can access a document, so can Copilot.
+- **Granular permissions:** Partial. You can control which users have Copilot access and leverage existing Microsoft 365 permissions, but Copilot inherits the user's permissions; if they can access a document, so can Copilot.
 - **Model choice:** No. Microsoft decides which AI models power which features.
 
 For some organizations, this level of control is sufficient. For others (especially in regulated industries with strict data access requirements), these limitations are deal-breakers.
@@ -260,7 +260,7 @@ If you're evaluating Copilot, don't just accept the sales pitch. Ask hard questi
 - "How do you prioritize feature requests from enterprise customers?"
 - "What is your long-term vision for Copilot's role in the enterprise?"
 
-Some of these questions have public answers in Microsoft's documentation and blog posts. But the nuanced, contract-specific answers—especially around pricing flexibility, data guarantees, and governance customizations—require direct conversations with Microsoft sales and legal teams. Don't rely solely on public marketing materials.
+Some of these questions have public answers in Microsoft's documentation and blog posts. But the nuanced, contract-specific answers (especially around pricing flexibility, data guarantees, and governance customizations) require direct conversations with Microsoft sales and legal teams. Don't rely solely on public marketing materials.
 
 ## The Bottom Line
 
@@ -282,7 +282,7 @@ That doesn't make it bad. But it does make it something you need to evaluate wit
 
 The key is understanding what you're buying and what you're giving up.
 
-**TLDR:** Copilot delivers measurable productivity gains (116-353% ROI) but executes a four-layer strategic lock-in: ecosystem moat, workflow capture, data leverage, and platform control. It's the right choice if you're already deep in Microsoft 365 and value integration over flexibility. For others, the single-vendor dependency risk may outweigh the productivity gains—especially if you need model choice, flexibility, or custom governance.
+**TLDR:** Copilot delivers measurable productivity gains (116-353% ROI) but executes a four-layer strategic lock-in: ecosystem moat, workflow capture, data leverage, and platform control. It's the right choice if you're already deep in Microsoft 365 and value integration over flexibility. For others, the single-vendor dependency risk may outweigh the productivity gains, especially if you need model choice, flexibility, or custom governance.
 
 ---
 

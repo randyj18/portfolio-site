@@ -13,7 +13,7 @@ If you're not interested in the technical details, read this section and then sk
 
 **What is MCP in one sentence?**
 
-Model Context Protocol is a standardized way for AI systems to connect to external tools and data sources—like USB ports for AI, letting different services plug in and work together without custom wiring for each connection.
+Model Context Protocol is a standardized way for AI systems to connect to external tools and data sources (like USB ports for AI), letting different services plug in and work together without custom wiring for each connection.
 
 **The Problem MCP Solves**
 
@@ -174,7 +174,7 @@ OpenAI's approach:
 - Your application executes the function
 - Return results to AI in next request
 
-Key difference: Function calling is **request-scoped**. You define functions per API call. MCP is **persistent**—the server exists independently, AI can discover it dynamically.
+Key difference: Function calling is **request-scoped**. You define functions per API call. MCP is **persistent**: the server exists independently, AI can discover it dynamically.
 
 **MCP vs. LangChain Tools**
 
@@ -186,7 +186,7 @@ LangChain:
 MCP:
 - Protocol, not a framework
 - Tools run on separate servers (can be remote)
-- Loose coupling—swap AI systems without changing tools
+- Loose coupling: swap AI systems without changing tools
 
 **MCP vs. Traditional APIs**
 
@@ -303,7 +303,7 @@ Example: Customer support agent asks AI "Why is this customer's order delayed?"
 
 **Without MCP**: AI says "I don't have access to your order system. Can you check and paste the details?"
 
-**With MCP**: AI queries order database, shipping API, inventory system, and customer history in parallel. Returns: "Order 12345 is delayed because the item went out of stock on Oct 15. Restocking is scheduled for Oct 23. Customer has had 2 previous delays in the last 6 months—consider offering expedited shipping on this order."
+**With MCP**: AI queries order database, shipping API, inventory system, and customer history in parallel. Returns: "Order 12345 is delayed because the item went out of stock on Oct 15. Restocking is scheduled for Oct 23. Customer has had 2 previous delays in the last 6 months; consider offering expedited shipping on this order."
 
 That's not a 10% improvement. That's a completely different level of capability.
 
@@ -339,7 +339,7 @@ Build your own internal interface that:
 
 **Step 4: Expand Coverage**
 
-Once you have 1-2 MCP servers working, expand to more systems. The infrastructure is reusable—each additional server gets easier.
+Once you have 1-2 MCP servers working, expand to more systems. The infrastructure is reusable; each additional server gets easier.
 
 **Step 5: Enable Cross-System Workflows**
 
@@ -406,7 +406,7 @@ Something remarkable happened in Q1-Q2 2025: the major vendors announced MCP sup
 - **Google** (April 2025): Gemini integrated MCP alongside their proprietary extensions, citing developer demand
 - **Microsoft** (May 2025): Copilot for Microsoft 365 gained MCP support, allowing enterprises to connect internal systems
 
-This isn't full convergence—each vendor maintains their proprietary approaches—but MCP is emerging as the interoperability layer. The XKCD "14 competing standards" risk is being avoided through MCP's open, vendor-neutral positioning.
+This isn't full convergence (each vendor maintains their proprietary approaches), but MCP is emerging as the interoperability layer. The XKCD "14 competing standards" risk is being avoided through MCP's open, vendor-neutral positioning.
 
 ---
 
@@ -429,7 +429,7 @@ Speculative, but informed.
 - "MCP integration specialist" becomes a recognized job title
 
 **Implications:**
-- Integration becomes commodity—"Does it have MCP?" is table stakes
+- Integration becomes commodity: "Does it have MCP?" is table stakes
 - SAAS vendors forced to compete on features, not lock-in (see [LINK: The SAAS Reckoning])
 - Organizations can mix and match AI systems without rebuilding integrations
 - Early adopters (like Block) maintain 12-18 month competitive advantage
@@ -463,7 +463,7 @@ Speculative, but informed.
 
 Given the major vendor adoption in early 2025, Scenario 1 is actively happening. The window for alternative standards has largely closed. MCP (or a direct evolution of it) is becoming infrastructure.
 
-The momentum is undeniable: when OpenAI, Google, and Microsoft all adopt the same protocol within three months, that's not a coincidence—that's the market deciding.
+The momentum is undeniable: when OpenAI, Google, and Microsoft all adopt the same protocol within three months, that's not a coincidence; that's the market deciding.
 
 ---
 
@@ -498,7 +498,7 @@ The organizations that build MCP infrastructure now will have AI systems that ca
 
 The ones that wait will be stuck copying and pasting into chat boxes while their competitors' AI operates autonomously.
 
-This is a 12-18 month window. After that, you're not early—you're catching up.
+This is a 12-18 month window. After that, you're not early; you're catching up.
 
 The protocol is real. The ecosystem is here. Major vendors have validated it. Block and other early adopters are already seeing 50-75% efficiency gains.
 
@@ -515,7 +515,7 @@ The question isn't whether MCP will become standard infrastructure. The question
 
 ---
 
-**TLDR:** Model Context Protocol (MCP) is the standardized connector layer enabling AI systems to access external tools and data—essentially USB ports for AI. Launched November 2024, adoption has exploded: 16,000+ MCP servers deployed, 8M+ downloads by April 2025, major vendors (OpenAI, Microsoft, Google) announced support in Q1-Q2 2025. MCP solves the integration tax problem by defining one standard (JSON-RPC 2.0) that any AI system can use to connect to any service. In 3-5 years, MCP will likely be standard infrastructure like APIs became in the 2010s. Organizations building MCP servers now (vs. custom integrations) gain strategic advantage when vendors inevitably standardize adoption.
+**TLDR:** Model Context Protocol (MCP) is the standardized connector layer enabling AI systems to access external tools and data (essentially USB ports for AI). Launched November 2024, adoption has exploded: 16,000+ MCP servers deployed, 8M+ downloads by April 2025, major vendors (OpenAI, Microsoft, Google) announced support in Q1-Q2 2025. MCP solves the integration tax problem by defining one standard (JSON-RPC 2.0) that any AI system can use to connect to any service. In 3-5 years, MCP will likely be standard infrastructure like APIs became in the 2010s. Organizations building MCP servers now (vs. custom integrations) gain strategic advantage when vendors inevitably standardize adoption.
 
 ---
 
