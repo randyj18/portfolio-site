@@ -222,6 +222,163 @@ html {
   text-decoration-color: rgba(250, 174, 27, 0.5);
 }
 
+/* Research prose container and styling - for dark backgrounds */
+.research-prose {
+  max-width: 100%;
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
+
+.research-prose p {
+  color: #4B5564;
+  margin-bottom: 1rem;
+  line-height: 1.75;
+  font-size: 1.25rem;
+}
+
+.research-prose h2 {
+  color: #EDDDCC;
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  margin-top: 3rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(75, 85, 100, 0.2);
+}
+
+.research-prose h3 {
+  color: #EDDDCC;
+  font-size: 1.875rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  margin-top: 2rem;
+}
+
+.research-prose h4 {
+  color: #EDDDCC;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.research-prose ul,
+.research-prose ol {
+  color: #4B5564;
+  margin: 1.5rem 0;
+  padding-left: 2rem;
+}
+
+.research-prose li {
+  color: #4B5564;
+  margin-bottom: 0.5rem;
+  font-size: 1.125rem;
+}
+
+.research-prose a {
+  color: #FAAE1B;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.research-prose a:hover {
+  color: #D65117;
+}
+
+.research-prose strong {
+  color: #EDDDCC;
+  font-weight: 600;
+}
+
+.research-prose code {
+  color: #FAAE1B;
+  background-color: rgba(25, 35, 50, 0.6);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.research-prose pre {
+  background-color: rgba(25, 35, 50, 0.6);
+  color: #EDDDCC;
+  padding: 1.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid rgba(75, 85, 100, 0.2);
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.research-prose pre code {
+  background-color: transparent;
+  padding: 0;
+  font-size: 0.875rem;
+}
+
+.research-prose blockquote {
+  border-left: 4px solid #FAAE1B;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-style: italic;
+  color: #4B5564;
+  margin: 1.5rem 0;
+}
+
+.research-prose hr {
+  border-color: rgba(75, 85, 100, 0.2);
+  margin: 3rem 0;
+}
+
+/* Research prose table styling */
+.research-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  border: 1px solid rgba(75, 85, 100, 0.2);
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+
+.research-prose table thead {
+  background-color: rgba(250, 174, 27, 0.1);
+}
+
+.research-prose table th {
+  border: 1px solid rgba(75, 85, 100, 0.2);
+  padding: 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  color: #EDDDCC;
+}
+
+.research-prose table td {
+  border: 1px solid rgba(75, 85, 100, 0.2);
+  padding: 0.75rem;
+  color: #4B5564;
+}
+
+.research-prose table tbody tr:hover {
+  background-color: rgba(25, 35, 50, 0.3);
+}
+
+/* Footnote styling for research prose */
+.research-prose sup {
+  color: #FAAE1B;
+  font-weight: 600;
+}
+
+.research-prose sup a {
+  color: #FAAE1B;
+  text-decoration: none;
+}
+
+.research-prose sup a:hover {
+  color: #D65117;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;

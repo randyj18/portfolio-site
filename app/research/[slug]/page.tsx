@@ -105,33 +105,8 @@ export default function ResearchPaperPage({ params }: { params: { slug: string }
       {/* Content */}
       <article className="section-container py-16">
         <div className="max-w-4xl">
-          <div className="prose prose-invert prose-lg max-w-none
-            prose-headings:text-beige prose-headings:font-bold
-            prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:border-b prose-h2:border-slate/20 prose-h2:pb-3
-            prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
-            prose-p:text-slate prose-p:leading-relaxed
-            prose-a:text-gold-light prose-a:no-underline hover:prose-a:text-orange-burnt prose-a:transition-colors
-            prose-strong:text-beige prose-strong:font-semibold
-            prose-ul:text-slate prose-ul:my-6
-            prose-li:my-2
-            prose-code:text-gold-light prose-code:bg-navy/60 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
-            prose-pre:bg-navy/60 prose-pre:border prose-pre:border-slate/20
-            prose-blockquote:border-l-4 prose-blockquote:border-gold-light prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-slate
-            prose-hr:border-slate/20 prose-hr:my-12
-            prose-table:text-slate
-            prose-thead:border-b prose-thead:border-slate/20
-            prose-tr:border-b prose-tr:border-slate/10
-            prose-th:text-beige prose-th:font-semibold prose-th:p-3
-            prose-td:p-3"
-          >
-            <ReactMarkdown
-              components={{
-                // Render footnote references
-                sup: ({ children, ...props }) => (
-                  <sup className="text-gold-light" {...props}>{children}</sup>
-                ),
-              }}
-            >
+          <div className="research-prose">
+            <ReactMarkdown>
               {paper.content}
             </ReactMarkdown>
           </div>
