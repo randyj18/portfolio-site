@@ -11,7 +11,7 @@ Here's an uncomfortable thought: a junior analyst might have a better AI strateg
 
 And if you can't reward them equally for that contribution, you're leaving intelligence on the table.
 
-This isn't about fairness in some abstract sense. It's about recognizing that in the AI era, the world's most powerful resource—intelligence—doesn't care about your org chart.
+This isn't about fairness in some abstract sense. It's about recognizing that in the AI era, the world's most powerful resource (intelligence) doesn't care about your org chart.
 
 ## The Core Idea
 
@@ -25,11 +25,11 @@ Partner contributes a game-changing idea? Here's a $50K bonus.
 
 Junior staff contributes the same idea? Here's $1K and a pat on the back.
 
-That's not just unfair—it's strategically stupid. You're signaling that intelligence matters less than rank. And smart people notice.
+That's not just unfair; it's strategically stupid. You're signaling that intelligence matters less than rank. And smart people notice.
 
-Organizations aren't just systems—they're **intelligent organisms**. They gather information, process it, make decisions, adapt to their environment. The smarter the organism, the more competitive it becomes.
+Organizations aren't just systems; they're **intelligent organisms**. They gather information, process it, make decisions, adapt to their environment. The smarter the organism, the more competitive it becomes.
 
-Karl Weick's research on high-reliability organizations describes this as "collective mind"—the organization's capacity to think beyond any individual's contribution. But here's the critical insight: collective mind only works when you have "deference to expertise" rather than deference to authority. The best idea wins, not the highest-ranking person's idea.
+Karl Weick's research on high-reliability organizations describes this as "collective mind" (the organization's capacity to think beyond any individual's contribution). But here's the critical insight: collective mind only works when you have "deference to expertise" rather than deference to authority. The best idea wins, not the highest-ranking person's idea.
 
 And you can't build an intelligent organism if you're only listening to the top 5% of the hierarchy.
 
@@ -42,7 +42,7 @@ Here's the structure:
 **Innovation Rewards Fund**
 - Separate from base compensation and promotions
 - Funded annually based on organizational profitability (could be uncapped if tied to measurable gains)
-- Distributed purely on merit—quality of idea and measurable impact
+- Distributed purely on merit (quality of idea and measurable impact)
 
 **Reward Criteria**
 1. **Impact:** Did this idea generate revenue, save costs, improve productivity, reduce risk?
@@ -55,7 +55,7 @@ No consideration of job title, tenure, or department. Just: did you contribute i
 **The CEO Bonus**
 Here's where it gets interesting.
 
-A CEO who contributes a good idea gets a bonus. Let's say $10K. For them, that's a tiny fraction of total compensation—maybe 0.5%. It's symbolic.
+A CEO who contributes a good idea gets a bonus. Let's say $10K. For them, that's a tiny fraction of total compensation (maybe 0.5%). It's symbolic.
 
 But that symbol matters.
 
@@ -86,15 +86,15 @@ Mid-level managers take credit for their team's ideas to capture the reward. The
 If rewards are tied to rank and political dynamics, employees only propose "safe" ideas that won't ruffle feathers. Innovation dies.
 
 **4. Talent Drain**
-Your smartest people—the ones generating the most value—leave for organizations that actually reward intelligence. You're left with people who are good at navigating politics, not solving problems.
+Your smartest people (the ones generating the most value) leave for organizations that actually reward intelligence. You're left with people who are good at navigating politics, not solving problems.
 
-The data backs this up: research shows that organizations with transparent, merit-based compensation systems see 72% employee engagement, compared to just 39% in traditional hierarchical structures. And some of the world's most innovative companies have proven the model works:
+The data backs this up: research shows that organizations with transparent, merit-based compensation systems see 72% employee engagement, compared to just 39% in traditional hierarchical structures. Some of the world's most innovative companies have proven the model works:
 
 - **W.L. Gore** ($5B revenue): No traditional hierarchy, no managers. Their "lattice structure" allows anyone to champion ideas and earn recognition based purely on impact. The result? Thousands of patents and consistent innovation across decades.
 
 - **Valve** ($5B+ revenue): Zero managers. Employees choose projects based on potential impact. Compensation is peer-reviewed annually, with bonuses tied directly to contributions, not rank.
 
-- **Google**: Their peer bonus program allows any employee to award recognition bonuses to colleagues who've contributed exceptional ideas—independent of the recipient's level or department.
+- **Google**: Their peer bonus program allows any employee to award recognition bonuses to colleagues who've contributed exceptional ideas, independent of the recipient's level or department.
 
 These aren't feel-good experiments. These are billion-dollar businesses that have made merit-based recognition core to their competitive advantage.
 
@@ -178,11 +178,11 @@ Instead of "leadership makes the decisions," it becomes "anyone can contribute t
 
 Instead of "AI is replacing me," it becomes "AI is a tool I can use to generate value, and I'll be rewarded for figuring out how."
 
-The behavioral economics research is clear: meaning matters more than money—but structured rewards amplify meaning. Dan Ariely's famous Bionicle experiment showed that when participants understood the purpose behind their work, they produced 36% more innovations than when that meaning was removed. But here's the nuance: recognition and fair compensation don't replace intrinsic motivation—they signal that the organization values what you value.
+The behavioral economics research is clear: meaning matters more than money, but structured rewards amplify meaning. Dan Ariely's famous Bionicle experiment showed that when participants understood the purpose behind their work, they produced 36% more innovations than when that meaning was removed. But here's the nuance: recognition and fair compensation don't replace intrinsic motivation; they signal that the organization values what you value.
 
 Self-Determination Theory identifies three core drivers of motivation: autonomy (freedom to choose how you contribute), competence (mastery and growth), and relatedness (connection to something larger). A merit-based innovation reward system hits all three. You choose what problems to solve (autonomy), your skills determine the impact (competence), and your contributions strengthen the collective intelligence (relatedness).
 
-But there's a critical warning from research on the "Paradox of Meritocracy." MIT's Emilio Castilla found that organizations that loudly proclaim themselves meritocratic often become *less* fair, because managers assume bias has been eliminated and stop actively checking for it. The solution? Make the evaluation process transparent, criteria-based, and auditable. Don't just say you're merit-based—prove it with data.
+But there's a critical warning from research on the "Paradox of Meritocracy." MIT's Emilio Castilla found that organizations that loudly proclaim themselves meritocratic often become *less* fair, because managers assume bias has been eliminated and stop actively checking for it. The solution? Make the evaluation process transparent, criteria-based, and auditable. Don't just say you're merit-based; prove it with data.
 
 This is the shift that separates organizations that thrive in the AI era from those that don't.
 
@@ -191,7 +191,7 @@ This is the shift that separates organizations that thrive in the AI era from th
 If you're reading this and thinking "we should do this," here's the path:
 
 **Step 1: Define the Fund**
-Allocate a percentage of annual profit (or budget) to innovation rewards. Start small—0.5-1% of revenue. Adjust based on what you learn.
+Allocate a percentage of annual profit (or budget) to innovation rewards. Start small (0.5-1% of revenue). Adjust based on what you learn.
 
 **Step 2: Create the Evaluation Process**
 Assemble a cross-functional committee (not just executives) to review and evaluate contributions. Define criteria, create tiers, establish payout ranges.

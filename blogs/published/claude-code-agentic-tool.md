@@ -23,7 +23,7 @@ Let's start by clearing up the misconception.
 "It writes code for me when I ask it to."
 
 **What Claude Code actually is:**
-"It executes multi-step tasks autonomously, using tools to read files, search codebases, run commands, make edits, and validate results—across iterative loops until the task is complete."
+"It executes multi-step tasks autonomously, using tools to read files, search codebases, run commands, make edits, and validate results across iterative loops until the task is complete."
 
 See the difference?
 
@@ -52,7 +52,7 @@ You define the destination. Claude Code drives.
 
 **That's agency.**
 
-And yes, Claude Code actually does iterate autonomously. It doesn't just suggest changes and wait for approval—it executes, validates, encounters errors, fixes them, and runs tests again until the task works. The system has access to full terminal capabilities, can run commands, read error messages, and make corrections in an autonomous loop. This isn't theoretical. It's how the tool operates.
+And yes, Claude Code actually does iterate autonomously. It doesn't just suggest changes and wait for approval; it executes, validates, encounters errors, fixes them, and runs tests again until the task works. The system has access to full terminal capabilities, can run commands, read error messages, and make corrections in an autonomous loop. This isn't theoretical. It's how the tool operates.
 
 ## Why This Matters Beyond Coding
 
@@ -100,7 +100,7 @@ That's not "coding." That's **knowledge work.**
 
 None of these are "coding" in the traditional sense. But all benefit from agentic execution.
 
-Real-world proof: Anthropic's own legal team used Claude Code to create prototype "phone tree" systems to help team members connect with the right lawyer. Data scientists who aren't fluent in TypeScript built entire React applications for visualizing model performance. Non-technical teams solving technical problems—that's the shift.
+Real-world proof: Anthropic's own legal team used Claude Code to create prototype "phone tree" systems to help team members connect with the right lawyer. Data scientists who aren't fluent in TypeScript built entire React applications for visualizing model performance. Non-technical teams solving technical problems: that's the shift.
 
 ## What Makes Claude Code Different
 
@@ -118,7 +118,7 @@ Let's compare to the alternatives.
 
 **Claude Code:**
 - Task-oriented, not line-oriented
-- Multi-file context and editing (200,000 token context window)
+- Multi-file context and editing with 200,000 token context window
 - Autonomous execution with tool use
 - Iterative validation and correction
 - Can run commands, tests, searches
@@ -151,12 +151,12 @@ Cursor is closer to Claude Code in philosophy (agentic vs. assistive).
 The $20/month Pro plan includes "$60 in usage," but one tester hit their limit after just 5 days of normal work. Worse: Cursor "quietly downgrades to weaker models when quota gets low," and the IDE never tells users which models it's using or how much they cost. This creates unpredictable costs that make it hard to justify for solo work or small teams.
 
 **Context Management:**
-Cursor uses proactive codebase indexing with @files and @folders for explicit referencing. Claude Code uses a 200,000 token context window—significantly larger than competitors—allowing it to understand larger codebases without manual indexing.
+Cursor uses proactive codebase indexing with @files and @folders for explicit referencing. Claude Code uses a 200,000 token context window (significantly larger than competitors), allowing it to understand larger codebases without manual indexing.
 
 **Tool Integration:**
 Cursor is IDE-focused. It wants to be your entire development environment. Claude Code is workflow-focused. It's terminal-native, composable, and scriptable (following Unix philosophy). You can pipe logs to Claude, run it in CI environments for automation, or integrate it into existing workflows without changing your entire setup.
 
-The key distinction: "GitHub Copilot enhances whatever coding setup you already love, while Cursor wants to become your entire development environment." Claude Code splits the difference—it integrates with your existing tools (VS Code, JetBrains, terminal) without forcing you into a walled garden.
+The key distinction: "GitHub Copilot enhances whatever coding setup you already love, while Cursor wants to become your entire development environment." Claude Code splits the difference; it integrates with your existing tools (VS Code, JetBrains, terminal) without forcing you into a walled garden.
 
 ### Claude Code vs. ChatGPT/Claude Web Interfaces
 
@@ -195,7 +195,7 @@ Claude Code has access to tools:
 - **Terminal access** - Full shell capabilities
 - **MCP Integration** - Connect to hundreds of external tools and data sources (GitHub, Figma, Slack, Google Drive, Stripe, Zapier with access to 8,000+ apps)
 
-This list is validated. These are the actual capabilities Claude Code ships with. And through MCP (Model Context Protocol), you can extend it further with custom integrations.
+This list is validated. These are the actual capabilities Claude Code ships with. Through MCP (Model Context Protocol), you can extend it further with custom integrations.
 
 This isn't "I can write code for you." This is "I can operate your development environment."
 
@@ -343,13 +343,13 @@ It's a tool, not a replacement for experienced judgment.
 Here's the real limitation nobody talks about upfront:
 
 **5-Hour Rolling Session:**
-- Pro users ($20/month): ~10-40 prompts every 5 hours
-- Max 5x users ($100/month): ~50-200 prompts every 5 hours
-- Max 20x users ($200/month): ~200-800 prompts every 5 hours
+- Pro users ($20/month): approximately 10-40 prompts every 5 hours
+- Max 5x users ($100/month): approximately 50-200 prompts every 5 hours
+- Max 20x users ($200/month): approximately 200-800 prompts every 5 hours
 
 Plus weekly limits layered on top (introduced August 28, 2025, to curb 24/7 usage and account sharing).
 
-In July 2025, Anthropic tightened these limits without warning, causing widespread frustration among heavy users—many on the $200/month plan. Some Max plan users found Claude Code completely stopped working. Users canceled subscriptions en masse.
+In July 2025, Anthropic tightened these limits without warning, causing widespread frustration among heavy users (many on the $200/month plan). Some Max plan users found Claude Code completely stopped working. Users canceled subscriptions en masse.
 
 Between August-September 2025, three infrastructure bugs intermittently degraded Claude's response quality. About 30% of Claude Code users had at least one message routed to the wrong server type, resulting in degraded responses.
 
@@ -361,7 +361,7 @@ If you're thinking strategically, here's what Claude Code means for organization
 
 ### 1. Developer Productivity Multiplier
 
-Conservative estimate: **20-40% productivity gain** for routine tasks.
+Conservative estimate: 20-40% productivity gain for routine tasks.
 
 For complex multi-file refactorings or documentation generation: **5-10x gains**.
 
@@ -380,7 +380,7 @@ Non-developers can accomplish technical tasks that previously required developer
 - Product manager: "Generate a report analyzing error rates by endpoint"
 - Claude Code: Reads logs, analyzes patterns, generates report
 
-Anthropic's legal team—not engineers—built internal phone tree systems to route team members to the right lawyer. Marketers generate hundreds of ad variations in seconds. Data scientists create complex visualizations without JavaScript knowledge.
+Anthropic's legal team (not engineers) built internal phone tree systems to route team members to the right lawyer. Marketers generate hundreds of ad variations in seconds. Data scientists create complex visualizations without JavaScript knowledge.
 
 This doesn't replace developers. It expands who can do technical work for non-critical tasks.
 
@@ -456,9 +456,9 @@ Don't use Claude Code in isolation. Integrate it into:
 - Sandboxing environments for safe experimentation
 
 Features that make this easier:
-- **Rewind/Checkpoints:** Automatic checkpoint system saves code state before each change. Tap Esc twice or use /rewind to restore code, conversation, or both to prior state.
-- **IDE integration:** Native VS Code extension provides graphical interface. Automatic diagnostic sharing means lint and syntax errors are shared automatically, enabling Claude Code to fix issues proactively.
-- **Custom subagents:** Create specialized agents for different tasks (e.g., backend API while main agent builds frontend).
+- **Rewind/Checkpoints:** Automatic checkpoint system saves code state before each change. Tap Esc twice or use /rewind to restore code, conversation, or both to prior state
+- **IDE integration:** Native VS Code extension provides graphical interface. Automatic diagnostic sharing means lint and syntax errors are shared automatically, enabling Claude Code to fix issues proactively
+- **Custom subagents:** Create specialized agents for different tasks (e.g., backend API while main agent builds frontend)
 
 It's a tool in the workflow, not the whole workflow.
 
@@ -470,15 +470,15 @@ It's a glimpse of what agentic AI looks like in practice.
 
 **For developers:** This is the tool that makes tedious work automated and lets you focus on design and strategy.
 
-**For organizations:** This is a productivity multiplier that changes the economics of software development. With 115,000 developers already using it and generating 195 million lines of code weekly, the market has spoken. Anthropic's Claude Code revenue grew from $130 million annualized in July 2025 to $500 million+ by October—10x user growth in five months.
+**For organizations:** This is a productivity multiplier that changes the economics of software development. With 115,000 developers already using it and generating 195 million lines of code weekly, the market has spoken. Anthropic's Claude Code revenue grew from $130 million annualized in July 2025 to $500 million+ by October (10x user growth in five months).
 
 **For everyone:** This is proof that AI isn't just about chatbots. It's about systems that can execute multi-step tasks autonomously and iterate to completion.
 
-As one developer put it: "Agentic coding isn't just accelerating traditional development—it's dissolving the boundary between technical and non-technical work, turning anyone who can describe a problem into someone who can build a solution."
+As one developer put it: "Agentic coding isn't just accelerating traditional development; it's dissolving the boundary between technical and non-technical work, turning anyone who can describe a problem into someone who can build a solution."
 
 If you're still thinking of AI as "autocomplete with extra steps," you're missing the shift.
 
-**TLDR:** Claude Code enables autonomous multi-step task execution with iteration loops (not just autocomplete), delivering 20-40% productivity gains on routine tasks and 5-10x on complex work. The real shift: it dissolves the boundary between technical and non-technical work—anyone who can describe a problem can now build a solution.
+**TLDR:** Claude Code enables autonomous multi-step task execution with iteration loops (not just autocomplete), delivering 20-40% productivity gains on routine tasks and 5-10x on complex work. The real shift: it dissolves the boundary between technical and non-technical work (anyone who can describe a problem can now build a solution).
 
 ---
 

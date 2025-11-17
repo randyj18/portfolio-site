@@ -1,6 +1,6 @@
 # Custom Chat Interfaces: A Terrible Decision?
 
-**Subtitle:** When building your own makes sense, and when it's organizational theater
+**Subtitle:** When building your own makes sense (and when it's organizational theater)
 **Target Length:** 1900-2300 words
 **Cluster:** Strategy & Implementation
 **Status:** Complete
@@ -49,7 +49,7 @@ So why are you building it?
 **2. "We want to customize the experience"**
 - What customization actually matters?
 - Custom branding? That's vanity, not value.
-- Custom workflows? Maybe—but most orgs don't have unique workflows that can't be handled by prompts.
+- Custom workflows? Maybe, but most orgs don't have unique workflows that can't be handled by prompts.
 
 **3. "We don't trust third-party interfaces"**
 - Fair, but have you actually evaluated the security of ChatGPT Enterprise or Claude for Work?
@@ -62,7 +62,7 @@ So why are you building it?
 
 **The cautionary tales:**
 
-Consider Samsung's experience in 2023. Employees leaked sensitive company data to ChatGPT on at least three occasions—source code from semiconductor databases, code from defective equipment, and entire meeting transcripts. Samsung's response? They initially banned generative AI tools entirely, developed an in-house solution, then later re-enabled ChatGPT with enhanced security controls.
+Consider Samsung's experience in 2023. Employees leaked sensitive company data to ChatGPT on at least three occasions: source code from semiconductor databases, code from defective equipment, and entire meeting transcripts. Samsung's response? They initially banned generative AI tools entirely, developed an in-house solution, then later re-enabled ChatGPT with enhanced security controls.
 
 Or look at the ROI challenge: only 30% of companies implementing AI achieve measurable ROI, according to recent market research. The reality is that most organizations would be better off focusing their engineering resources on domain-specific problems rather than rebuilding commodity infrastructure.
 
@@ -144,7 +144,7 @@ But be honest about what this is: education, not production infrastructure.
 
 A 2024 survey of 6,028 programmers found that 75.8% now use AI to enhance workflows, with ChatGPT being the dominant tool (90% usage). Teams report delivering features 2.3x faster with AI assistance. But there's a catch: developers spend 40% more time on system design and code reviews.
 
-The shift is also structural. Junior frontend developers now represent only 10.1% of the workforce, down significantly, because AI automates many tasks previously handled by junior developers. This means you need senior talent who can work effectively with AI tools—not cheap.
+The shift is also structural. Junior frontend developers now represent only 10.1% of the workforce, down significantly, because AI automates many tasks previously handled by junior developers. This means you need senior talent who can work effectively with AI tools (not cheap).
 
 Build it. Learn from it. Then evaluate whether you should actually deploy it or just use Claude/ChatGPT for production.
 
@@ -168,7 +168,7 @@ Before building custom, exhaust these options:
 **What they DON'T offer:**
 - Deep integration with your internal systems (beyond basic APIs)
 - Custom UI/UX tailored to your workflows
-- On-premise deployment (mostly—some vendors offer private cloud)
+- On-premise deployment (mostly; some vendors offer private cloud)
 
 **Pricing comparison (2024-2025):**
 
@@ -182,7 +182,7 @@ Before building custom, exhaust these options:
 
 
 
-**Notable shift:** Google now includes Gemini at no extra charge with Business and Enterprise Workspace tiers—a significant competitive move that changes the economics for many organizations.
+**Notable shift:** Google now includes Gemini at no extra charge with Business and Enterprise Workspace tiers, a significant competitive move that changes the economics for many organizations.
 
 For 80% of organizations, one of these is the right answer.
 
@@ -255,7 +255,7 @@ Custom development isn't just initial build. It's:
 
 **Ongoing:**
 - Maintenance (bug fixes, updates): 10-20% of initial dev time, annually
-- Feature requests: Expect users to want improvements—this never stops
+- Feature requests: Expect users to want improvements (this never stops)
 - Security patches: Ongoing responsibility
 - Model API changes: When OpenAI/Anthropic change APIs, you update your integration
 
@@ -306,9 +306,9 @@ If you do build custom, here's what good looks like:
 **Real-world success cases:**
 
 - **Klarna**: Built a ChatGPT-powered shopping assistant directly into their app, enabling personalized product recommendations that integrate deeply with their e-commerce platform.
-- **Amazon Rufus**: Custom AI shopping assistant that surfaces pricing context during product searches—a capability that requires tight integration with Amazon's proprietary systems.
-- **Slack (Salesforce)**: Custom AI integration showed knowledge workers saving 97 minutes per week—measurable productivity gains that justified the investment.
-- **Availity (Healthcare)**: Integrated AI into developer workflows, with 33% of new code now auto-generated—clear ROI on custom tooling.
+- **Amazon Rufus**: Custom AI shopping assistant that surfaces pricing context during product searches, a capability that requires tight integration with Amazon's proprietary systems.
+- **Slack (Salesforce)**: Custom AI integration showed knowledge workers saving 97 minutes per week, measurable productivity gains that justified the investment.
+- **Availity (Healthcare)**: Integrated AI into developer workflows, with 33% of new code now auto-generated, clear ROI on custom tooling.
 
 **What made them successful:**
 - Deep integration with proprietary systems that third parties can't access
@@ -331,9 +331,9 @@ Before you build custom for "security reasons," understand the current threat la
 **Recent incidents that justify governance concerns:**
 
 - **143,000 public conversations** with Claude, Copilot, and ChatGPT found on Archive.org by security researchers (2024-2025). Users were sharing conversations publicly without understanding privacy risks.
-- **50% of enterprise employees** now use generative AI at work, with 77% of interactions involving real company data. Yet 67% of ChatGPT access happens through unmanaged personal accounts—not corporate SSO.
+- **50% of enterprise employees** now use generative AI at work, with 77% of interactions involving real company data. Yet 67% of ChatGPT access happens through unmanaged personal accounts, not corporate SSO.
 - **Wall Street's response:** In February 2023, JPMorgan Chase, Goldman Sachs, Bank of America, Citigroup, Deutsche Bank, and Wells Fargo all banned ChatGPT due to concerns about sensitive client information and regulatory scrutiny.
-- **Legal liability precedent:** Air Canada was found liable when their chatbot provided incorrect information about bereavement fares. The BC Civil Resolution Tribunal ruled that companies cannot dissociate from AI tool actions—establishing that organizations are fully responsible for what their AI says.
+- **Legal liability precedent:** Air Canada was found liable when their chatbot provided incorrect information about bereavement fares. The BC Civil Resolution Tribunal ruled that companies cannot dissociate from AI tool actions, establishing that organizations are fully responsible for what their AI says.
 
 The problem isn't just the technology. It's user behavior and organizational governance.
 
@@ -354,9 +354,9 @@ Most organizations would be better served by:
 2. Building MCP servers to integrate with internal data ([Model Context Protocols](/blog/model-context-protocols))
 3. Investing engineering time in domain-specific applications, not reinventing chat UIs
 
-But if you're in the 10% of cases where custom genuinely makes sense—do it well. Don't half-ass it.
+But if you're in the 10% of cases where custom genuinely makes sense, do it well. Don't half-ass it.
 
-**TLDR:** Custom chat interfaces are rarely justified. Only ~10% of organizations have genuine needs: compliance requirements no vendor meets, deep proprietary system integration, novel UX for domain-specific workflows, or learning exercises. Build cost: $300K-600K year one + $75-200K ongoing vs. ChatGPT Enterprise at $72K/year. Most organizations should build MCP servers for integration instead of reinventing commodity UI. If you do build custom, ensure clear ROI, measurable adoption (>30%), and exit strategy—don't create a new silo.
+**TLDR:** Custom chat interfaces are rarely justified. Only ~10% of organizations have genuine needs: compliance requirements no vendor meets, deep proprietary system integration, novel UX for domain-specific workflows, or learning exercises. Build cost: $300K-600K year one + $75-200K ongoing vs. ChatGPT Enterprise at $72K/year. Most organizations should build MCP servers for integration instead of reinventing commodity UI. If you do build custom, ensure clear ROI, measurable adoption (>30%), and exit strategy; don't create a new silo.
 
 ---
 

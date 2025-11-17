@@ -1,6 +1,6 @@
 # Siloed Information: How SAAS Companies Protect Their Moat
 
-**Subtitle:** The structural friction that limits data flow—and the path forward for organizations
+**Subtitle:** The structural friction that limits data flow, and the path forward for organizations
 **Target Length:** 2000-2400 words
 **Cluster:** Systems & Architecture
 **Status:** Complete
@@ -54,7 +54,7 @@ Organizations can now build lightweight custom solutions for their specific need
 
 In the AI era, the organization with better access to its own data wins. If your data is locked in proprietary SAAS formats, you can't leverage it fully.
 
-RAG systems, fine-tuning, analytics, decision-making—all depend on easy access to comprehensive data.
+RAG systems, fine-tuning, analytics, decision-making all depend on easy access to comprehensive data.
 
 **Interoperability Is Now Table Stakes**
 
@@ -76,7 +76,7 @@ Consider Salesforce, the enterprise CRM leader. They provide an API, but Profess
 
 Or look at Slack's 2024 API changes. They explicitly prohibited bulk data export and restricted access to query-by-query basis only. Enterprise AI platforms like Glean that previously offered Slack integration for cross-platform search were informed that the changes would "hamper your ability to use your data with your chosen enterprise AI platform."
 
-Social media platforms follow the same pattern. Facebook initially welcomed third-party developers in 2007 but within 18 months began systematically revoking API access. Twitter once proudly called their open API "the most important thing we've done," then limited exports to 1.5M tweets per month—and those exports only include tweet IDs, not the actual content. You have to "rehydrate" them through additional API calls.
+Social media platforms follow the same pattern. Facebook initially welcomed third-party developers in 2007 but within 18 months began systematically revoking API access. Twitter once proudly called their open API "the most important thing we've done," then limited exports to 1.5M tweets per month, and those exports only include tweet IDs, not the actual content. You have to "rehydrate" them through additional API calls.
 
 The pattern is consistent: provide an API to claim openness, then impose restrictions that make real data portability impractical.
 
@@ -146,7 +146,7 @@ The costs are staggering. Multiple research organizations have converged on a si
 
 Break that down to your organization:
 
-- **Time waste:** Employees spend up to 12 hours per week searching for data trapped in silos. For a 1,000-person organization, that's 624,000 hours annually—worth roughly $21.6 million in lost productivity.
+- **Time waste:** Employees spend up to 12 hours per week searching for data trapped in silos. For a 1,000-person organization, that's 624,000 hours annually (worth roughly $21.6 million in lost productivity).
 
 - **Revenue impact:** IDC research found companies can lose up to 30% of revenue annually due to inefficiencies from siloed or incorrect data.
 
@@ -154,7 +154,7 @@ Break that down to your organization:
 
 - **Duplicated work:** Sales enters a customer in Salesforce. Finance enters them in NetSuite. Marketing enters them in HubSpot. Triple the effort for the same data.
 
-And that's just measurable costs. The invisible costs—missed insights, slower time to market, inability to leverage AI effectively—may be even higher.
+And that's just measurable costs. The invisible costs (missed insights, slower time to market, inability to leverage AI effectively) may be even higher.
 
 The DATAVERSITY 2024 survey found 68% of organizations now cite data silos as their top concern, up 7% from the previous year. The problem isn't shrinking. It's growing.
 
@@ -232,7 +232,7 @@ You don't need to rebuild Salesforce. But you might build lightweight custom too
 
 [The SAAS Reckoning: Evolution in the AI Era](/blog/saas-evolution-ai-era) discusses how SAAS vendors can evolve.
 
-The organizations that win will be those that demand—and build toward—real data freedom.
+The organizations that win will be those that demand, and build toward, real data freedom.
 
 ## The Regulatory Push: GDPR, DMA, and Global Standards
 
@@ -240,9 +240,9 @@ Europe is leading the charge with two major regulations:
 
 **GDPR Article 20 (2018)** established the right to data portability, requiring platforms to provide your data in "structured, commonly used and machine-readable format." But implementation has been inconsistent. A study of 182 online service providers found only 51% actually provided data in the required format. Google received a €50 million fine in 2019 for failing to provide transparent portability options.
 
-**The Digital Markets Act (DMA)** takes it further. Effective September 2025, it requires designated "gatekeepers" (seven companies covering 23 services) to provide real-time, continuous data portability—not just for individuals but for business users too.
+**The Digital Markets Act (DMA)** takes it further. Effective September 2025, it requires designated "gatekeepers" (seven companies covering 23 services) to provide real-time, continuous data portability, not just for individuals but for business users too.
 
-But here's the problem: neither regulation specifies what format or mechanisms platforms must use. And critically, few platforms accept ported data. You can export from Facebook, but where do you import it? Cloud storage doesn't count—you need alternative platforms that can actually use the data.
+But here's the problem: neither regulation specifies what format or mechanisms platforms must use. And critically, few platforms accept ported data. You can export from Facebook, but where do you import it? Cloud storage doesn't count; you need alternative platforms that can actually use the data.
 
 **The Data Transfer Project** (now Data Transfer Initiative) represents industry self-regulation. Google, Facebook, Microsoft, Twitter, and Apple created an open-source framework for direct platform-to-platform transfers. It currently powers photo transfers between Google Photos and iCloud, and music playlist transfers between streaming services.
 
@@ -270,7 +270,7 @@ Provide:
 
 Instead of locking data behind your UI, expose it as endpoints that other systems can query seamlessly.
 
-Imagine: instead of forcing users into your interface, you let them access your functionality through any interface they want—your native app, their custom dashboard, or AI agents.
+Imagine: instead of forcing users into your interface, you let them access your functionality through any interface they want (your native app, their custom dashboard, or AI agents).
 
 You charge for access to your capabilities, not for holding data hostage.
 
@@ -330,7 +330,7 @@ And the first step is recognizing that those "integrations" aren't actually solv
 
 ---
 
-**TLDR:** SaaS data silos protect vendor moats through limited APIs, proprietary export formats, and performative integrations—costing organizations $3.1 trillion annually ($21.6M per 1,000-person org in lost productivity). The AI era makes silos strategically disadvantageous: organizations need data freedom for RAG systems, fine-tuning, and AI integration. Real data portability (full-fidelity read/write access) would mean anyone can leverage any system's data. Solutions: demand true data portability standards (not marketing theater), build internal data lakes to aggregate across silos, use MCPs to integrate systems without relying on vendor APIs, and support open-source alternatives. The vendor that embraces data freedom will dominate the AI era.
+**TLDR:** SaaS data silos protect vendor moats through limited APIs, proprietary export formats, and performative integrations, costing organizations $3.1 trillion annually ($21.6M per 1,000-person org in lost productivity). The AI era makes silos strategically disadvantageous: organizations need data freedom for RAG systems, fine-tuning, and AI integration. Real data portability (full-fidelity read/write access) would mean anyone can leverage any system's data. Solutions: demand true data portability standards (not marketing theater), build internal data lakes to aggregate across silos, use MCPs to integrate systems without relying on vendor APIs, and support open-source alternatives. The vendor that embraces data freedom will dominate the AI era.
 
 ---
 

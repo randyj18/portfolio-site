@@ -1,6 +1,6 @@
 # The SAAS Reckoning: Evolution in the AI Era
 
-**Subtitle:** How vendors can adapt—or why they'll become obsolete
+**Subtitle:** How vendors can adapt, or why they'll become obsolete
 **Target Length:** 1900-2300 words
 **Cluster:** Systems & Architecture
 **Status:** Complete
@@ -15,7 +15,7 @@ You've probably heard this. Maybe you've said it yourself.
 
 But here's the more nuanced truth: SAAS isn't dead. The old SAAS business model is dying. And vendors have a choice: evolve or become obsolete.
 
-[Siloed Information: How SAAS Companies Protect Their Moat](/blog/siloed-information-saas-moat) explained the problem. This post is about the solution—and the opportunity.
+[Siloed Information: How SAAS Companies Protect Their Moat](/blog/siloed-information-saas-moat) explained the problem. This post is about the solution, and the opportunity.
 
 ## Why the "SAAS Is Dead" Sentiment Exists
 
@@ -27,7 +27,7 @@ Organizations can now build lightweight custom tools faster and cheaper than eve
 
 **2. Data Lock-In Backfires**
 
-The moat that worked for 20 years—trapping customer data behind proprietary systems—now actively hurts SAAS companies.
+The moat that worked for 20 years (trapping customer data behind proprietary systems) now actively hurts SAAS companies.
 
 Customers need data freedom to leverage AI. Vendors that resist are getting left behind.
 
@@ -45,13 +45,13 @@ This threatens the entire value proposition of SAAS: you're not selling a deligh
 
 The most provocative statement came from Microsoft CEO Satya Nadella, who suggested that "business logic will be shifted to an AI layer, where AI agents will manage rules and processes across multiple databases, automating functions and eliminating the need for traditional backend systems."
 
-His statement created a "mini firestorm" in the tech industry. And while he may be biased—Microsoft is heavily invested in AI—the underlying trends are real.
+His statement created a "mini firestorm" in the tech industry. And while he may be biased (Microsoft is heavily invested in AI), the underlying trends are real.
 
 Gartner predicts that AI agents will make at least 15 percent of daily business decisions by 2028, up from essentially zero in 2024. They also forecast that 33 percent of enterprise software applications will include agentic AI by 2028, and that 85 percent of enterprises will implement AI agents by the end of 2025.
 
 That's not a slow transition. That's a structural shift happening right now.
 
-But here's the more nuanced perspective: "Those jumping on the 'SaaS is dead' narrative are missing the real story—SaaS is getting smarter, and it is here to stay."
+But here's the more nuanced perspective: "Those jumping on the 'SaaS is dead' narrative are missing the real story; SaaS is getting smarter, and it is here to stay."
 
 SAAS isn't dying. It's transforming. The question is which vendors will transform with it.
 
@@ -91,7 +91,7 @@ Agent SDKs don't solve that. They just create a new intermediary layer.
 
 Let me be clear: I'm not saying SAAS as a concept is doomed. I'm saying the business model needs to evolve.
 
-Here's what smart SAAS vendors are doing—or should be doing:
+Here's what smart SAAS vendors are doing (or should be doing):
 
 ### Strategy 1: Embrace Real Data Portability
 
@@ -133,7 +133,7 @@ These are defensible advantages that aren't threatened by AI agents.
 
 **The Numbers Back This Up**
 
-The shift is already happening. According to recent industry data, 67 percent of SAAS companies now use usage or consumption-based pricing—up significantly from just 52 percent in 2022. Even more striking: 45 percent have fully switched to usage-based pricing, and 61 percent are testing or actively planning usage-based models.
+The shift is already happening. According to recent industry data, 67 percent of SAAS companies now use usage or consumption-based pricing, up significantly from just 52 percent in 2022. Even more striking: 45 percent have fully switched to usage-based pricing, and 61 percent are testing or actively planning usage-based models.
 
 Meanwhile, traditional seat-based pricing has dropped from 21 percent to 15 percent in just 12 months, while hybrid pricing models surged from 27 percent to 41 percent.
 
@@ -186,7 +186,7 @@ The vendors who nail MCPs early will have a 2-3 year advantage over competitors.
 
 **Who's Getting This Right**
 
-HubSpot was the first major CRM to ship a production-grade MCP integration in June 2025. Their "deep research" connector allows ChatGPT to perform natural language queries with live HubSpot data. Critically, they built for open interoperability with a wide range of language models—not just one vendor's ecosystem.
+HubSpot was the first major CRM to ship a production-grade MCP integration in June 2025. Their "deep research" connector allows ChatGPT to perform natural language queries with live HubSpot data. Critically, they built for open interoperability with a wide range of language models, not just one vendor's ecosystem.
 
 Gong announced MCP support in October 2025 at their Celebrate conference. Their approach is particularly smart: they implemented two-way MCP integration. The MCP Gateway integrates external data into Gong features, while their MCP Server enables external AI agents (like Salesforce and Microsoft Copilot) to query Gong. They're both consuming and exposing capabilities.
 
@@ -194,7 +194,7 @@ By early 2025, community contributions blew past 1,000 MCP servers, covering pop
 
 **Who's Moving More Cautiously**
 
-Not everyone is moving at the same pace. Some major platforms are taking a more measured approach—implementing MCP in pilot or controlled access only, restricting it to their own ecosystems, testing the waters before full commitment.
+Not everyone is moving at the same pace. Some major platforms are taking a more measured approach (implementing MCP in pilot or controlled access only, restricting it to their own ecosystems, testing the waters before full commitment).
 
 This caution is understandable when you have a large installed base to protect. But caution can easily turn into paralysis. And in a fast-moving market, moving slowly is often indistinguishable from not moving at all.
 
@@ -248,15 +248,15 @@ If you're a SAAS vendor still optimizing for lock-in, you won't even be consider
 
 **The Key Moments**
 
-November 2024 marked the beginning with Anthropic's introduction of the Model Context Protocol. The initial response was tepid—many dismissed it as another standard that wouldn't gain traction.
+November 2024 marked the beginning with Anthropic's introduction of the Model Context Protocol. The initial response was tepid; many dismissed it as another standard that wouldn't gain traction.
 
 Then came March 2025, the defining moment: OpenAI adopted MCP, integrating it across ChatGPT, their Agents SDK, and Responses API. When Anthropic's main competitor validated the standard, everything changed.
 
-Also in March 2025, ServiceNow acquired Moveworks for $2.85 billion—the largest acquisition in ServiceNow's history and a dramatic departure from their traditional organic growth strategy. This signaled just how urgent the agentic AI space had become.
+Also in March 2025, ServiceNow acquired Moveworks for $2.85 billion, the largest acquisition in ServiceNow's history and a dramatic departure from their traditional organic growth strategy. This signaled just how urgent the agentic AI space had become.
 
 April 2025: Google confirmed MCP support. Now all major model providers were on board: Anthropic, OpenAI, Google, Microsoft, Meta, and Amazon.
 
-June 2025: HubSpot shipped the first production-grade MCP integration from a major CRM. This demonstrated that MCPs weren't just theoretical—they were commercially viable.
+June 2025: HubSpot shipped the first production-grade MCP integration from a major CRM. This demonstrated that MCPs weren't just theoretical; they were commercially viable.
 
 October 2025: A wave of enterprise announcements. Salesforce launched Agentforce 360 on October 13. They expanded their strategic partnership with Anthropic on October 14. Gong announced MCP support on October 21.
 
@@ -268,7 +268,7 @@ Some vendors started adapting 2-3 years ago, before MCP even existed. They alrea
 
 Developer tools like Zed, Replit, Codeium, and Sourcegraph adopted MCPs immediately, gaining competitive advantage through better AI coding assistance.
 
-Zapier launched a beta of "Zapier MCP" to connect AI agents with thousands of SaaS apps via their automation platform—turning their existing strength into an AI-era advantage.
+Zapier launched a beta of "Zapier MCP" to connect AI agents with thousands of SaaS apps via their automation platform, turning their existing strength into an AI-era advantage.
 
 Then there are the vendors taking different approaches: some are doubling down on vertical SaaS, building deeper industry-specific features to create higher switching costs. Others are selectively open-sourcing schemas where they already lead, gaining control over industry standards while appearing open. Some are building walled garden ecosystems with proprietary agent platforms.
 
@@ -318,7 +318,7 @@ These companies will thrive.
 
 The SAAS model isn't dead. But the version of SAAS built on data lock-in and proprietary formats is dying.
 
-The new version—built on openness, interoperability, and genuine value—is just getting started.
+The new version (built on openness, interoperability, and genuine value) is just getting started.
 
 When Intercom launched Fin AI in 2023, they made a counterintuitive move: abandoning their traditional per-seat pricing for a per-resolution model. Instead of charging $39 per support agent, they charged $0.99 per AI-resolved conversation.
 
@@ -354,7 +354,7 @@ The choice is clear. The question is whether vendors will make it in time.
 
 ---
 
-**TLDR:** "SaaS is dead" is wrong—the SaaS *business model* is transforming. Vendors built lock-in through data silos, proprietary APIs, and limited integrations. The AI era makes silos strategically disadvantageous. Organizations need data freedom, agents that can access any system, and true interoperability. Smart vendors: embrace data portability, build MCP servers instead of proprietary APIs, shift from "software vendor" to "capability provider," and compete on utility not lock-in. Vendors using agent SDKs without solving real data freedom problems are trading one form of lock-in (customer) for another (model provider dependency). Gartner predicts 33% of enterprise apps will include agentic AI by 2028—vendors who don't evolve will become case studies in "how not to respond to platform shifts."
+**TLDR:** "SaaS is dead" is wrong; the SaaS *business model* is transforming. Vendors built lock-in through data silos, proprietary APIs, and limited integrations. The AI era makes silos strategically disadvantageous. Organizations need data freedom, agents that can access any system, and true interoperability. Smart vendors: embrace data portability, build MCP servers instead of proprietary APIs, shift from "software vendor" to "capability provider," and compete on utility not lock-in. Vendors using agent SDKs without solving real data freedom problems are trading one form of lock-in (customer) for another (model provider dependency). Gartner predicts 33% of enterprise apps will include agentic AI by 2028; vendors who don't evolve will become case studies in "how not to respond to platform shifts."
 
 ---
 
