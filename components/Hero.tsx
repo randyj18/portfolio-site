@@ -39,8 +39,8 @@ export default function Hero() {
           {/* Key metrics - minimal, left-aligned */}
           <div className="flex flex-col sm:flex-row gap-8 sm:gap-16 pt-4 border-t border-slate/20">
             <div>
-              <div className="text-4xl lg:text-5xl font-bold text-gold-light mb-1">14</div>
-              <div className="text-sm uppercase tracking-widest text-beige">Research Topics</div>
+              <div className="text-4xl lg:text-5xl font-bold text-gold-light mb-1">10</div>
+              <div className="text-sm uppercase tracking-widest text-beige">Research Highlights</div>
             </div>
             <div>
               <div className="text-4xl lg:text-5xl font-bold text-green-forest mb-1">8</div>
@@ -68,16 +68,22 @@ export default function Hero() {
             Explore Approach →
           </a>
           <a
-            href="/playground"
+            href="/research"
             className="flex-1 px-8 py-4 border border-gold-light text-gold-light rounded-sm hover:bg-gold-light/10 hover:border-gold-light/50 transition-all duration-300 font-semibold text-center"
           >
-            Dev Playground
+            Research Highlights
           </a>
           <a
             href="/blog"
             className="flex-1 px-8 py-4 border border-slate text-slate rounded-sm hover:bg-slate/10 transition-all duration-300 font-semibold text-center"
           >
             Read Blog
+          </a>
+          <a
+            href="/playground"
+            className="flex-1 px-8 py-4 border border-slate text-slate rounded-sm hover:bg-slate/10 transition-all duration-300 font-semibold text-center"
+          >
+            Dev Playground
           </a>
           <a
             href="#contact"
