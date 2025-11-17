@@ -75,19 +75,19 @@ export default function Hero() {
           </a>
           <a
             href="/blog"
-            className="flex-1 px-8 py-4 border border-slate text-slate rounded-sm hover:bg-slate/10 transition-all duration-300 font-semibold text-center"
+            className="flex-1 px-8 py-4 border border-green-bright text-green-bright rounded-sm hover:bg-green-bright/10 hover:border-green-bright/50 transition-all duration-300 font-semibold text-center"
           >
             Read Blog
           </a>
           <a
             href="/playground"
-            className="flex-1 px-8 py-4 border border-slate text-slate rounded-sm hover:bg-slate/10 transition-all duration-300 font-semibold text-center"
+            className="flex-1 px-8 py-4 border border-orange-burnt text-orange-burnt rounded-sm hover:bg-orange-burnt/10 hover:border-orange-burnt/50 transition-all duration-300 font-semibold text-center"
           >
             Dev Playground
           </a>
           <a
             href="#contact"
-            className="flex-1 px-8 py-4 border border-slate text-slate rounded-sm hover:bg-slate/10 transition-all duration-300 font-semibold text-center"
+            className="flex-1 px-8 py-4 border border-bronze text-bronze rounded-sm hover:bg-bronze/10 hover:border-bronze/50 transition-all duration-300 font-semibold text-center"
           >
             Start Conversation
           </a>

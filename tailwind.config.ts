@@ -16,6 +16,7 @@ const config: Config = {
         },
         slate: '#4B5564',
         bronze: '#A6602C',
+        'off-white': '#F5F5F0',
         beige: {
           DEFAULT: '#EDDDCC',
           warm: '#C9C8C5',
