@@ -7,11 +7,23 @@
 
 ---
 
+## Quick Navigation
+- [Author Note](#author-note)
+- [Suggested Structure](#suggested-structure)
+- [Tone and Voice Guidance](#tone-and-voice-guidance)
+- [Research Considerations](#research-considerations)
+- [Connection to Other Blogs](#connection-to-other-blogs)
+- [Final Note](#final-note)
+
+---
+
 ## Author Note
 
 This blog post is intentionally left as a shell for you to fill with your personal experiences, model assessments, and evolving perspectives on AI capabilities.
 
 Unlike the other blogs which provide structured research and analysis, this one should be **purely your voice** - subjective, opinionated, and grounded in your real-world experience with different models.
+
+[↑ Back to top](#quick-navigation)
 
 ---
 
@@ -113,6 +125,8 @@ Reasoning: [Why]
 
 **Important:** Date-stamp these rankings and note they'll be outdated soon.
 
+[↑ Back to top](#quick-navigation)
+
 ### Section 6: What's Coming (Speculation)
 
 [YOUR PREDICTIONS: Where do you think model capabilities are headed?]
@@ -135,6 +149,8 @@ Possible themes:
 - Stay flexible as the landscape evolves
 - Focus on building skills that transfer across models
 
+[↑ Back to top](#quick-navigation)
+
 ---
 
 ## Tone and Voice Guidance
@@ -152,6 +168,8 @@ Avoid:
 - Treating rankings as permanent (they're snapshots that age quickly)
 - Pretending objectivity (this is explicitly subjective)
 
+[↑ Back to top](#quick-navigation)
+
 ---
 
 ## Research Considerations
@@ -165,6 +183,8 @@ However, you might want to:
 - Note when your assessment differs from popular opinion (and why)
 - Acknowledge where you have limited experience (e.g., "I haven't used Gemini extensively enough to assess...")
 
+[↑ Back to top](#quick-navigation)
+
 ---
 
 ## Connection to Other Blogs
@@ -176,6 +196,8 @@ However, you might want to:
 - [Custom Chat Interfaces](/blog/custom-chat-interfaces) - When discussing how interface affects model perception
 
 But this blog should stand alone as a personal perspective piece.
+
+[↑ Back to top](#quick-navigation)
 
 ---
 

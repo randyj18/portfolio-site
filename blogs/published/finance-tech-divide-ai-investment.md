@@ -10,6 +10,15 @@
 
 ---
 
+## Quick Navigation
+- [Why the Gap Exists: Different Languages, Metrics, and Risk Tolerances](#why-the-gap-exists-different-languages-metrics-and-risk-tolerances)
+- [What the Gap Costs: Siloed Development, Compliance Risks, and Burned Opportunity](#what-the-gap-costs-siloed-development-compliance-risks-and-burned-opportunity)
+- [The Definitional Problem: Efficiency vs. Optionality](#the-definitional-problem-efficiency-vs-optionality)
+- [The Hybrid Metrics Solution: Organizational Intelligence](#the-hybrid-metrics-solution-organizational-intelligence)
+- [What Alignment Looks Like](#what-alignment-looks-like)
+- [The AI Budget as Bridge](#the-ai-budget-as-bridge)
+- [Getting Started: Creating Alignment](#getting-started-creating-alignment)
+
 The pattern is familiar: CIO presents AI roadmap, CFO asks for ROI projections, silence follows. According to EY's 2025 research, 56% of CFOs prioritize AI investments while 70-72% of CIOs and CTOs do. That 14-16 percentage point gap reveals fundamentally incompatible definitions of value, risk, and success.
 
 This isn't a personality conflict. It's a definitional crisis costing millions in opportunity cost, duplicated effort, and strategic misalignment. Neither side fully realizes they're solving different equations with the same variables.
@@ -33,6 +42,8 @@ Consider a typical scenario: A CIO proposes an AI-powered customer service assis
 The CFO runs the numbers: annual subscription costs $120,000, requires two FTEs for management and training, assumes 30% adoption rate. ROI breaks even in 18 months if assumptions hold. Real constraints.
 
 Who's right? Both. Who gets funded? Depends on whether the organization defaults to efficiency metrics or strategic positioning. What gets lost? The 60% of value neither framework captures.
+
+[↑ Back to top](#quick-navigation)
 
 ## What the Gap Costs: Siloed Development, Compliance Risks, and Burned Opportunity
 
@@ -58,6 +69,8 @@ Payment automation illustrates this. Finance teams adopted tools that made work 
 
 When 49% of organizations can't estimate AI value, it's not because the value doesn't exist. It's because neither traditional ROI metrics nor capability assessments capture organizational intelligence: the compound effect of systems that learn, adapt, and amplify human judgment across functions.
 
+[↑ Back to top](#quick-navigation)
+
 ## The Definitional Problem: Efficiency vs. Optionality
 
 The finance-tech divide isn't philosophical. It's definitional.
@@ -69,6 +82,8 @@ Technology measures ROI in capability expansion and strategic optionality: new w
 AI straddles both uncomfortably. It's partially automation (replaces specific tasks) and partially platform (enables new capabilities). Traditional ROI models undervalue platform benefits. Capability models underspecify financial impact.
 
 The result: Finance thinks technology is overselling vague "innovation." Technology thinks finance is missing strategic value by demanding short-term payback. Both are half-right, which makes both entirely wrong.
+
+[↑ Back to top](#quick-navigation)
 
 ## The Hybrid Metrics Solution: Organizational Intelligence
 
@@ -88,6 +103,8 @@ Payment automation through this lens: The direct ROI is processing speed and err
 
 Finance teams measuring only efficiency miss compounding knowledge. Technology teams emphasizing only capability miss financial validation that unlocks budget. Hybrid metrics capture both.
 
+[↑ Back to top](#quick-navigation)
+
 ## What Alignment Looks Like
 
 When finance and technology leaders align around organizational intelligence frameworks, AI investments shift from budget battles to strategic conversations.
@@ -102,6 +119,8 @@ The CFO gets spending visibility and risk containment. The CIO gets innovation v
 
 [The AI Budget](/blog/ai-budget-democratizing-innovation) framework bridges both worlds: CFO language (cost containment through capped budgets, spending visibility, chargeback models) while enabling CIO goals (democratized access, experimentation culture, strategic capability building).
 
+[↑ Back to top](#quick-navigation)
+
 ## The AI Budget as Bridge
 
 The AI Budget framework creates contained innovation: team budget autonomy within guardrails that prevent runaway costs and security exposure.
@@ -111,6 +130,8 @@ It speaks CFO language through fixed monthly budgets, automatic spend caps, char
 The framework doesn't eliminate finance-tech tension. It channels it productively. CFOs get cost containment and visibility to say "yes" to AI investment. CIOs get innovation velocity and architectural consistency to build strategic capabilities.
 
 It creates data both sides can use. When finance teams show AI payment automation increased productivity by 23 percentage points, that's proof organizational intelligence compounds. When IT shows sandboxed AI experiments generated 15 new workflow improvements in six months, that's measurable business impact.
+
+[↑ Back to top](#quick-navigation)
 
 ## Getting Started: Creating Alignment
 

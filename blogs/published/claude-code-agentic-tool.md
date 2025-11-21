@@ -7,6 +7,17 @@
 
 ---
 
+## Quick Navigation
+- [What Claude Code Actually Is](#what-claude-code-actually-is)
+- [Why This Matters Beyond Coding](#why-this-matters-beyond-coding)
+- [What Makes Claude Code Different](#what-makes-claude-code-different)
+- [The Real Power: Tool Use and Iteration](#the-real-power-tool-use-and-iteration)
+- [Use Cases Where Claude Code Excels](#use-cases-where-claude-code-excels)
+- [The Limitations (What It's Not Good At)](#the-limitations-what-its-not-good-at)
+- [The Organizational Implications](#the-organizational-implications)
+- [How to Actually Use Claude Code](#how-to-actually-use-claude-code)
+- [The Bottom Line](#the-bottom-line)
+
 When you hear "Claude Code," you might think: "Another AI coding assistant. GitHub Copilot exists. Cursor exists. What's the big deal?"
 
 That's exactly why you're sleeping on it.
@@ -53,6 +64,10 @@ You define the destination. Claude Code drives.
 **That's agency.**
 
 And yes, Claude Code actually does iterate autonomously. It doesn't just suggest changes and wait for approval; it executes, validates, encounters errors, fixes them, and runs tests again until the task works. The system has access to full terminal capabilities, can run commands, read error messages, and make corrections in an autonomous loop. This isn't theoretical. It's how the tool operates.
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## Why This Matters Beyond Coding
 
@@ -101,6 +116,10 @@ That's not "coding." That's **knowledge work.**
 None of these are "coding" in the traditional sense. But all benefit from agentic execution.
 
 Real-world proof: Anthropic's own legal team used Claude Code to create prototype "phone tree" systems to help team members connect with the right lawyer. Data scientists who aren't fluent in TypeScript built entire React applications for visualizing model performance. Non-technical teams solving technical problems: that's the shift.
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## What Makes Claude Code Different
 
@@ -180,6 +199,10 @@ Slow. Manual. Error-prone.
 
 This is why developers who try Claude Code rarely go back to chat-based coding assistance.
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## The Real Power: Tool Use and Iteration
 
 Here's what makes Claude Code genuinely different: **tool use in iterative loops.**
@@ -224,6 +247,10 @@ Steps 7-11 are the iteration loop. Most coding assistants stop at step 4 and han
 Claude Code keeps going until it works.
 
 **That's the difference.**
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## Use Cases Where Claude Code Excels
 
@@ -308,6 +335,10 @@ Most developers hate writing tests. Claude Code doesn't.
 
 Anthropic's own data science team uses Claude Code to convert exploratory data analysis code into production Metaflow pipelines, saving 1-2 days per model. They build entire React applications for visualizing RL model performance despite not being fluent in TypeScript.
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## The Limitations (What It's Not Good At)
 
 Let's be honest about where Claude Code falls short:
@@ -354,6 +385,10 @@ In July 2025, Anthropic tightened these limits without warning, causing widespre
 Between August-September 2025, three infrastructure bugs intermittently degraded Claude's response quality. About 30% of Claude Code users had at least one message routed to the wrong server type, resulting in degraded responses.
 
 This matters because it shows Claude Code is still maturing. The technology works. The infrastructure and communication around limits are improving, but they're not perfect yet.
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## The Organizational Implications
 
@@ -412,6 +447,10 @@ Because Claude Code can generate tests automatically and run them as part of imp
 
 While I don't have specific aggregate data on test coverage improvements across organizations, the anecdotal evidence is consistent: when test generation is automated as part of the implementation workflow (rather than a separate manual task), test coverage improves. The barrier to writing tests drops from "tedious chore" to "include it in the task description."
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## How to Actually Use Claude Code
 
 If you're convinced this is valuable, here's how to get started:
@@ -461,6 +500,10 @@ Features that make this easier:
 - **Custom subagents:** Create specialized agents for different tasks (e.g., backend API while main agent builds frontend)
 
 It's a tool in the workflow, not the whole workflow.
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## The Bottom Line
 

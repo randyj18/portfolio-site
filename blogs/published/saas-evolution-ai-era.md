@@ -7,6 +7,16 @@
 
 ---
 
+## Quick Navigation
+- [The Draft](#the-draft)
+- [Why the "SAAS Is Dead" Sentiment Exists](#why-the-saas-is-dead-sentiment-exists)
+- [The Trap: Agent SDKs as the "Solution"](#the-trap-agent-sdks-as-the-solution)
+- [What SAAS Companies Should Actually Do](#what-saas-companies-should-actually-do)
+- [The Timeline: Act Yesterday, Decide by 2030](#the-timeline-act-yesterday-decide-by-2030)
+- [Connecting to the Bigger Picture](#connecting-to-the-bigger-picture)
+- [The Optimistic Take](#the-optimistic-take)
+- [The Bottom Line](#the-bottom-line)
+
 ## The Draft
 
 "SAAS is dead."
@@ -16,6 +26,8 @@ You've probably heard this. Maybe you've said it yourself.
 But here's the more nuanced truth: SAAS isn't dead. The old SAAS business model is dying. And vendors have a choice: evolve or become obsolete.
 
 [Siloed Information: How SAAS Companies Protect Their Moat](/blog/siloed-information-saas-moat) explained the problem. This post is about the solution, and the opportunity.
+
+[↑ Back to top](#quick-navigation)
 
 ## Why the "SAAS Is Dead" Sentiment Exists
 
@@ -55,6 +67,8 @@ But here's the more nuanced perspective: "Those jumping on the 'SaaS is dead' na
 
 SAAS isn't dying. It's transforming. The question is which vendors will transform with it.
 
+[↑ Back to top](#quick-navigation)
+
 ## The Trap: Agent SDKs as the "Solution"
 
 Here's what many SAAS companies are doing in response:
@@ -86,6 +100,8 @@ That's not a winning strategy.
 The real problem isn't "can agents access my service." It's "do customers have freedom over their data and workflows."
 
 Agent SDKs don't solve that. They just create a new intermediary layer.
+
+[↑ Back to top](#quick-navigation)
 
 ## What SAAS Companies Should Actually Do
 
@@ -230,6 +246,8 @@ Customers want to work with vendors who make them better, not vendors who trap t
 
 The SAAS companies that thrive in the next decade will be the ones customers choose to stay with, not the ones customers are stuck with.
 
+[↑ Back to top](#quick-navigation)
+
 ## The Timeline: Act Yesterday, Decide by 2030
 
 Here's the urgency:
@@ -290,6 +308,8 @@ These lock-in strategies might work in the short term. But they're fundamentally
 - Resting on existing customer base without innovating
 - Not part of AI agent ecosystem
 
+[↑ Back to top](#quick-navigation)
+
 ## Connecting to the Bigger Picture
 
 This isn't just about SAAS vendors. It's about how organizations build intelligent systems.
@@ -308,6 +328,8 @@ As AI makes custom development easier, SAAS vendors face new competition from in
 
 The smart vendors recognize these trends and adapt. The rest double down on lock-in and wonder why growth is slowing.
 
+[↑ Back to top](#quick-navigation)
+
 ## The Optimistic Take
 
 Here's what gives me hope:
@@ -325,6 +347,8 @@ When Intercom launched Fin AI in 2023, they made a counterintuitive move: abando
 It seemed risky. But it aligned perfectly with customer value. Customers care about resolved issues, not how many seats they're paying for.
 
 That's the mindset shift that wins in the AI era: align your business model with customer outcomes, not your internal metrics.
+
+[↑ Back to top](#quick-navigation)
 
 ## The Bottom Line
 

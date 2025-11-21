@@ -7,6 +7,18 @@
 
 ---
 
+## Quick Navigation
+- [The Draft](#the-draft)
+- [The Value Proposition That's Shifting](#the-value-proposition-thats-shifting)
+- [The Intelligence Explosion Shifts the Calculus](#the-intelligence-explosion-shifts-the-calculus)
+- [How Data Silos Actually Work](#how-data-silos-actually-work)
+- [The Real Cost to Organizations](#the-real-cost-to-organizations)
+- [The Path Forward: Breaking Down Silos](#the-path-forward-breaking-down-silos)
+- [The Regulatory Push: GDPR, DMA, and Global Standards](#the-regulatory-push-gdpr-dma-and-global-standards)
+- [What SAAS Companies Should Do (But Often Won't)](#what-saas-companies-should-do-but-often-wont)
+- [The Bigger Picture](#the-bigger-picture)
+- [The Bottom Line](#the-bottom-line)
+
 ## The Draft
 
 Your customer data lives in Salesforce. Your project management data is in Asana. Your documents are in Google Drive. Your communications are in Slack. Your analytics are in Tableau.
@@ -16,6 +28,8 @@ Each platform has an "API." Each promises "integrations." Each claims to play we
 But here's the reality: your data is trapped. Not accidentally. By design.
 
 This is how SAAS companies protect their moat. And it's costing your organization millions in lost productivity, duplicated effort, and missed opportunities.
+
+[↑ Back to top](#quick-navigation)
 
 ## The Value Proposition That's Shifting
 
@@ -37,6 +51,8 @@ The vendor handles security patches, feature releases, and infrastructure scalin
 This was the winning value proposition. And for a long time, it worked.
 
 But the AI era changes the equation.
+
+[↑ Back to top](#quick-navigation)
 
 ## The Intelligence Explosion Shifts the Calculus
 
@@ -63,6 +79,8 @@ When you want to build an AI assistant that pulls from Salesforce, Asana, Google
 Each platform exposes a limited API. Each has rate limits. Each requires custom authentication. Each returns data in different formats. Each makes it just hard enough that most organizations give up.
 
 That's not a bug. That's the feature.
+
+[↑ Back to top](#quick-navigation)
 
 ## How Data Silos Actually Work
 
@@ -112,6 +130,8 @@ So you don't switch. Even when better alternatives exist.
 
 That's the moat. And it works.
 
+[↑ Back to top](#quick-navigation)
+
 ## The Real Cost to Organizations
 
 These silos aren't just annoying. They're expensive.
@@ -157,6 +177,8 @@ Break that down to your organization:
 And that's just measurable costs. The invisible costs (missed insights, slower time to market, inability to leverage AI effectively) may be even higher.
 
 The DATAVERSITY 2024 survey found 68% of organizations now cite data silos as their top concern, up 7% from the previous year. The problem isn't shrinking. It's growing.
+
+[↑ Back to top](#quick-navigation)
 
 ## The Path Forward: Breaking Down Silos
 
@@ -234,6 +256,8 @@ You don't need to rebuild Salesforce. But you might build lightweight custom too
 
 The organizations that win will be those that demand, and build toward, real data freedom.
 
+[↑ Back to top](#quick-navigation)
+
 ## The Regulatory Push: GDPR, DMA, and Global Standards
 
 Europe is leading the charge with two major regulations:
@@ -251,6 +275,8 @@ But it's telling what's not included: your social graph, your messages, your eng
 Meanwhile, South Korea launched a government-backed MyData platform in March 2025, enabling individuals to port personal data through national infrastructure. Seven U.S. states passed data portability laws in 2024 alone. The regulatory momentum is building.
 
 The question is whether regulation can move faster than vendors can create workarounds.
+
+[↑ Back to top](#quick-navigation)
 
 ## What SAAS Companies Should Do (But Often Won't)
 
@@ -286,6 +312,8 @@ The vendors that survive the AI era will be the ones that made themselves indisp
 
 [LINK: The SAAS Reckoning] explores this in depth.
 
+[↑ Back to top](#quick-navigation)
+
 ## The Bigger Picture
 
 Data silos don't just affect SAAS relationships. They're endemic to how organizations structure themselves.
@@ -299,6 +327,8 @@ Data silos don't just affect SAAS relationships. They're endemic to how organiza
 Breaking down external silos (SAAS platforms) and internal silos (departmental boundaries) are part of the same challenge: making information flow freely to where it's needed.
 
 Organizations that solve this become more intelligent. Organizations that don't get left behind.
+
+[↑ Back to top](#quick-navigation)
 
 ## The Bottom Line
 

@@ -7,6 +7,15 @@
 
 ---
 
+## Quick Navigation
+- [Why Traditional ROI Often Fails for AI](#why-traditional-roi-often-fails-for-ai)
+- [What Successful Organizations Measure Instead](#what-successful-organizations-measure-instead)
+- [The Organizational Intelligence Framework](#the-organizational-intelligence-framework)
+- [Leading vs. Lagging Indicators: What to Track When](#leading-vs-lagging-indicators-what-to-track-when)
+- [How to Measure What Matters](#how-to-measure-what-matters)
+- [Implementation Considerations](#implementation-considerations)
+- [The Measurement Challenge](#the-measurement-challenge)
+
 A revealing statistic: 49% of organizations cannot estimate the value of their AI investments. Not "haven't measured it yet" or "still calculating," but genuinely cannot estimate value.
 
 This represents a measurement problem costing organizations billions in misallocated capital, abandoned initiatives, and strategic confusion.
@@ -36,6 +45,10 @@ AI presents four challenges to this framework:
 **Interdependent Impact:** Did AI-powered sales insights increase revenue, or did workflow restructuring around those insights? The answer: both. Traditional ROI demands isolating technology contribution, like separating a car engine's value from its transmission. Organizations attempting this either overestimate (crediting AI for process improvements), underestimate (ignoring compound effects), or abandon measurement entirely.
 
 **Short-Term Optimization Bias:** Demanding 12-month payback for 3-5 year capability building creates strategic paralysis. The 42% scrapping AI initiatives often do so because year-one ROI targets weren't met, not because technology failed. The framework itself punishes transformative investments.
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## What Successful Organizations Measure Instead
 
@@ -107,6 +120,10 @@ Financial analogy: Traditional ROI is like measuring a stock by last quarter's d
 
 The research backs this up. Organizations measuring AI value through capability expansion and learning velocity are 3-5x more likely to scale AI beyond pilot phase. They're not ignoring costs—they're measuring the right benefits.
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## The Organizational Intelligence Framework
 
 Rather than traditional ROI, consider **Organizational Intelligence:** the measurable rate at which organizations learn, adapt, and compound judgment across functions.
@@ -126,6 +143,10 @@ Traditional ROI: Customer service AI costs $200K annually, handles 15,000 ticket
 Organizational Intelligence: Deployed in 2 months (versus 12-month traditional cycles), enabled 8 related experiments elsewhere. 100% of customer interactions receive senior-level pattern matching (versus 10% previously), satisfaction scores up 12%. Created datasets enabling churn prediction ($500K value), product feedback analysis ($300K value), automated knowledge base updates ($150K value).
 
 Same implementation, same costs, different value assessments. Traditional framework suggests killing the project. Organizational intelligence reveals $950K+ in measurable value plus strategic capabilities.
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## Leading vs. Lagging Indicators: What to Track When
 
@@ -188,6 +209,10 @@ If budget utilization is high but productivity gains aren't materializing, you'v
 If productivity gains are strong but experimentation rate is low, you've got a scaling problem—value is concentrated in too few use cases.
 
 The framework creates accountability at every time horizon. Monthly leading indicators catch problems early. Quarterly lagging indicators prove (or disprove) that organizational learning translates to business value.
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## How to Measure What Matters
 
@@ -279,6 +304,10 @@ The beauty of hybrid metrics is they end the finance-tech standoff. CFOs get qua
 
 This is how you shift from "we can't measure AI value" to "we're measuring organizational intelligence across three dimensions, each with clear financial translation."
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## Implementation Considerations
 
 Organizations seeking alternative measurement frameworks might consider a phased approach:
@@ -292,6 +321,10 @@ Organizations seeking alternative measurement frameworks might consider a phased
 **Weeks 9-12:** Adjust based on measurability versus theoretical interest, present findings showing value traditional ROI missed, roll out framework across AI investments, establish quarterly review cadence.
 
 The goal: moving from "49% can't estimate value" to frameworks capturing what traditional ROI misses.
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## The Measurement Challenge
 

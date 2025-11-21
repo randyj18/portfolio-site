@@ -7,6 +7,17 @@
 
 ---
 
+## Quick Navigation
+- [Why Most Organizations Get This Wrong](#why-most-organizations-get-this-wrong)
+- [The Organizational Design Insight: Capacity ≠ Redundancy](#the-organizational-design-insight-capacity--redundancy)
+- [The Role Redesign Framework: What Humans Do vs. What AI Does](#the-role-redesign-framework-what-humans-do-vs-what-ai-does)
+- [The Collaboration Patterns That Work](#the-collaboration-patterns-that-work)
+- [Capturing 20% Productivity as Competitive Advantage](#capturing-20-productivity-as-competitive-advantage)
+- [The Compensation and Incentive Structure](#the-compensation-and-incentive-structure)
+- [The Human-AI Collaboration Specialist](#the-human-ai-collaboration-specialist)
+- [Getting Started: Implementation Roadmap](#getting-started-implementation-roadmap)
+- [The Bottom Line](#the-bottom-line)
+
 92% of business leaders expect at least 20% workforce overcapacity by 2028 due to AI productivity gains. Nearly half expect 30% or more excess capacity.
 
 The knee-jerk response? Layoffs. Restructuring. Managed workforce reductions.
@@ -29,6 +40,8 @@ When spreadsheets replaced manual ledgers, finance teams didn't shrink to 20% of
 
 AI productivity gains could work the same way if organizations redesign roles instead of reducing headcount.
 
+[↑ Back to top](#quick-navigation)
+
 ## The Organizational Design Insight: Capacity ≠ Redundancy
 
 Most organizations conflate overcapacity with redundancy. Consider the difference:
@@ -41,6 +54,8 @@ If AI makes your sales team 20% more productive, you don't have 20% redundant sa
 The question becomes "what higher-value work can we now pursue?" rather than "who do we cut?"
 
 Companies that invest AI productivity gains in role expansion see 3.2x higher revenue growth than those that optimize for cost reduction.
+
+[↑ Back to top](#quick-navigation)
 
 ## The Role Redesign Framework: What Humans Do vs. What AI Does
 
@@ -66,6 +81,8 @@ The role shifted from reactive support to proactive relationship management. The
 
 This isn't doing the same job faster. It's doing a different, more valuable job.
 
+[↑ Back to top](#quick-navigation)
+
 ## The Collaboration Patterns That Work
 
 Four patterns generate measurable value:
@@ -80,6 +97,8 @@ Four patterns generate measurable value:
 
 The common thread: Humans focus on judgment, strategy, and relationships. AI handles execution, synthesis, and scale.
 
+[↑ Back to top](#quick-navigation)
+
 ## Capturing 20% Productivity as Competitive Advantage
 
 You've redesigned roles and freed up 20% capacity. Now what? Most organizations stop here and capture the efficiency. Consider three approaches:
@@ -91,6 +110,8 @@ You've redesigned roles and freed up 20% capacity. Now what? Most organizations 
 **Quality Elevation:** Invest freed capacity in dramatically improving service levels, customer experience, or output quality. Example: Professional services firm uses AI for draft generation. Freed capacity deployed toward deeper client relationships and strategic advisory. Result: 50% increase in client retention, 3x improvement in referral rates.
 
 This isn't about doing the same thing with fewer people. It's about using the same people to compete at a new level.
+
+[↑ Back to top](#quick-navigation)
 
 ## The Compensation and Incentive Structure
 
@@ -104,6 +125,8 @@ Consider: A junior analyst who discovers an AI workflow saving 500 hours annuall
 
 The mindset shift: from "My value is my output volume" to "My value is my judgment, relationships, and strategic thinking, enabled by AI handling execution." This shift requires compensation reinforcement.
 
+[↑ Back to top](#quick-navigation)
+
 ## The Human-AI Collaboration Specialist
 
 An emerging critical role: the person who understands both AI capabilities and organizational workflows well enough to design effective collaboration patterns. Not an AI engineer. Not a business analyst. Something new.
@@ -115,6 +138,8 @@ Most organizations have AI expertise (engineers who can build models) and domain
 According to LinkedIn data, job postings for "AI Transformation" and "Human-AI Collaboration" roles grew 312% in 2024. These people typically come from employees with strong domain knowledge who've developed AI fluency through [hands-on experimentation](/blog/ai-budget-democratizing-innovation), technical professionals who've spent time in business roles, or process improvement specialists who've added AI capabilities.
 
 This isn't a role you hire externally at scale. It's a role you develop internally through [embedded learning](/blog/reskilling-at-scale-ai-era) and strategic deployment of AI budgets.
+
+[↑ Back to top](#quick-navigation)
 
 ## Getting Started: Implementation Roadmap
 
@@ -129,6 +154,8 @@ This isn't a role you hire externally at scale. It's a role you develop internal
 Avoid language suggesting "evaluating efficiency opportunities" or "optimizing our workforce." That signals layoffs. People will spend freed capacity polishing resumes instead of driving value creation.
 
 [Organizational resistance and adoption](/blog/resistance-to-adoption-ai-change) research suggests people need autonomy, competence, and relatedness to embrace change. Role redesign threatens all three unless you give people agency in how their roles evolve, invest in developing new capabilities, and frame this as collective capability enhancement.
+
+[↑ Back to top](#quick-navigation)
 
 ## The Bottom Line
 

@@ -7,6 +7,14 @@
 
 ---
 
+## Quick Navigation
+- [The Architecture Problem](#the-architecture-problem)
+- [The Core Constraint: Batch Processing](#the-core-constraint-batch-processing)
+- [Building the Foundation: The Unified Data Lakehouse](#building-the-foundation-the-unified-data-lakehouse)
+- [Strategic Integration: Connecting Legacy and SaaS](#strategic-integration-connecting-legacy-and-saas)
+- [The Leap to Agentic AI Workflows](#the-leap-to-agentic-ai-workflows)
+- [The Competitive Advantage](#the-competitive-advantage)
+
 ## The Architecture Problem
 
 Most wealth management firms pursuing agentic AI are trying to deploy autonomous systems on data infrastructure designed for 1990s batch reporting.
@@ -36,6 +44,8 @@ Consider this scenario: A client deposits $500,000 at 10 AM. They call their adv
 The advisor's trust in the system evaporates instantly. They revert to calling the custodian directly or logging into legacy portals. Your AI investment becomes shelfware.
 
 This isn't an edge case. It's the default experience when you layer modern interfaces on batch data without architectural intervention. The data is correct—it's just not current. And advisors can't distinguish between "stale" and "wrong."
+
+[↑ Back to top](#quick-navigation)
 
 ---
 
@@ -97,6 +107,8 @@ The Gold layer is optimized for reading. This is where data gets modeled into st
 
 A properly designed Gold layer should enable a BI developer to build a new dashboard in hours, not weeks. It should enable a data scientist to train a model without writing SQL. It should enable an AI agent to answer portfolio questions without accessing raw tables.
 
+[↑ Back to top](#quick-navigation)
+
 ---
 
 ## Strategic Integration: Connecting Legacy and SaaS
@@ -134,6 +146,8 @@ The benefits are significant:
 [Model Context Protocols: The Connectors That Enable Everything](/blog/model-context-protocols) explores how standardized protocols are making this kind of seamless integration possible across the entire software ecosystem.
 
 This enables **Headless BI**—embedding curated reports and AI insights directly into the CRM interface where advisors already work. Instead of forcing advisors to switch contexts between CRM and analytics tools, you bring analytics to them. Research from Logi Analytics and Dresner Advisory Services consistently shows that embedded analytics drives significantly higher adoption than standalone BI tools—studies report 65-84% higher engagement when analytics are embedded in workflows rather than accessed separately.
+
+[↑ Back to top](#quick-navigation)
 
 ---
 
@@ -219,6 +233,8 @@ With proper architecture and governance in place, agentic AI enables a wide rang
 Other potential use cases include compliance monitoring agents, fee billing reconciliation, account transfer tracking, and tax-loss harvesting optimization. The specific use cases matter less than the pattern: agents that can access unified, trustworthy data and take structured actions with human oversight.
 
 [The $1.5 Million Question: A Practitioner's Framework for Build vs Buy in Agentic AI](/blog/build-vs-buy-agentic-ai) explores when it makes sense to build these agents in-house versus purchasing commercial solutions.
+
+[↑ Back to top](#quick-navigation)
 
 ---
 

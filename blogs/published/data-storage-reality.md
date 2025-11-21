@@ -7,6 +7,17 @@
 
 ---
 
+## Quick Navigation
+- [The Draft](#the-draft)
+- [The Magnitude of the Shift](#the-magnitude-of-the-shift)
+- [The Datacenter Buildout Boom](#the-datacenter-buildout-boom)
+- [The Balancing Act](#the-balancing-act)
+- [The Strategic Mistake: Avoidance](#the-strategic-mistake-avoidance)
+- [Connecting to the Bigger Picture](#connecting-to-the-bigger-picture)
+- [Getting Practical: What To Do](#getting-practical-what-to-do)
+- [The Upside: Better Storage Economics Long-Term](#the-upside-better-storage-economics-long-term)
+- [The Bottom Line](#the-bottom-line)
+
 ## The Draft
 
 Here's the reality: every time you use GenAI, you're creating artifacts. And those artifacts take up storage.
@@ -18,6 +29,10 @@ For a single employee using AI tools casually, this might be a few hundred megab
 And it's accelerating.
 
 The question isn't whether storage costs will increase. They will. The question is: are you adapting to this reality, or are you pretending it's not happening?
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## The Magnitude of the Shift
 
@@ -50,6 +65,10 @@ And the data supports this shift. Current research shows that 50% of employees a
 
 We're not speculating about future adoption. This is happening now.
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## The Datacenter Buildout Boom
 
 Organizations aren't the only ones dealing with this. The entire infrastructure industry is responding.
@@ -78,6 +97,10 @@ The power differential tells the story. When a single rack consumes 60-120 kilow
 We're using GenAI to create content. That content takes up storage. And as GenAI gets cheaper and more accessible, usage (and storage) will continue to grow exponentially.
 
 [The AI Budget](/blog/ai-budget-democratizing-innovation) funds employees to experiment. Every experiment generates storage. This is a feature, not a bug.
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## The Balancing Act
 
@@ -137,6 +160,10 @@ Train employees to:
 
 Including executives who love sending out 8MB newsletters each month. (Yes, I'm calling you out. Compress those images.)
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## The Strategic Mistake: Avoidance
 
 Some organizations respond to rising storage costs by trying to avoid them entirely.
@@ -160,6 +187,10 @@ You're spending $100K to unlock $1M in value. That's not a cost problem; that's 
 
 Organizations that avoid storage costs to limit AI adoption will fall behind competitors who embrace the new reality. When the market is projected to grow from $26 billion to $118 billion in seven years, that's not hype; that's infrastructure buildout responding to real demand.
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## Connecting to the Bigger Picture
 
 Data storage doesn't exist in isolation. It's part of how intelligent organizations operate.
@@ -177,6 +208,10 @@ If your data is trapped in different SAAS platforms, you can't optimize storage 
 Capturing distributed innovation means storing those solutions. But it's better to store a solution once and reuse it than to duplicate effort.
 
 This is how it all connects: storage is infrastructure for organizational intelligence.
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## Getting Practical: What To Do
 
@@ -205,6 +240,10 @@ Plan for storage cost increases. Don't get surprised when your bill goes up 3x i
 
 The organizations leading this transition are implementing these practices now, before storage costs become unmanageable. They're treating storage as a strategic investment in AI capability rather than an operational cost to minimize.
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## The Upside: Better Storage Economics Long-Term
 
 Here's the counterintuitive part: while short-term storage costs increase, long-term storage economics can actually improve.
@@ -224,6 +263,10 @@ Organizations often store the same file hundreds of times across different folde
 Modern compression algorithms are far better than what organizations implemented 10 years ago. Re-compressing legacy content can yield significant savings.
 
 The AI era forces you to confront storage costs. But if you do it right, you end up with better storage economics than you had before.
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## The Bottom Line
 

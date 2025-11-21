@@ -7,6 +7,18 @@
 
 ---
 
+## Quick Navigation
+- [The Integration Tax Nobody Talks About](#the-integration-tax-nobody-talks-about)
+- [What MCPs Don't Solve: The Orchestration Gap](#what-mcps-dont-solve-the-orchestration-gap)
+- [The Architecture We Actually Need](#the-architecture-we-actually-need)
+- [What Actually Works: Patterns from the Field](#what-actually-works-patterns-from-the-field)
+- [The Practical Reality Check](#the-practical-reality-check)
+- [Why This Gap Keeps Pilots in Purgatory](#why-this-gap-keeps-pilots-in-purgatory)
+- [Considerations for Organizations Evaluating Agentic AI](#considerations-for-organizations-evaluating-agentic-ai)
+- [The Uncomfortable Reality](#the-uncomfortable-reality)
+- [The Bigger Picture: Trajectory and Timing](#the-bigger-picture-trajectory-and-timing)
+- [The Bottom Line](#the-bottom-line)
+
 Here's a revealing statistic: 87% of organizations rate interoperability as crucial to agentic AI adoption, yet 60% cite integration with legacy systems as their primary obstacle.
 
 Everyone knows what needs to happen, but comprehensive solutions remain elusive.
@@ -47,6 +59,10 @@ Model Context Protocols excel at three specific challenges:
 
 These capabilities work well for connectivity. The challenge emerges elsewhere.
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## What MCPs Don't Solve: The Orchestration Gap
 
 MCPs provide tool access but not workflow orchestration. The distinction becomes clear in any implementation beyond simple tool calls.
@@ -73,6 +89,10 @@ The missing orchestration layer needs several critical components:
 
 **Context Window Management:** As workflows accumulate data, context windows fill. Deciding what to preserve versus summarize, maintaining critical state while dropping verbose details, and streaming large results without overwhelming the AI all lack standard patterns.
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## The Architecture We Actually Need
 
 Real agentic systems (like VOICE-Relay for voice workflows or Game Card Creator for content generation) reveal the missing orchestration layer's requirements:
@@ -89,6 +109,10 @@ The missing layer requires workflow definition standards for step sequencing and
 
 Autonomous workflows need visibility into current agent activities, workflow bottlenecks, failure patterns, and success rates per workflow type. Without observability infrastructure (the agentic equivalent of Datadog or New Relic), you're operating blind.
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## What Actually Works: Patterns from the Field
 
 Building production agentic systems reveals several effective orchestration patterns:
@@ -102,6 +126,10 @@ Building production agentic systems reveals several effective orchestration patt
 **Context-Preserving Escalation:** When agents encounter ambiguity or errors, provide humans with complete workflow context (current state, previous steps, relevant data, available options). This preserves efficiency (humans handle only exceptions), maintains decision context, and enables workflow resumption.
 
 **Event-Driven Multi-Agent Coordination:** Use event publishing rather than direct agent-to-agent calls. When Agent A completes a task, it publishes an event; Agent B listens and triggers the next step. This creates loose coupling, enables asynchronous execution, and scales naturally.
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## The Practical Reality Check
 
@@ -126,6 +154,10 @@ That's not necessarily wrong—early movers who solve this well will have advant
 
 But it means the "integration problem" isn't close to solved, even with 16,000 MCP servers deployed.
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## Why This Gap Keeps Pilots in Purgatory
 
 Back to the original statistic: 88-95% of AI pilots never scale.
@@ -149,6 +181,10 @@ The technology works. The integration layer (MCPs) exists. But the orchestration
 
 ([The $1.5 Million Question: Build vs Buy in the Agentic AI Era](/blog/build-vs-buy-agentic-ai) explores when custom development is justified vs when off-the-shelf makes sense.)
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## Considerations for Organizations Evaluating Agentic AI
 
 Organizations exploring agentic AI integration might consider several strategic approaches:
@@ -163,6 +199,10 @@ Organizations exploring agentic AI integration might consider several strategic 
 
 **Multi-Agent Architecture:** Designing for single-agent systems that later need multi-agent coordination often requires significant rework. Event-driven communication, resource locking, and workflow versioning from the start add marginal complexity but enable future scaling.
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## The Uncomfortable Reality
 
 MCPs represent necessary but insufficient infrastructure for agentic AI. They solve data connectivity, and the ecosystem shows real momentum (16,000+ servers).
@@ -172,6 +212,10 @@ Yet positioning MCPs as "the solution to AI integration" resembles selling HTTP 
 MCPs function as the HTTP layer. Orchestration, state management, error recovery, and multi-agent coordination remain largely unsolved at the ecosystem level.
 
 Organizations relying solely on MCPs for agentic AI integration may encounter orchestration limitations within 3-6 months of deploying beyond simple tool calls. Success likely requires recognizing this gap early and implementing orchestration infrastructure (built or purchased) layered atop MCPs.
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## The Bigger Picture: Trajectory and Timing
 
@@ -184,6 +228,10 @@ Based on current trends, several developments seem plausible:
 **Strategic Timing Considerations:** Organizations deploying agentic AI now face building orchestration infrastructure themselves. Those waiting 18-24 months might access commercial or open-source solutions. The question: does competitive advantage from early deployment justify custom orchestration's cost and complexity? For some organizations, yes. For most, timing remains uncertain.
 
 ([Claude Code: The Agentic Tool Everyone Is Sleeping On](/blog/claude-code-agentic-tool) shows what cutting-edge agentic systems can already do—and highlights how much orchestration they handle internally.)
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## The Bottom Line
 
