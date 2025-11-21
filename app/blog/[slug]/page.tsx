@@ -4,6 +4,7 @@ import BlogLayout from '@/components/BlogLayout';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
+import rehypeSlug from 'rehype-slug';
 import 'highlight.js/styles/atom-one-dark.css';
 
 export async function generateStaticParams() {
@@ -74,7 +75,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
 
   return (
     <BlogLayout post={post} tldr={tldr} relatedPosts={relatedPosts}>
-      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
+      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeSlug, rehypeHighlight]}>
         {contentToRender}
       </ReactMarkdown>
     </BlogLayout>
