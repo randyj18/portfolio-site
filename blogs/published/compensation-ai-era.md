@@ -7,6 +7,17 @@
 
 ---
 
+## Quick Navigation
+- [The Core Idea](#the-core-idea)
+- [What This Looks Like in Practice](#what-this-looks-like-in-practice)
+- [Why Rank Independence Is Critical](#why-rank-independence-is-critical)
+- [The Anonymous Submission Paradox](#the-anonymous-submission-paradox)
+- [How This Connects to the AI Budget](#how-this-connects-to-the-ai-budget)
+- [The Measurement Challenge](#the-measurement-challenge)
+- [The Culture Shift](#the-culture-shift)
+- [Getting Started](#getting-started)
+- [The Bottom Line](#the-bottom-line)
+
 Here's an uncomfortable thought: a junior analyst might have a better AI strategy idea than your CEO.
 
 And if you can't reward them equally for that contribution, you're leaving intelligence on the table.
@@ -32,6 +43,10 @@ Organizations aren't just systems; they're **intelligent organisms**. They gathe
 Karl Weick's research on high-reliability organizations describes this as "collective mind" (the organization's capacity to think beyond any individual's contribution). But here's the critical insight: collective mind only works when you have "deference to expertise" rather than deference to authority. The best idea wins, not the highest-ranking person's idea.
 
 And you can't build an intelligent organism if you're only listening to the top 5% of the hierarchy.
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## What This Looks Like in Practice
 
@@ -70,6 +85,10 @@ And here's the kicker: it's the same idea, same impact, same reward. The organiz
 
 That's how you signal what actually matters.
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## Why Rank Independence Is Critical
 
 Let's talk about what happens when innovation rewards are tied to rank.
@@ -100,6 +119,10 @@ These aren't feel-good experiments. These are billion-dollar businesses that hav
 
 Rank independence flips this. It says: we want your ideas, no matter who you are. And if your idea is valuable, you'll be compensated accordingly.
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## The Anonymous Submission Paradox
 
 Here's an interesting wrinkle: should idea submission be anonymous to ensure truly unbiased evaluation?
@@ -119,6 +142,10 @@ And here's the critical piece: recognition matters. The winner should be celebra
 
 Public recognition creates a positive feedback loop. It encourages others to contribute. It makes innovation visible. It builds culture.
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## How This Connects to the AI Budget
 
 The [LINK: AI Budget] is where employees spend. Compensation is where they're rewarded for what they learned.
@@ -132,6 +159,10 @@ New structure: "Great job! Here's $50K for generating $2.5M in annual value."
 Which organization do you think gets more innovation?
 
 The budget enables experimentation. Compensation rewards outcomes. Together, they create a system where employees are incentivized to learn, share, and contribute.
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## The Measurement Challenge
 
@@ -164,6 +195,10 @@ Idea wasn't implemented, but the thinking was valuable (e.g., identified a risk,
 
 [The Duplicated Solution Problem: Centralizing Decentralized Innovation](/blog/duplicated-solution-problem) explores the stage-gate process in more detail, including how ideas ascend through these tiers.
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## The Culture Shift
 
 This isn't just a compensation change. It's a culture change.
@@ -186,6 +221,10 @@ But there's a critical warning from research on the "Paradox of Meritocracy." MI
 
 This is the shift that separates organizations that thrive in the AI era from those that don't.
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## Getting Started
 
 If you're reading this and thinking "we should do this," here's the path:
@@ -206,6 +245,10 @@ Run it for a year. Track submissions, evaluate outcomes, pay rewards. Gather fee
 This is critical. Make it visible that intelligence is being rewarded. Share the stories. Build the culture.
 
 This isn't a "nice to have." It's infrastructure for organizational intelligence.
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## The Bottom Line
 

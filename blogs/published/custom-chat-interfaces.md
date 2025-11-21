@@ -7,6 +7,16 @@
 
 ---
 
+## Quick Navigation
+- [The Draft](#the-draft)
+- [The Case Against Custom Chat Interfaces](#the-case-against-custom-chat-interfaces)
+- [The Case FOR Custom Chat Interfaces](#the-case-for-custom-chat-interfaces)
+- [The Alternatives You Should Consider First](#the-alternatives-you-should-consider-first)
+- [The Build vs. Buy Decision Framework](#the-build-vs-buy-decision-framework)
+- [What Success Looks Like](#what-success-looks-like)
+- [The Security Reality Check](#the-security-reality-check)
+- [The Bottom Line](#the-bottom-line)
+
 ## The Draft
 
 Let me start with the controversial take: most organizations that build custom chat interfaces are wasting time and money.
@@ -14,6 +24,10 @@ Let me start with the controversial take: most organizations that build custom c
 But some aren't.
 
 The question is: which category are you in?
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## The Case Against Custom Chat Interfaces
 
@@ -65,6 +79,10 @@ So why are you building it?
 Consider Samsung's experience in 2023. Employees leaked sensitive company data to ChatGPT on at least three occasions: source code from semiconductor databases, code from defective equipment, and entire meeting transcripts. Samsung's response? They initially banned generative AI tools entirely, developed an in-house solution, then later re-enabled ChatGPT with enhanced security controls.
 
 Or look at the ROI challenge: only 30% of companies implementing AI achieve measurable ROI, according to recent market research. The reality is that most organizations would be better off focusing their engineering resources on domain-specific problems rather than rebuilding commodity infrastructure.
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## The Case FOR Custom Chat Interfaces
 
@@ -148,6 +166,10 @@ The shift is also structural. Junior frontend developers now represent only 10.1
 
 Build it. Learn from it. Then evaluate whether you should actually deploy it or just use Claude/ChatGPT for production.
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## The Alternatives You Should Consider First
 
 Before building custom, exhaust these options:
@@ -226,6 +248,10 @@ Use existing chat interfaces (Slack, Teams, existing collaboration tools) and in
 
 This works for many organizations, especially if AI is a productivity tool, not a core product feature.
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## The Build vs. Buy Decision Framework
 
 If you're seriously considering building a custom interface, use this framework:
@@ -297,6 +323,10 @@ If you build custom and it doesn't work out, can you migrate to a commercial pro
 
 If you can't exit gracefully, you've created a new silo. ([Siloed Information](/blog/siloed-information-saas-moat))
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## What Success Looks Like
 
 If you do build custom, here's what good looks like:
@@ -324,6 +354,10 @@ If you do build custom, here's what good looks like:
 
 **User adoption:** Employees actually use it. If you build it and adoption is <30%, you've wasted money.
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## The Security Reality Check
 
 Before you build custom for "security reasons," understand the current threat landscape:
@@ -340,6 +374,10 @@ The problem isn't just the technology. It's user behavior and organizational gov
 **SSO adoption reality:** Despite enterprise chat interfaces offering SSO integration, adoption is effectively zero. Employees continue using personal accounts even when corporate logins are available.
 
 Custom interfaces don't solve this problem unless you also solve the organizational behavior problem. And if you can solve the behavior problem, enterprise SaaS with proper controls might be sufficient.
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## The Bottom Line
 

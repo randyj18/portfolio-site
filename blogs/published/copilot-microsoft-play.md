@@ -7,6 +7,14 @@
 
 ---
 
+## Quick Navigation
+- [What Copilot Actually Is](#what-copilot-actually-is)
+- [Microsoft's Strategic Play](#microsofts-strategic-play)
+- [What This Means for Organizations](#what-this-means-for-organizations)
+- [The Alternative Approaches](#the-alternative-approaches)
+- [The Questions You Should Ask Microsoft](#the-questions-you-should-ask-microsoft)
+- [The Bottom Line](#the-bottom-line)
+
 If you're a decision-maker evaluating Microsoft Copilot, you need to understand what you're actually buying.
 
 This isn't a critique. It's not an indictment. It's education.
@@ -36,6 +44,10 @@ The pitch: "AI everywhere you work, seamlessly integrated."
 And it's a good pitch. For many organizations, this is exactly what they want.
 
 But let's talk about what this really is strategically.
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## Microsoft's Strategic Play
 
@@ -110,6 +122,10 @@ Competitors (Google, independent AI vendors) have to integrate via APIs and exte
 
 This is the same playbook that made Windows dominant in the 1990s and 2000s. Extend the platform, integrate deeply, make alternatives feel like second-class citizens.
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## What This Means for Organizations
 
 If you're evaluating Copilot, here's what you need to consider:
@@ -179,6 +195,10 @@ What if:
 
 This isn't theoretical. Organizations that went all-in on a single cloud provider have faced this exact problem.
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## The Alternative Approaches
 
 You don't have to choose between "Copilot" and "nothing."
@@ -230,6 +250,10 @@ Copilot is early. The features, pricing, and competitive landscape will evolve r
 - Competitors who adopt early may gain productivity advantages
 - Employees may use unapproved AI tools if you don't provide alternatives ([Sandboxing: Safe Early Access](/blog/sandboxing-safe-early-access))
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## The Questions You Should Ask Microsoft
 
 If you're evaluating Copilot, don't just accept the sales pitch. Ask hard questions:
@@ -261,6 +285,10 @@ If you're evaluating Copilot, don't just accept the sales pitch. Ask hard questi
 - "What is your long-term vision for Copilot's role in the enterprise?"
 
 Some of these questions have public answers in Microsoft's documentation and blog posts. But the nuanced, contract-specific answers (especially around pricing flexibility, data guarantees, and governance customizations) require direct conversations with Microsoft sales and legal teams. Don't rely solely on public marketing materials.
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## The Bottom Line
 

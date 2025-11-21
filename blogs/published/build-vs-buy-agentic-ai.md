@@ -7,6 +7,19 @@
 
 ---
 
+## Quick Navigation
+- [The Decision Every Executive Faces](#the-decision-every-executive-faces)
+- [Why Agentic AI Changes Everything](#why-agentic-ai-changes-everything)
+- [The Real Costs: Beyond the Sticker Price](#the-real-costs-beyond-the-sticker-price)
+- [When Custom May Make Sense: The 10%](#when-custom-may-make-sense-the-10)
+- [When Off-the-Shelf Wins: The 90%](#when-off-the-shelf-wins-the-90)
+- [The Decision Framework: How to Choose](#the-decision-framework-how-to-choose)
+- [The Hidden Costs Everyone Forgets](#the-hidden-costs-everyone-forgets)
+- [Getting Started: How to Evaluate Your Position](#getting-started-how-to-evaluate-your-position)
+- [What Success Actually Looks Like](#what-success-actually-looks-like)
+- [The Honest Assessment](#the-honest-assessment)
+- [Key Considerations](#key-considerations)
+
 ## The Decision Every Executive Faces
 
 A common scenario: Your CTO proposes building a custom AI agent tailored to organizational workflows. Cost: $600K-$1.5M for development, plus $5K-$20K monthly maintenance.
@@ -20,6 +33,10 @@ Your CTO claims the custom solution delivers 10x value. Your CFO remains skeptic
 The choice matters: **67% of software projects fail due to incorrect build versus buy decisions.** Organizations either over-invest in custom development that doesn't deliver ROI, or under-invest while competitors build genuine differentiation.
 
 Agentic AI changes this equation fundamentally.
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## Why Agentic AI Changes Everything
 
@@ -61,6 +78,10 @@ Build a bad chatbot interface and users ignore it. Build a bad autonomous agent 
 A well-designed agent that automates a 10-person workflow isn't saving salary—it's creating competitive velocity competitors can't match.
 
 The question isn't "should we use AI?" It's "should we build AI systems ourselves or use commercial ones?"
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## The Real Costs: Beyond the Sticker Price
 
@@ -136,6 +157,10 @@ For 90% of organizations, the honest answer is no.
 
 But for the 10% where the answer is yes, the ROI is transformational.
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## When Custom May Make Sense: The 10%
 
 Based on building custom agentic systems and analyzing when commercial alternatives would have been more effective, several scenarios potentially justify custom development:
@@ -196,6 +221,10 @@ If AI is your product—not just a feature—custom is probably justified.
 
 If core product: build custom.
 If productivity tool: buy off-the-shelf.
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## When Off-the-Shelf Wins: The 90%
 
@@ -271,6 +300,10 @@ Every dollar spent on custom AI infrastructure is a dollar not spent on differen
 
 ([Custom Chat Interfaces: A Terrible Decision?](/blog/custom-chat-interfaces) explores this calculation in depth for chat-based systems.)
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## The Decision Framework: How to Choose
 
 Use this framework to make the right call:
@@ -339,6 +372,10 @@ Before committing $1M+ to custom development, run a pilot with off-the-shelf too
 
 Most organizations discover that off-the-shelf handles 90% of needs. The remaining 10% doesn't justify custom.
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## The Hidden Costs Everyone Forgets
 
 Even if you decide custom is justified, account for these often-overlooked costs:
@@ -380,6 +417,10 @@ If you're a fintech company, your moat isn't "we have a custom AI agent." It's "
 Building AI infrastructure is a distraction from your actual competitive advantage.
 
 **Cost:** Impossible to quantify precisely, but potentially the biggest cost of all.
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## Getting Started: How to Evaluate Your Position
 
@@ -433,6 +474,10 @@ Here's the practical playbook:
 
 **Expected outcome:** 50-60% of organizations planning custom development discover during POC that off-the-shelf + MCP is sufficient.
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## What Success Actually Looks Like
 
 If you do build custom, here's what good looks like:
@@ -464,6 +509,10 @@ If you do build custom, here's what good looks like:
 
 **Not:** "We've built a monolith that we're stuck with forever."
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## The Honest Assessment
 
 Consider why many organizations pursue custom AI:
@@ -475,6 +524,10 @@ These may represent theatrical justifications for expensive projects unlikely to
 The genuine 10% (with compliance requirements no vendor meets, proprietary workflows creating real competitive moats, novel UX transforming productivity) may achieve significant advantages competitors can't replicate.
 
 The distinction: intellectual honesty about whether you're solving problems commercial AI can't address, or building because it feels transformative.
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## Key Considerations
 

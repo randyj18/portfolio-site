@@ -7,6 +7,15 @@
 
 ---
 
+## Quick Navigation
+- [Why This Decision Matters Now](#why-this-decision-matters-now)
+- [The Case for Single-Provider Strategy](#the-case-for-single-provider-strategy)
+- [The Case for Multi-Provider Strategy](#the-case-for-multi-provider-strategy)
+- [The Decision Framework](#the-decision-framework)
+- [The Recommended Approach](#the-recommended-approach)
+- [Connecting to the Bigger Picture](#connecting-to-the-bigger-picture)
+- [The Bottom Line](#the-bottom-line)
+
 Here's the executive dilemma: go all-in on one AI provider and risk lock-in, or spread across multiple providers and manage complexity.
 
 Neither option is obviously right.
@@ -16,6 +25,10 @@ But one thing is clear: the decision you make in 2025 will shape your AI capabil
 **And you're not alone in wrestling with this.** 92% of large enterprises now operate in multi-cloud environments. The question isn't whether multi-cloud is mainstream (it is). The question is whether it's right for *your* organization, given your specific risk tolerance, technical capabilities, and strategic priorities.
 
 So let's think through it strategically.
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## Why This Decision Matters Now
 
@@ -51,6 +64,10 @@ The costs weren't just technical:
 - Testing and validation for production workloads
 
 And this is for relatively straightforward migrations. Organizations with fine-tuned models or deep RAG integrations face far higher switching costs.
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## The Case for Single-Provider Strategy
 
@@ -108,6 +125,10 @@ While exact discount structures are negotiated privately, the pattern is clear: 
 You're leaving $150K on the table by diversifying.
 
 Beyond pricing, single-vendor relationships unlock strategic benefits: early access to beta features, dedicated support, and partnership opportunities that multi-vendor approaches can't match.
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## The Case for Multi-Provider Strategy
 
@@ -229,6 +250,10 @@ Both succeeded with single-provider strategies because they:
 
 But both also accepted the vendor lock-in risk in exchange for faster implementation and lower complexity.
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## The Decision Framework
 
 How do you decide? Use this framework.
@@ -305,6 +330,10 @@ If you have a good abstraction layer:
 
 **Caveat:** Abstraction layers add their own complexity and potential failure points. But for large organizations spending >$250K/year on AI (37% of enterprises), this investment pays for itself.
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## The Recommended Approach
 
 Here's what I'd recommend for most organizations:
@@ -348,6 +377,10 @@ Shift workloads based on performance, cost, and strategic fit.
 
 **Why:** The market is evolving rapidly. Your strategy should evolve with it.
 
+[↑ Back to top](#quick-navigation)
+
+---
+
 ## Connecting to the Bigger Picture
 
 This decision doesn't exist in isolation.
@@ -363,6 +396,10 @@ The same dynamics that make SAAS lock-in problematic apply to AI providers. Data
 
 **Copilot Strategy** ([Understanding Copilot](/blog/copilot-microsoft-play))
 If you go all-in on Microsoft Copilot, you're locked into Microsoft's model choices. Multi-cloud is harder.
+
+[↑ Back to top](#quick-navigation)
+
+---
 
 ## The Bottom Line
 
