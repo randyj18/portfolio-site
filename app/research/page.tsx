@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { getResearchByTier } from '@/lib/research';
 
 export const metadata = {
-  title: 'Research Highlights | Randy Johnson',
+  title: 'Research Highlights | Randy Jones',
   description: 'Concise analysis of transformative AI research and market implications',
 };
 

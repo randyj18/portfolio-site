@@ -3,7 +3,7 @@ import { getBlogsByCluster } from '@/lib/blog';
 import ClusterDiagram from '@/components/ClusterDiagram';
 
 export const metadata = {
-  title: 'Blog | Randy Johnson',
+  title: 'Blog | Randy Jones',
   description: 'Insights on AI leadership, strategy, and implementation',
 };
 
@@ -42,7 +42,7 @@ export default function BlogPage() {
             </span>
           </h1>
 
-          <p className="text-lg lg:text-xl text-slate leading-relaxed max-w-2xl">
+          <p className="text-lg lg:text-xl leading-relaxed max-w-2xl" style={{ color: '#B8860B' }}>
             Deep dives into AI strategy, governance, and implementation. Each post explores the interconnected systems shaping how organizations adopt and scale AI.
           </p>
 
@@ -63,7 +63,7 @@ export default function BlogPage() {
       <section className="hidden lg:block section-container py-16">
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-beige mb-2">Explore by Theme</h2>
-          <p className="text-slate text-sm">Click on any cluster to see related posts</p>
+          <p className="text-beige-warm text-sm">Click on any cluster to see related posts</p>
         </div>
         <ClusterDiagram clusters={clusters} />
       </section>
@@ -72,7 +72,7 @@ export default function BlogPage() {
       <section className="lg:hidden section-container py-16">
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-beige mb-2">All Posts by Theme</h2>
-          <p className="text-slate text-sm">Organized by topic clusters</p>
+          <p className="text-beige-warm text-sm">Organized by topic clusters</p>
         </div>
 
         <div className="space-y-8">
@@ -96,7 +96,7 @@ export default function BlogPage() {
                       {post.title}
                     </h4>
                     {post.subtitle && (
-                      <p className="text-sm text-slate line-clamp-2">
+                      <p className="text-sm line-clamp-2" style={{ color: '#B8860B' }}>
                         {post.subtitle}
                       </p>
                     )}
@@ -112,7 +112,7 @@ export default function BlogPage() {
       <section className="hidden lg:block section-container py-16 border-t border-slate/20">
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-beige mb-2">All Posts</h2>
-          <p className="text-slate">Browse the complete collection</p>
+          <p className="text-beige-warm">Browse the complete collection</p>
         </div>
 
         <div className="space-y-12">
@@ -137,11 +137,11 @@ export default function BlogPage() {
                       {post.title}
                     </h4>
                     {post.subtitle && (
-                      <p className="text-sm text-slate line-clamp-3 mb-4">
+                      <p className="text-sm line-clamp-3 mb-4" style={{ color: '#B8860B' }}>
                         {post.subtitle}
                       </p>
                     )}
-                    <div className="flex items-center gap-2 text-xs text-gold-light/70 group-hover:text-gold-light transition-colors duration-300">
+                    <div className="flex items-center gap-2 text-xs transition-colors duration-300" style={{ color: '#D65117' }}>
                       Read more
                       <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

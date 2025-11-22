@@ -21,14 +21,14 @@ export default function ClusterDiagram({ clusters }: ClusterDiagramProps) {
   // Note: These coordinates are for the 1600x800 background image
   // with background-size: cover in a responsive container
   const clusterPositions: Record<string, ClusterPosition> = {
-    'Knowledge & Operations': { x: 58.44, y: 11.88 },
-    'Systems & Architecture': { x: 27.13, y: 36.13 },
-    'Strategy & Market Analysis': { x: 48.25, y: 44.63 },
-    'Strategy & Implementation': { x: 63.50, y: 50.13 },
-    'Governance & Implementation': { x: 79.63, y: 44.75 },
-    'Strategy & Architecture': { x: 31.94, y: 56.75 },
-    'Adoption & Tooling': { x: 67.44, y: 70.00 },
-    'Perspective & Opinion': { x: 50, y: 85 }, // Placeholder for unmapped cluster
+    'Knowledge & Operations': { x: 58.69, y: 13.1 },
+    'Systems & Architecture': { x: 26.85, y: 37.13 },
+    'Strategy & Market Analysis': { x: 48.35, y: 46.65 },
+    'Strategy & Implementation': { x: 64, y: 51.75 },
+    'Governance & Implementation': { x: 80.4, y: 46.4 },
+    'Strategy & Architecture': { x: 31.55, y: 58.9 },
+    'Adoption & Tooling': { x: 68.2, y: 71.75 },
+    'Perspective & Opinion': { x: 50, y: 86 }, // Placeholder for unmapped cluster
   };
 
   const getClusterColor = (cluster: string): string => {
@@ -50,7 +50,7 @@ export default function ClusterDiagram({ clusters }: ClusterDiagramProps) {
   };
 
   return (
-    <div className="relative w-full bg-navy rounded-sm border border-slate/20" style={{ aspectRatio: '2 / 1' }}>
+    <div className="relative w-full rounded-sm" style={{ aspectRatio: '2 / 1', backgroundColor: '#1C222D' }}>
       {/* Background circuit pattern */}
       <div
         className="absolute inset-0 opacity-60"
@@ -61,11 +61,14 @@ export default function ClusterDiagram({ clusters }: ClusterDiagramProps) {
         }}
       />
 
-      {/* Fade effect at edges */}
+      {/* Fade effect at edges - blends border into background */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse at center, transparent 0%, rgba(27, 34, 46, 0.4) 70%, rgba(27, 34, 46, 0.7) 100%)',
+          background: `
+            linear-gradient(to right, #1C222D 0%, #1C222D 5%, transparent 15%, transparent 85%, #1C222D 95%, #1C222D 100%),
+            linear-gradient(to bottom, #1C222D 0%, #1C222D 5%, transparent 15%, transparent 85%, #1C222D 95%, #1C222D 100%)
+          `,
         }}
       />
 
@@ -83,11 +86,14 @@ export default function ClusterDiagram({ clusters }: ClusterDiagramProps) {
                 top: `${position.y}%`,
                 transform: 'translate(-50%, -60%)',
                 textAlign: 'center',
+                background: 'radial-gradient(ellipse at center, rgba(28, 34, 45, 0.7) 0%, rgba(28, 34, 45, 0.4) 55%, transparent 90%)',
+                padding: '1rem',
+                borderRadius: '4px',
               }}
             >
               <div style={{
                 fontSize: '0.85rem',
-                color: 'rgba(237, 221, 204, 0.8)',
+                color: '#FAAE1B',
                 marginBottom: '0.5rem',
                 fontWeight: '600',
                 maxWidth: '110px',
@@ -98,14 +104,14 @@ export default function ClusterDiagram({ clusters }: ClusterDiagramProps) {
               <div style={{
                 fontSize: '1.4rem',
                 fontWeight: 'bold',
-                color: '#A6602C',
+                color: '#C9C8C5',
                 lineHeight: '1',
               }}>
                 {cluster.posts.length}
               </div>
               <div style={{
                 fontSize: '0.875rem',
-                color: 'rgba(237, 221, 204, 0.7)',
+                color: '#FAAE1B',
                 marginTop: '0.25rem',
               }}>
                 Posts
@@ -188,7 +194,7 @@ export default function ClusterDiagram({ clusters }: ClusterDiagramProps) {
 
       {/* Instructions overlay */}
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-center pointer-events-none">
-        <p className="text-xs text-slate/60 uppercase tracking-widest">
+        <p className="text-xs text-beige-warm uppercase tracking-widest">
           Click clusters to explore posts
         </p>
       </div>

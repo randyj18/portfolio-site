@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   }
 
   return {
-    title: `${post.title} | Randy Johnson`,
+    title: `${post.title} | Randy Jones`,
     description: post.subtitle || post.excerpt,
   };
 }
