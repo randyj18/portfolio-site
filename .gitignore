@@ -49,3 +49,4 @@ INTEGRATION_*.md
 # Next.js build cache - critical for preventing resource leaks
 .next/cache/
 node_modules/.cache/
+.claude/settings.local.json
