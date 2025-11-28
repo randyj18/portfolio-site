@@ -82,11 +82,6 @@ export default function BlogLayout({ post, tldr, relatedPosts, children }: BlogL
               </p>
             )}
 
-            {/* Meta */}
-            <div className="flex items-center gap-4 text-sm text-beige/60 mb-8">
-              <span className="text-xs">{post.status}</span>
-            </div>
-
             {/* TLDR Section - enhanced for dark background */}
             {tldr && (
               <div className="border-l-4 border-orange-burnt pl-6 bg-orange-burnt/10 p-6 rounded-r-lg">
