@@ -406,5 +406,5 @@ But if you're in the 10% of cases where custom genuinely makes sense, do it well
 
 ---
 
-**Published:** [Date]
+**Published:** November 2025
 **Word Count:** ~2,250 words

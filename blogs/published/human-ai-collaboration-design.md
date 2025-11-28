@@ -202,6 +202,6 @@ Organizations treating overcapacity as a strategic asset rather than a cost prob
 
 ---
 
-**Published:** [Date]
+**Published:** November 2025
 **Word Count:** ~2,350 words
 **Status:** Production-ready

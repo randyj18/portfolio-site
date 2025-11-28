@@ -322,5 +322,5 @@ The key is understanding what you're buying and what you're giving up.
 
 ---
 
-**Published:** [Date]
+**Published:** November 2025
 **Word Count:** ~2,100 words

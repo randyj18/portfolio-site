@@ -218,5 +218,5 @@ Organizations centralizing this capability (like organizations that centralized 
 
 ---
 
-**Published:** [Date]
+**Published:** November 2025
 **Word Count:** ~2,580 words

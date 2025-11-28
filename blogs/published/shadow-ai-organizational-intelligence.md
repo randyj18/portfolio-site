@@ -197,5 +197,5 @@ Shadow AI is happening whether you acknowledge it or not. The question is whethe
 
 ---
 
-**Published:** [Date]
+**Published:** November 2025
 **Word Count:** ~2,580 words

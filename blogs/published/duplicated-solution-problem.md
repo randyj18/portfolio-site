@@ -409,6 +409,6 @@ That's the shift.
 
 ---
 
-**Published:** [Date]
+**Published:** November 2025
 **Word Count:** 2,853 words
 **Status:** Production-ready

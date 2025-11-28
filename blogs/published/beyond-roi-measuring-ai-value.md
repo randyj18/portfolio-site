@@ -374,5 +374,5 @@ The contrarian truth: Top performers measuring organizational intelligence see $
 
 ---
 
-**Published:** [Date]
+**Published:** November 2025
 **Word Count:** 4,247 words

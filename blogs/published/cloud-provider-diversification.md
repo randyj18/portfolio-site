@@ -441,6 +441,6 @@ Make this decision intentionally, with clear eyes on the tradeoffs.
 
 ---
 
-**Published:** [Date]
+**Published:** November 2025
 **Word Count:** 2,676 words
 **Status:** Production-ready

@@ -280,6 +280,6 @@ And that's how you win.
 
 ---
 
-**Published:** [Date]
+**Published:** November 2025
 **Word Count:** ~2100 words
 **Status:** Production-ready

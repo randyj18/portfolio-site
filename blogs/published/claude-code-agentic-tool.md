@@ -533,5 +533,5 @@ If you're still thinking of AI as "autocomplete with extra steps," you're missin
 
 ---
 
-**Published:** [Date]
+**Published:** November 2025
 **Word Count:** ~2,350 words

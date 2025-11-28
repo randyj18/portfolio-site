@@ -249,5 +249,5 @@ The existential risk isn't the AI. It's the year you spend deciding whether to t
 
 ---
 
-**Published:** [Date]
+**Published:** November 2025
 **Word Count:** ~2150 words

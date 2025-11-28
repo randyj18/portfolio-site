@@ -281,6 +281,5 @@ And the organizations that get this right will have a massive advantage in the A
 
 ---
 
-**Published:** [Date]
+**Published:** November 2025
 **Word Count:** ~2100 words
-**Next Actions:** Ready for publication

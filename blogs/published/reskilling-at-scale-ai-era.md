@@ -189,5 +189,5 @@ The 40% reskilling challenge isn't a training problem. It's an organizational de
 
 ---
 
-**Published:** [Date]
+**Published:** November 2025
 **Word Count:** ~2,750 words

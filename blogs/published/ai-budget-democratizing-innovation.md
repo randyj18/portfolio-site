@@ -361,5 +361,5 @@ The question isn't whether you can afford it. The question is whether you can af
 
 ---
 
-**Published:** [Date]
+**Published:** November 2025
 **Word Count:** ~2,100 words

@@ -217,6 +217,6 @@ Make it yours.
 
 ---
 
-**Published:** [Date]
+**Published:** November 2025
 **Word Count:** [To be determined based on your content]
 **Status:** Shell created - awaiting Randy's personal content

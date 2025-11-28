@@ -382,6 +382,6 @@ The choice is clear. The question is whether vendors will make it in time.
 
 ---
 
-**Published:** [Date]
+**Published:** November 2025
 **Word Count:** ~2200 words
 **Status:** Complete and production-ready

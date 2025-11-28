@@ -303,5 +303,5 @@ Potential timeline: two months from decision to working governance, versus 12-14
 
 ---
 
-**Published:** [Date]
+**Published:** November 2025
 **Word Count:** ~2,650 words
