@@ -475,13 +475,13 @@ Here's how to implement either path:
 - Document integration points (which internal systems need AI access)
 - Design authentication and permission model
 
-**Month 2: Implementation**
+**Phase 2: Implementation**
 - Build MCP servers or internal API
 - Integrate chosen provider
 - Configure SSO, security, audit logging
 - Deploy to pilot group (10-20 users)
 
-**Month 3: Validation and Expansion**
+**Phase 3: Validation and Expansion**
 - Gather pilot feedback
 - Measure productivity impact
 - Refine integrations based on real usage
@@ -507,13 +507,13 @@ Here's how to implement either path:
 - Develop routing logic
 - Configure security for both providers
 
-**Month 2-3: Testing and Optimization**
+**Phase 2: Testing and Optimization**
 - Benchmark performance across providers for key workflows
 - Validate routing logic works as designed
 - Test failover scenarios (what happens if Provider A is down?)
 - Refine security and compliance controls
 
-**Month 3-4: Phased Rollout**
+**Phase 3: Phased Rollout**
 - Deploy to pilot group with both providers available
 - Gather data on which provider handles which tasks
 - Iterate on orchestration rules based on real performance

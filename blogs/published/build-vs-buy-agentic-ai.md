@@ -30,7 +30,7 @@ A 100x cost difference.
 
 Your CTO claims the custom solution delivers 10x value. Your CFO remains skeptical. Your Head of Product wants both.
 
-The choice matters: **67% of software projects fail due to incorrect build versus buy decisions.** Organizations either over-invest in custom development that doesn't deliver ROI, or under-invest while competitors build genuine differentiation.
+The choice matters: Organizations either over-invest in custom development that doesn't deliver ROI, or under-invest while competitors build genuine differentiation. The ratio of custom-build projects that deliver positive ROI versus those that create expensive technical debt favors commercial solutions in most cases.
 
 Agentic AI changes this equation fundamentally.
 
@@ -428,22 +428,22 @@ Here's the practical playbook:
 
 ### For the 90% (Off-the-Shelf Path)
 
-**Month 1: Pilot Setup**
+**Phase 1: Pilot Setup**
 - Choose 1-2 enterprise AI platforms (ChatGPT Enterprise, Claude for Work, or Microsoft Copilot)
 - Identify 10-20 pilot users across different roles
 - Set clear success metrics (productivity gains, task completion time, user satisfaction)
 
-**Month 2-3: Integration**
+**Phase 2: Integration**
 - Build MCP servers for critical internal systems
 - Configure SSO, security, and compliance
 - Train pilot users on effective prompting and workflows
 
-**Month 4: Evaluation**
+**Phase 3: Evaluation**
 - Measure against success metrics
 - Identify feature gaps (are they genuine needs or nice-to-haves?)
 - Calculate ROI: productivity gains vs subscription cost
 
-**Month 5-6: Rollout or Pivot**
+**Phase 4: Rollout or Pivot**
 - If pilot succeeds: roll out to broader organization
 - If significant gaps exist: evaluate custom development for specific gaps only (not full replacement)
 
@@ -451,23 +451,23 @@ Here's the practical playbook:
 
 ### For the 10% (Custom Development Path)
 
-**Month 1-2: Requirements and Feasibility**
+**Phase 1: Requirements and Feasibility**
 - Document specific capabilities that off-the-shelf can't provide
 - Validate these are genuine needs, not preferences
 - Assess organizational capability (team, budget, timeline)
 - Calculate full TCO (3-year projection)
 
-**Month 3-4: Architecture and Proof of Concept**
+**Phase 2: Architecture and Proof of Concept**
 - Design system architecture
 - Build proof of concept for riskiest components
 - Validate model performance on real data
 - Test integration with critical systems
 
-**Month 5-6: Build vs Buy Final Decision**
+**Phase 3: Build vs Buy Final Decision**
 - If POC succeeds and ROI is clear: proceed with full development
 - If POC reveals challenges or marginal ROI: pivot to off-the-shelf with targeted customization
 
-**Month 7-12: Development (if proceeding)**
+**Phase 4: Development (if proceeding)**
 - Iterative development with user testing
 - Security hardening and compliance review
 - Phased rollout starting with pilot users
@@ -553,7 +553,7 @@ The challenge: accurately assessing which category applies.
 
 ([The SAAS Reckoning: Evolution in the AI Era](/blog/saas-evolution-ai-era) explores how this dynamic is reshaping the entire software industry.)
 
-**TLDR:** Custom AI agents cost $1M-$1.5M year one + $260K-$550K annually vs off-the-shelf at $152K-$374K year one. 67% of software projects fail due to wrong build vs buy decisions. Only 10% of organizations have genuine custom needs: compliance no vendor meets, deep proprietary integrations, novel domain-specific UX, or AI as core product. The 90% who build custom for "control" or "differentiation" waste capital on theatrical transformation. Decision framework: define what custom actually solves (be specific), calculate true 3-year TCO, assess organizational capability honestly, validate exit strategy, pilot off-the-shelf first. Hidden costs: technical debt (30-50% of engineering time), talent retention (15-25% annual turnover), model provider dependencies, opportunity cost. Smart path: off-the-shelf + MCP servers for integration captures 90% of value at 30% of cost.
+**TLDR:** Custom AI agents cost $1M-$1.5M year one + $260K-$550K annually vs off-the-shelf at $152K-$374K year one (3-year TCO: $1.52M-$2.65M custom vs $366K-$774K commercial). Only 10% of organizations have genuine custom needs: compliance no vendor meets, deep proprietary integrations, novel domain-specific UX, or AI as core product. The 90% who build custom for "control" or "differentiation" waste capital without corresponding ROI. Decision framework: define what custom actually solves (be specific), calculate true 3-year TCO, assess organizational capability honestly, validate exit strategy, pilot off-the-shelf first. Hidden costs: technical debt accumulation, talent retention challenges, model provider dependencies, opportunity cost. Smart path: off-the-shelf + MCP servers for integration captures 90% of value at 30% of cost. Pilot with commercial platforms before committing to custom development.
 
 ---
 
@@ -565,5 +565,5 @@ The challenge: accurately assessing which category applies.
 
 ---
 
-**Published:** [Date]
+**Published:** November 2025
 **Word Count:** ~2,950 words

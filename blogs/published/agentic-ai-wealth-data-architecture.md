@@ -91,7 +91,7 @@ But format conversion is just the beginning. The Silver layer handles the transf
 
 **Survivorship logic**: What's the client's current address? The custodian has one answer. The CRM has another. The financial planning system has a third. Which is correct? The Silver layer implements explicit survivorship rules: for legal/tax purposes, the custodian is the master; for communication preferences, the CRM wins. These rules must be documented, versioned, and auditable.
 
-[Metadata Matters: The Overlooked Foundation of Knowledge Systems](/blog/metadata-matters) explains why this kind of explicit data lineage and documentation is critical for AI systems.
+[Metadata Matters: The Overlooked Foundation of Knowledge Systems](/blog/metadata-matters) explains why this kind of explicit data lineage and documentation is critical for AI systems. For organizations operating in the Microsoft ecosystem, [The Cognitive Enterprise](/blog/cognitive-enterprise-microsoft-roadmap) provides a parallel framework using Microsoft Purview for automated lineage tracking and multi-geo governance.
 
 **Temporal alignment**: That $500,000 deposit from the stale data example? The Silver layer can implement patterns to surface pending transactions from intraday feeds while clearly marking them as provisional until batch confirmation arrives.
 
@@ -131,7 +131,7 @@ The goal is to abstract all this complexity from end users. They should see clea
 
 While legacy systems require ingestion pipelines, modern SaaS platforms like Salesforce Financial Services Cloud offer a different integration pattern: **data virtualization through shortcuts**.
 
-Salesforce has invested heavily in this capability through their **Zero Copy Partner Network**, enabling bidirectional data sharing without replication. Instead of extracting CRM data, transforming it, and loading it into your lakehouse (traditional ETL), you create metadata pointers—shortcuts—that allow your lakehouse compute engine to query CRM data directly where it lives.
+Salesforce has invested heavily in this capability through their **Zero Copy Partner Network**, enabling bidirectional data sharing without replication. Instead of extracting CRM data, transforming it, and loading it into your lakehouse (traditional ETL), you create metadata pointers—shortcuts—that allow your lakehouse compute engine to query CRM data directly where it lives. This pattern mirrors the virtualization approach described in [The Cognitive Enterprise](/blog/cognitive-enterprise-microsoft-roadmap), where Microsoft Fabric's OneLake Shortcuts provide similar capabilities across the Microsoft ecosystem.
 
 The benefits are significant:
 
@@ -253,6 +253,7 @@ The technology exists. The patterns are proven. The question is whether your fir
 **Related Posts:**
 - [Siloed Information: How SAAS Companies Protect Their Moat](/blog/siloed-information-saas-moat)
 - [Model Context Protocols: The Connectors That Enable Everything](/blog/model-context-protocols)
+- [The Cognitive Enterprise: A Strategic Roadmap for AI Readiness in the Microsoft Ecosystem](/blog/cognitive-enterprise-microsoft-roadmap)
 - [Metadata Matters: The Overlooked Foundation of Knowledge Systems](/blog/metadata-matters)
 - [AI Governance Without Theater: What Actually Works](/blog/ai-governance-without-theater)
 - [The $1.5 Million Question: A Practitioner's Framework for Build vs Buy in Agentic AI](/blog/build-vs-buy-agentic-ai)

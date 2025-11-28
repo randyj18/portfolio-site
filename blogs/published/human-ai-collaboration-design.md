@@ -143,11 +143,11 @@ This isn't a role you hire externally at scale. It's a role you develop internal
 
 ## Getting Started: Implementation Roadmap
 
-**Month 1: Assessment and Pilot Selection** - Select 2-3 high-leverage roles with measurable outputs. Document current time allocation. Identify AI-addressable tasks. Estimate potential capacity gains. Redesign roles using three-layer model (automate/augment/elevate). Define new value creation activities. Identify required AI tools. Design success metrics.
+**Phase 1: Assessment and Pilot Selection** - Select 2-3 high-leverage roles with measurable outputs. Document current time allocation. Identify AI-addressable tasks. Estimate potential capacity gains. Redesign roles using three-layer model (automate/augment/elevate). Define new value creation activities. Identify required AI tools. Design success metrics.
 
-**Month 2: Implementation and Learning** - Implement AI capabilities within [sandboxed environments](/blog/sandboxing-safe-early-access). Train pilot team on effective AI collaboration patterns. Begin transitioning routine tasks to AI execution. Monitor for friction points. Gather feedback. Adjust collaboration patterns based on real experience. Document successful workflows. Measure actual capacity gains and value creation.
+**Phase 2: Implementation and Learning** - Implement AI capabilities within [sandboxed environments](/blog/sandboxing-safe-early-access). Train pilot team on effective AI collaboration patterns. Begin transitioning routine tasks to AI execution. Monitor for friction points. Gather feedback. Adjust collaboration patterns based on real experience. Document successful workflows. Measure actual capacity gains and value creation.
 
-**Month 3: Scaling and Systematization** - Roll out to additional employees in pilot roles. Refine AI tools and collaboration patterns. Begin training human-AI collaboration specialists. Update compensation to reflect new value metrics. Identify next wave of roles for redesign. Create playbooks from successful patterns. Integrate role redesign into [broader reskilling strategy](/blog/reskilling-at-scale-ai-era).
+**Phase 3: Scaling and Systematization** - Roll out to additional employees in pilot roles. Refine AI tools and collaboration patterns. Begin training human-AI collaboration specialists. Update compensation to reflect new value metrics. Identify next wave of roles for redesign. Create playbooks from successful patterns. Integrate role redesign into [broader reskilling strategy](/blog/reskilling-at-scale-ai-era).
 
 **Critical Communication:** This initiative lives or dies on communication. Employees need to hear: "AI is creating capacity. We're investing that capacity in making you more strategic, more valuable, and more fulfilled. Your job isn't going away, it's evolving to focus on what you're uniquely good at while AI handles routine execution."
 
