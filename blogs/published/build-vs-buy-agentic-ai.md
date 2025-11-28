@@ -87,9 +87,9 @@ The question isn't "should we use AI?" It's "should we build AI systems ourselve
 
 Let's do the math properly. Most organizations dramatically underestimate custom development costs.
 
-### Custom AI Agent Development: Year One
+### Custom AI Agent Development Costs
 
-**Development Phase (4-6 months):**
+**Development Phase (typical timeline: 4-6 months):**
 - 2 senior AI/ML engineers: $300K-$400K fully loaded
 - 1 product manager: $150K-$200K
 - 1 designer (UX for agentic workflows): $120K-$150K
@@ -122,7 +122,7 @@ Add buffer for scope creep, integration challenges, and iteration: **$1M-$1.5M i
 
 **Three-Year Total Cost of Ownership: $1.52M-$2.65M**
 
-### Off-the-Shelf AI: Year One
+### Off-the-Shelf AI: First Year Costs
 
 **Enterprise AI Subscriptions:**
 - ChatGPT Enterprise: $60/user/month

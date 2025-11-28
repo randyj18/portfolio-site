@@ -338,7 +338,7 @@ If you have a good abstraction layer:
 
 Here's what I'd recommend for most organizations:
 
-### Phase 1: Start Single-Provider (Months 0-6)
+### Phase 1: Start Single-Provider
 
 Pick one AI provider and go deep:
 - Build integrations
@@ -348,7 +348,7 @@ Pick one AI provider and go deep:
 
 **Why:** You need to learn before you can optimize. Multi-provider from day one is premature optimization.
 
-### Phase 2: Implement Abstraction (Months 6-12)
+### Phase 2: Implement Abstraction
 
 Once you understand your use cases, build (or adopt) an abstraction layer:
 - Create internal API that wraps provider-specific APIs
@@ -357,7 +357,7 @@ Once you understand your use cases, build (or adopt) an abstraction layer:
 
 **Why:** Abstraction is easier to build when you know your requirements. And it sets you up for Phase 3.
 
-### Phase 3: Add Second Provider (Months 12-18)
+### Phase 3: Add Second Provider
 
 Integrate a second provider behind your abstraction layer:
 - Choose provider with complementary strengths
