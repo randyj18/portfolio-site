@@ -427,7 +427,7 @@ This isn't full convergence (each vendor maintains their proprietary approaches)
 
 ---
 
-## The Future (3-5 Year Outlook)
+## The Future: Where MCPs Are Heading
 
 Speculative, but informed.
 
