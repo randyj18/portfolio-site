@@ -190,7 +190,7 @@ docker build --no-cache -t portfolio-site .
 
 ## Future Features
 
-- [ ] Blog with MDX
+- [x] Blog with Markdown
 - [ ] Case study deep-dives
 - [ ] Project showcase gallery
 - [ ] GitHub project feed
