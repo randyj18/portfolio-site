@@ -15,6 +15,7 @@ import { useAuth } from '../_lib/auth';
 import { COMMISSIONER_EMAIL } from '../_lib/constants';
 import type { Season, Participant } from '../_lib/types';
 import PlayerSync from './PlayerSync';
+import StatsSync from './StatsSync';
 import DraftOrderSetup from './DraftOrderSetup';
 import DraftRoom from './DraftRoom';
 
@@ -209,6 +210,7 @@ export default function SeasonDashboard({ year }: { year: number }) {
         <div className="border-t border-slate/20 pt-6 space-y-4">
           <h2 className="text-lg font-semibold text-navy">Commissioner tools</h2>
           <PlayerSync />
+          <StatsSync year={year} />
           {inSetup && (
             <div>
               <button

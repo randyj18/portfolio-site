@@ -11,7 +11,13 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 import { getFirebase } from '../_lib/firebase';
-import type { Season, Participant, NHLPlayer, DraftPick } from '../_lib/types';
+import type {
+  Season,
+  Participant,
+  NHLPlayer,
+  DraftPick,
+  PlayerStats,
+} from '../_lib/types';
 import {
   INITIAL_DRAFT_ROUNDS,
   canPickPosition,
@@ -19,6 +25,8 @@ import {
   countByPosition,
   nextOpenPickNumber,
 } from '../_lib/draft';
+
+type Tab = 'available' | 'roster' | 'board';
 
 export default function DraftRoom({
   year,
@@ -34,13 +42,21 @@ export default function DraftRoom({
   isCommissioner: boolean;
 }) {
   const yearStr = String(year);
+  const statsSource = season.status === 'initial-draft' ? 'regularSeasonStats' : 'playerStats';
+  const statsLabel = season.status === 'initial-draft' ? "'25-26 Reg" : 'Playoff';
+
   const [players, setPlayers] = useState<NHLPlayer[]>([]);
   const [picks, setPicks] = useState<DraftPick[]>([]);
+  const [stats, setStats] = useState<Map<string, PlayerStats>>(new Map());
   const [search, setSearch] = useState('');
   const [positionFilter, setPositionFilter] = useState<'all' | 'F' | 'D' | 'G'>('all');
+  const [teamFilter, setTeamFilter] = useState<string>('all');
+  const [showDrafted, setShowDrafted] = useState(false);
+  const [page, setPage] = useState(0);
   const [picking, setPicking] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [startingPlayoffs, setStartingPlayoffs] = useState(false);
+  const [tab, setTab] = useState<Tab>('available');
 
   useEffect(() => {
     const { db } = getFirebase();
@@ -63,6 +79,22 @@ export default function DraftRoom({
       (err) => setError(err.message)
     );
   }, [yearStr]);
+
+  useEffect(() => {
+    const { db } = getFirebase();
+    return onSnapshot(
+      collection(db, 'seasons', yearStr, statsSource),
+      (snap) => {
+        const map = new Map<string, PlayerStats>();
+        for (const d of snap.docs) {
+          const s = d.data() as PlayerStats;
+          map.set(s.nhlPlayerId, s);
+        }
+        setStats(map);
+      },
+      () => {}
+    );
+  }, [yearStr, statsSource]);
 
   const draftOrder = season.draftOrder ?? [];
   const schedule = useMemo(() => computeInitialDraftSchedule(draftOrder), [draftOrder]);
@@ -88,12 +120,18 @@ export default function DraftRoom({
     [participants]
   );
 
-  const available = useMemo(() => {
+  const teams = useMemo(() => {
+    const set = new Set(players.map((p) => p.nhlTeam));
+    return Array.from(set).sort();
+  }, [players]);
+
+  const filtered = useMemo(() => {
     const term = search.trim().toLowerCase();
     return players
       .filter((p) => {
-        if (pickedPlayerIds.has(p.id)) return false;
+        if (!showDrafted && pickedPlayerIds.has(p.id)) return false;
         if (positionFilter !== 'all' && p.position !== positionFilter) return false;
+        if (teamFilter !== 'all' && p.nhlTeam !== teamFilter) return false;
         if (term) {
           if (
             !p.fullName.toLowerCase().includes(term) &&
@@ -103,8 +141,19 @@ export default function DraftRoom({
         }
         return true;
       })
-      .sort((a, b) => a.fullName.localeCompare(b.fullName));
-  }, [players, pickedPlayerIds, positionFilter, search]);
+      .sort((a, b) => {
+        const sa = stats.get(a.id);
+        const sb = stats.get(b.id);
+        const va = a.position === 'G' ? (sa?.wins ?? 0) : (sa?.goals ?? 0) + (sa?.assists ?? 0);
+        const vb = b.position === 'G' ? (sb?.wins ?? 0) : (sb?.goals ?? 0) + (sb?.assists ?? 0);
+        if (va !== vb) return vb - va;
+        return a.fullName.localeCompare(b.fullName);
+      });
+  }, [players, pickedPlayerIds, positionFilter, teamFilter, search, showDrafted, stats]);
+
+  useEffect(() => {
+    setPage(0);
+  }, [search, positionFilter, teamFilter, showDrafted]);
 
   async function makePick(player: NHLPlayer) {
     if (!isMyTurn || picking || draftComplete || !currentSlot) return;
@@ -162,6 +211,53 @@ export default function DraftRoom({
 
   if (draftOrder.length === 0) return null;
 
+  const available = (
+    <AvailablePlayers
+      filtered={filtered}
+      pickedPlayerIds={pickedPlayerIds}
+      stats={stats}
+      statsLabel={statsLabel}
+      search={search}
+      setSearch={setSearch}
+      positionFilter={positionFilter}
+      setPositionFilter={setPositionFilter}
+      teamFilter={teamFilter}
+      setTeamFilter={setTeamFilter}
+      teams={teams}
+      showDrafted={showDrafted}
+      setShowDrafted={setShowDrafted}
+      isMyTurn={isMyTurn}
+      myCounts={myCounts}
+      myPicksCount={myPicks.length}
+      onPick={makePick}
+      picking={picking}
+      page={page}
+      setPage={setPage}
+    />
+  );
+
+  const roster = (
+    <MyRoster
+      picks={myPicks}
+      playerMap={playerMap}
+      stats={stats}
+      statsLabel={statsLabel}
+      counts={myCounts}
+    />
+  );
+
+  const board = (
+    <DraftBoard
+      picks={initialPicks}
+      playerMap={playerMap}
+      draftOrder={draftOrder}
+      nameByUid={nameByUid}
+    />
+  );
+
+  // Desktop "side" tab = roster or board (not available, which is always visible on desktop)
+  const sideTab: 'roster' | 'board' = tab === 'board' ? 'board' : 'roster';
+
   return (
     <div className="space-y-6">
       {draftComplete ? (
@@ -196,31 +292,70 @@ export default function DraftRoom({
         />
       )}
 
-      <MyRoster picks={myPicks} playerMap={playerMap} counts={myCounts} />
-
-      {!draftComplete && (
-        <AvailablePlayers
-          available={available}
-          search={search}
-          setSearch={setSearch}
-          positionFilter={positionFilter}
-          setPositionFilter={setPositionFilter}
-          isMyTurn={isMyTurn}
-          myCounts={myCounts}
-          myPicksCount={myPicks.length}
-          onPick={makePick}
-          picking={picking}
+      {/* Mobile: full tab bar switching one panel */}
+      <div className="lg:hidden space-y-3">
+        <TabBar<Tab>
+          tabs={[
+            { id: 'available', label: 'Available' },
+            { id: 'roster', label: `My roster (${myPicks.length}/7)` },
+            { id: 'board', label: 'Draft board' },
+          ]}
+          active={tab}
+          onChange={setTab}
         />
-      )}
+        {tab === 'available' && !draftComplete && available}
+        {tab === 'available' && draftComplete && (
+          <p className="text-sm text-slate">Draft complete.</p>
+        )}
+        {tab === 'roster' && roster}
+        {tab === 'board' && board}
+      </div>
 
-      <DraftBoard
-        picks={initialPicks}
-        playerMap={playerMap}
-        draftOrder={draftOrder}
-        nameByUid={nameByUid}
-      />
+      {/* Desktop: two columns — available left, roster/board toggled right */}
+      <div className="hidden lg:grid lg:grid-cols-2 lg:gap-6 lg:items-start">
+        <div>{!draftComplete ? available : <p className="text-sm text-slate">Draft complete.</p>}</div>
+        <div className="space-y-3">
+          <TabBar<'roster' | 'board'>
+            tabs={[
+              { id: 'roster', label: `My roster (${myPicks.length}/7)` },
+              { id: 'board', label: 'Draft board' },
+            ]}
+            active={sideTab}
+            onChange={(t) => setTab(t)}
+          />
+          {sideTab === 'roster' ? roster : board}
+        </div>
+      </div>
 
       {error && <p className="text-red-600 text-sm">{error}</p>}
+    </div>
+  );
+}
+
+function TabBar<T extends string>({
+  tabs,
+  active,
+  onChange,
+}: {
+  tabs: { id: T; label: string }[];
+  active: T;
+  onChange: (id: T) => void;
+}) {
+  return (
+    <div className="flex gap-1 border-b border-slate/20">
+      {tabs.map((t) => (
+        <button
+          key={t.id}
+          onClick={() => onChange(t.id)}
+          className={`px-3 py-2 text-sm font-semibold border-b-2 -mb-px transition-colors ${
+            active === t.id
+              ? 'border-orange-burnt text-navy'
+              : 'border-transparent text-slate hover:text-navy'
+          }`}
+        >
+          {t.label}
+        </button>
+      ))}
     </div>
   );
 }
@@ -286,20 +421,48 @@ function UpcomingPicks({
   );
 }
 
+function StatCell({
+  player,
+  stats,
+}: {
+  player: NHLPlayer | undefined;
+  stats: PlayerStats | undefined;
+}) {
+  if (!player) return null;
+  if (player.position === 'G') {
+    return (
+      <span className="text-xs text-slate tabular-nums">
+        {stats?.wins ?? 0}W · {stats?.shutouts ?? 0}SO
+      </span>
+    );
+  }
+  const g = stats?.goals ?? 0;
+  const a = stats?.assists ?? 0;
+  return (
+    <span className="text-xs text-slate tabular-nums">
+      {g}G · {a}A · {g + a}P
+    </span>
+  );
+}
+
 function MyRoster({
   picks,
   playerMap,
+  stats,
+  statsLabel,
   counts,
 }: {
   picks: DraftPick[];
   playerMap: Map<string, NHLPlayer>;
+  stats: Map<string, PlayerStats>;
+  statsLabel: string;
   counts: { F: number; D: number; G: number };
 }) {
   return (
     <div className="bg-white border border-slate/20 p-4 rounded-sm">
       <h3 className="font-semibold text-navy mb-1">Your roster ({picks.length}/7)</h3>
       <p className="text-xs text-slate mb-2">
-        F: {counts.F}/3-4 · D: {counts.D}/2-3 · G: {counts.G}/1
+        F: {counts.F}/3-4 · D: {counts.D}/2-3 · G: {counts.G}/1 · stats: {statsLabel}
       </p>
       {picks.length === 0 ? (
         <p className="text-sm text-slate">No picks yet.</p>
@@ -308,14 +471,13 @@ function MyRoster({
           {picks.map((pick) => {
             const player = playerMap.get(pick.nhlPlayerId);
             return (
-              <li key={pick.id ?? pick.pickNumber}>
-                <span className="text-slate font-mono text-xs">#{pick.pickNumber}</span>{' '}
-                <span className="text-navy font-medium">
-                  {player?.fullName ?? '...'}
-                </span>{' '}
+              <li key={pick.id ?? pick.pickNumber} className="flex items-center gap-2 flex-wrap">
+                <span className="text-slate font-mono text-xs">#{pick.pickNumber}</span>
+                <span className="text-navy font-medium">{player?.fullName ?? '...'}</span>
                 <span className="text-xs text-slate">
                   {player?.position} · {player?.nhlTeam}
                 </span>
+                <StatCell player={player} stats={stats.get(pick.nhlPlayerId)} />
               </li>
             );
           })}
@@ -325,34 +487,63 @@ function MyRoster({
   );
 }
 
+const PAGE_SIZE = 20;
+
 function AvailablePlayers({
-  available,
+  filtered,
+  pickedPlayerIds,
+  stats,
+  statsLabel,
   search,
   setSearch,
   positionFilter,
   setPositionFilter,
+  teamFilter,
+  setTeamFilter,
+  teams,
+  showDrafted,
+  setShowDrafted,
   isMyTurn,
   myCounts,
   myPicksCount,
   onPick,
   picking,
+  page,
+  setPage,
 }: {
-  available: NHLPlayer[];
+  filtered: NHLPlayer[];
+  pickedPlayerIds: Set<string>;
+  stats: Map<string, PlayerStats>;
+  statsLabel: string;
   search: string;
   setSearch: (s: string) => void;
   positionFilter: 'all' | 'F' | 'D' | 'G';
   setPositionFilter: (f: 'all' | 'F' | 'D' | 'G') => void;
+  teamFilter: string;
+  setTeamFilter: (t: string) => void;
+  teams: string[];
+  showDrafted: boolean;
+  setShowDrafted: (v: boolean) => void;
   isMyTurn: boolean;
   myCounts: { F: number; D: number; G: number };
   myPicksCount: number;
   onPick: (p: NHLPlayer) => void;
   picking: boolean;
+  page: number;
+  setPage: (n: number) => void;
 }) {
-  const SHOW_LIMIT = 200;
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const safePage = Math.min(page, totalPages - 1);
+  const start = safePage * PAGE_SIZE;
+  const pageItems = filtered.slice(start, start + PAGE_SIZE);
+
   return (
     <div>
-      <h2 className="text-lg font-semibold text-navy mb-2">Available players</h2>
-      <div className="flex gap-2 mb-3 flex-wrap">
+      <div className="flex items-baseline justify-between mb-2">
+        <h2 className="text-lg font-semibold text-navy">Available players</h2>
+        <span className="text-xs text-slate">stats: {statsLabel}</span>
+      </div>
+      <div className="flex gap-2 mb-2 flex-wrap">
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
@@ -372,40 +563,81 @@ function AvailablePlayers({
             {f === 'all' ? 'All' : f}
           </button>
         ))}
+        <select
+          value={teamFilter}
+          onChange={(e) => setTeamFilter(e.target.value)}
+          className="px-3 py-2 rounded-sm text-sm font-semibold bg-white border border-slate/30 text-slate focus:outline-none focus:border-navy"
+        >
+          <option value="all">All teams</option>
+          {teams.map((t) => (
+            <option key={t} value={t}>
+              {t}
+            </option>
+          ))}
+        </select>
       </div>
+      <label className="flex items-center gap-2 text-sm text-slate mb-3 cursor-pointer select-none">
+        <input
+          type="checkbox"
+          checked={showDrafted}
+          onChange={(e) => setShowDrafted(e.target.checked)}
+        />
+        Show drafted players
+      </label>
       <ul className="space-y-1">
-        {available.slice(0, SHOW_LIMIT).map((p) => {
+        {pageItems.map((p) => {
+          const drafted = pickedPlayerIds.has(p.id);
           const canPick =
-            isMyTurn && canPickPosition(myCounts, p.position, myPicksCount);
+            !drafted && isMyTurn && canPickPosition(myCounts, p.position, myPicksCount);
           return (
             <li
               key={p.id}
-              className="bg-white border border-slate/20 p-3 rounded-sm flex items-center justify-between gap-2"
+              className={`bg-white border border-slate/20 p-3 rounded-sm flex items-center justify-between gap-2 ${
+                drafted ? 'opacity-50' : ''
+              }`}
             >
               <div className="min-w-0 flex-1">
-                <span className="font-medium text-navy truncate">{p.fullName}</span>
-                <span className="text-xs text-slate ml-2">
-                  {p.position} · {p.nhlTeam}
-                </span>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="font-medium text-navy truncate">{p.fullName}</span>
+                  <span className="text-xs text-slate">
+                    {p.position} · {p.nhlTeam}
+                  </span>
+                  <StatCell player={p} stats={stats.get(p.id)} />
+                </div>
               </div>
               <button
                 onClick={() => onPick(p)}
                 disabled={!canPick || picking}
                 className="px-3 py-1 bg-navy text-off-white text-sm rounded-sm font-semibold disabled:opacity-30 disabled:cursor-not-allowed shrink-0"
               >
-                Draft
+                {drafted ? 'Taken' : 'Draft'}
               </button>
             </li>
           );
         })}
       </ul>
-      {available.length > SHOW_LIMIT && (
-        <p className="text-xs text-slate mt-2">
-          Showing {SHOW_LIMIT} of {available.length} — refine your search.
-        </p>
-      )}
-      {available.length === 0 && (
-        <p className="text-sm text-slate">No players match your filter.</p>
+      {filtered.length === 0 ? (
+        <p className="text-sm text-slate mt-3">No players match your filter.</p>
+      ) : (
+        <div className="flex items-center justify-between mt-3">
+          <button
+            onClick={() => setPage(Math.max(0, safePage - 1))}
+            disabled={safePage === 0}
+            className="px-3 py-1 text-sm border border-slate/30 rounded-sm disabled:opacity-30"
+          >
+            ← Prev
+          </button>
+          <span className="text-xs text-slate">
+            Page {safePage + 1} of {totalPages} · {filtered.length} players
+          </span>
+          <button
+            onClick={() => setPage(Math.min(totalPages - 1, safePage + 1))}
+            disabled={safePage >= totalPages - 1}
+            className="px-3 py-1 text-sm border border-slate/30 rounded-sm disabled:opacity-30"
+          >
+            Next →
+          </button>
+        </div>
       )}
     </div>
   );

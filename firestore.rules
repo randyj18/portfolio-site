@@ -48,6 +48,10 @@ service cloud.firestore {
         allow read: if signedIn();
         allow write: if isCommissioner();
       }
+      match /regularSeasonStats/{id} {
+        allow read: if signedIn();
+        allow write: if isCommissioner();
+      }
     }
 
     // Shared NHL player roster — commissioner syncs from NHL API.
