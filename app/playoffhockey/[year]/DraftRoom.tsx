@@ -27,6 +27,7 @@ import {
 } from '../_lib/draft';
 
 type Tab = 'available' | 'roster' | 'board';
+type SortBy = 'points' | 'goals' | 'assists' | 'wins' | 'shutouts' | 'name';
 
 export default function DraftRoom({
   year,
@@ -51,6 +52,7 @@ export default function DraftRoom({
   const [search, setSearch] = useState('');
   const [positionFilter, setPositionFilter] = useState<'all' | 'F' | 'D' | 'G'>('all');
   const [teamFilter, setTeamFilter] = useState<string>('all');
+  const [sortBy, setSortBy] = useState<SortBy>('points');
   const [showDrafted, setShowDrafted] = useState(false);
   const [page, setPage] = useState(0);
   const [picking, setPicking] = useState(false);
@@ -142,14 +144,32 @@ export default function DraftRoom({
         return true;
       })
       .sort((a, b) => {
+        if (sortBy === 'name') return a.fullName.localeCompare(b.fullName);
         const sa = stats.get(a.id);
         const sb = stats.get(b.id);
-        const va = a.position === 'G' ? (sa?.wins ?? 0) : (sa?.goals ?? 0) + (sa?.assists ?? 0);
-        const vb = b.position === 'G' ? (sb?.wins ?? 0) : (sb?.goals ?? 0) + (sb?.assists ?? 0);
+        const val = (p: NHLPlayer, s: PlayerStats | undefined): number => {
+          const g = s?.goals ?? 0;
+          const asst = s?.assists ?? 0;
+          switch (sortBy) {
+            case 'goals':
+              return g;
+            case 'assists':
+              return asst;
+            case 'wins':
+              return s?.wins ?? 0;
+            case 'shutouts':
+              return s?.shutouts ?? 0;
+            case 'points':
+            default:
+              return p.position === 'G' ? (s?.wins ?? 0) : g + asst;
+          }
+        };
+        const va = val(a, sa);
+        const vb = val(b, sb);
         if (va !== vb) return vb - va;
         return a.fullName.localeCompare(b.fullName);
       });
-  }, [players, pickedPlayerIds, positionFilter, teamFilter, search, showDrafted, stats]);
+  }, [players, pickedPlayerIds, positionFilter, teamFilter, search, showDrafted, sortBy, stats]);
 
   useEffect(() => {
     setPage(0);
@@ -224,6 +244,8 @@ export default function DraftRoom({
       teamFilter={teamFilter}
       setTeamFilter={setTeamFilter}
       teams={teams}
+      sortBy={sortBy}
+      setSortBy={setSortBy}
       showDrafted={showDrafted}
       setShowDrafted={setShowDrafted}
       isMyTurn={isMyTurn}
@@ -501,6 +523,8 @@ function AvailablePlayers({
   teamFilter,
   setTeamFilter,
   teams,
+  sortBy,
+  setSortBy,
   showDrafted,
   setShowDrafted,
   isMyTurn,
@@ -522,6 +546,8 @@ function AvailablePlayers({
   teamFilter: string;
   setTeamFilter: (t: string) => void;
   teams: string[];
+  sortBy: SortBy;
+  setSortBy: (s: SortBy) => void;
   showDrafted: boolean;
   setShowDrafted: (v: boolean) => void;
   isMyTurn: boolean;
@@ -574,6 +600,19 @@ function AvailablePlayers({
               {t}
             </option>
           ))}
+        </select>
+        <select
+          value={sortBy}
+          onChange={(e) => setSortBy(e.target.value as SortBy)}
+          className="px-3 py-2 rounded-sm text-sm font-semibold bg-white border border-slate/30 text-slate focus:outline-none focus:border-navy"
+          aria-label="Sort by"
+        >
+          <option value="points">Sort: Points</option>
+          <option value="goals">Sort: Goals</option>
+          <option value="assists">Sort: Assists</option>
+          <option value="wins">Sort: Wins</option>
+          <option value="shutouts">Sort: Shutouts</option>
+          <option value="name">Sort: Name</option>
         </select>
       </div>
       <label className="flex items-center gap-2 text-sm text-slate mb-3 cursor-pointer select-none">
