@@ -6,7 +6,7 @@ import { getFirebase } from '../_lib/firebase';
 import type { NHLPlayer, PlayerStats } from '../_lib/types';
 
 const WRITE_BATCH_SIZE = 400;
-const CHUNK_SIZE = 80;
+const CHUNK_SIZE = 30;
 
 type StatRow = Omit<PlayerStats, 'lastUpdated'>;
 type Mode = 'regular' | 'playoff';

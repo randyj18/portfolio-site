@@ -28,10 +28,10 @@ type GameLogResponse = {
   gameLog?: (SkaterGame & GoalieGame)[];
 };
 
-const CONCURRENCY = 5;
+const CONCURRENCY = 3;
 const MAX_ATTEMPTS = 3;
-const BASE_BACKOFF_MS = 1000;
-const REQUEST_TIMEOUT_MS = 6000;
+const BASE_BACKOFF_MS = 500;
+const REQUEST_TIMEOUT_MS = 5000;
 
 type PlayerResult =
   | { ok: true; stat: PlayerStat }
@@ -127,9 +127,9 @@ async function fetchPlayerStats(
     }
     if (attempt < MAX_ATTEMPTS) {
       const isRateLimit = lastError.includes('429');
-      const jitter = Math.random() * 500;
+      const jitter = Math.random() * 300;
       const backoff = isRateLimit 
-        ? (2500 * attempt) + jitter 
+        ? (1500 * attempt) + jitter 
         : (BASE_BACKOFF_MS * 2 ** (attempt - 1)) + jitter;
       await sleep(backoff);
     }
