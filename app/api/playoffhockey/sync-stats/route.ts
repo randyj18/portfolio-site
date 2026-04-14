@@ -28,10 +28,10 @@ type GameLogResponse = {
   gameLog?: (SkaterGame & GoalieGame)[];
 };
 
-const CONCURRENCY = 8;
-const MAX_ATTEMPTS = 2;
-const BASE_BACKOFF_MS = 200;
-const REQUEST_TIMEOUT_MS = 4000;
+const CONCURRENCY = 5;
+const MAX_ATTEMPTS = 3;
+const BASE_BACKOFF_MS = 1000;
+const REQUEST_TIMEOUT_MS = 6000;
 
 type PlayerResult =
   | { ok: true; stat: PlayerStat }
@@ -84,6 +84,16 @@ async function fetchPlayerStats(
       }
       if (!res.ok) {
         lastError = `HTTP ${res.status}`;
+        if (res.status === 429) {
+          const retryAfter = res.headers.get('Retry-After');
+          if (retryAfter) {
+            const waitSecs = parseInt(retryAfter, 10);
+            if (!isNaN(waitSecs) && waitSecs > 0) {
+              await sleep(waitSecs * 1000);
+              continue;
+            }
+          }
+        }
       } else {
         const data: GameLogResponse = await res.json();
         const games = data.gameLog ?? [];
@@ -116,7 +126,12 @@ async function fetchPlayerStats(
       lastError = e instanceof Error ? e.message : 'fetch error';
     }
     if (attempt < MAX_ATTEMPTS) {
-      await sleep(BASE_BACKOFF_MS * 2 ** (attempt - 1));
+      const isRateLimit = lastError.includes('429');
+      const jitter = Math.random() * 500;
+      const backoff = isRateLimit 
+        ? (2500 * attempt) + jitter 
+        : (BASE_BACKOFF_MS * 2 ** (attempt - 1)) + jitter;
+      await sleep(backoff);
     }
   }
   return { ok: false, id: player.id, error: lastError };
