@@ -14,6 +14,7 @@ import { getFirebase } from '../_lib/firebase';
 import { useAuth } from '../_lib/auth';
 import { COMMISSIONER_EMAIL } from '../_lib/constants';
 import type { Season, Participant } from '../_lib/types';
+import PlayerSync from './PlayerSync';
 
 export default function SeasonDashboard({ year }: { year: number }) {
   const { user, logOut } = useAuth();
@@ -177,18 +178,24 @@ export default function SeasonDashboard({ year }: { year: number }) {
         )}
       </div>
 
-      {isCommissioner && !locked && (
-        <div className="border-t border-slate/20 pt-6">
-          <button
-            onClick={lockLeague}
-            disabled={participants.length < 2}
-            className="px-6 py-3 bg-orange-burnt text-off-white rounded-sm font-semibold hover:bg-orange-burnt/90 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Lock league &amp; start draft
-          </button>
-          <p className="text-xs text-slate mt-2">
-            After locking, no one else can join. Need at least 2 participants.
-          </p>
+      {isCommissioner && (
+        <div className="border-t border-slate/20 pt-6 space-y-4">
+          <h2 className="text-lg font-semibold text-navy">Commissioner tools</h2>
+          <PlayerSync />
+          {!locked && (
+            <div>
+              <button
+                onClick={lockLeague}
+                disabled={participants.length < 2}
+                className="px-6 py-3 bg-orange-burnt text-off-white rounded-sm font-semibold hover:bg-orange-burnt/90 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Lock league &amp; start draft
+              </button>
+              <p className="text-xs text-slate mt-2">
+                After locking, no one else can join. Need at least 2 participants.
+              </p>
+            </div>
+          )}
         </div>
       )}
 

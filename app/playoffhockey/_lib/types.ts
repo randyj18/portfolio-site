@@ -9,6 +9,7 @@ export interface Season {
   commissionerUid: string;
   createdAt: number;
   lockedAt?: number;
+  eliminatedTeams?: string[];
 }
 
 export interface Participant {
@@ -24,7 +25,6 @@ export interface NHLPlayer {
   fullName: string;
   position: Position;
   nhlTeam: string;
-  nhlTeamEliminated: boolean;
 }
 
 export interface DraftPick {

@@ -35,10 +35,10 @@ service cloud.firestore {
       }
     }
 
-    // Shared NHL player roster — read-only from client.
+    // Shared NHL player roster — commissioner syncs from NHL API.
     match /nhlPlayers/{id} {
       allow read: if signedIn();
-      allow write: if false;
+      allow write: if isCommissioner();
     }
   }
 }
