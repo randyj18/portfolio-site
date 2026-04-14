@@ -83,6 +83,10 @@ export default function StatsSync({ year }: { year: number }) {
         if (!res.ok) throw new Error(body.error ?? `HTTP ${res.status}`);
         allRows.push(...(body.stats ?? []));
         allFailed.push(...(body.failed ?? []));
+        // Pause between chunks to avoid rate-limiting
+        if (ci < chunks.length - 1) {
+          await new Promise((r) => setTimeout(r, 1000));
+        }
       }
 
       setStatus(`Writing ${allRows.length} ${cfg.label} stat rows…`);
