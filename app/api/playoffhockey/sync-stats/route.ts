@@ -28,7 +28,17 @@ type GameLogResponse = {
   gameLog?: (SkaterGame & GoalieGame)[];
 };
 
-const CONCURRENCY = 12;
+const CONCURRENCY = 6;
+const MAX_ATTEMPTS = 3;
+const BASE_BACKOFF_MS = 400;
+
+type PlayerResult =
+  | { ok: true; stat: PlayerStat }
+  | { ok: false; id: string; error: string };
+
+function sleep(ms: number) {
+  return new Promise((r) => setTimeout(r, ms));
+}
 
 function poolSeasonId(year: number): string {
   return `${year - 1}${year}`;
@@ -45,40 +55,63 @@ async function fetchPlayerStats(
   player: PlayerInput,
   seasonId: string,
   gameType: 2 | 3
-): Promise<PlayerStat> {
-  const stat: PlayerStat = {
-    nhlPlayerId: player.id,
-    goals: 0,
-    assists: 0,
-    wins: 0,
-    shutouts: 0,
-  };
-  try {
-    const url = `https://api-web.nhle.com/v1/player/${player.id}/game-log/${seasonId}/${gameType}`;
-    const res = await fetch(url, { cache: 'no-store' });
-    if (!res.ok) return stat;
-    const data: GameLogResponse = await res.json();
-    const games = data.gameLog ?? [];
-    for (const g of games) {
-      if (player.position === 'G') {
-        if (g.decision === 'W') stat.wins++;
-        const toi = parseToiToSeconds(g.toi);
-        if (
-          typeof g.goalsAgainst === 'number' &&
-          g.goalsAgainst === 0 &&
-          toi >= 3000
-        ) {
-          stat.shutouts++;
-        }
-      } else {
-        stat.goals += g.goals ?? 0;
-        stat.assists += g.assists ?? 0;
+): Promise<PlayerResult> {
+  const url = `https://api-web.nhle.com/v1/player/${player.id}/game-log/${seasonId}/${gameType}`;
+  let lastError = 'unknown';
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    try {
+      const res = await fetch(url, { cache: 'no-store' });
+      // 404 is a legitimate "no games played" for this player/season/type.
+      if (res.status === 404) {
+        return {
+          ok: true,
+          stat: {
+            nhlPlayerId: player.id,
+            goals: 0,
+            assists: 0,
+            wins: 0,
+            shutouts: 0,
+          },
+        };
       }
+      if (!res.ok) {
+        lastError = `HTTP ${res.status}`;
+      } else {
+        const data: GameLogResponse = await res.json();
+        const games = data.gameLog ?? [];
+        const stat: PlayerStat = {
+          nhlPlayerId: player.id,
+          goals: 0,
+          assists: 0,
+          wins: 0,
+          shutouts: 0,
+        };
+        for (const g of games) {
+          if (player.position === 'G') {
+            if (g.decision === 'W') stat.wins++;
+            const toi = parseToiToSeconds(g.toi);
+            if (
+              typeof g.goalsAgainst === 'number' &&
+              g.goalsAgainst === 0 &&
+              toi >= 3000
+            ) {
+              stat.shutouts++;
+            }
+          } else {
+            stat.goals += g.goals ?? 0;
+            stat.assists += g.assists ?? 0;
+          }
+        }
+        return { ok: true, stat };
+      }
+    } catch (e) {
+      lastError = e instanceof Error ? e.message : 'fetch error';
     }
-  } catch {
-    // Tolerate individual failures; player just gets zeros.
+    if (attempt < MAX_ATTEMPTS) {
+      await sleep(BASE_BACKOFF_MS * 2 ** (attempt - 1));
+    }
   }
-  return stat;
+  return { ok: false, id: player.id, error: lastError };
 }
 
 async function runPool<T, R>(
@@ -116,14 +149,25 @@ export async function POST(req: Request) {
       );
     }
     const seasonId = poolSeasonId(year);
-    const stats = await runPool(
+    const results: PlayerResult[] = await runPool(
       players,
-      (p) => fetchPlayerStats(p, seasonId, gameType),
+      (p): Promise<PlayerResult> => fetchPlayerStats(p, seasonId, gameType),
       CONCURRENCY
     );
+    const stats: PlayerStat[] = [];
+    const failed: { id: string; error: string }[] = [];
+    for (const r of results) {
+      if (r.ok === true) {
+        stats.push(r.stat);
+        continue;
+      }
+      failed.push({ id: r.id, error: r.error });
+    }
     return NextResponse.json({
       stats,
       count: stats.length,
+      failed,
+      failedCount: failed.length,
       seasonId,
       gameType,
     });

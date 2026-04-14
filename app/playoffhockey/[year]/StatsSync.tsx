@@ -58,6 +58,8 @@ export default function StatsSync({ year }: { year: number }) {
       const body = await res.json();
       if (!res.ok) throw new Error(body.error ?? `HTTP ${res.status}`);
       const rows = body.stats as StatRow[];
+      const failedCount = (body.failedCount as number) ?? 0;
+      const failed = (body.failed as { id: string; error: string }[]) ?? [];
 
       setStatus(`Writing ${rows.length} ${cfg.label} stat rows…`);
       const now = Date.now();
@@ -71,7 +73,17 @@ export default function StatsSync({ year }: { year: number }) {
         }
         await batch.commit();
       }
-      setStatus(`Synced ${cfg.label} stats for ${rows.length} players.`);
+      if (failedCount > 0) {
+        const sample = failed
+          .slice(0, 5)
+          .map((f) => `${f.id} (${f.error})`)
+          .join(', ');
+        setStatus(
+          `Synced ${rows.length} ${cfg.label} rows. ${failedCount} failed — click again to retry. Sample: ${sample}`
+        );
+      } else {
+        setStatus(`Synced ${cfg.label} stats for ${rows.length} players.`);
+      }
       setLastRuns((prev) => ({ ...prev, [mode]: now }));
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Sync failed');
