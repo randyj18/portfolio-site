@@ -269,16 +269,20 @@ export default function DraftRoom({
   );
 
   const board = (
-    <DraftBoard
-      picks={initialPicks}
-      playerMap={playerMap}
-      draftOrder={draftOrder}
-      nameByUid={nameByUid}
-    />
+    <div className="space-y-6">
+      <DraftBoard
+        picks={initialPicks}
+        playerMap={playerMap}
+        draftOrder={draftOrder}
+        nameByUid={nameByUid}
+      />
+      <PickLog
+        picks={initialPicks}
+        playerMap={playerMap}
+        nameByUid={nameByUid}
+      />
+    </div>
   );
-
-  // Desktop "side" tab = roster or board (not available, which is always visible on desktop)
-  const sideTab: 'roster' | 'board' = tab === 'board' ? 'board' : 'roster';
 
   return (
     <div className="space-y-6">
@@ -314,8 +318,7 @@ export default function DraftRoom({
         />
       )}
 
-      {/* Mobile: full tab bar switching one panel */}
-      <div className="lg:hidden space-y-3">
+      <div className="space-y-3">
         <TabBar<Tab>
           tabs={[
             { id: 'available', label: 'Available' },
@@ -331,22 +334,6 @@ export default function DraftRoom({
         )}
         {tab === 'roster' && roster}
         {tab === 'board' && board}
-      </div>
-
-      {/* Desktop: two columns — available left, roster/board toggled right */}
-      <div className="hidden lg:grid lg:grid-cols-2 lg:gap-6 lg:items-start">
-        <div>{!draftComplete ? available : <p className="text-sm text-slate">Draft complete.</p>}</div>
-        <div className="space-y-3">
-          <TabBar<'roster' | 'board'>
-            tabs={[
-              { id: 'roster', label: `My roster (${myPicks.length}/7)` },
-              { id: 'board', label: 'Draft board' },
-            ]}
-            active={sideTab}
-            onChange={(t) => setTab(t)}
-          />
-          {sideTab === 'roster' ? roster : board}
-        </div>
       </div>
 
       {error && <p className="text-red-600 text-sm">{error}</p>}
@@ -758,6 +745,48 @@ function DraftBoard({
           </tbody>
         </table>
       </div>
+    </div>
+  );
+}
+
+function PickLog({
+  picks,
+  playerMap,
+  nameByUid,
+}: {
+  picks: DraftPick[];
+  playerMap: Map<string, NHLPlayer>;
+  nameByUid: Map<string, string>;
+}) {
+  if (picks.length === 0) return null;
+  const ordered = [...picks].sort((a, b) => b.pickNumber - a.pickNumber);
+  return (
+    <div>
+      <h2 className="text-lg font-semibold text-navy mb-2">Pick log</h2>
+      <ol className="space-y-1">
+        {ordered.map((pick) => {
+          const player = playerMap.get(pick.nhlPlayerId);
+          const name = nameByUid.get(pick.participantUid) ?? '?';
+          return (
+            <li
+              key={pick.id ?? pick.pickNumber}
+              className="bg-white border border-slate/20 p-2 rounded-sm flex items-center gap-2 flex-wrap text-sm"
+            >
+              <span className="text-slate font-mono text-xs shrink-0">
+                #{pick.pickNumber}
+              </span>
+              <span className="text-navy font-semibold">{name}</span>
+              <span className="text-slate">→</span>
+              <span className="text-navy font-medium">
+                {player?.fullName ?? '...'}
+              </span>
+              <span className="text-xs text-slate">
+                {player?.position} · {player?.nhlTeam}
+              </span>
+            </li>
+          );
+        })}
+      </ol>
     </div>
   );
 }
