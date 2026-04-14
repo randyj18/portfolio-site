@@ -10,6 +10,7 @@ export interface Season {
   createdAt: number;
   lockedAt?: number;
   eliminatedTeams?: string[];
+  draftOrder?: string[];
 }
 
 export interface Participant {

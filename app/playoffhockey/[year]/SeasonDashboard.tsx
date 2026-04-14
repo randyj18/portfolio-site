@@ -15,6 +15,8 @@ import { useAuth } from '../_lib/auth';
 import { COMMISSIONER_EMAIL } from '../_lib/constants';
 import type { Season, Participant } from '../_lib/types';
 import PlayerSync from './PlayerSync';
+import DraftOrderSetup from './DraftOrderSetup';
+import DraftRoom from './DraftRoom';
 
 export default function SeasonDashboard({ year }: { year: number }) {
   const { user, logOut } = useAuth();
@@ -138,51 +140,76 @@ export default function SeasonDashboard({ year }: { year: number }) {
 
   const me = participants.find((p) => p.uid === user?.uid);
   const locked = !!season.lockedAt;
+  const inSetup = season.status === 'setup';
+  const inDraft = season.status === 'initial-draft';
+  const hasDraftOrder = !!(season.draftOrder && season.draftOrder.length > 0);
 
   return (
     <section className="space-y-6">
       <Header email={user?.email ?? ''} isCommissioner={isCommissioner} onSignOut={logOut} />
 
-      {locked ? (
-        <StatusBanner>
-          {me
-            ? `League locked — ${season.status === 'initial-draft' ? 'initial draft in progress' : 'playoffs in progress'}.`
-            : `League is locked. You didn't join in time.`}
-        </StatusBanner>
-      ) : me ? (
+      {inSetup && (me ? (
         <TeamNameEditor current={me.teamName ?? ''} onSave={saveTeamName} />
       ) : (
         <p className="text-slate">Joining…</p>
+      ))}
+
+      {locked && !inDraft && season.status === 'playoffs' && (
+        <StatusBanner>Playoffs are underway. Standings view coming soon.</StatusBanner>
       )}
 
-      <div>
-        <h2 className="text-xl font-semibold text-navy mb-3">
-          Participants ({participants.length})
-        </h2>
-        {participants.length === 0 ? (
-          <p className="text-slate text-sm">No one has joined yet.</p>
+      {!me && locked && (
+        <StatusBanner>League is locked. You didn&apos;t join in time.</StatusBanner>
+      )}
+
+      {inSetup && (
+        <div>
+          <h2 className="text-xl font-semibold text-navy mb-3">
+            Participants ({participants.length})
+          </h2>
+          {participants.length === 0 ? (
+            <p className="text-slate text-sm">No one has joined yet.</p>
+          ) : (
+            <ul className="space-y-2">
+              {participants.map((p) => (
+                <li
+                  key={p.uid}
+                  className="bg-white border border-slate/20 p-3 rounded-sm flex items-center justify-between"
+                >
+                  <span className="font-medium text-navy">
+                    {p.teamName || p.displayName}
+                  </span>
+                  <span className="text-sm text-slate">{p.displayName}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
+
+      {inDraft && !hasDraftOrder && (
+        isCommissioner ? (
+          <DraftOrderSetup year={year} participants={participants} />
         ) : (
-          <ul className="space-y-2">
-            {participants.map((p) => (
-              <li
-                key={p.uid}
-                className="bg-white border border-slate/20 p-3 rounded-sm flex items-center justify-between"
-              >
-                <span className="font-medium text-navy">
-                  {p.teamName || p.displayName}
-                </span>
-                <span className="text-sm text-slate">{p.displayName}</span>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+          <StatusBanner>Waiting for commissioner to set the draft order…</StatusBanner>
+        )
+      )}
+
+      {inDraft && hasDraftOrder && user && (
+        <DraftRoom
+          year={year}
+          season={season}
+          participants={participants}
+          currentUid={user.uid}
+          isCommissioner={isCommissioner}
+        />
+      )}
 
       {isCommissioner && (
         <div className="border-t border-slate/20 pt-6 space-y-4">
           <h2 className="text-lg font-semibold text-navy">Commissioner tools</h2>
           <PlayerSync />
-          {!locked && (
+          {inSetup && (
             <div>
               <button
                 onClick={lockLeague}

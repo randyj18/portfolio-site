@@ -27,9 +27,24 @@ service cloud.firestore {
         allow delete: if isCommissioner();
       }
 
-      // Draft picks, banked picks, bonus points, stats — read-only from client
-      // for now. Server routes (admin SDK) will handle writes in later phases.
-      match /{subcollection}/{doc=**} {
+      // Draft picks: participants create their own picks; commissioner can edit.
+      match /draftPicks/{pickId} {
+        allow read: if signedIn();
+        allow create: if signedIn()
+          && request.resource.data.participantUid == request.auth.uid;
+        allow update, delete: if isCommissioner();
+      }
+
+      // Banked picks, bonus points, player stats — commissioner/server-driven.
+      match /bankedPicks/{id} {
+        allow read: if signedIn();
+        allow write: if isCommissioner();
+      }
+      match /bonusPoints/{id} {
+        allow read: if signedIn();
+        allow write: if isCommissioner();
+      }
+      match /playerStats/{id} {
         allow read: if signedIn();
         allow write: if isCommissioner();
       }
