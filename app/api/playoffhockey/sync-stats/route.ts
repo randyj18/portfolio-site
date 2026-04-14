@@ -28,9 +28,10 @@ type GameLogResponse = {
   gameLog?: (SkaterGame & GoalieGame)[];
 };
 
-const CONCURRENCY = 6;
-const MAX_ATTEMPTS = 3;
-const BASE_BACKOFF_MS = 400;
+const CONCURRENCY = 8;
+const MAX_ATTEMPTS = 2;
+const BASE_BACKOFF_MS = 200;
+const REQUEST_TIMEOUT_MS = 4000;
 
 type PlayerResult =
   | { ok: true; stat: PlayerStat }
@@ -60,7 +61,14 @@ async function fetchPlayerStats(
   let lastError = 'unknown';
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     try {
-      const res = await fetch(url, { cache: 'no-store' });
+      const ctrl = new AbortController();
+      const timeout = setTimeout(() => ctrl.abort(), REQUEST_TIMEOUT_MS);
+      let res: Response;
+      try {
+        res = await fetch(url, { cache: 'no-store', signal: ctrl.signal });
+      } finally {
+        clearTimeout(timeout);
+      }
       // 404 is a legitimate "no games played" for this player/season/type.
       if (res.status === 404) {
         return {

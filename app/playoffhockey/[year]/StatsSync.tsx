@@ -5,7 +5,8 @@ import { collection, doc, getDocs, writeBatch } from 'firebase/firestore';
 import { getFirebase } from '../_lib/firebase';
 import type { NHLPlayer, PlayerStats } from '../_lib/types';
 
-const BATCH_SIZE = 400;
+const WRITE_BATCH_SIZE = 400;
+const CHUNK_SIZE = 80;
 
 type StatRow = Omit<PlayerStats, 'lastUpdated'>;
 type Mode = 'regular' | 'playoff';
@@ -45,27 +46,50 @@ export default function StatsSync({ year }: { year: number }) {
         throw new Error('No players in database. Sync roster first.');
       }
 
-      setStatus(`Fetching ${cfg.label} stats for ${players.length} players…`);
-      const res = await fetch('/api/playoffhockey/sync-stats', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          year,
-          gameType: cfg.gameType,
-          players: players.map((p) => ({ id: p.id, position: p.position })),
-        }),
-      });
-      const body = await res.json();
-      if (!res.ok) throw new Error(body.error ?? `HTTP ${res.status}`);
-      const rows = body.stats as StatRow[];
-      const failedCount = (body.failedCount as number) ?? 0;
-      const failed = (body.failed as { id: string; error: string }[]) ?? [];
+      const input = players.map((p) => ({ id: p.id, position: p.position }));
+      const chunks: typeof input[] = [];
+      for (let i = 0; i < input.length; i += CHUNK_SIZE) {
+        chunks.push(input.slice(i, i + CHUNK_SIZE));
+      }
 
-      setStatus(`Writing ${rows.length} ${cfg.label} stat rows…`);
+      const allRows: StatRow[] = [];
+      const allFailed: { id: string; error: string }[] = [];
+      for (let ci = 0; ci < chunks.length; ci++) {
+        setStatus(
+          `Fetching ${cfg.label} stats (chunk ${ci + 1}/${chunks.length}, ${allRows.length}/${players.length} done)…`
+        );
+        const res = await fetch('/api/playoffhockey/sync-stats', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            year,
+            gameType: cfg.gameType,
+            players: chunks[ci],
+          }),
+        });
+        const text = await res.text();
+        let body: {
+          stats?: StatRow[];
+          failed?: { id: string; error: string }[];
+          error?: string;
+        };
+        try {
+          body = JSON.parse(text);
+        } catch {
+          throw new Error(
+            `Chunk ${ci + 1} returned non-JSON (HTTP ${res.status}): ${text.slice(0, 120)}`
+          );
+        }
+        if (!res.ok) throw new Error(body.error ?? `HTTP ${res.status}`);
+        allRows.push(...(body.stats ?? []));
+        allFailed.push(...(body.failed ?? []));
+      }
+
+      setStatus(`Writing ${allRows.length} ${cfg.label} stat rows…`);
       const now = Date.now();
-      for (let i = 0; i < rows.length; i += BATCH_SIZE) {
+      for (let i = 0; i < allRows.length; i += WRITE_BATCH_SIZE) {
         const batch = writeBatch(db);
-        for (const r of rows.slice(i, i + BATCH_SIZE)) {
+        for (const r of allRows.slice(i, i + WRITE_BATCH_SIZE)) {
           batch.set(
             doc(db, 'seasons', String(year), cfg.subcollection, r.nhlPlayerId),
             { ...r, lastUpdated: now }
@@ -73,16 +97,16 @@ export default function StatsSync({ year }: { year: number }) {
         }
         await batch.commit();
       }
-      if (failedCount > 0) {
-        const sample = failed
+      if (allFailed.length > 0) {
+        const sample = allFailed
           .slice(0, 5)
           .map((f) => `${f.id} (${f.error})`)
           .join(', ');
         setStatus(
-          `Synced ${rows.length} ${cfg.label} rows. ${failedCount} failed — click again to retry. Sample: ${sample}`
+          `Synced ${allRows.length} ${cfg.label} rows. ${allFailed.length} failed — click again to retry. Sample: ${sample}`
         );
       } else {
-        setStatus(`Synced ${cfg.label} stats for ${rows.length} players.`);
+        setStatus(`Synced ${cfg.label} stats for ${allRows.length} players.`);
       }
       setLastRuns((prev) => ({ ...prev, [mode]: now }));
     } catch (e) {
