@@ -1,7 +1,111 @@
 {
-  "_doc": "Override starter share for goalies. Key is NHL player ID or full name. Value is 0..1 (fraction of team games this goalie starts). Missing goalies fall back to: top-RS-wins per team = 1, others = 0.",
-  "_example": {
-    "8478009": 0.85,
-    "Frederik Andersen": 0.7
-  }
+  "_doc": "Starter share per goalie. Each team's goalies should sum to ~1.00 since E[team wins] gets distributed among whoever plays. Keys starting with _ are ignored by the loader. Edit freely — after edits, run: node scripts/pool-ai/build-projections.mjs 2026",
+
+  "_ANA": "--- Anaheim Ducks ---",
+  "8480843": 1.00,
+  "_8480843_name": "Lukas Dostal (workhorse)",
+  "8478024": 0.00,
+  "_8478024_name": "Ville Husso (backup)",
+  "8475852": 0.00,
+  "_8475852_name": "Petr Mrazek (3rd)",
+
+  "_BOS": "--- Boston Bruins ---",
+  "8480280": 1.00,
+  "_8480280_name": "Jeremy Swayman (workhorse; hot post-Olympic break)",
+  "8476914": 0.00,
+  "_8476914_name": "Joonas Korpisalo (backup)",
+
+  "_BUF": "--- Buffalo Sabres ---",
+  "8480045": 0.85,
+  "_8480045_name": "Ukko-Pekka Luukkonen (taking over after Lyon injury)",
+  "8479312": 0.15,
+  "_8479312_name": "Alex Lyon (lower-body strain; may return)",
+  "8481551": 0.00,
+  "_8481551_name": "Colten Ellis (3rd)",
+
+  "_CAR": "--- Carolina Hurricanes ---",
+  "8475883": 0.90,
+  "_8475883_name": "Frederik Andersen (starter with Kochetkov out)",
+  "8481611": 0.05,
+  "_8481611_name": "Pyotr Kochetkov (lower-body; may return mid-series)",
+  "8483548": 0.05,
+  "_8483548_name": "Brandon Bussi (emergency)",
+
+  "_COL": "--- Colorado Avalanche ---",
+  "8475809": 0.85,
+  "_8475809_name": "Scott Wedgewood (hot hand; outplayed Blackwood recently)",
+  "8478406": 0.15,
+  "_8478406_name": "Mackenzie Blackwood (former starter)",
+
+  "_DAL": "--- Dallas Stars ---",
+  "8479979": 1.00,
+  "_8479979_name": "Jake Oettinger (workhorse)",
+  "8479193": 0.00,
+  "_8479193_name": "Casey DeSmith (backup)",
+
+  "_EDM": "--- Edmonton Oilers ---",
+  "8478971": 0.80,
+  "_8478971_name": "Connor Ingram (played his way into #1 role)",
+  "8477465": 0.20,
+  "_8477465_name": "Tristan Jarry (struggled after trade from PIT)",
+
+  "_LAK": "--- Los Angeles Kings ---",
+  "8476341": 0.75,
+  "_8476341_name": "Anton Forsberg (hot down the stretch)",
+  "8475311": 0.25,
+  "_8475311_name": "Darcy Kuemper (vet; may get starts if Forsberg cools)",
+
+  "_MIN": "--- Minnesota Wild ---",
+  "8479406": 1.00,
+  "_8479406_name": "Filip Gustavsson (workhorse)",
+  "8482661": 0.00,
+  "_8482661_name": "Jesper Wallstedt (prospect backup)",
+
+  "_MTL": "--- Montreal Canadiens ---",
+  "8482487": 0.85,
+  "_8482487_name": "Jakub Dobes (bulk of action vs TBL this season)",
+  "8478470": 0.15,
+  "_8478470_name": "Samuel Montembeault (could rotate in)",
+  "8484170": 0.00,
+  "_8484170_name": "Jacob Fowler (prospect)",
+
+  "_OTT": "--- Ottawa Senators ---",
+  "8476999": 1.00,
+  "_8476999_name": "Linus Ullmark (workhorse)",
+  "8473503": 0.00,
+  "_8473503_name": "James Reimer (backup)",
+
+  "_PHI": "--- Philadelphia Flyers ---",
+  "8478435": 0.90,
+  "_8478435_name": "Dan Vladar (seized #1 job this season)",
+  "8481035": 0.10,
+  "_8481035_name": "Samuel Ersson (backup)",
+  "8482783": 0.00,
+  "_8482783_name": "Aleksei Kolosov (3rd)",
+
+  "_PIT": "--- Pittsburgh Penguins ---",
+  "8481668": 0.60,
+  "_8481668_name": "Arturs Silovs (likely Game 1; hotter hand)",
+  "8479973": 0.40,
+  "_8479973_name": "Stuart Skinner (sharing starts; acquired to fill void)",
+
+  "_TBL": "--- Tampa Bay Lightning ---",
+  "8476883": 1.00,
+  "_8476883_name": "Andrei Vasilevskiy (workhorse)",
+  "8477992": 0.00,
+  "_8477992_name": "Jonas Johansson (backup)",
+
+  "_UTA": "--- Utah Mammoth ---",
+  "8478872": 1.00,
+  "_8478872_name": "Karel Vejmelka (workhorse post-Ingram trade)",
+  "8477970": 0.00,
+  "_8477970_name": "Vitek Vanecek (backup)",
+
+  "_VGK": "--- Vegas Golden Knights ---",
+  "8478499": 0.90,
+  "_8478499_name": "Adin Hill (playoff pedigree; gets the nod despite RS split)",
+  "8481033": 0.10,
+  "_8481033_name": "Akira Schmid (platooned in RS)",
+  "8479394": 0.00,
+  "_8479394_name": "Carter Hart (3rd)"
 }
