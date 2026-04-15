@@ -16,9 +16,13 @@ type GoalieGame = {
 };
 type GameLogResponse = { gameLog?: (SkaterGame & GoalieGame)[] };
 
-const CONCURRENCY = 3;
+const CONCURRENCY = 2;
 const REQUEST_TIMEOUT_MS = 5000;
-const THROTTLE_MS = 250;
+const THROTTLE_MS = 400;
+const CHUNK_SIZE = 30;
+const INTER_CHUNK_PAUSE_MS = 1500;
+const RATE_LIMIT_RETRIES = 2;
+const RATE_LIMIT_BACKOFF_MS = 2000;
 
 function sleep(ms: number) {
   return new Promise((r) => setTimeout(r, ms));
@@ -50,46 +54,54 @@ async function fetchPlayerStats(
   gameType: 2 | 3
 ): Promise<Result> {
   const url = `https://api-web.nhle.com/v1/player/${player.id}/game-log/${seasonId}/${gameType}`;
-  try {
-    const ctrl = new AbortController();
-    const timeout = setTimeout(() => ctrl.abort(), REQUEST_TIMEOUT_MS);
-    let res: Response;
+  let attempt = 0;
+  while (true) {
     try {
-      res = await fetch(url, { cache: 'no-store', signal: ctrl.signal });
-    } finally {
-      clearTimeout(timeout);
-    }
-    if (res.status === 404) {
-      return {
-        ok: true,
-        stat: { nhlPlayerId: player.id, goals: 0, assists: 0, wins: 0, shutouts: 0 },
-      };
-    }
-    if (!res.ok) return { ok: false, id: player.id, error: `HTTP ${res.status}` };
-    const data: GameLogResponse = await res.json();
-    const games = data.gameLog ?? [];
-    const stat: StatRow = {
-      nhlPlayerId: player.id,
-      goals: 0,
-      assists: 0,
-      wins: 0,
-      shutouts: 0,
-    };
-    for (const g of games) {
-      if (player.position === 'G') {
-        if (g.decision === 'W') stat.wins++;
-        const toi = parseToiToSeconds(g.toi);
-        if (typeof g.goalsAgainst === 'number' && g.goalsAgainst === 0 && toi >= 3000) {
-          stat.shutouts++;
-        }
-      } else {
-        stat.goals += g.goals ?? 0;
-        stat.assists += g.assists ?? 0;
+      const ctrl = new AbortController();
+      const timeout = setTimeout(() => ctrl.abort(), REQUEST_TIMEOUT_MS);
+      let res: Response;
+      try {
+        res = await fetch(url, { cache: 'no-store', signal: ctrl.signal });
+      } finally {
+        clearTimeout(timeout);
       }
+      if (res.status === 404) {
+        return {
+          ok: true,
+          stat: { nhlPlayerId: player.id, goals: 0, assists: 0, wins: 0, shutouts: 0 },
+        };
+      }
+      if (res.status === 429 && attempt < RATE_LIMIT_RETRIES) {
+        attempt++;
+        await sleep(RATE_LIMIT_BACKOFF_MS * attempt);
+        continue;
+      }
+      if (!res.ok) return { ok: false, id: player.id, error: `HTTP ${res.status}` };
+      const data: GameLogResponse = await res.json();
+      const games = data.gameLog ?? [];
+      const stat: StatRow = {
+        nhlPlayerId: player.id,
+        goals: 0,
+        assists: 0,
+        wins: 0,
+        shutouts: 0,
+      };
+      for (const g of games) {
+        if (player.position === 'G') {
+          if (g.decision === 'W') stat.wins++;
+          const toi = parseToiToSeconds(g.toi);
+          if (typeof g.goalsAgainst === 'number' && g.goalsAgainst === 0 && toi >= 3000) {
+            stat.shutouts++;
+          }
+        } else {
+          stat.goals += g.goals ?? 0;
+          stat.assists += g.assists ?? 0;
+        }
+      }
+      return { ok: true, stat };
+    } catch (e) {
+      return { ok: false, id: player.id, error: e instanceof Error ? e.message : 'fetch' };
     }
-    return { ok: true, stat };
-  } catch (e) {
-    return { ok: false, id: player.id, error: e instanceof Error ? e.message : 'fetch' };
   }
 }
 
@@ -154,20 +166,25 @@ async function handle(req: Request) {
     }
 
     const seasonId = poolSeasonId(year);
-    const results = await runPool(
-      players,
-      (p) => fetchPlayerStats(p, seasonId, gameType),
-      CONCURRENCY
-    );
-
     const stats: StatRow[] = [];
     const failed: { id: string; error: string }[] = [];
-    for (const r of results) {
-      if (r.ok === true) {
-        stats.push(r.stat);
-        continue;
+    for (let i = 0; i < players.length; i += CHUNK_SIZE) {
+      const chunk = players.slice(i, i + CHUNK_SIZE);
+      const results = await runPool(
+        chunk,
+        (p) => fetchPlayerStats(p, seasonId, gameType),
+        CONCURRENCY
+      );
+      for (const r of results) {
+        if (r.ok === true) {
+          stats.push(r.stat);
+          continue;
+        }
+        failed.push({ id: r.id, error: r.error });
       }
-      failed.push({ id: r.id, error: r.error });
+      if (i + CHUNK_SIZE < players.length) {
+        await sleep(INTER_CHUNK_PAUSE_MS);
+      }
     }
 
     const subcollection = gameType === 3 ? 'playerStats' : 'regularSeasonStats';
