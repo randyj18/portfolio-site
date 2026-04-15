@@ -87,3 +87,10 @@ export interface AuditEntry {
   details: Record<string, string | number | boolean | null>;
   createdAt: number;
 }
+
+export interface MarketBias {
+  nhlPlayerId: string;
+  bias: number;
+  reason?: string;
+  updatedAt: number;
+}

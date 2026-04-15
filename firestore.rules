@@ -52,6 +52,10 @@
           allow read: if signedIn();
           allow write: if isCommissioner();
         }
+        match /marketBias/{id} {
+          allow read: if signedIn();
+          allow write: if isCommissioner();
+        }
         match /playerStats/{id} {
           allow read: if signedIn();
           allow write: if isCommissioner();

@@ -39,6 +39,13 @@ async function main() {
     .get();
   const banked = bankedSnap.docs.map((d) => ({ ...d.data(), id: d.id }));
 
+  const biasSnap = await db
+    .collection('seasons')
+    .doc(yearStr)
+    .collection('marketBias')
+    .get();
+  const marketBias = biasSnap.docs.map((d) => ({ ...d.data(), nhlPlayerId: d.id }));
+
   // Derive next pick (initial draft only for now).
   let nextPick = null;
   if (season?.status === 'initial-draft' && Array.isArray(season.draftOrder)) {
@@ -76,6 +83,7 @@ async function main() {
     picksMade: picks.length,
     picks,
     bankedPicks: banked,
+    marketBias,
     rosters: byParticipant,
   };
 

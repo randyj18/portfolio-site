@@ -2,11 +2,11 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
-import { collection, doc, onSnapshot } from 'firebase/firestore';
+import { collection, deleteDoc, doc, onSnapshot, setDoc } from 'firebase/firestore';
 import { getFirebase } from '../../_lib/firebase';
 import { useAuth } from '../../_lib/auth';
 import { COMMISSIONER_EMAIL } from '../../_lib/constants';
-import type { DraftPick, Participant, Season } from '../../_lib/types';
+import type { DraftPick, MarketBias, Participant, Season } from '../../_lib/types';
 
 type ProjectionRow = {
   id: string;
@@ -50,10 +50,12 @@ export default function RecommenderView({ year }: { year: number }) {
   const [participants, setParticipants] = useState<Participant[]>([]);
   const [picks, setPicks] = useState<DraftPick[]>([]);
   const [proj, setProj] = useState<Projections | null>(null);
+  const [biases, setBiases] = useState<Record<string, MarketBias>>({});
   const [posFilter, setPosFilter] = useState<PosFilter>('ALL');
   const [teamFilter, setTeamFilter] = useState<string>('ALL');
   const [hideDrafted, setHideDrafted] = useState(true);
   const [search, setSearch] = useState('');
+  const [sortMode, setSortMode] = useState<'proj' | 'adj'>('adj');
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -80,6 +82,15 @@ export default function RecommenderView({ year }: { year: number }) {
           .sort((a, b) => (a.pickNumber ?? 0) - (b.pickNumber ?? 0))
       )
     );
+  }, [yearStr]);
+
+  useEffect(() => {
+    const { db } = getFirebase();
+    return onSnapshot(collection(db, 'seasons', yearStr, 'marketBias'), (snap) => {
+      const m: Record<string, MarketBias> = {};
+      for (const d of snap.docs) m[d.id] = d.data() as MarketBias;
+      setBiases(m);
+    });
   }, [yearStr]);
 
   useEffect(() => {
@@ -148,14 +159,34 @@ export default function RecommenderView({ year }: { year: number }) {
   const filtered = useMemo(() => {
     if (!proj) return [];
     const q = search.trim().toLowerCase();
-    return proj.projections.filter((p) => {
+    const rows = proj.projections.filter((p) => {
       if (posFilter !== 'ALL' && p.position !== posFilter) return false;
       if (teamFilter !== 'ALL' && p.team !== teamFilter) return false;
       if (hideDrafted && draftedIds.has(p.id)) return false;
       if (q && !p.fullName.toLowerCase().includes(q)) return false;
       return true;
     });
-  }, [proj, posFilter, teamFilter, hideDrafted, search, draftedIds]);
+    if (sortMode === 'adj') {
+      rows.sort((a, b) => adjustedValue(b, biases) - adjustedValue(a, biases));
+    } else {
+      rows.sort((a, b) => (b.projected ?? 0) - (a.projected ?? 0));
+    }
+    return rows;
+  }, [proj, posFilter, teamFilter, hideDrafted, search, draftedIds, sortMode, biases]);
+
+  async function saveBias(playerId: string, bias: number) {
+    const { db } = getFirebase();
+    const ref = doc(db, 'seasons', yearStr, 'marketBias', playerId);
+    if (bias === 0) {
+      await deleteDoc(ref).catch(() => {});
+      return;
+    }
+    await setDoc(ref, {
+      nhlPlayerId: playerId,
+      bias,
+      updatedAt: Date.now(),
+    });
+  }
 
   if (!user) {
     return <p className="text-slate">Sign in to view.</p>;
@@ -222,6 +253,15 @@ export default function RecommenderView({ year }: { year: number }) {
             />
             Hide drafted
           </label>
+          <select
+            value={sortMode}
+            onChange={(e) => setSortMode(e.target.value as 'proj' | 'adj')}
+            className="px-2 py-1 border border-slate/30 rounded-sm text-sm"
+            title="Sort order"
+          >
+            <option value="adj">Sort: adjusted</option>
+            <option value="proj">Sort: raw proj</option>
+          </select>
         </div>
 
         <div className="overflow-auto">
@@ -233,6 +273,9 @@ export default function RecommenderView({ year }: { year: number }) {
                 <th className="text-left py-1 px-2">Pos</th>
                 <th className="text-left py-1 px-2">Team</th>
                 <th className="text-right py-1 px-2">Proj</th>
+                <th className="text-center py-1 px-2" title="Market bias: −2 = will go much earlier than rank, +2 = will fall much later">
+                  Bias
+                </th>
                 <th className="text-right py-1 px-2">PPG×</th>
                 <th className="text-right py-1 px-2">E[GP]</th>
                 <th className="text-right py-1 px-2">E[W]</th>
@@ -258,6 +301,20 @@ export default function RecommenderView({ year }: { year: number }) {
                     <td className="py-1 px-2 font-mono text-xs">{p.team}</td>
                     <td className="py-1 px-2 text-right tabular-nums font-semibold text-navy">
                       {p.projected != null ? p.projected.toFixed(1) : '–'}
+                    </td>
+                    <td className="py-1 px-2 text-center">
+                      <select
+                        value={biases[p.id]?.bias ?? 0}
+                        onChange={(e) => saveBias(p.id, parseInt(e.target.value, 10))}
+                        className={`text-xs px-1 py-0.5 border rounded-sm tabular-nums ${biasClass(biases[p.id]?.bias ?? 0)}`}
+                        title="− goes earlier than projected rank · + falls later"
+                      >
+                        <option value={-2}>−2</option>
+                        <option value={-1}>−1</option>
+                        <option value={0}>0</option>
+                        <option value={1}>+1</option>
+                        <option value={2}>+2</option>
+                      </select>
                     </td>
                     <td className="py-1 px-2 text-right tabular-nums text-slate">
                       {p.ppgAdj != null ? p.ppgAdj.toFixed(2) : '–'}
@@ -407,4 +464,22 @@ function TeamGridCard({ teams }: { teams: Record<string, TeamMeta> }) {
 
 function pct(v: number): string {
   return `${(v * 100).toFixed(0)}%`;
+}
+
+// Adjusted ranking value: bias shifts the *effective* order.
+// +bias = will fall later → effectively more available → rank higher for you.
+// −bias = will go earlier → less available → rank lower for you.
+// 0.85^n keeps the shift modest so a +2 roughly moves a player up ~35%.
+function adjustedValue(p: ProjectionRow, biases: Record<string, MarketBias>): number {
+  const base = p.projected ?? 0;
+  const b = biases[p.id]?.bias ?? 0;
+  return base * Math.pow(0.85, -b);
+}
+
+function biasClass(b: number): string {
+  if (b <= -2) return 'border-red-500 bg-red-50 text-red-700';
+  if (b === -1) return 'border-red-300 bg-red-50/60 text-red-600';
+  if (b === 1) return 'border-green-300 bg-green-50/60 text-green-700';
+  if (b >= 2) return 'border-green-500 bg-green-50 text-green-800';
+  return 'border-slate/30 text-slate';
 }
