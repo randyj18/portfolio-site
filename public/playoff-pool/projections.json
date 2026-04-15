@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-15T13:56:03.173Z",
+  "generatedAt": "2026-04-15T14:05:33.673Z",
   "year": 2026,
   "snapshot": "moneypuck-2026-04-15.json",
   "params": {
@@ -756,57 +756,6 @@
       }
     },
     {
-      "id": "8475809",
-      "fullName": "Scott Wedgewood",
-      "position": "G",
-      "team": "COL",
-      "projected": 12.385520000000001,
-      "ppgAdj": null,
-      "eGp": 13.3458,
-      "eTeamWins": 7.2856000000000005,
-      "detail": {
-        "rsWins": 30,
-        "rsSaves": null,
-        "eTeamWins": 7.2856000000000005,
-        "starterShareOverride": 0.85,
-        "starterShareApplied": 0.85
-      }
-    },
-    {
-      "id": "8475883",
-      "fullName": "Frederik Andersen",
-      "position": "G",
-      "team": "CAR",
-      "projected": 12.284640000000001,
-      "ppgAdj": null,
-      "eGp": 12.6904,
-      "eTeamWins": 6.824800000000001,
-      "detail": {
-        "rsWins": 16,
-        "rsSaves": null,
-        "eTeamWins": 6.824800000000001,
-        "starterShareOverride": 0.9,
-        "starterShareApplied": 0.9
-      }
-    },
-    {
-      "id": "8478499",
-      "fullName": "Adin Hill",
-      "position": "G",
-      "team": "VGK",
-      "projected": 12.06072,
-      "ppgAdj": null,
-      "eGp": 12.5802,
-      "eTeamWins": 6.7004,
-      "detail": {
-        "rsWins": 10,
-        "rsSaves": null,
-        "eTeamWins": 6.7004,
-        "starterShareOverride": 0.9,
-        "starterShareApplied": 0.9
-      }
-    },
-    {
       "id": "8476883",
       "fullName": "Andrei Vasilevskiy",
       "position": "G",
@@ -1096,6 +1045,57 @@
       }
     },
     {
+      "id": "8478971",
+      "fullName": "Connor Ingram",
+      "position": "G",
+      "team": "EDM",
+      "projected": 9.891720000000001,
+      "ppgAdj": null,
+      "eGp": 11.0084,
+      "eTeamWins": 5.4954,
+      "detail": {
+        "rsWins": 15,
+        "rsSaves": null,
+        "eTeamWins": 5.4954,
+        "starterShareOverride": 0.9,
+        "starterShareApplied": 0.9
+      }
+    },
+    {
+      "id": "8478435",
+      "fullName": "Dan Vladar",
+      "position": "G",
+      "team": "PHI",
+      "projected": 9.588799999999997,
+      "ppgAdj": null,
+      "eGp": 10.0398,
+      "eTeamWins": 4.794399999999999,
+      "detail": {
+        "rsWins": 29,
+        "rsSaves": null,
+        "eTeamWins": 4.794399999999999,
+        "starterShareOverride": 1,
+        "starterShareApplied": 1
+      }
+    },
+    {
+      "id": "8475883",
+      "fullName": "Frederik Andersen",
+      "position": "G",
+      "team": "CAR",
+      "projected": 9.55472,
+      "ppgAdj": null,
+      "eGp": 12.6904,
+      "eTeamWins": 6.824800000000001,
+      "detail": {
+        "rsWins": 16,
+        "rsSaves": null,
+        "eTeamWins": 6.824800000000001,
+        "starterShareOverride": 0.7,
+        "starterShareApplied": 0.7
+      }
+    },
+    {
       "id": "8479420",
       "fullName": "Tage Thompson",
       "position": "F",
@@ -1232,23 +1232,6 @@
       }
     },
     {
-      "id": "8478971",
-      "fullName": "Connor Ingram",
-      "position": "G",
-      "team": "EDM",
-      "projected": 8.79264,
-      "ppgAdj": null,
-      "eGp": 11.0084,
-      "eTeamWins": 5.4954,
-      "detail": {
-        "rsWins": 15,
-        "rsSaves": null,
-        "eTeamWins": 5.4954,
-        "starterShareOverride": 0.8,
-        "starterShareApplied": 0.8
-      }
-    },
-    {
       "id": "8475754",
       "fullName": "Brock Nelson",
       "position": "F",
@@ -1263,6 +1246,23 @@
         "rsPoints": 65,
         "rsPPG": 0.7926829268292683,
         "ppgAdjusted": 0.6579268292682927
+      }
+    },
+    {
+      "id": "8475809",
+      "fullName": "Scott Wedgewood",
+      "position": "G",
+      "team": "COL",
+      "projected": 8.74272,
+      "ppgAdj": null,
+      "eGp": 13.3458,
+      "eTeamWins": 7.2856000000000005,
+      "detail": {
+        "rsWins": 30,
+        "rsSaves": null,
+        "eTeamWins": 7.2856000000000005,
+        "starterShareOverride": 0.6,
+        "starterShareApplied": 0.6
       }
     },
     {
@@ -1314,23 +1314,6 @@
         "rsPoints": 86,
         "rsPPG": 1.048780487804878,
         "ppgAdjusted": 0.8704878048780488
-      }
-    },
-    {
-      "id": "8478435",
-      "fullName": "Dan Vladar",
-      "position": "G",
-      "team": "PHI",
-      "projected": 8.629919999999998,
-      "ppgAdj": null,
-      "eGp": 10.0398,
-      "eTeamWins": 4.794399999999999,
-      "detail": {
-        "rsWins": 29,
-        "rsSaves": null,
-        "eTeamWins": 4.794399999999999,
-        "starterShareOverride": 0.9,
-        "starterShareApplied": 0.9
       }
     },
     {
@@ -1450,6 +1433,23 @@
         "eTeamWins": 4.0698,
         "starterShareOverride": 1,
         "starterShareApplied": 1
+      }
+    },
+    {
+      "id": "8479394",
+      "fullName": "Carter Hart",
+      "position": "G",
+      "team": "VGK",
+      "projected": 8.04048,
+      "ppgAdj": null,
+      "eGp": 12.5802,
+      "eTeamWins": 6.7004,
+      "detail": {
+        "rsWins": 10,
+        "rsSaves": null,
+        "eTeamWins": 6.7004,
+        "starterShareOverride": 0.6,
+        "starterShareApplied": 0.6
       }
     },
     {
@@ -1878,23 +1878,6 @@
       }
     },
     {
-      "id": "8476341",
-      "fullName": "Anton Forsberg",
-      "position": "G",
-      "team": "LAK",
-      "projected": 6.4677,
-      "ppgAdj": null,
-      "eGp": 9.3496,
-      "eTeamWins": 4.3118,
-      "detail": {
-        "rsWins": 16,
-        "rsSaves": null,
-        "eTeamWins": 4.3118,
-        "starterShareOverride": 0.75,
-        "starterShareApplied": 0.75
-      }
-    },
-    {
       "id": "8476906",
       "fullName": "Shayne Gostisbehere",
       "position": "D",
@@ -2184,6 +2167,23 @@
       }
     },
     {
+      "id": "8478406",
+      "fullName": "Mackenzie Blackwood",
+      "position": "G",
+      "team": "COL",
+      "projected": 5.828480000000001,
+      "ppgAdj": null,
+      "eGp": 13.3458,
+      "eTeamWins": 7.2856000000000005,
+      "detail": {
+        "rsWins": 23,
+        "rsSaves": null,
+        "eTeamWins": 7.2856000000000005,
+        "starterShareOverride": 0.4,
+        "starterShareApplied": 0.4
+      }
+    },
+    {
       "id": "8478042",
       "fullName": "Viktor Arvidsson",
       "position": "F",
@@ -2351,6 +2351,23 @@
         "rsPoints": 40,
         "rsPPG": 0.4878048780487805,
         "ppgAdjusted": 0.4048780487804878
+      }
+    },
+    {
+      "id": "8478499",
+      "fullName": "Adin Hill",
+      "position": "G",
+      "team": "VGK",
+      "projected": 5.360320000000001,
+      "ppgAdj": null,
+      "eGp": 12.5802,
+      "eTeamWins": 6.7004,
+      "detail": {
+        "rsWins": 10,
+        "rsSaves": null,
+        "eTeamWins": 6.7004,
+        "starterShareOverride": 0.4,
+        "starterShareApplied": 0.4
       }
     },
     {
@@ -2980,6 +2997,40 @@
         "rsPoints": 43,
         "rsPPG": 0.524390243902439,
         "ppgAdjusted": 0.4352439024390244
+      }
+    },
+    {
+      "id": "8475311",
+      "fullName": "Darcy Kuemper",
+      "position": "G",
+      "team": "LAK",
+      "projected": 4.3118,
+      "ppgAdj": null,
+      "eGp": 9.3496,
+      "eTeamWins": 4.3118,
+      "detail": {
+        "rsWins": 19,
+        "rsSaves": null,
+        "eTeamWins": 4.3118,
+        "starterShareOverride": 0.5,
+        "starterShareApplied": 0.5
+      }
+    },
+    {
+      "id": "8476341",
+      "fullName": "Anton Forsberg",
+      "position": "G",
+      "team": "LAK",
+      "projected": 4.3118,
+      "ppgAdj": null,
+      "eGp": 9.3496,
+      "eTeamWins": 4.3118,
+      "detail": {
+        "rsWins": 16,
+        "rsSaves": null,
+        "eTeamWins": 4.3118,
+        "starterShareOverride": 0.5,
+        "starterShareApplied": 0.5
       }
     },
     {
@@ -4666,40 +4717,6 @@
       }
     },
     {
-      "id": "8477465",
-      "fullName": "Tristan Jarry",
-      "position": "G",
-      "team": "EDM",
-      "projected": 2.19816,
-      "ppgAdj": null,
-      "eGp": 11.0084,
-      "eTeamWins": 5.4954,
-      "detail": {
-        "rsWins": 18,
-        "rsSaves": null,
-        "eTeamWins": 5.4954,
-        "starterShareOverride": 0.2,
-        "starterShareApplied": 0.2
-      }
-    },
-    {
-      "id": "8478406",
-      "fullName": "Mackenzie Blackwood",
-      "position": "G",
-      "team": "COL",
-      "projected": 2.18568,
-      "ppgAdj": null,
-      "eGp": 13.3458,
-      "eTeamWins": 7.2856000000000005,
-      "detail": {
-        "rsWins": 23,
-        "rsSaves": null,
-        "eTeamWins": 7.2856000000000005,
-        "starterShareOverride": 0.15,
-        "starterShareApplied": 0.15
-      }
-    },
-    {
       "id": "8478970",
       "fullName": "Jalen Chatfield",
       "position": "D",
@@ -4785,23 +4802,6 @@
       }
     },
     {
-      "id": "8475311",
-      "fullName": "Darcy Kuemper",
-      "position": "G",
-      "team": "LAK",
-      "projected": 2.1559,
-      "ppgAdj": null,
-      "eGp": 9.3496,
-      "eTeamWins": 4.3118,
-      "detail": {
-        "rsWins": 19,
-        "rsSaves": null,
-        "eTeamWins": 4.3118,
-        "starterShareOverride": 0.25,
-        "starterShareApplied": 0.25
-      }
-    },
-    {
       "id": "8480074",
       "fullName": "Alexandre Texier",
       "position": "F",
@@ -4816,6 +4816,40 @@
         "rsPoints": 21,
         "rsPPG": 0.25609756097560976,
         "ppgAdjusted": 0.2125609756097561
+      }
+    },
+    {
+      "id": "8481611",
+      "fullName": "Pyotr Kochetkov",
+      "position": "G",
+      "team": "CAR",
+      "projected": 2.04744,
+      "ppgAdj": null,
+      "eGp": 12.6904,
+      "eTeamWins": 6.824800000000001,
+      "detail": {
+        "rsWins": 6,
+        "rsSaves": null,
+        "eTeamWins": 6.824800000000001,
+        "starterShareOverride": 0.15,
+        "starterShareApplied": 0.15
+      }
+    },
+    {
+      "id": "8483548",
+      "fullName": "Brandon Bussi",
+      "position": "G",
+      "team": "CAR",
+      "projected": 2.04744,
+      "ppgAdj": null,
+      "eGp": 12.6904,
+      "eTeamWins": 6.824800000000001,
+      "detail": {
+        "rsWins": 31,
+        "rsSaves": null,
+        "eTeamWins": 6.824800000000001,
+        "starterShareOverride": 0.15,
+        "starterShareApplied": 0.15
       }
     },
     {
@@ -5720,23 +5754,6 @@
       }
     },
     {
-      "id": "8481033",
-      "fullName": "Akira Schmid",
-      "position": "G",
-      "team": "VGK",
-      "projected": 1.3400800000000002,
-      "ppgAdj": null,
-      "eGp": 12.5802,
-      "eTeamWins": 6.7004,
-      "detail": {
-        "rsWins": 16,
-        "rsSaves": null,
-        "eTeamWins": 6.7004,
-        "starterShareOverride": 0.1,
-        "starterShareApplied": 0.1
-      }
-    },
-    {
       "id": "8480834",
       "fullName": "Ty Emberson",
       "position": "D",
@@ -6162,6 +6179,23 @@
       }
     },
     {
+      "id": "8477465",
+      "fullName": "Tristan Jarry",
+      "position": "G",
+      "team": "EDM",
+      "projected": 1.09908,
+      "ppgAdj": null,
+      "eGp": 11.0084,
+      "eTeamWins": 5.4954,
+      "detail": {
+        "rsWins": 18,
+        "rsSaves": null,
+        "eTeamWins": 5.4954,
+        "starterShareOverride": 0.1,
+        "starterShareApplied": 0.1
+      }
+    },
+    {
       "id": "8482178",
       "fullName": "Ian Moore",
       "position": "D",
@@ -6312,23 +6346,6 @@
         "rsPoints": 9,
         "rsPPG": 0.10975609756097561,
         "ppgAdjusted": 0.09109756097560975
-      }
-    },
-    {
-      "id": "8481035",
-      "fullName": "Samuel Ersson",
-      "position": "G",
-      "team": "PHI",
-      "projected": 0.9588799999999997,
-      "ppgAdj": null,
-      "eGp": 10.0398,
-      "eTeamWins": 4.794399999999999,
-      "detail": {
-        "rsWins": 14,
-        "rsSaves": null,
-        "eTeamWins": 4.794399999999999,
-        "starterShareOverride": 0.1,
-        "starterShareApplied": 0.1
       }
     },
     {
@@ -6754,40 +6771,6 @@
         "rsPoints": 6,
         "rsPPG": 0.07317073170731707,
         "ppgAdjusted": 0.06073170731707316
-      }
-    },
-    {
-      "id": "8481611",
-      "fullName": "Pyotr Kochetkov",
-      "position": "G",
-      "team": "CAR",
-      "projected": 0.6824800000000001,
-      "ppgAdj": null,
-      "eGp": 12.6904,
-      "eTeamWins": 6.824800000000001,
-      "detail": {
-        "rsWins": 6,
-        "rsSaves": null,
-        "eTeamWins": 6.824800000000001,
-        "starterShareOverride": 0.05,
-        "starterShareApplied": 0.05
-      }
-    },
-    {
-      "id": "8483548",
-      "fullName": "Brandon Bussi",
-      "position": "G",
-      "team": "CAR",
-      "projected": 0.6824800000000001,
-      "ppgAdj": null,
-      "eGp": 12.6904,
-      "eTeamWins": 6.824800000000001,
-      "detail": {
-        "rsWins": 31,
-        "rsSaves": null,
-        "eTeamWins": 6.824800000000001,
-        "starterShareOverride": 0.05,
-        "starterShareApplied": 0.05
       }
     },
     {
@@ -7896,23 +7879,6 @@
       }
     },
     {
-      "id": "8479394",
-      "fullName": "Carter Hart",
-      "position": "G",
-      "team": "VGK",
-      "projected": 0,
-      "ppgAdj": null,
-      "eGp": 12.5802,
-      "eTeamWins": 6.7004,
-      "detail": {
-        "rsWins": 10,
-        "rsSaves": null,
-        "eTeamWins": 6.7004,
-        "starterShareOverride": 0,
-        "starterShareApplied": 0
-      }
-    },
-    {
       "id": "8479421",
       "fullName": "Jacob Moverare",
       "position": "D",
@@ -7961,6 +7927,40 @@
         "rsPoints": 0,
         "rsPPG": 0,
         "ppgAdjusted": 0
+      }
+    },
+    {
+      "id": "8481033",
+      "fullName": "Akira Schmid",
+      "position": "G",
+      "team": "VGK",
+      "projected": 0,
+      "ppgAdj": null,
+      "eGp": 12.5802,
+      "eTeamWins": 6.7004,
+      "detail": {
+        "rsWins": 16,
+        "rsSaves": null,
+        "eTeamWins": 6.7004,
+        "starterShareOverride": 0,
+        "starterShareApplied": 0
+      }
+    },
+    {
+      "id": "8481035",
+      "fullName": "Samuel Ersson",
+      "position": "G",
+      "team": "PHI",
+      "projected": 0,
+      "ppgAdj": null,
+      "eGp": 10.0398,
+      "eTeamWins": 4.794399999999999,
+      "detail": {
+        "rsWins": 14,
+        "rsSaves": null,
+        "eTeamWins": 4.794399999999999,
+        "starterShareOverride": 0,
+        "starterShareApplied": 0
       }
     },
     {

@@ -24,17 +24,17 @@
   "_8481551_name": "Colten Ellis (3rd)",
 
   "_CAR": "--- Carolina Hurricanes ---",
-  "8475883": 0.90,
+  "8475883": 0.70,
   "_8475883_name": "Frederik Andersen (starter with Kochetkov out)",
-  "8481611": 0.05,
+  "8481611": 0.15,
   "_8481611_name": "Pyotr Kochetkov (lower-body; may return mid-series)",
-  "8483548": 0.05,
+  "8483548": 0.15,
   "_8483548_name": "Brandon Bussi (emergency)",
 
   "_COL": "--- Colorado Avalanche ---",
-  "8475809": 0.85,
+  "8475809": 0.6,
   "_8475809_name": "Scott Wedgewood (hot hand; outplayed Blackwood recently)",
-  "8478406": 0.15,
+  "8478406": 0.4,
   "_8478406_name": "Mackenzie Blackwood (former starter)",
 
   "_DAL": "--- Dallas Stars ---",
@@ -44,15 +44,15 @@
   "_8479193_name": "Casey DeSmith (backup)",
 
   "_EDM": "--- Edmonton Oilers ---",
-  "8478971": 0.80,
+  "8478971": 0.90,
   "_8478971_name": "Connor Ingram (played his way into #1 role)",
-  "8477465": 0.20,
+  "8477465": 0.10,
   "_8477465_name": "Tristan Jarry (struggled after trade from PIT)",
 
   "_LAK": "--- Los Angeles Kings ---",
-  "8476341": 0.75,
+  "8476341": 0.5,
   "_8476341_name": "Anton Forsberg (hot down the stretch)",
-  "8475311": 0.25,
+  "8475311": 0.5,
   "_8475311_name": "Darcy Kuemper (vet; may get starts if Forsberg cools)",
 
   "_MIN": "--- Minnesota Wild ---",
@@ -76,9 +76,9 @@
   "_8473503_name": "James Reimer (backup)",
 
   "_PHI": "--- Philadelphia Flyers ---",
-  "8478435": 0.90,
+  "8478435": 1.00,
   "_8478435_name": "Dan Vladar (seized #1 job this season)",
-  "8481035": 0.10,
+  "8481035": 0.00,
   "_8481035_name": "Samuel Ersson (backup)",
   "8482783": 0.00,
   "_8482783_name": "Aleksei Kolosov (3rd)",
@@ -102,10 +102,10 @@
   "_8477970_name": "Vitek Vanecek (backup)",
 
   "_VGK": "--- Vegas Golden Knights ---",
-  "8478499": 0.90,
+  "8478499": 0.40,
   "_8478499_name": "Adin Hill (playoff pedigree; gets the nod despite RS split)",
-  "8481033": 0.10,
+  "8481033": 0.00,
   "_8481033_name": "Akira Schmid (platooned in RS)",
-  "8479394": 0.00,
-  "_8479394_name": "Carter Hart (3rd)"
+  "8479394": 0.60,
+  "_8479394_name": "Carter Hart"
 }
