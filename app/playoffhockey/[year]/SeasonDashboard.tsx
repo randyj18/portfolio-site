@@ -18,6 +18,7 @@ import PlayerSync from './PlayerSync';
 import StatsSync from './StatsSync';
 import DraftOrderSetup from './DraftOrderSetup';
 import DraftRoom from './DraftRoom';
+import Standings from './Standings';
 
 export default function SeasonDashboard({ year }: { year: number }) {
   const { user, logOut } = useAuth();
@@ -155,8 +156,8 @@ export default function SeasonDashboard({ year }: { year: number }) {
         <p className="text-slate">Joining…</p>
       ))}
 
-      {locked && !inDraft && season.status === 'playoffs' && (
-        <StatusBanner>Playoffs are underway. Standings view coming soon.</StatusBanner>
+      {locked && !inDraft && (season.status === 'playoffs' || season.status === 'mid-draft' || season.status === 'complete') && (
+        <Standings year={year} season={season} participants={participants} />
       )}
 
       {!me && locked && (
