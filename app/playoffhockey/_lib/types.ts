@@ -11,6 +11,9 @@ export interface Season {
   lockedAt?: number;
   eliminatedTeams?: string[];
   draftOrder?: string[];
+  // Snapshotted when commissioner starts a mid-draft. Reverse-standings
+  // order (worst team first) for the current round's regular picks.
+  midDraftOrder?: string[];
 }
 
 export interface Participant {

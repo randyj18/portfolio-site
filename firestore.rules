@@ -1,63 +1,71 @@
-// Firestore security rules for the playoff hockey pool.
-// Paste this into Firebase Console → Firestore Database → Rules, then Publish.
-// Re-publish after any edits here.
+  // Firestore security rules for the playoff hockey pool.
+  // Paste this into Firebase Console → Firestore Database → Rules, then Publish.
+  // Re-publish after any edits here.
 
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    function signedIn() {
-      return request.auth != null;
-    }
-    function isCommissioner() {
-      return signedIn()
-        && request.auth.token.email == 'randyjones87@gmail.com';
-    }
-
-    // Season doc: anyone signed in can read, only commissioner writes.
-    match /seasons/{year} {
-      allow read: if signedIn();
-      allow create, update: if isCommissioner();
-      allow delete: if false;
-
-      // Participants: self-write pre-lock; commissioner can always edit.
-      match /participants/{uid} {
-        allow read: if signedIn();
-        allow create, update: if signedIn()
-          && (request.auth.uid == uid || isCommissioner());
-        allow delete: if isCommissioner();
+  rules_version = '2';
+  service cloud.firestore {
+    match /databases/{database}/documents {
+      function signedIn() {
+        return request.auth != null;
+      }
+      function isCommissioner() {
+        return signedIn()
+          && request.auth.token.email == 'randyjones87@gmail.com';
       }
 
-      // Draft picks: participants create their own picks; commissioner can edit.
-      match /draftPicks/{pickId} {
+      // Season doc: anyone signed in can read, only commissioner writes.
+      match /seasons/{year} {
         allow read: if signedIn();
-        allow create: if signedIn()
-          && request.resource.data.participantUid == request.auth.uid;
-        allow update, delete: if isCommissioner();
+        allow create, update: if isCommissioner();
+        allow delete: if false;
+
+        // Participants: self-write pre-lock; commissioner can always edit.
+        match /participants/{uid} {
+          allow read: if signedIn();
+          allow create, update: if signedIn()
+            && (request.auth.uid == uid || isCommissioner());
+          allow delete: if isCommissioner();
+        }
+
+        // Draft picks: participants create their own picks and can update
+        // their own (e.g., setting droppedAt during mid-drafts).
+        match /draftPicks/{pickId} {
+          allow read: if signedIn();
+          allow create: if signedIn()
+            && request.resource.data.participantUid == request.auth.uid;
+          allow update: if signedIn()
+            && (resource.data.participantUid == request.auth.uid || isCommissioner());
+          allow delete: if isCommissioner();
+        }
+
+        // Banked picks: self-create during mid-drafts; self-update to mark
+        // as used when drafting with a banked pick.
+        match /bankedPicks/{id} {
+          allow read: if signedIn();
+          allow create: if signedIn()
+            && request.resource.data.participantUid == request.auth.uid;
+          allow update: if signedIn()
+            && (resource.data.participantUid == request.auth.uid || isCommissioner());
+          allow delete: if isCommissioner();
+        }
+        match /bonusPoints/{id} {
+          allow read: if signedIn();
+          allow write: if isCommissioner();
+        }
+        match /playerStats/{id} {
+          allow read: if signedIn();
+          allow write: if isCommissioner();
+        }
+        match /regularSeasonStats/{id} {
+          allow read: if signedIn();
+          allow write: if isCommissioner();
+        }
       }
 
-      // Banked picks, bonus points, player stats — commissioner/server-driven.
-      match /bankedPicks/{id} {
+      // Shared NHL player roster — commissioner syncs from NHL API.
+      match /nhlPlayers/{id} {
         allow read: if signedIn();
         allow write: if isCommissioner();
       }
-      match /bonusPoints/{id} {
-        allow read: if signedIn();
-        allow write: if isCommissioner();
-      }
-      match /playerStats/{id} {
-        allow read: if signedIn();
-        allow write: if isCommissioner();
-      }
-      match /regularSeasonStats/{id} {
-        allow read: if signedIn();
-        allow write: if isCommissioner();
-      }
-    }
-
-    // Shared NHL player roster — commissioner syncs from NHL API.
-    match /nhlPlayers/{id} {
-      allow read: if signedIn();
-      allow write: if isCommissioner();
     }
   }
-}

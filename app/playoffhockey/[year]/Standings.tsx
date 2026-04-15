@@ -41,6 +41,7 @@ type TeamLine = {
     pointsBeforeAcquiring: number;
     net: number;
     bonus: number;
+    eliminated: boolean;
   }[];
 };
 
@@ -118,6 +119,11 @@ export default function Standings({
     [participants]
   );
 
+  const eliminatedSet = useMemo(
+    () => new Set(season.eliminatedTeams ?? []),
+    [season.eliminatedTeams]
+  );
+
   const lines: TeamLine[] = useMemo(() => {
     const byUid = new Map<string, TeamLine>();
     for (const p of participants) {
@@ -140,9 +146,10 @@ export default function Standings({
       const pba = pick.pointsBeforeAcquiring ?? 0;
       const bonus = bonusByPlayer.get(pick.nhlPlayerId) ?? 0;
       const net = Math.max(0, gross - pba) + bonus;
+      const eliminated = !!player && eliminatedSet.has(player.nhlTeam);
       line.total += net;
       line.bonusTotal += bonus;
-      line.activePicks += 1;
+      if (!eliminated) line.activePicks += 1;
       line.breakdown.push({
         pickId: pick.id ?? String(pick.pickNumber),
         player,
@@ -151,6 +158,7 @@ export default function Standings({
         pointsBeforeAcquiring: pba,
         net,
         bonus,
+        eliminated,
       });
     }
     return Array.from(byUid.values())
@@ -159,7 +167,7 @@ export default function Standings({
         breakdown: line.breakdown.sort((a, b) => b.net - a.net),
       }))
       .sort((a, b) => b.total - a.total || a.teamName.localeCompare(b.teamName));
-  }, [participants, picks, playerMap, stats, bonusByPlayer]);
+  }, [participants, picks, playerMap, stats, bonusByPlayer, eliminatedSet]);
 
   function toggle(uid: string) {
     setExpanded((prev) => {
@@ -244,9 +252,12 @@ function RosterBreakdown({ line }: { line: TeamLine }) {
           <tbody>
             {line.breakdown.map((row) => (
               <tr key={row.pickId} className="border-t border-slate/10">
-                <td className="py-1 text-navy">{row.player?.fullName ?? '?'}</td>
+                <td className={`py-1 ${row.eliminated ? 'text-slate line-through' : 'text-navy'}`}>
+                  {row.player?.fullName ?? '?'}
+                </td>
                 <td className="py-1 text-slate text-xs">
                   {row.player?.position} · {row.player?.nhlTeam}
+                  {row.eliminated && ' · OUT'}
                 </td>
                 <td className="py-1 text-right tabular-nums text-slate">
                   {row.gross}

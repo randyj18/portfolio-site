@@ -19,6 +19,8 @@ import StatsSync from './StatsSync';
 import DraftOrderSetup from './DraftOrderSetup';
 import DraftRoom from './DraftRoom';
 import Standings from './Standings';
+import MidDraftRoom from './MidDraftRoom';
+import AdminTools from './AdminTools';
 
 export default function SeasonDashboard({ year }: { year: number }) {
   const { user, logOut } = useAuth();
@@ -160,6 +162,15 @@ export default function SeasonDashboard({ year }: { year: number }) {
         <Standings year={year} season={season} participants={participants} />
       )}
 
+      {season.status === 'mid-draft' && user && me && (
+        <MidDraftRoom
+          year={year}
+          season={season}
+          participants={participants}
+          currentUid={user.uid}
+        />
+      )}
+
       {!me && locked && (
         <StatusBanner>League is locked. You didn&apos;t join in time.</StatusBanner>
       )}
@@ -212,6 +223,9 @@ export default function SeasonDashboard({ year }: { year: number }) {
           <h2 className="text-lg font-semibold text-navy">Commissioner tools</h2>
           <PlayerSync />
           <StatsSync year={year} />
+          {locked && !inDraft && (
+            <AdminTools year={year} season={season} participants={participants} />
+          )}
           {inSetup && (
             <div>
               <button
