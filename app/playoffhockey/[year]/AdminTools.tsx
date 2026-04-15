@@ -1,9 +1,19 @@
 'use client';
 
-import { useMemo, useState } from 'react';
-import { useEffect } from 'react';
-import { collection, doc, onSnapshot, updateDoc } from 'firebase/firestore';
+import { useEffect, useMemo, useState } from 'react';
+import {
+  addDoc,
+  collection,
+  doc,
+  limit,
+  onSnapshot,
+  orderBy,
+  query,
+  updateDoc,
+} from 'firebase/firestore';
 import { getFirebase } from '../_lib/firebase';
+import { useAuth } from '../_lib/auth';
+import { logAudit } from '../_lib/audit';
 import type {
   Season,
   Participant,
@@ -11,6 +21,8 @@ import type {
   DraftPick,
   PlayerStats,
   BonusPoints,
+  AuditEntry,
+  AuditAction,
 } from '../_lib/types';
 import { fantasyPointsFor } from '../_lib/draft';
 
@@ -29,10 +41,13 @@ export default function AdminTools({
   participants: Participant[];
 }) {
   const yearStr = String(year);
+  const { user } = useAuth();
   const [players, setPlayers] = useState<NHLPlayer[]>([]);
   const [picks, setPicks] = useState<DraftPick[]>([]);
   const [stats, setStats] = useState<Map<string, PlayerStats>>(new Map());
   const [bonusByPlayer, setBonusByPlayer] = useState<Map<string, number>>(new Map());
+  const [bonuses, setBonuses] = useState<BonusPoints[]>([]);
+  const [auditEntries, setAuditEntries] = useState<AuditEntry[]>([]);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [status, setStatus] = useState<string | null>(null);
@@ -69,12 +84,28 @@ export default function AdminTools({
     const { db } = getFirebase();
     return onSnapshot(collection(db, 'seasons', yearStr, 'bonusPoints'), (snap) => {
       const map = new Map<string, number>();
+      const list: BonusPoints[] = [];
       for (const d of snap.docs) {
-        const b = d.data() as BonusPoints;
+        const b = { ...(d.data() as BonusPoints), id: d.id };
+        list.push(b);
         map.set(b.nhlPlayerId, (map.get(b.nhlPlayerId) ?? 0) + b.points);
       }
+      list.sort((a, b) => b.addedAt - a.addedAt);
       setBonusByPlayer(map);
+      setBonuses(list);
     });
+  }, [yearStr]);
+
+  useEffect(() => {
+    const { db } = getFirebase();
+    const q = query(
+      collection(db, 'seasons', yearStr, 'auditLog'),
+      orderBy('createdAt', 'desc'),
+      limit(30)
+    );
+    return onSnapshot(q, (snap) =>
+      setAuditEntries(snap.docs.map((d) => ({ ...(d.data() as AuditEntry), id: d.id })))
+    );
   }, [yearStr]);
 
   const playerMap = useMemo(() => new Map(players.map((p) => [p.id, p])), [players]);
@@ -83,15 +114,27 @@ export default function AdminTools({
     [season.eliminatedTeams]
   );
 
+  function actor() {
+    return { uid: user?.uid ?? 'unknown', email: user?.email ?? null };
+  }
+
   async function toggleTeamEliminated(team: string) {
     setError(null);
     const current = new Set(season.eliminatedTeams ?? []);
-    if (current.has(team)) current.delete(team);
-    else current.add(team);
+    const eliminating = !current.has(team);
+    if (eliminating) current.add(team);
+    else current.delete(team);
     const next = Array.from(current).sort();
     try {
       const { db } = getFirebase();
       await updateDoc(doc(db, 'seasons', yearStr), { eliminatedTeams: next });
+      await logAudit(
+        db,
+        year,
+        eliminating ? 'team-eliminated' : 'team-reinstated',
+        actor(),
+        { team }
+      );
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Failed to update');
     }
@@ -145,6 +188,10 @@ export default function AdminTools({
         currentNHLRound: nextRound,
         midDraftOrder: order,
       });
+      await logAudit(db, year, 'mid-draft-started', actor(), {
+        round: nextRound,
+        participants: order.length,
+      });
       setStatus(`Mid-draft started for round ${nextRound}.`);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Failed to start mid-draft');
@@ -162,6 +209,9 @@ export default function AdminTools({
     try {
       const { db } = getFirebase();
       await updateDoc(doc(db, 'seasons', yearStr), { status: 'playoffs' });
+      await logAudit(db, year, 'mid-draft-finished', actor(), {
+        round: season.currentNHLRound,
+      });
       setStatus(`NHL round ${season.currentNHLRound} in progress.`);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Failed to finish mid-draft');
@@ -176,6 +226,7 @@ export default function AdminTools({
     try {
       const { db } = getFirebase();
       await updateDoc(doc(db, 'seasons', yearStr), { status: 'complete' });
+      await logAudit(db, year, 'season-completed', actor(), {});
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Failed');
     } finally {
@@ -184,7 +235,7 @@ export default function AdminTools({
   }
 
   return (
-    <div className="bg-white border border-slate/20 p-4 rounded-sm space-y-4">
+    <div className="bg-white border border-slate/20 p-4 rounded-sm space-y-6">
       <h3 className="font-semibold text-navy">Admin tools</h3>
 
       <section>
@@ -247,8 +298,264 @@ export default function AdminTools({
         </div>
       </section>
 
+      <BonusPointsForm
+        year={year}
+        players={players}
+        actor={actor()}
+        onSaved={(msg) => setStatus(msg)}
+        onError={(msg) => setError(msg)}
+      />
+
+      <RecentBonuses bonuses={bonuses} playerMap={playerMap} />
+
+      <AuditLogView entries={auditEntries} />
+
       {status && <p className="text-sm text-slate">{status}</p>}
       {error && <p className="text-red-600 text-sm">{error}</p>}
     </div>
   );
+}
+
+function BonusPointsForm({
+  year,
+  players,
+  actor,
+  onSaved,
+  onError,
+}: {
+  year: number;
+  players: NHLPlayer[];
+  actor: { uid: string; email: string | null };
+  onSaved: (msg: string) => void;
+  onError: (msg: string) => void;
+}) {
+  const [search, setSearch] = useState('');
+  const [selected, setSelected] = useState<NHLPlayer | null>(null);
+  const [points, setPoints] = useState('');
+  const [reason, setReason] = useState('');
+  const [saving, setSaving] = useState(false);
+
+  const matches = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    if (!q) return [];
+    return players
+      .filter((p) => p.fullName.toLowerCase().includes(q))
+      .slice(0, 8);
+  }, [players, search]);
+
+  async function save() {
+    onError('');
+    const pts = Number(points);
+    if (!selected) {
+      onError('Pick a player first.');
+      return;
+    }
+    if (!Number.isFinite(pts) || pts === 0) {
+      onError('Enter a non-zero point value.');
+      return;
+    }
+    if (!reason.trim()) {
+      onError('Add a short reason.');
+      return;
+    }
+    setSaving(true);
+    try {
+      const { db } = getFirebase();
+      await addDoc(collection(db, 'seasons', String(year), 'bonusPoints'), {
+        nhlPlayerId: selected.id,
+        points: pts,
+        reason: reason.trim(),
+        addedByUid: actor.uid,
+        addedAt: Date.now(),
+      });
+      await logAudit(db, year, 'bonus-added', actor, {
+        player: selected.fullName,
+        nhlPlayerId: selected.id,
+        points: pts,
+        reason: reason.trim(),
+      });
+      onSaved(`Awarded ${pts} bonus to ${selected.fullName}.`);
+      setSelected(null);
+      setSearch('');
+      setPoints('');
+      setReason('');
+    } catch (e) {
+      onError(e instanceof Error ? e.message : 'Failed to save bonus');
+    } finally {
+      setSaving(false);
+    }
+  }
+
+  return (
+    <section>
+      <h4 className="font-semibold text-navy text-sm mb-2">Bonus points</h4>
+      <p className="text-xs text-slate mb-2">
+        Award one-off points (hat tricks, playoff records, etc). Use a negative
+        number to correct a mistaken grant.
+      </p>
+      <div className="space-y-2">
+        {selected ? (
+          <div className="flex items-center justify-between bg-off-white border border-slate/30 rounded-sm px-3 py-2">
+            <span className="text-sm text-navy">
+              {selected.fullName}{' '}
+              <span className="text-xs text-slate">
+                · {selected.position} · {selected.nhlTeam}
+              </span>
+            </span>
+            <button
+              onClick={() => {
+                setSelected(null);
+                setSearch('');
+              }}
+              className="text-xs text-slate underline"
+            >
+              change
+            </button>
+          </div>
+        ) : (
+          <div className="relative">
+            <input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search player…"
+              className="w-full px-3 py-2 border border-slate/30 rounded-sm focus:outline-none focus:border-navy text-sm"
+            />
+            {matches.length > 0 && (
+              <ul className="absolute z-10 mt-1 w-full bg-white border border-slate/30 rounded-sm shadow max-h-48 overflow-auto">
+                {matches.map((p) => (
+                  <li key={p.id}>
+                    <button
+                      onClick={() => {
+                        setSelected(p);
+                        setSearch('');
+                      }}
+                      className="w-full text-left px-3 py-2 text-sm hover:bg-off-white"
+                    >
+                      <span className="text-navy">{p.fullName}</span>{' '}
+                      <span className="text-xs text-slate">
+                        · {p.position} · {p.nhlTeam}
+                      </span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        )}
+        <div className="flex gap-2">
+          <input
+            value={points}
+            onChange={(e) => setPoints(e.target.value)}
+            placeholder="Points"
+            type="number"
+            className="w-24 px-3 py-2 border border-slate/30 rounded-sm focus:outline-none focus:border-navy text-sm"
+          />
+          <input
+            value={reason}
+            onChange={(e) => setReason(e.target.value)}
+            placeholder="Reason (e.g. hat trick)"
+            maxLength={80}
+            className="flex-1 px-3 py-2 border border-slate/30 rounded-sm focus:outline-none focus:border-navy text-sm"
+          />
+          <button
+            onClick={save}
+            disabled={saving || !selected}
+            className="px-4 py-2 bg-navy text-off-white rounded-sm text-sm font-semibold disabled:opacity-50"
+          >
+            {saving ? 'Saving…' : 'Award'}
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function RecentBonuses({
+  bonuses,
+  playerMap,
+}: {
+  bonuses: BonusPoints[];
+  playerMap: Map<string, NHLPlayer>;
+}) {
+  if (bonuses.length === 0) return null;
+  const recent = bonuses.slice(0, 8);
+  return (
+    <section>
+      <h4 className="font-semibold text-navy text-sm mb-2">Recent bonuses</h4>
+      <ul className="space-y-1 text-sm">
+        {recent.map((b) => {
+          const p = playerMap.get(b.nhlPlayerId);
+          return (
+            <li key={b.id} className="flex justify-between gap-2 text-slate">
+              <span className="truncate">
+                <span className="font-mono text-navy">
+                  {b.points > 0 ? `+${b.points}` : b.points}
+                </span>{' '}
+                <span className="text-navy">{p?.fullName ?? b.nhlPlayerId}</span>{' '}
+                — {b.reason}
+              </span>
+              <span className="text-xs shrink-0">
+                {new Date(b.addedAt).toLocaleDateString()}
+              </span>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  );
+}
+
+function AuditLogView({ entries }: { entries: AuditEntry[] }) {
+  if (entries.length === 0) return null;
+  return (
+    <section>
+      <h4 className="font-semibold text-navy text-sm mb-2">Audit log</h4>
+      <ul className="space-y-1 text-xs font-mono">
+        {entries.map((e) => (
+          <li key={e.id} className="flex gap-2 text-slate">
+            <span className="shrink-0 tabular-nums">
+              {new Date(e.createdAt).toLocaleString()}
+            </span>
+            <span className="text-navy">{labelFor(e.action)}</span>
+            <span className="truncate">
+              {summarize(e.action, e.details)} · {e.actorEmail}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+function labelFor(a: AuditAction): string {
+  switch (a) {
+    case 'team-eliminated': return 'TEAM_OUT';
+    case 'team-reinstated': return 'TEAM_BACK';
+    case 'mid-draft-started': return 'MIDDRAFT_START';
+    case 'mid-draft-finished': return 'MIDDRAFT_END';
+    case 'season-completed': return 'SEASON_END';
+    case 'bonus-added': return 'BONUS';
+    case 'stats-synced': return 'STATS_SYNC';
+  }
+}
+
+function summarize(
+  a: AuditAction,
+  d: Record<string, string | number | boolean | null>
+): string {
+  switch (a) {
+    case 'team-eliminated':
+    case 'team-reinstated':
+      return String(d.team ?? '');
+    case 'mid-draft-started':
+      return `round ${d.round}`;
+    case 'mid-draft-finished':
+      return `round ${d.round}`;
+    case 'bonus-added':
+      return `${d.points} to ${d.player} (${d.reason})`;
+    case 'stats-synced':
+      return `${d.gameType === 3 ? 'playoff' : 'regular'} · ${d.count} ok, ${d.failed ?? 0} failed`;
+    case 'season-completed':
+      return '';
+  }
 }

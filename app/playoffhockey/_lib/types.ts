@@ -69,3 +69,21 @@ export interface PlayerStats {
   shutouts: number;
   lastUpdated: number;
 }
+
+export type AuditAction =
+  | 'team-eliminated'
+  | 'team-reinstated'
+  | 'mid-draft-started'
+  | 'mid-draft-finished'
+  | 'season-completed'
+  | 'bonus-added'
+  | 'stats-synced';
+
+export interface AuditEntry {
+  id: string;
+  action: AuditAction;
+  actorUid: string;
+  actorEmail: string;
+  details: Record<string, string | number | boolean | null>;
+  createdAt: number;
+}

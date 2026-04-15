@@ -60,6 +60,13 @@
           allow read: if signedIn();
           allow write: if isCommissioner();
         }
+        // Audit log: commissioner appends; anyone signed in can read.
+        // Entries are immutable once written.
+        match /auditLog/{id} {
+          allow read: if signedIn();
+          allow create: if isCommissioner();
+          allow update, delete: if false;
+        }
       }
 
       // Shared NHL player roster — commissioner syncs from NHL API.
