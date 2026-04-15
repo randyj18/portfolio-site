@@ -50,3 +50,9 @@ INTEGRATION_*.md
 .next/cache/
 node_modules/.cache/
 .claude/settings.local.json
+
+# Firebase Admin SDK
+scripts/service-account.json
+
+# Pool-AI live state snapshots (fetched from Firestore at runtime)
+scripts/pool-ai/data/state-latest.json

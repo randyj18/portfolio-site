@@ -1,0 +1,7 @@
+{
+  "_doc": "Override starter share for goalies. Key is NHL player ID or full name. Value is 0..1 (fraction of team games this goalie starts). Missing goalies fall back to: top-RS-wins per team = 1, others = 0.",
+  "_example": {
+    "8478009": 0.85,
+    "Frederik Andersen": 0.7
+  }
+}

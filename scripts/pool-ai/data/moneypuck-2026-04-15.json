@@ -1,0 +1,23 @@
+{
+  "capturedAt": "2026-04-15",
+  "source": "moneypuck.com/predictions.htm",
+  "note": "Western seeding still unsettled; refresh tomorrow once matchups lock.",
+  "teams": [
+    { "abbr": "COL", "name": "Colorado Avalanche",   "conf": "W", "div": "Central", "r1": 0.68,  "r2": 0.389, "r3": 0.232, "cup": 0.128 },
+    { "abbr": "CAR", "name": "Carolina Hurricanes",  "conf": "E", "div": "Metro",   "r1": 0.584, "r2": 0.387, "r3": 0.217, "cup": 0.124 },
+    { "abbr": "VGK", "name": "Vegas Golden Knights", "conf": "W", "div": "Pacific", "r1": 0.605, "r2": 0.372, "r3": 0.192, "cup": 0.102 },
+    { "abbr": "BUF", "name": "Buffalo Sabres",       "conf": "E", "div": "Atlantic","r1": 0.536, "r2": 0.302, "r3": 0.160, "cup": 0.085 },
+    { "abbr": "MIN", "name": "Minnesota Wild",       "conf": "W", "div": "Central", "r1": 0.508, "r2": 0.253, "r3": 0.139, "cup": 0.072 },
+    { "abbr": "TBL", "name": "Tampa Bay Lightning",  "conf": "E", "div": "Atlantic","r1": 0.555, "r2": 0.265, "r3": 0.129, "cup": 0.063 },
+    { "abbr": "DAL", "name": "Dallas Stars",         "conf": "W", "div": "Central", "r1": 0.492, "r2": 0.236, "r3": 0.123, "cup": 0.061 },
+    { "abbr": "BOS", "name": "Boston Bruins",        "conf": "E", "div": "Atlantic","r1": 0.464, "r2": 0.238, "r3": 0.118, "cup": 0.060 },
+    { "abbr": "OTT", "name": "Ottawa Senators",      "conf": "E", "div": "Atlantic","r1": 0.416, "r2": 0.237, "r3": 0.122, "cup": 0.060 },
+    { "abbr": "EDM", "name": "Edmonton Oilers",      "conf": "W", "div": "Pacific", "r1": 0.546, "r2": 0.247, "r3": 0.105, "cup": 0.047 },
+    { "abbr": "UTA", "name": "Utah Mammoth",         "conf": "W", "div": "Central", "r1": 0.414, "r2": 0.208, "r3": 0.090, "cup": 0.041 },
+    { "abbr": "MTL", "name": "Montreal Canadiens",   "conf": "E", "div": "Atlantic","r1": 0.445, "r2": 0.195, "r3": 0.088, "cup": 0.039 },
+    { "abbr": "PIT", "name": "Pittsburgh Penguins",  "conf": "E", "div": "Metro",   "r1": 0.523, "r2": 0.199, "r3": 0.088, "cup": 0.037 },
+    { "abbr": "PHI", "name": "Philadelphia Flyers",  "conf": "E", "div": "Metro",   "r1": 0.477, "r2": 0.177, "r3": 0.077, "cup": 0.032 },
+    { "abbr": "LAK", "name": "Los Angeles Kings",    "conf": "W", "div": "Pacific", "r1": 0.387, "r2": 0.157, "r3": 0.068, "cup": 0.029 },
+    { "abbr": "ANA", "name": "Anaheim Ducks",        "conf": "W", "div": "Pacific", "r1": 0.368, "r2": 0.138, "r3": 0.051, "cup": 0.019 }
+  ]
+}

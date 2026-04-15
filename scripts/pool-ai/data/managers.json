@@ -1,0 +1,12 @@
+{
+  "profiles": [
+    { "displayName": "Ryan Jones",       "style": "stacker", "goalieBullish": true,  "note": "commissioner / me" },
+    { "displayName": "Sunny Sahai",      "style": "stacker", "goalieBullish": false },
+    { "displayName": "Andrew Porteous",  "style": "stacker", "goalieBullish": true  },
+    { "displayName": "Kris Anderson",    "style": "bpa",     "goalieBullish": true  },
+    { "displayName": "Daryl Kay",        "style": "stacker", "goalieBullish": true  },
+    { "displayName": "Mark Weston",      "style": "bpa",     "goalieBullish": false },
+    { "displayName": "Paul Weston",      "style": "bpa",     "goalieBullish": false },
+    { "displayName": "Bryan Purins",     "style": "bpa",     "goalieBullish": false, "note": "not yet in Firestore" }
+  ]
+}
