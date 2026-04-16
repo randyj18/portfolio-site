@@ -1,0 +1,23 @@
+{
+  "capturedAt": "2026-04-16",
+  "source": "moneypuck.com/predictions.htm",
+  "note": "Matchups locked. Top 3 (COL/CAR/VGK) tightly bunched at 12.6/12.4/10.2.",
+  "teams": [
+    { "abbr": "COL", "name": "Colorado Avalanche",   "conf": "W", "div": "Central", "r1": 0.679, "r2": 0.387, "r3": 0.229, "cup": 0.126 },
+    { "abbr": "CAR", "name": "Carolina Hurricanes",  "conf": "E", "div": "Metro",   "r1": 0.586, "r2": 0.389, "r3": 0.218, "cup": 0.124 },
+    { "abbr": "VGK", "name": "Vegas Golden Knights", "conf": "W", "div": "Pacific", "r1": 0.595, "r2": 0.369, "r3": 0.190, "cup": 0.102 },
+    { "abbr": "BUF", "name": "Buffalo Sabres",       "conf": "E", "div": "Atlantic","r1": 0.537, "r2": 0.302, "r3": 0.159, "cup": 0.084 },
+    { "abbr": "MIN", "name": "Minnesota Wild",       "conf": "W", "div": "Central", "r1": 0.508, "r2": 0.254, "r3": 0.139, "cup": 0.072 },
+    { "abbr": "TBL", "name": "Tampa Bay Lightning",  "conf": "E", "div": "Atlantic","r1": 0.553, "r2": 0.266, "r3": 0.131, "cup": 0.065 },
+    { "abbr": "DAL", "name": "Dallas Stars",         "conf": "W", "div": "Central", "r1": 0.492, "r2": 0.237, "r3": 0.124, "cup": 0.061 },
+    { "abbr": "OTT", "name": "Ottawa Senators",      "conf": "E", "div": "Atlantic","r1": 0.414, "r2": 0.235, "r3": 0.121, "cup": 0.061 },
+    { "abbr": "BOS", "name": "Boston Bruins",        "conf": "E", "div": "Atlantic","r1": 0.463, "r2": 0.237, "r3": 0.118, "cup": 0.059 },
+    { "abbr": "EDM", "name": "Edmonton Oilers",      "conf": "W", "div": "Pacific", "r1": 0.557, "r2": 0.250, "r3": 0.107, "cup": 0.048 },
+    { "abbr": "MTL", "name": "Montreal Canadiens",   "conf": "E", "div": "Atlantic","r1": 0.447, "r2": 0.195, "r3": 0.089, "cup": 0.040 },
+    { "abbr": "UTA", "name": "Utah Mammoth",         "conf": "W", "div": "Central", "r1": 0.405, "r2": 0.208, "r3": 0.090, "cup": 0.040 },
+    { "abbr": "PIT", "name": "Pittsburgh Penguins",  "conf": "E", "div": "Metro",   "r1": 0.523, "r2": 0.200, "r3": 0.088, "cup": 0.038 },
+    { "abbr": "PHI", "name": "Philadelphia Flyers",  "conf": "E", "div": "Metro",   "r1": 0.477, "r2": 0.176, "r3": 0.075, "cup": 0.030 },
+    { "abbr": "LAK", "name": "Los Angeles Kings",    "conf": "W", "div": "Pacific", "r1": 0.389, "r2": 0.158, "r3": 0.069, "cup": 0.029 },
+    { "abbr": "ANA", "name": "Anaheim Ducks",        "conf": "W", "div": "Pacific", "r1": 0.374, "r2": 0.137, "r3": 0.052, "cup": 0.019 }
+  ]
+}
