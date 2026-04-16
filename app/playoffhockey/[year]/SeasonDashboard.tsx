@@ -224,9 +224,7 @@ export default function SeasonDashboard({ year }: { year: number }) {
           <h2 className="text-lg font-semibold text-navy">Commissioner tools</h2>
           <PlayerSync />
           <StatsSync year={year} />
-          {locked && (
-            <DelegatesEditor year={year} season={season} participants={participants} />
-          )}
+          <DelegatesEditor year={year} season={season} participants={participants} />
           {locked && !inDraft && (
             <AdminTools year={year} season={season} participants={participants} />
           )}
