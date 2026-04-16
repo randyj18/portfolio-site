@@ -106,7 +106,18 @@ export default function DraftRoom({
   const draftComplete = nextPickNum === -1;
   const currentSlot = draftComplete ? null : schedule[nextPickNum - 1];
   const onTheClockUid = currentSlot?.participantUid;
-  const isMyTurn = onTheClockUid === currentUid;
+
+  // Proxy drafting: season.draftDelegates[participantUid] = [proxyUid, ...]
+  // If the on-the-clock participant has delegated to me, I can draft for them.
+  const delegates = season.draftDelegates ?? {};
+  const canProxyForOnClock =
+    !!onTheClockUid
+    && onTheClockUid !== currentUid
+    && Array.isArray(delegates[onTheClockUid])
+    && delegates[onTheClockUid].includes(currentUid);
+  const isMyTurn = onTheClockUid === currentUid || canProxyForOnClock;
+  const draftingAsUid = canProxyForOnClock ? onTheClockUid! : currentUid;
+  const isProxying = canProxyForOnClock;
 
   const playerMap = useMemo(() => new Map(players.map((p) => [p.id, p])), [players]);
   const pickedPlayerIds = useMemo(
@@ -114,7 +125,7 @@ export default function DraftRoom({
     [initialPicks]
   );
 
-  const myPicks = initialPicks.filter((p) => p.participantUid === currentUid);
+  const myPicks = initialPicks.filter((p) => p.participantUid === draftingAsUid);
   const myCounts = countByPosition(myPicks, playerMap);
 
   const nameByUid = useMemo(
@@ -200,7 +211,7 @@ export default function DraftRoom({
           throw new Error('That pick was already made. Refresh and try again.');
         }
         tx.set(pickRef, {
-          participantUid: currentUid,
+          participantUid: draftingAsUid,
           nhlPlayerId: player.id,
           draftedInRound: 0,
           pickNumber: currentSlot.pickNumber,
@@ -302,6 +313,7 @@ export default function DraftRoom({
       ) : (
         <OnTheClock
           isMyTurn={isMyTurn}
+          isProxying={isProxying}
           onClockName={nameByUid.get(onTheClockUid ?? '') ?? 'Unknown'}
           pickNumber={currentSlot?.pickNumber ?? 0}
           totalSlots={totalSlots}
@@ -371,12 +383,14 @@ function TabBar<T extends string>({
 
 function OnTheClock({
   isMyTurn,
+  isProxying,
   onClockName,
   pickNumber,
   totalSlots,
   round,
 }: {
   isMyTurn: boolean;
+  isProxying: boolean;
   onClockName: string;
   pickNumber: number;
   totalSlots: number;
@@ -393,11 +407,22 @@ function OnTheClock({
       <p className="text-xs uppercase tracking-wide text-slate">On the clock</p>
       <p className="text-xl font-bold text-navy">
         {onClockName}
-        {isMyTurn && <span className="text-orange-burnt"> — you&apos;re up!</span>}
+        {isMyTurn && !isProxying && (
+          <span className="text-orange-burnt"> — you&apos;re up!</span>
+        )}
+        {isProxying && (
+          <span className="text-orange-burnt"> — drafting as proxy</span>
+        )}
       </p>
       <p className="text-sm text-slate">
         Pick {pickNumber} of {totalSlots} · Round {round}
       </p>
+      {isProxying && (
+        <p className="text-xs text-orange-burnt mt-1">
+          You are authorized to draft on {onClockName}&apos;s behalf. Picks will
+          be recorded under their name.
+        </p>
+      )}
     </div>
   );
 }

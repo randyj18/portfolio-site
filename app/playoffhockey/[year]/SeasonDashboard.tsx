@@ -21,6 +21,7 @@ import DraftRoom from './DraftRoom';
 import Standings from './Standings';
 import MidDraftRoom from './MidDraftRoom';
 import AdminTools from './AdminTools';
+import DelegatesEditor from './DelegatesEditor';
 
 export default function SeasonDashboard({ year }: { year: number }) {
   const { user, logOut } = useAuth();
@@ -223,6 +224,9 @@ export default function SeasonDashboard({ year }: { year: number }) {
           <h2 className="text-lg font-semibold text-navy">Commissioner tools</h2>
           <PlayerSync />
           <StatsSync year={year} />
+          {locked && (
+            <DelegatesEditor year={year} season={season} participants={participants} />
+          )}
           {locked && !inDraft && (
             <AdminTools year={year} season={season} participants={participants} />
           )}

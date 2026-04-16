@@ -12,6 +12,12 @@
         return signedIn()
           && request.auth.token.email == 'randyjones87@gmail.com';
       }
+      function isDraftDelegate(year, participantUid) {
+        let season = get(/databases/$(database)/documents/seasons/$(year)).data;
+        return 'draftDelegates' in season
+          && participantUid in season.draftDelegates
+          && request.auth.uid in season.draftDelegates[participantUid];
+      }
 
       // Season doc: anyone signed in can read, only commissioner writes.
       match /seasons/{year} {
@@ -28,13 +34,18 @@
         }
 
         // Draft picks: participants create their own picks and can update
-        // their own (e.g., setting droppedAt during mid-drafts).
+        // their own (e.g., setting droppedAt during mid-drafts). Draft
+        // delegates (configured per-season) can create/update picks on
+        // behalf of the participant they represent.
         match /draftPicks/{pickId} {
           allow read: if signedIn();
           allow create: if signedIn()
-            && request.resource.data.participantUid == request.auth.uid;
+            && (request.resource.data.participantUid == request.auth.uid
+                || isDraftDelegate(year, request.resource.data.participantUid));
           allow update: if signedIn()
-            && (resource.data.participantUid == request.auth.uid || isCommissioner());
+            && (resource.data.participantUid == request.auth.uid
+                || isCommissioner()
+                || isDraftDelegate(year, resource.data.participantUid));
           allow delete: if isCommissioner();
         }
 

@@ -14,6 +14,8 @@ export interface Season {
   // Snapshotted when commissioner starts a mid-draft. Reverse-standings
   // order (worst team first) for the current round's regular picks.
   midDraftOrder?: string[];
+  // Maps a participant's uid → list of uids allowed to draft on their behalf.
+  draftDelegates?: Record<string, string[]>;
 }
 
 export interface Participant {
