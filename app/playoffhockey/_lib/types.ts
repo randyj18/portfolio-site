@@ -16,6 +16,8 @@ export interface Season {
   midDraftOrder?: string[];
   // Maps a participant's uid → list of uids allowed to draft on their behalf.
   draftDelegates?: Record<string, string[]>;
+  // Sanitized public team info (no emails) surfaced on the public league page.
+  teamsPublic?: Record<string, { teamName: string | null; displayName: string }>;
 }
 
 export interface Participant {

@@ -1,9 +1,16 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import { useAuth } from './auth';
 
 export default function AuthGate({ children }: { children: React.ReactNode }) {
   const { user, loading, signIn } = useAuth();
+  const pathname = usePathname() ?? '';
+
+  // Public routes under /playoffhockey that bypass auth.
+  if (pathname.endsWith('/league') || pathname.includes('/league/')) {
+    return <>{children}</>;
+  }
 
   if (loading) {
     return (

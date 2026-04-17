@@ -19,13 +19,14 @@
           && request.auth.uid in season.draftDelegates[participantUid];
       }
 
-      // Season doc: anyone signed in can read, only commissioner writes.
+      // Season doc: public read (contains teamsPublic for the league page);
+      // only commissioner writes.
       match /seasons/{year} {
-        allow read: if signedIn();
+        allow read: if true;
         allow create, update: if isCommissioner();
         allow delete: if false;
 
-        // Participants: self-write pre-lock; commissioner can always edit.
+        // Participants: signed-in only (contains emails).
         match /participants/{uid} {
           allow read: if signedIn();
           allow create, update: if signedIn()
@@ -33,12 +34,9 @@
           allow delete: if isCommissioner();
         }
 
-        // Draft picks: participants create their own picks and can update
-        // their own (e.g., setting droppedAt during mid-drafts). Draft
-        // delegates (configured per-season) can create/update picks on
-        // behalf of the participant they represent.
+        // Draft picks: public read for the league page; writes still gated.
         match /draftPicks/{pickId} {
-          allow read: if signedIn();
+          allow read: if true;
           allow create: if signedIn()
             && (request.resource.data.participantUid == request.auth.uid
                 || isDraftDelegate(year, request.resource.data.participantUid));
@@ -60,7 +58,7 @@
           allow delete: if isCommissioner();
         }
         match /bonusPoints/{id} {
-          allow read: if signedIn();
+          allow read: if true;
           allow write: if isCommissioner();
         }
         match /marketBias/{id} {
@@ -68,7 +66,7 @@
           allow write: if isCommissioner();
         }
         match /playerStats/{id} {
-          allow read: if signedIn();
+          allow read: if true;
           allow write: if isCommissioner();
         }
         match /regularSeasonStats/{id} {
@@ -84,9 +82,10 @@
         }
       }
 
-      // Shared NHL player roster — commissioner syncs from NHL API.
+      // Shared NHL player roster — public read (names/positions/teams only);
+      // commissioner writes.
       match /nhlPlayers/{id} {
-        allow read: if signedIn();
+        allow read: if true;
         allow write: if isCommissioner();
       }
     }
