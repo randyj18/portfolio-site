@@ -159,7 +159,7 @@ export default function SeasonDashboard({ year }: { year: number }) {
         <p className="text-slate">Joining…</p>
       ))}
 
-      {locked && !inDraft && (season.status === 'playoffs' || season.status === 'mid-draft' || season.status === 'complete') && (
+      {!inDraft && (season.status === 'playoffs' || season.status === 'mid-draft' || season.status === 'complete') && (
         <Standings year={year} season={season} participants={participants} />
       )}
 
@@ -225,7 +225,7 @@ export default function SeasonDashboard({ year }: { year: number }) {
           <PlayerSync />
           <StatsSync year={year} />
           <DelegatesEditor year={year} season={season} participants={participants} />
-          {locked && !inDraft && (
+          {!inDraft && (season.status === 'playoffs' || season.status === 'mid-draft' || season.status === 'complete') && (
             <AdminTools year={year} season={season} participants={participants} />
           )}
           {inSetup && (
