@@ -68,7 +68,7 @@ export const PROGRAMS: Program[] = [
             exercises: [
               { id: 'rb-thu-dips', name: 'Dips', detail: '3 x 8–12', note: 'Bodyweight for now' },
               { id: 'rb-thu-lat', name: 'DB lateral raises', detail: '3 x 12–15' },
-              { id: 'rb-thu-skull', name: 'EZ-bar skullcrushers', detail: '3 x 10–15', note: 'Controlled — elbow' },
+              { id: 'rb-thu-skull', name: 'Tricep-bar skullcrushers', detail: '3 x 10–15', note: 'Controlled — elbow' },
             ],
           },
           {
@@ -158,6 +158,7 @@ export const PROGRAMS: Program[] = [
             exercises: [
               { id: 'rb-sat-lunge', name: 'DB split squats / lunges', detail: '2–3 x 8–10/leg' },
               { id: 'rb-sat-calf', name: 'Calf raises', detail: '3 x 12–20' },
+              { id: 'rb-sat-backext', name: '45° back extension', detail: '3 x 10–15', note: 'Bench attachment' },
             ],
           },
           {
@@ -246,7 +247,10 @@ export const PROGRAMS: Program[] = [
             id: 'ppl-legs-a-super',
             label: 'Accessory',
             style: 'superset',
-            exercises: [{ id: 'ppl-lga-calf', name: 'Calf raises', detail: '3 x 12–20' }],
+            exercises: [
+              { id: 'ppl-lga-calf', name: 'Calf raises', detail: '3 x 12–20' },
+              { id: 'ppl-lga-backext', name: '45° back extension', detail: '3 x 12–15' },
+            ],
           },
         ],
       },
@@ -320,6 +324,7 @@ export const PROGRAMS: Program[] = [
             style: 'superset',
             exercises: [
               { id: 'ppl-lgb-calf', name: 'Calf raises', detail: '3 x 15–20' },
+              { id: 'ppl-lgb-backext', name: '45° back extension', detail: '3 x 12–15' },
               { id: 'ppl-lgb-ab', name: 'Ab wheel — kneeling', detail: '3 x 8–10', note: 'Rebuild gradually before standing rollouts' },
             ],
           },
