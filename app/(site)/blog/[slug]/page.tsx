@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import AuthorBox from '@/components/site/AuthorBox';
+import DateLine from '@/components/site/DateLine';
 import PostList from '@/components/site/PostList';
 import Prose from '@/components/site/Prose';
 import Toc from '@/components/site/Toc';
@@ -12,7 +13,7 @@ import {
   getRelatedPosts,
   getTopicNeighbours,
 } from '@/lib/blog';
-import { formatMonth, isoDate } from '@/lib/dates';
+import { isoDate } from '@/lib/dates';
 import { extractHeadings } from '@/lib/markdown';
 import { getResearchBySlug } from '@/lib/research';
 import { site } from '@/lib/site';
@@ -56,6 +57,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
   const backlinks = getBacklinks(post.slug).filter((p) => !relatedSlugs.has(p.slug));
   const { prev, next } = getTopicNeighbours(post);
   const headings = extractHeadings(post.content).filter((h) => h.depth === 2);
+  const showToc = post.words >= TOC_MIN_WORDS && headings.length >= 4;
   const citedNotes = post.researchLinks.map((s) => getResearchBySlug(s)).filter(Boolean);
 
   const jsonLd = {
@@ -99,31 +101,34 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         <p className="mt-5 max-w-2xl font-serif text-xl leading-snug text-muted text-pretty sm:text-[1.4rem]">
           {post.description}
         </p>
-        <p className="mt-6 flex flex-wrap gap-x-3 gap-y-1 text-sm text-muted">
-          {post.published && (
-            <span>
-              Published <time dateTime={isoDate(post.published)}>{formatMonth(post.published)}</time>
-            </span>
-          )}
-          {post.updated && (
-            <span>
-              <span aria-hidden>· </span>Updated <time dateTime={isoDate(post.updated)}>{formatMonth(post.updated)}</time>
-            </span>
-          )}
-          <span>
-            <span aria-hidden>· </span>
-            {post.readingMinutes} min read
-          </span>
-        </p>
+        <DateLine published={post.published} updated={post.updated} minutes={post.readingMinutes} />
       </header>
 
-      <div className="mt-10 max-w-2xl">
-        {post.words >= TOC_MIN_WORDS && (
-          <div className="mb-10">
-            <Toc headings={headings} />
-          </div>
+      <div className="mt-10 xl:grid xl:grid-cols-[minmax(0,42rem)_1fr] xl:gap-16">
+        <div className="max-w-2xl">
+          {showToc && (
+            <div className="mb-10 xl:hidden">
+              <Toc headings={headings} />
+            </div>
+          )}
+          <Prose markdown={post.content} />
+        </div>
+        {showToc && (
+          <aside aria-label="On this page" className="hidden xl:block">
+            <div className="sticky top-8 border-l border-ink/10 pl-6 text-sm">
+              <p className="font-semibold text-ink">On this page</p>
+              <ol className="mt-3 space-y-2 text-muted">
+                {headings.map((h) => (
+                  <li key={h.id}>
+                    <a href={`#${h.id}`} className="leading-snug hover:text-accent-ink hover:underline">
+                      {h.text}
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </aside>
         )}
-        <Prose markdown={post.content} />
       </div>
 
       <footer className="mt-16 max-w-2xl space-y-14">
@@ -173,7 +178,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         {backlinks.length > 0 && (
           <section aria-labelledby="backlinks-heading">
             <h2 id="backlinks-heading" className="text-2xl font-bold uppercase tracking-[0.01em] text-ink">
-              Also referenced in
+              Linked from
             </h2>
             <ul className="mt-4 space-y-2">
               {backlinks.map((p) => (

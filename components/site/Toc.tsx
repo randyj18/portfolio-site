@@ -5,7 +5,7 @@ export default function Toc({ headings }: { headings: Heading[] }) {
   if (headings.length < 4) return null;
   return (
     <details className="group rounded-lg border border-ink/10 bg-surface px-5 py-4 text-[0.95rem]">
-      <summary className="cursor-pointer list-none font-semibold text-ink marker:hidden [&::-webkit-details-marker]:hidden">
+      <summary className="cursor-pointer list-none font-semibold text-ink [&::-webkit-details-marker]:hidden">
         <span className="inline-flex items-center gap-2">
           <svg aria-hidden viewBox="0 0 20 20" className="h-4 w-4 text-muted transition-transform group-open:rotate-90">
             <path d="M7 4l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />

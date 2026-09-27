@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import AuthorBox from '@/components/site/AuthorBox';
+import DateLine from '@/components/site/DateLine';
 import Prose from '@/components/site/Prose';
 import { getAllBlogPosts } from '@/lib/blog';
 import { formatMonth, isoDate } from '@/lib/dates';
@@ -51,6 +52,12 @@ export default function ResearchNotePage({ params }: { params: { slug: string } 
             </li>
             <li aria-hidden>/</li>
             <li>{note.themeName}</li>
+            {note.status && (
+              <>
+                <li aria-hidden>·</li>
+                <li>{note.status}</li>
+              </>
+            )}
           </ol>
         </nav>
         <h1 className="mt-4 text-[2.4rem] font-extrabold uppercase leading-[0.95] text-ink text-balance sm:text-5xl lg:text-6xl">
@@ -59,22 +66,7 @@ export default function ResearchNotePage({ params }: { params: { slug: string } 
         <p className="mt-5 max-w-2xl font-serif text-xl leading-snug text-muted text-pretty sm:text-[1.4rem]">
           {note.description}
         </p>
-        <p className="mt-6 flex flex-wrap gap-x-3 gap-y-1 text-sm text-muted">
-          {note.published && (
-            <span>
-              Written <time dateTime={isoDate(note.published)}>{formatMonth(note.published)}</time>
-            </span>
-          )}
-          {note.updated && (
-            <span>
-              <span aria-hidden>· </span>Updated <time dateTime={isoDate(note.updated)}>{formatMonth(note.updated)}</time>
-            </span>
-          )}
-          <span>
-            <span aria-hidden>· </span>
-            {note.readingMinutes} min read
-          </span>
-        </p>
+        <DateLine published={note.published} updated={note.updated} minutes={note.readingMinutes} publishedLabel="Written" />
       </header>
 
       {note.papers.length > 0 && (

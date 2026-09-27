@@ -11,6 +11,7 @@ import { countWords, firstParagraph, internalLinks, readingMinutes } from './mar
  *   title: DeepSeek-R1 and reasoning from reinforcement learning
  *   description: One or two sentences for cards and meta description.
  *   theme: cheaper-models              # a slug from researchThemes below
+ *   status: published-result           # in-use | published-result | early-research
  *   papers:
  *     - title: "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via RL"
  *       url: https://arxiv.org/abs/2501.12948
@@ -29,13 +30,35 @@ export interface ResearchTheme {
   short: string;
 }
 
-// PROVISIONAL: finalized after the content review.
 export const researchThemes: ResearchTheme[] = [
-  { slug: 'cheaper-models', name: 'Cheaper, smaller models', short: 'How the cost of capable models keeps falling.' },
-  { slug: 'agents-that-learn', name: 'Agents that learn from experience', short: 'Training agents without armies of human demonstrations.' },
-  { slug: 'beyond-next-token', name: 'Beyond next-token prediction', short: 'Architectures that try something other than predicting the next word.' },
-  { slug: 'physical-world', name: 'Robots and the physical world', short: 'Connecting language models to perception and action.' },
+  {
+    slug: 'cheaper-models',
+    name: 'Cheaper, smaller models',
+    short: 'Why the cost of a capable model keeps falling, and what that does to the economics.',
+  },
+  {
+    slug: 'learning-from-experience',
+    name: 'Learning from generated data and experience',
+    short: 'Training models and agents on text other models wrote, or on what happened when they tried things.',
+  },
+  {
+    slug: 'new-architectures',
+    name: 'New architectures to watch',
+    short: 'Ideas that change how models predict or remember. Promising at small scale, unproven at large scale.',
+  },
+  {
+    slug: 'physical-world',
+    name: 'Robots and the physical world',
+    short: 'Connecting language models to perception and action, and how far that has really come.',
+  },
 ];
+
+/** Plain-language maturity label shown on each note. */
+export const researchStatuses: Record<string, string> = {
+  'in-use': 'In wide use',
+  'published-result': 'Published result',
+  'early-research': 'Early research',
+};
 
 export interface PaperRef {
   title: string;
@@ -51,6 +74,8 @@ export interface ResearchPaper {
   description: string;
   theme: string;
   themeName: string;
+  /** Display label from researchStatuses, if set. */
+  status?: string;
   papers: PaperRef[];
   published?: string;
   updated?: string;
@@ -95,6 +120,7 @@ function readNote(slug: string): ResearchPaper | null {
     description: typeof data.description === 'string' ? data.description : excerpt,
     theme,
     themeName,
+    status: typeof data.status === 'string' ? researchStatuses[data.status] : undefined,
     papers: toPaperRefs(data.papers),
     published: normalizeDate(data.published),
     updated: normalizeDate(data.updated),

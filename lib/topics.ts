@@ -1,7 +1,6 @@
 // Topic hubs for the writing section. Each post's front matter names one topic.
 // readingOrder is the suggested path through the hub; posts in the topic that
 // aren't listed are appended after it, newest first.
-// PROVISIONAL: finalized after the content review.
 
 export interface Topic {
   slug: string;
@@ -22,22 +21,22 @@ export const topics: Topic[] = [
     readingOrder: [],
   },
   {
-    slug: 'people-and-leadership',
-    name: 'People and leadership',
-    short: 'Who decides, who gets rewarded, and how skills and roles change.',
+    slug: 'leadership',
+    name: 'Leadership and governance',
+    short: 'Who decides, who gets rewarded, how value gets measured, and how skills and roles change.',
     intro: [],
-    readingOrder: [],
+    readingOrder: ['beyond-roi-measuring-ai-value'],
   },
   {
     slug: 'data-and-knowledge',
     name: 'Data and knowledge',
-    short: 'Metadata, storage and the data plumbing agents depend on.',
+    short: 'Metadata, storage and the data plumbing that agents depend on.',
     intro: [],
     readingOrder: [],
   },
   {
-    slug: 'platforms-and-vendors',
-    name: 'Platforms and vendors',
+    slug: 'vendors-and-platforms',
+    name: 'Vendors and platforms',
     short: 'SaaS lock-in, data portability, Microsoft, multi-cloud and build versus buy.',
     intro: [],
     readingOrder: [],

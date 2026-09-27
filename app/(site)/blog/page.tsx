@@ -22,8 +22,12 @@ export default function WritingIndexPage() {
         <p className="eyebrow">{all.length} posts</p>
         <h1 className="mt-3 text-6xl font-extrabold uppercase leading-[0.9] text-ink sm:text-7xl">Writing</h1>
         <p className="mt-5 font-serif text-xl leading-relaxed text-muted text-pretty">
-          Most of this is about the unglamorous middle of AI adoption: how people get to try things safely, how what they
-          learn gets shared, and how the data, vendors and incentives around them help or get in the way.
+          Most of this is about the unglamorous middle of AI adoption: what happens after an organization decides to use
+          AI, when people need room to try it safely and somebody has to make sure what they learn gets used.
+        </p>
+        <p className="mt-4 text-sm leading-relaxed text-muted">
+          Most of these were first published in November 2025 and revised in September 2026. Where the facts have moved
+          since, the post says so.
         </p>
       </header>
 

@@ -309,16 +309,6 @@ html {
   font-weight: 600;
 }
 
-/* Heading anchor links added by the renderer */
-.prose-site .heading-anchor {
-  @apply ml-2 font-sans text-base font-normal text-muted no-underline opacity-0 transition-opacity;
-}
-
-.prose-site :is(h2, h3):hover .heading-anchor,
-.prose-site .heading-anchor:focus-visible {
-  opacity: 1;
-}
-
 /* Scrollbar: keep the older beige treatment for other routes, neutral on the site. */
 ::-webkit-scrollbar {
   width: 10px;

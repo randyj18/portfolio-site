@@ -41,12 +41,16 @@ export default function ResearchIndexPage() {
                     </Link>
                   </h3>
                   <p className="mt-2 text-[0.95rem] leading-relaxed text-muted">{note.description}</p>
-                  {note.papers[0]?.date && (
-                    <p className="mt-3 text-xs font-medium uppercase tracking-wider text-muted">
-                      Paper: {formatMonth(note.papers[0].date)}
-                      {note.papers.length > 1 ? ` and ${note.papers.length - 1} more` : ''}
-                    </p>
-                  )}
+                  <p className="mt-3 text-xs font-medium uppercase tracking-wider text-muted">
+                    {[
+                      note.status,
+                      note.papers[0]?.date
+                        ? `Paper ${formatMonth(note.papers[0].date)}${note.papers.length > 1 ? ` + ${note.papers.length - 1} more` : ''}`
+                        : undefined,
+                    ]
+                      .filter(Boolean)
+                      .join(' · ')}
+                  </p>
                 </li>
               ))}
             </ul>
