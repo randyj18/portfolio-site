@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'GPHL 2026-27 | League Guide',
@@ -173,14 +174,22 @@ export default function GphlPage() {
             The stuff you need all year, in one place. Eight teams, head-to-head points on Yahoo, daily lineups, and a keeper
             auction every fall.
           </p>
-          <a
-            href={YAHOO_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-5 inline-flex items-center gap-2 rounded-full bg-navy px-5 py-2.5 text-sm font-semibold text-off-white transition hover:bg-navy/85"
-          >
-            Open the league on Yahoo <span aria-hidden>↗</span>
-          </a>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <a
+              href={YAHOO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-navy px-5 py-2.5 text-sm font-semibold text-off-white transition hover:bg-navy/85"
+            >
+              Open the league on Yahoo <span aria-hidden>↗</span>
+            </a>
+            <Link
+              href="/gphl/draft"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-navy ring-1 ring-navy/15 transition hover:ring-navy/40"
+            >
+              {SEASON} draft results <span aria-hidden>→</span>
+            </Link>
+          </div>
         </header>
 
         <div className="grid gap-5 md:grid-cols-2">
