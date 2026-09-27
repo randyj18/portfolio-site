@@ -1,214 +1,58 @@
-# Distributed AI Leadership: Why Top-Down Strategies Fail and How to Scale Decision-Making
-
-**Subtitle:** The Chief AI Officer paradox, and why intelligence transcends organizational hierarchy
-
-**Target Length:** 2,000-2,400 words
-
-**Cluster:** Governance & Implementation
-
-**Status:** Complete
-
+---
+title: Push AI decisions closer to the work
+description: Routing every AI decision through a central team creates a queue. The centre should set guardrails and build platforms, and teams should decide.
+topic: leadership
+published: 2025-11
+updated: 2026-09
 ---
 
-## Quick Navigation
-- [The Chief AI Officer Paradox](#the-chief-ai-officer-paradox)
-- [Why Centralized AI Leadership Creates Bottlenecks](#why-centralized-ai-leadership-creates-bottlenecks)
-- [The Distributed Model: Enable, Don't Control](#the-distributed-model-enable-dont-control)
-- [Intelligence Transcends Hierarchy](#intelligence-transcends-hierarchy)
-- [How to Distribute Decision-Making With Guardrails](#how-to-distribute-decision-making-with-guardrails)
-- [The Role of the Central AI Team: Enablement, Not Control](#the-role-of-the-central-ai-team-enablement-not-control)
-- [Getting Started: Transitioning to Distributed AI Leadership](#getting-started-transitioning-to-distributed-ai-leadership)
+Hiring a Chief AI Officer gives an organization someone accountable for AI. It can also create a queue. If every AI decision has to pass through one person or one central team, decisions wait, and they get made by people a long way from the problem.
 
-## The Chief AI Officer Paradox
+The failure mode looks something like this. The CAIO spends their days in executive meetings, reviewing proposals from business units they don't know well and writing frameworks that don't match how the work gets done. Meanwhile an engineering team has quietly built AI workflows that solve real problems, customer success has automated its routing, and a finance analyst has built a forecasting model that beats the one the central team commissioned. The more AI decisions get centralized, the less of what people know actually shapes them.
 
-Your organization just hired a Chief AI Officer. The board is pleased. The press release went out. Analysts nodded approvingly. There's finally someone accountable for AI strategy.
+## Where centralization breaks
 
-Six months later, nothing has changed.
+The first problem is distance. By the time a frontline problem has travelled up the hierarchy, been turned into requirements, queued for a central team, built and sent back, the original problem has often changed, or the team has built a spreadsheet workaround. A support team that spots a pattern in its tickets can often test a fix in weeks. Routed through the centre, the same idea competes for roadmap space and gets specified by someone who has never read the tickets.
 
-The CAIO spends their days in executive meetings, reviewing proposals they lack context to evaluate, creating frameworks disconnected from operational reality. Meanwhile, your engineering team is quietly building AI workflows that solve actual problems. Your customer success team has automated response routing. Your finance analyst built a forecasting model that outperforms the vendor solution the CAIO commissioned.
+The second is the approval bottleneck. A central reviewer looking at ten proposals from ten business units can't know which customer model will actually improve retention, or which supply chain change accounts for real-world constraints. Proposals end up ranked by who asked first, who has a sponsor and whose project fits this quarter's story.
 
-This is the Chief AI Officer paradox: the more you centralize AI decision-making, the less intelligence flows through your organization.
+The third is what I think of as an innovation tax. Every experiment needs a business case, every business case needs a projected return, and every projection rests on assumptions about exactly what the experiment was meant to find out. The process ends up funding only large, defensible projects, which is the wrong portfolio for a technology this new.
 
-Consider the data. CEOs report 78% confidence in their AI strategies, while mid-level managers (the people closest to operational problems) report only 28% confidence. This gap reveals more than a communication problem. Organizations treating AI as a strategy to execute from the center consistently underperform those enabling distributed decision-making with appropriate guardrails.
+The predictable result is [shadow AI](/blog/shadow-ai-organizational-intelligence). Teams stop submitting ideas and use whatever tools they can get. MIT's Project NANDA found that only 40% of the companies it studied had bought an official LLM subscription, while workers at more than 90% of them [used personal AI tools for work](https://mlq.ai/media/quarterly_decks/v0.1_State_of_AI_in_Business_2025_Report.pdf). I read that less as a compliance failure than as a sign that the organization's design is out of step with how value gets created.
 
-Harvard Business Review's research points to this: "Your AI Strategy Needs More Than a Single Leader." Yet most organizations still build AI programs as if intelligence flows downward through hierarchy rather than emerging from the edges where problems meet expertise.
+## What the evidence says so far
 
-[↑ Back to top](#quick-navigation)
+The same NANDA research, based on 52 organizational interviews and 153 survey responses, found that the organizations getting results "decentralize implementation authority but retain accountability", and that the most successful buyers "sourced AI initiatives from frontline managers, not central labs". Top-performing mid-sized companies took about 90 days to go from pilot to full implementation; large enterprises took nine months or more. The authors describe their figures as directionally accurate, based on interviews rather than company reporting, and I'd treat them that way. Still, the early evidence points the same way as the argument.
 
----
+## What stays central and what moves out
 
-## Why Centralized AI Leadership Creates Bottlenecks
+The principle is local autonomy within boundaries the centre defines. What stays central:
 
-Centralized AI leadership fails for three reasons rooted in how organizations actually function.
+- Risk thresholds: what counts as high-risk AI use, such as customer-facing decisions, automated actions above a set dollar amount, or processing sensitive data. High-risk cases get central review. Low-risk experiments don't.
+- Architectural standards: approved platforms, API patterns, data access controls and security requirements. Teams can build within them without asking, and deviations get reviewed.
+- Vendor evaluation, training and audit, so the organization stays coherent.
 
-### Distance from Ground Truth
+What moves out to the teams closest to the work:
 
-Information loss is inevitable in top-down AI strategy. By the time a frontline problem travels up the hierarchy, gets translated into business requirements, flows through a central AI team, and returns as a solution, the original problem has often evolved or been worked around.
+- Choosing which problems to solve.
+- Designing solutions on the approved platforms.
+- Running low-risk experiments without approval, as long as they follow the standards.
+- Building, deploying and improving within their own domain, and measuring results with shared methods.
 
-Consider a customer service team recognizing patterns in support tickets that could predict quality problems. In a centralized model, this insight must be recognized, compete for roadmap attention, be specified by someone unfamiliar with the nuance, be built by a distant team, and deployed back to the team that likely built a spreadsheet workaround months ago.
+The test I'd apply to the whole setup is whether the governed path is also the easiest one. If using approved tools is harder than shadow IT, governance fails. Practical, threshold-based rules of this kind are what I mean by [governance without theatre](/blog/ai-governance-without-theater).
 
-In a distributed model, that team identifies the pattern, tests a solution, validates the approach, and scales it with central enablement providing tools and guidance. The solution emerges in weeks instead of quarters.
+## What the central team does instead
 
-### The Approval Bottleneck
+If the central team isn't building every solution or approving every decision, its job changes. It builds the platform that makes the governed path easy: approved model access with cost controls, frameworks for common patterns, deployment with security built in, data access that enforces permissions, and monitoring. It documents patterns and shares them, so that when three teams solve the same problem separately, the solution gets abstracted once and reused. It designs review that scales, with clear thresholds, a fast track for common patterns, self-service risk assessments for standard cases and audits that sample rather than inspect everything. And it builds capability through training and communities of practice.
 
-Only 13% of senior business leaders feel confident making AI decisions without technical help. This is often cited as evidence that organizations need more AI expertise at the top. What if the opposite is true? What if it demonstrates that decision-making authority and domain expertise are misaligned?
+The central team ends up as a platform team, a standards body, a risk function and a community organizer, rather than a development shop or an approval committee.
 
-When every AI initiative requires approval from a central authority who lacks context, you create a queue determined by who asked first, who has executive sponsorship, or whose project aligns with this quarter's narrative.
+If ideas come from the edges, rewards have to reach the edges too. Organizations that keep innovation rewards for senior roles risk losing the junior people with the best ideas, which is why I think it's worth [rewarding ideas regardless of rank](/blog/compensation-ai-era).
 
-The bottleneck isn't just speed. It's quality. A CAIO reviewing ten proposals across different business units cannot possibly have the domain expertise to evaluate which customer segmentation model will actually drive retention, which supply chain optimization will account for real-world constraints, or which underwriting criteria will balance risk and growth.
+## Moving from central to distributed
 
-### The Innovation Tax
+I'd do it in five steps. Map how AI decisions get made today: who approves projects, allocates budget, chooses tools, assesses risk and measures success, and where decisions wait or context gets lost. Define the risk thresholds explicitly. Build the enabling infrastructure before handing over decisions. Pilot with two or three business units for a quarter, giving them platforms, training, delegated low-risk decisions and an [AI budget](/blog/ai-budget-democratizing-innovation), and measure both what they build and how decisions flow. Then expand what worked.
 
-Centralized governance imposes an innovation tax: the overhead of translating between business reality and central planning.
+This takes quarters rather than weeks, because you're changing who is trusted to decide.
 
-Every experiment requires a business case. Every business case requires projected ROI. Every ROI projection requires assumptions about a future state that experimentation is meant to discover. The process designed to ensure responsible resource allocation instead ensures that only large, defensible initiatives get funded, precisely the wrong portfolio strategy for an emerging technology.
-
-The predictable result: [shadow AI](/blog/shadow-ai-organizational-intelligence) proliferates. Teams don't submit ideas to governance committees. They just use Claude or ChatGPT to prototype. This isn't a compliance problem to solve through policy. It's a signal that organizational design is misaligned with how value is created.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## The Distributed Model: Enable, Don't Control
-
-Successful AI adoption requires distributed leadership, but distribution without structure creates chaos. The question becomes: where should decision-making authority reside? At the intersection of domain expertise and problem context.
-
-This reframes what central AI teams do.
-
-**Traditional model:** Central AI team builds solutions for business units.
-
-**Distributed model:** Central AI team enables business units to build solutions.
-
-In the traditional model, the central team becomes a bottleneck disguised as a service organization. In the distributed model, the central team scales through multiplication.
-
-### What This Looks Like in Practice
-
-Product teams decide which ML models to deploy in their applications, within architectural standards and risk parameters set centrally. Customer-facing teams design AI-assisted workflows using platforms and tools provided centrally. Operational teams build automation for their domains, with central teams providing infrastructure and review for high-risk decisions. Finance and legal teams establish boundaries but don't approve individual experiments below materiality thresholds.
-
-The central AI organization shifts from building AI to building the substrate on which others build: platforms, standards, risk frameworks, architectural patterns, and capability development.
-
-Organizations enabling distributed decision-making with guardrails consistently scale AI adoption faster. They produce more experiments, learn faster from failures, and scale successes more quickly because the people closest to problems can solve them.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## Intelligence Transcends Hierarchy
-
-Organizational intelligence doesn't flow downward through hierarchy. It emerges from the interaction between expertise, context, and authority. When these align, decisions improve. When they're separated (expertise at the edges, context in the middle, authority at the top), decision quality degrades.
-
-AI initiatives require technical expertise, domain expertise, operational context, strategic context, and risk assessment. No single role possesses all five. The Chief AI Officer has strategic context. The ML engineer has technical expertise. The business unit leader has domain knowledge. The frontline team has operational reality.
-
-In hierarchical models, organizations funnel all five through a single decision point, degrading at least three inputs. Distributed models design decision-making processes that integrate expertise where it exists.
-
-### Rewarding Intelligence Wherever It Emerges
-
-If intelligence transcends hierarchy, compensation structures might need to reflect this. Organizations limiting innovation rewards to senior roles risk losing junior team members with the best ideas.
-
-The principle: reward the value created, not the title of the creator. When a junior analyst builds an automation saving 200 hours monthly, what if the financial reward reflected the value generated rather than their org chart position?
-
-This creates systems design implications. Distributed innovation requires distributed incentives. Merit-based contribution rewards can create positive feedback loops: more people experiment, more experiments produce learnings, organizational intelligence increases. The alternative risks negative feedback: only senior leaders get rewarded, so only they propose initiatives, only large projects get funded, most fail due to distance from operational reality, confirming AI is risky, justifying tighter central control.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## How to Distribute Decision-Making With Guardrails
-
-The objection to distributed AI leadership is always risk. Won't this create security vulnerabilities, compliance violations, bias problems, and architectural chaos?
-
-Perhaps, if distribution means abdication. But what if distribution means designed delegation with appropriate constraints?
-
-The approach: maximize local autonomy within globally defined boundaries.
-
-### What Remains Centralized
-
-Risk frameworks define high-risk AI use (customer-facing decisions, automated actions above dollar thresholds, processing sensitive data). High-risk cases require central review. Low-risk experimentation doesn't.
-
-Architectural standards establish approved platforms, API patterns, data access controls, and security requirements. Teams can build within these standards without approval. Deviations require review.
-
-Vendor evaluation, capability development (training, best practices, communities of practice), and governance mechanisms (audit, monitoring) remain centralized to ensure consistency and prevent fragmentation.
-
-### What Gets Distributed
-
-Teams closest to operational reality select problems to solve. Domain experts design solutions using centrally-provided platforms and patterns. Low-risk testing doesn't require approval, only adherence to standards. Teams build, deploy, and iterate within their domains, measuring impact using centrally-provided frameworks tailored to their context.
-
-This enables [democratizing innovation through trust](/blog/ai-budget-democratizing-innovation). Instead of top-down budget allocation, distributed teams have AI budgets (time, tools, spending authority) to solve their own problems within defined guardrails.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## The Role of the Central AI Team: Enablement, Not Control
-
-If the central AI team isn't building solutions or approving every decision, what do they do? Everything that scales expertise and ensures coherence without creating bottlenecks.
-
-### Platform and Infrastructure
-
-Provide shared platforms that make AI development faster, safer, and cheaper than building from scratch: approved LLM APIs with cost controls, development frameworks for common patterns, deployment infrastructure with built-in security, data access layers that enforce permissions, monitoring for AI systems.
-
-The goal: make the governed path also the easiest path. If using approved tools is harder than shadow IT, governance fails.
-
-### Standards and Patterns
-
-Document architectural patterns, decision frameworks, and best practices as leverage, not compliance documents. When three teams independently solve the same problem, the central team abstracts and shares the pattern. When a team discovers a failure mode, the central team disseminates the learning.
-
-### Risk Management and Review
-
-Build review processes that scale through clear thresholds for what requires review, fast-track reviews for common patterns, self-service risk assessments for standard use cases, and audit mechanisms that sample and validate rather than inspect every decision.
-
-The best [AI governance frameworks](/blog/ai-governance-without-theater) activate when thresholds are crossed, not as constant friction.
-
-### Capability Development and Strategic Coordination
-
-Scale expertise through training, communities of practice, and internal certification to increase collective AI literacy. Identify opportunities for shared investment, prevent redundant work, facilitate knowledge sharing between teams solving similar problems.
-
-The central AI team becomes a platform, standards body, risk function, and community organizer, not a development shop or approval committee.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## Getting Started: Transitioning to Distributed AI Leadership
-
-Moving from centralized to distributed AI leadership requires developing new organizational capabilities.
-
-Consider these steps:
-
-**Map current decision rights:** Document how AI decisions currently get made. Who approves projects? Allocates budget? Decides which tools to use? Assesses risk? Measures success? Where do decisions wait? Where does context get lost? Where do people with expertise lack authority?
-
-**Define risk boundaries:** Establish clear thresholds for high-risk AI use. Customer-facing decisions above what impact threshold? Automated actions above what financial threshold? Processing of what data categories? Everything below these thresholds might be delegated. Everything above might require central review.
-
-**Build enablement infrastructure:** Distribute capability alongside decision-making. Consider approved platforms and tools, documentation and patterns, training and certification, self-service risk assessment, monitoring and audit capabilities. Starting small with one business unit can reveal what breaks, what scales, and what needs centralization.
-
-**Pilot distributed ownership:** Select 2-3 business units to pilot with budget authority, platforms, training, and delegated low-risk decision-making. Measure both outcomes (what gets built) and process (how decisions flow). Run for one quarter, collect learnings, iterate.
-
-**Scale what works:** Expand successful patterns to more business units as confidence builds and platforms mature.
-
-This transition takes quarters, not weeks. You're changing how your organization thinks about intelligence, expertise, and authority.
-
-## Related Posts
-
-- [Compensation in the AI Era: Rewarding Innovation at Every Level](/blog/compensation-ai-era)
-- [The AI Budget: Democratizing Innovation Through Trust](/blog/ai-budget-democratizing-innovation)
-- [Shadow AI to Organizational Intelligence](/blog/shadow-ai-organizational-intelligence)
-- [AI Governance Without Theater](/blog/ai-governance-without-theater)
-
-## TL;DR
-
-**The Pattern:** CEOs report 78% confidence in AI strategies while mid-level managers report 28%. Only 13% of senior leaders feel confident making AI decisions without technical help. Organizations treating AI as top-down strategy consistently see fewer measurable results.
-
-**The Question:** What if intelligence doesn't flow downward through hierarchy but emerges where domain expertise, operational context, and problem proximity intersect?
-
-**The Approach:** Distribute decision-making with guardrails. Central teams provide platforms, standards, risk frameworks, and enablement. Business units select problems, design solutions, experiment, and implement. High-risk decisions require review; low-risk experimentation doesn't. Compensation might reward value created regardless of title.
-
-**The Observation:** Organizations enabling distributed AI leadership scale faster because people closest to problems have authority to solve them, supported by central infrastructure and governance.
-
-**Starting Points:**
-1. Map current decision rights and bottlenecks
-2. Define clear risk thresholds
-3. Build enablement infrastructure
-4. Pilot distributed ownership with 2-3 teams
-5. Scale what works
-
-The Chief AI Officer alone may not be the solution to AI adoption. Consider distributed intelligence.
+A Chief AI Officer is still useful in this model. The job I'd give them is building the platform and the guardrails, and I'd judge them partly by how many decisions they no longer have to make.

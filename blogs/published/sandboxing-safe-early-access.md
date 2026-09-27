@@ -1,253 +1,54 @@
-# Sandboxing: Safe Early Access to AI Tools
-
-**Subtitle:** Building the containers where innovation happens securely
-**Target Length:** 1800-2200 words
-**Cluster:** Governance & Implementation
-**Status:** Complete
-
+---
+title: Safe early access to new AI tools
+description: The bigger risk is often the year spent deciding whether a tool is safe. A sandbox lets people try it in weeks, with the risk contained.
+topic: experimentation
+published: 2025-11
+updated: 2026-09
 ---
 
-## Quick Navigation
-- [The Real Threat Landscape](#the-real-threat-landscape)
-- [The Analysis Paralysis Trap](#the-analysis-paralysis-trap)
-- [What Sandboxing Actually Means](#what-sandboxing-actually-means)
-- [The Reality: Organizational Size Doesn't Matter](#the-reality-organizational-size-doesnt-matter)
-- [How Fast Can You Actually Move?](#how-fast-can-you-actually-move)
-- [Connecting to the Bigger Picture](#connecting-to-the-bigger-picture)
-- [What You Risk by Moving Slow](#what-you-risk-by-moving-slow)
-- [The Mindset Shift](#the-mindset-shift)
-- [Getting Started](#getting-started)
-- [The Bottom Line](#the-bottom-line)
+When a genuinely useful AI tool appears, most large organizations respond with a sequence: identify it, run a security review, go through procurement, plan a pilot, run the pilot, evaluate it, plan a rollout. Every step has a good reason behind it. Added together, by my rough estimate they take somewhere between seven months and a year, and by the end the tool has moved on two versions, a better one has appeared, or the team that wanted it has found a workaround. I've watched this play out many times.
 
-Here's the existential risk nobody's talking about: not the AI itself, but the year you spend deciding whether it's safe enough to try.
+For a lot of organizations, I think the bigger risk is the year spent deciding whether a tool is safe enough to try.
 
-I've watched this play out dozens of times. A new tool drops (something genuinely useful like ChatGPT, Claude, or the latest multimodal AI) and the race begins. Not to implement it. To assess it. Risk committees form. Security reviews get scheduled. Procurement processes kick in. Months pass.
+## The risks are real
 
-By the time you're done evaluating, your competitors have already tested it, learned from it, and moved on to the next thing.
+The concerns behind those reviews are legitimate. In 2023, Samsung employees in its semiconductor business put [source code and a transcribed internal meeting into ChatGPT](https://www.ciodive.com/news/Samsung-Electronics-ChatGPT-leak-data-privacy/647137/) in three separate incidents, and the company responded by capping how much could be uploaded in a single prompt. As tools start acting on documents and web pages instead of just answering questions, [prompt injection](https://genai.owasp.org/llmrisk/llm01-prompt-injection/) (crafted input that changes what a model does) becomes a real concern as well. Attackers are adapting too: IBM's 2026 Cost of a Data Breach study found that [one in four malicious breaches was AI-enabled](https://newsroom.ibm.com/2026-07-29-ibm-study-one-in-four-malicious-breaches-are-ai-enabled,-costing-companies-6-million-on-average), and more than 20% of organizations reported a breach targeting AI models or applications.
 
-The problem isn't that organizations are being careful. The problem is they're being careful in a way that guarantees they'll always be six months behind.
+Blocking tools moves those risks somewhere you can't see. MIT's Project NANDA found that while only 40% of the companies it studied had bought an official LLM subscription, workers at more than 90% of them [used personal AI tools for work](https://mlq.ai/media/quarterly_decks/v0.1_State_of_AI_in_Business_2025_Report.pdf). That is how [shadow AI](/blog/shadow-ai-organizational-intelligence) grows, and a long evaluation cycle feeds it.
 
-## The Real Threat Landscape
+## Ask a different question
 
-Let's be clear: the concerns are legitimate.
+Instead of asking whether a tool is safe enough to allow, I'd ask how to create an environment where people can safely test it. A parent deciding whether a ten-year-old can use the internet doesn't have to choose between no and anything goes. There's a kids' account with filters and some monitoring. The child gets to explore, and the parent gets some sleep.
 
-**Prompt Injection** is real. An employee pastes the wrong data into a chat interface, and suddenly your proprietary information is being used to train someone else's model. Or worse, it's leaked entirely. AI security breaches have increased 49% year-over-year, and the attack surface is expanding faster than most security teams can adapt.
+An AI sandbox works the same way: an isolated environment with controlled data, limited network access and clear boundaries, so that if something goes wrong, the damage stays contained. It needs five things:
 
-**Data Leakage** isn't theoretical. In April 2023, Samsung experienced three separate incidents in just 20 days where employees leaked sensitive code and internal meeting data through ChatGPT. Three incidents. Twenty days. One company. When employees use public AI tools without thinking through what they're sharing, you lose control of your competitive advantage. Patents get disclosed before filing. Strategy docs end up in training data. Customer information gets exposed.
+1. Data classification enforced by the infrastructure. Public data can go in freely, customer personal information can't, and internal documents depend on the tool and the use. The environment applies the rules, so nobody has to rely on people being careful.
+2. Network isolation. The sandbox can't reach production systems or sensitive internal networks, so a misbehaving tool can't touch anything that matters.
+3. Logging. Which tools were used, what data went in and what came out, so that anything that goes wrong can be traced.
+4. Disposable environments. Spin one up for a test and tear it down afterwards, so risk doesn't accumulate.
+5. A fast path to production. When an experiment shows real value, there's a known route to deploy it properly, with the right controls.
 
-**Compliance Violations** can be catastrophic. GDPR, HIPAA, SOC 2: these aren't suggestions. One wrong API call with the wrong data classification and you're facing regulatory action.
+The building blocks are standard cloud features. Microsoft, for example, documents how to [put its Foundry AI platform behind a private endpoint](https://learn.microsoft.com/en-us/azure/foundry/how-to/configure-private-link) so traffic stays on your own network. The goal is to give people the real tools inside the boundary. A degraded internal copy frustrates everyone, and for most teams [piloting a bought tool](/blog/build-vs-buy-agentic-ai) is the better first move.
 
-These are real risks. I'm not dismissing them.
+## Why large organizations are slower at this
 
-But here's what I've learned: the cost of being too slow is starting to outweigh the cost of these risks. And organizations haven't adapted their risk frameworks to account for that.
+You'd expect big organizations, with more money and bigger teams, to be better at this. Often they're worse, because the knowledge needed is spread across specialists. The person who understands AI tools doesn't understand compliance. The compliance person doesn't understand the infrastructure. The infrastructure person doesn't understand procurement. Each of them is doing their own job properly, and the organization still can't move.
 
-[↑ Back to top](#quick-navigation)
+What works, in my view, is a small cross-functional team (security, infrastructure, compliance and someone who actually uses the tools) with a mandate to get safe experimentation running in a month.
 
-## The Analysis Paralysis Trap
+## Eight weeks instead of a year
 
-Here's the reality: 87% of AI projects never reach production. Of those that do launch, 95% fail to deliver meaningful ROI. The reasons vary, but one pattern emerges consistently: organizations spend so long evaluating and planning that by the time they're ready to deploy, the tool has evolved, the use case has changed, or the competitive landscape has shifted entirely.
+A realistic plan, if both speed and safety matter:
 
-The traditional enterprise approach to new technology:
-1. **Identify** the tool (2-4 weeks)
-2. **Security review** (4-8 weeks)
-3. **Procurement** (6-12 weeks)
-4. **Pilot planning** (2-4 weeks)
-5. **Pilot execution** (8-12 weeks)
-6. **Evaluation** (4-8 weeks)
-7. **Rollout planning** (4-8 weeks)
+- Week 1: choose the platform, write the data classification rules and decide how network isolation will work.
+- Weeks 2 and 3: build the environment, set up access controls and logging, and document how it works.
+- Week 4: pilot with five to ten people who have real use cases, using three to five pre-approved tools.
+- Weeks 5 to 8: watch, fix what breaks, and add people and tools based on what you learn.
 
-Total: 7-14 months.
+Two months from decision to people experimenting safely is achievable, and the organizations that move quickly already work at something like that pace. In the NANDA research, top-performing mid-sized companies took about 90 days to go from pilot to full implementation, while large enterprises took nine months or longer.
 
-The AI landscape moves in weeks, not months. By the time you're done, the tool you evaluated is two major versions behind, or a better competitor emerged, or your use case evolved.
+A test I like: in November 2025, Edison Scientific launched [Kosmos](https://edisonscientific.com/news/announcing-kosmos), an AI research agent that runs for up to 12 hours and cost $200 a run at launch. Independent scientists judged [79.4% of the statements in its reports to be accurate](https://arxiv.org/abs/2511.02824). Could a scientist in your organization have tried it that month? If the answer is no, the delay is in your process.
 
-Here's a real example: Kosmos, a scientific research agent, just launched claiming it can accomplish six months of research work in one day, achieving 79.4% accuracy on complex scientific tasks. It costs around $200 per run and can take up to 12 hours to complete a comprehensive research project. How impossible would it be to get approval to test this in a large organization within a week?
+Once people are experimenting, two more things matter: money to spend on tools, which I cover in [an AI budget for every employee](/blog/ai-budget-democratizing-innovation), and a way to [capture what people learn](/blog/duplicated-solution-problem) so that five teams don't solve the same problem separately.
 
-You'd need budget approval. Security review. Compliance sign-off. Infrastructure setup. The procurement process alone for new enterprise software typically takes 3-18 months. By the time you're ready, someone at a competitor already ran it five times, learned what works, and moved forward.
-
-This isn't hypothetical. This is happening right now.
-
-[↑ Back to top](#quick-navigation)
-
-## What Sandboxing Actually Means
-
-Here's the shift: instead of asking "Is this tool safe enough to allow?", ask "How do we create an environment where employees can safely test this?"
-
-Sandboxing isn't a single technology. It's an architectural approach to enabling experimentation without organizational risk.
-
-**The Core Concept:**
-Create isolated environments where employees can access AI tools with controlled data, limited network access, and clear boundaries. If something goes wrong, the blast radius is contained.
-
-Think of it like this: instead of deciding whether your 10-year-old should be allowed to use the internet, you set up a kids' account with parental controls, filtered access, and monitoring. They get to explore. You get to sleep at night.
-
-### Sandbox Architecture (High-Level)
-
-Leading organizations are implementing sandbox architectures using a variety of approaches. AWS offers Bedrock Studio, a managed environment for safely testing AI models with built-in guardrails and data controls. Azure provides Private Link for creating isolated network connections to AI services. At the infrastructure level, technologies like gVisor (Google's container runtime sandbox) and Firecracker (AWS's lightweight virtualization) enable organizations to create secure, isolated execution environments that contain risk while enabling rapid experimentation.
-
-The specifics vary by organization size and technical maturity, but the principles remain consistent.
-
-A solid AI sandbox typically includes:
-
-**1. Data Classification & Access Control**
-Not all data is equal. Public data? No restrictions. Customer PII? Hard no. Strategy docs? Depends on the tool and use case.
-
-The key: pre-classify data and enforce access rules at the infrastructure level, not by relying on employees to "be careful."
-
-**2. Network Isolation**
-Sandboxed environments shouldn't have direct access to production systems or sensitive internal networks. If an AI tool gets compromised or misbehaves, it can't reach anything that matters.
-
-**3. Audit Trails**
-Everything that happens in the sandbox gets logged. What tools were used? What data was accessed? What outputs were generated? If something goes wrong, you can trace it.
-
-**4. Disposable Environments**
-Spin up a sandbox for testing, use it, tear it down. No persistent state means no long-term risk accumulation.
-
-**5. Clear Escalation Paths**
-If an experiment shows real value, there's a fast-track process to move it from sandbox to production with appropriate controls.
-
-This isn't science fiction. This is how leading organizations are tackling this problem right now.
-
-[The AI Budget: Democratizing Innovation Through Trust](/blog/ai-budget-democratizing-innovation) - because sandboxing answers the "how" but not the "why bother." The AI Budget blog explains why giving employees freedom to experiment is essential.
-
-[↑ Back to top](#quick-navigation)
-
-## The Reality: Organizational Size Doesn't Matter
-
-You might think: "This is for big enterprises with massive budgets."
-
-Not true.
-
-This approach works for any organization (10 people or 10,000). The principles scale.
-
-Small organizations often have it easier: fewer compliance requirements, flatter approval structures, less legacy infrastructure. You can spin up a sandboxed environment in AWS, Azure, or GCP in an afternoon.
-
-But here's the interesting paradox: as organizations get larger, they often get **worse** at this, not better.
-
-Larger budgets, more resources, bigger teams dedicated to innovation, yet the innovation slows down. Why?
-
-Because scope narrows. Teams become specialists. The person who understands AI tools doesn't understand compliance. The compliance person doesn't understand infrastructure. The infrastructure person doesn't understand procurement. Everyone stays in their lane.
-
-It's like watching a kid explore the world: they make strange connections, try weird combinations, and sometimes stumble into brilliant insights. As we age, we lose that. Our view narrows. We stop seeing the unexpected possibilities.
-
-The same phenomenon plays out in organizations. As they grow and specialize, the ability to move quickly on new opportunities diminishes. This partly explains why 87% of AI projects never reach production: the organizational machinery designed to reduce risk ends up creating a different kind of risk (irrelevance).
-
-The solution? Dedicated cross-functional teams with a mandate: get safe AI experimentation running, fast. Not in a year. In a month.
-
-[↑ Back to top](#quick-navigation)
-
-## How Fast Can You Actually Move?
-
-Here's what a realistic timeline looks like when you prioritize speed and safety:
-
-**Week 1:** Identify sandbox platform, define data classification rules, map out network isolation approach.
-
-**Week 2-3:** Build the sandbox environment, set up access controls and audit logging, document the process.
-
-**Week 4:** Pilot with 5-10 employees who have real use cases. Give them access to 3-5 pre-approved tools. Let them experiment.
-
-**Week 5-8:** Monitor, iterate, expand to more employees and tools based on what you learn.
-
-Two months from decision to scaled experimentation. That's the pace you need.
-
-Compare that to 12-14 months of traditional procurement. Which organization do you think wins in the long run?
-
-[↑ Back to top](#quick-navigation)
-
-## Connecting to the Bigger Picture
-
-Sandboxing isn't just about security. It's about creating the conditions for [The Duplicated Solution Problem: Centralizing Decentralized Innovation](/blog/duplicated-solution-problem) to be solved.
-
-When employees across your organization can safely experiment with AI tools, they start finding solutions. Some of those solutions are brilliant. Some are failures. Both are valuable.
-
-But if you don't have a way to capture and share those learnings, you end up with the same problem solved five times in five different divisions, with no one aware of each other's work.
-
-The sandbox enables the experiment. The [The AI Budget](/blog/ai-budget-democratizing-innovation) funds it. The [The Duplicated Solution Problem: Centralizing Decentralized Innovation](/blog/duplicated-solution-problem) ensures the organization learns from it.
-
-This is how intelligent organizations operate.
-
-[↑ Back to top](#quick-navigation)
-
-## What You Risk by Moving Slow
-
-Let's get specific about what you lose by sticking with 12-month procurement cycles:
-
-**1. Competitive Disadvantage**
-Your competitors are learning faster. They're testing tools, finding efficiencies, automating workflows. You're still in month six of a security review.
-
-**2. Employee Frustration**
-Your best people know these tools exist. They see the potential. When you tell them "we're evaluating it," they hear "we don't trust you" or "we don't care about innovation." Some of them leave.
-
-**3. Lost Opportunities**
-The AI landscape is moving fast. Tools that are cutting-edge today are table stakes in six months. If you're always evaluating, you're never leading.
-
-**4. Organizational Debt**
-The longer you wait, the further behind you fall. Catching up becomes exponentially harder. You're not just implementing the tool anymore; you're changing culture, retraining employees, and overcoming skepticism that's built up from years of slow movement.
-
-The data supports this concern: with AI security breaches increasing 49% year-over-year, organizations face a double bind. Move too slowly, and you fall behind competitors. Move too quickly without proper safeguards, and you expose yourself to significant security risks. Sandboxing solves this dilemma by enabling speed with controlled risk.
-
-[↑ Back to top](#quick-navigation)
-
-## The Mindset Shift
-
-Here's the uncomfortable truth: perfect safety is impossible.
-
-You can't eliminate all risk. You can only manage it.
-
-The question isn't "Is this tool 100% safe?" The question is "Can we create an environment where the benefits of experimentation outweigh the contained risks?"
-
-And increasingly, the answer is yes.
-
-Sandboxing isn't about eliminating risk. It's about making risk acceptable, measurable, and contained so that innovation can happen at the speed the market demands.
-
-[Custom Chat Interfaces: A Terrible Decision?](/blog/custom-chat-interfaces) - because sandboxing is about enabling access to real tools, not building degraded internal versions that frustrate employees.
-
-[↑ Back to top](#quick-navigation)
-
-## Getting Started
-
-If you're reading this and thinking "we should do this," here's what to do next:
-
-1. **Identify your biggest pain point**
-   What AI tool or use case do employees keep asking about? Start there.
-
-2. **Assemble a cross-functional team**
-   Security, infrastructure, compliance, and someone who actually understands the AI tools. Get them in a room.
-
-3. **Define your sandbox scope**
-   What data can be used? What tools will you allow? What's the approval process for adding more?
-
-4. **Build it in a month, not a year**
-   Use existing cloud infrastructure. Don't over-engineer it. Get something running, learn from it, iterate.
-
-5. **Measure and expand**
-   Track what's being used, what's working, what's not. Expand based on real data, not theoretical concerns.
-
-This isn't a moonshot. It's a practical approach to a real problem.
-
-[↑ Back to top](#quick-navigation)
-
-## The Bottom Line
-
-The organizations that thrive in the AI era won't be the ones with perfect governance. They'll be the ones that figured out how to move fast while staying safe.
-
-Sandboxing is how you do that.
-
-Not by locking things down. Not by moving at a snail's pace. By creating the infrastructure that lets your people experiment, learn, fail, and innovate, within boundaries you control.
-
-The existential risk isn't the AI. It's the year you spend deciding whether to try it.
-
----
-
-**Related Posts:**
-- [The AI Budget: Democratizing Innovation Through Trust](/blog/ai-budget-democratizing-innovation)
-- [The Duplicated Solution Problem: Centralizing Decentralized Innovation](/blog/duplicated-solution-problem)
-- [Custom Chat Interfaces: A Terrible Decision?](/blog/custom-chat-interfaces)
-- [Siloed Information: How SAAS Companies Protect Their Moat](/blog/siloed-information-saas-moat)
-
----
-
-**TLDR:** Traditional enterprise approval processes (12-14 months total) guarantee organizations will be 6+ months behind competitors. The cost of moving slowly outweighs the risks of controlled experimentation. Sandboxing solves this by isolating employee AI access: pre-classify data, limit network connectivity, audit all actions, spin up disposable environments, and create fast-track escalation paths to production. Organizations can move from "let's evaluate this tool" to "100 employees experimenting safely with it" in 2 months using AWS Bedrock Studio, Azure Private Link, or gVisor/Firecracker at container level. The existential risk isn't AI; it's the year you spend deciding to try it.
-
----
-
-**Published:** November 2025
-**Word Count:** ~2150 words
+No setup makes AI tools perfectly safe. A sandbox gives you risk you can see and contain, which beats the risk you can't see. If you want a first step, find the AI tool employees ask about most often, put the four people who need to agree in a room, and give them a month.

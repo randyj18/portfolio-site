@@ -2,7 +2,7 @@
 // Content checks for blog posts and research notes.
 // Run: npm run check:content        (exit code 1 on errors, warnings don't fail)
 //
-// Errors: missing front matter fields, unknown topic/theme, broken internal links,
+// Errors: invalid or missing front matter, unknown topic/theme, broken internal links,
 //         em or en dashes, legacy boilerplate (Quick Navigation, Back to top, TLDR, H1 in body).
 // Warnings: phrases that read as AI filler, US spellings, link counts outside 2-4, long posts.
 
@@ -23,6 +23,10 @@ const themeSlugs = [...read('lib/research.ts').matchAll(/\{\s*slug:\s*'([^']+)'/
 const blogSlugs = new Set(listMd('blogs/published'));
 const researchSlugs = new Set(listMd('research/published'));
 
+const EM_DASH = new RegExp(String.fromCharCode(0x2014), 'g');
+const EN_DASH = new RegExp(String.fromCharCode(0x2013), 'g');
+const ANY_DASH = new RegExp('[' + String.fromCharCode(0x2013, 0x2014) + ']');
+
 const BANNED = [
   'delve', 'landscape', 'tapestry', 'navigate the complexit', "in today's rapidly", 'rapidly evolving',
   'game-changer', 'game changer', 'game-changing', 'unlock', 'robust', 'seamless', 'harness', 'empower',
@@ -40,10 +44,24 @@ const US_SPELLINGS = [
   'savior', 'odor', 'vapor', 'rigor', 'harbor', 'tumor', 'armor', 'parlor', 'flavor', 'humor',
 ];
 const NOT_X_ITS_Y = /\b(?:is|isn't|is not|are|aren't|are not)\b[^.?!\n]{0,60}[.,;:]\s*(?:it's|it is|they're|they are|this is)\b/gi;
+const FRONT_MATTER = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/;
 
 let errors = 0;
 let warnings = 0;
 const report = [];
+
+// Parse front matter; on invalid YAML, remember the error and fall back to the raw body.
+const yamlErrors = new Map();
+function parse(file) {
+  const raw = read(file);
+  try {
+    return matter(raw);
+  } catch (e) {
+    yamlErrors.set(file, e.reason || e.message);
+    const m = FRONT_MATTER.exec(raw);
+    return { data: {}, content: m ? m[2] : raw };
+  }
+}
 
 function checkBody(file, body, { section }) {
   const msgs = [];
@@ -54,14 +72,16 @@ function checkBody(file, body, { section }) {
   const prose = body.replace(/```[\s\S]*?```/g, '');
   const lower = prose.toLowerCase();
 
-  if (/—/.test(prose)) err(`em dash (—) x${(prose.match(/—/g) || []).length}`);
-  if (/–/.test(prose)) err(`en dash (–) x${(prose.match(/–/g) || []).length}`);
+  const em = prose.match(EM_DASH);
+  if (em) err(`em dash x${em.length}`);
+  const en = prose.match(EN_DASH);
+  if (en) err(`en dash x${en.length}`);
   if (/^#\s/m.test(prose)) err('H1 in body (the title comes from front matter)');
   if (/quick navigation/i.test(prose)) err('"Quick Navigation" block');
   if (/back to top/i.test(prose)) err('"Back to top" link');
   if (/\*\*TL;?DR/i.test(prose) || /^#+\s*TL;?DR/im.test(prose)) err('TLDR section');
   if (/\[LINK:/.test(prose)) err('unresolved [LINK: ...] placeholder');
-  if (/^\*\*(Published|Word Count|Cluster|Subtitle|Status|Target Length):\*\*/m.test(prose)) err('legacy metadata line in body');
+  if (/^\*\*(Published|Word Count|Cluster|Subtitle|Status|Target Length|Tier|Impact):\*\*/m.test(prose)) err('legacy metadata line in body');
 
   for (const m of prose.matchAll(/\]\((\/[^)\s]*)\)/g)) {
     const url = m[1].split('#')[0].replace(/\/$/, '');
@@ -102,6 +122,11 @@ function checkBody(file, body, { section }) {
 
 function checkFrontMatter(file, data, required, extra) {
   const msgs = [];
+  if (yamlErrors.has(file)) {
+    msgs.push(`  ERROR  invalid YAML front matter (${yamlErrors.get(file)}). Quote values that contain ": "`);
+    errors++;
+    return [...msgs, ...extra];
+  }
   for (const key of required) {
     if (data[key] === undefined || data[key] === '') {
       msgs.push(`  ERROR  missing front matter "${key}"`);
@@ -117,8 +142,8 @@ function checkFrontMatter(file, data, required, extra) {
     warnings++;
   }
   for (const [key, value] of Object.entries(data)) {
-    const s = typeof value === 'string' ? value : JSON.stringify(value);
-    if (/[–—]/.test(s ?? '')) {
+    const s = typeof value === 'string' ? value : JSON.stringify(value) ?? '';
+    if (ANY_DASH.test(s)) {
       msgs.push(`  ERROR  dash in front matter "${key}"`);
       errors++;
     }
@@ -129,7 +154,7 @@ function checkFrontMatter(file, data, required, extra) {
 
 for (const slug of [...blogSlugs].sort()) {
   const file = `blogs/published/${slug}.md`;
-  const { data, content } = matter(read(file));
+  const { data, content } = parse(file);
   const extra = [];
   if (data.topic && !topicSlugs.includes(data.topic)) {
     extra.push(`  ERROR  unknown topic "${data.topic}" (not in lib/topics.ts, so the post is on no hub)`);
@@ -148,7 +173,7 @@ for (const slug of [...blogSlugs].sort()) {
 
 for (const slug of [...researchSlugs].sort()) {
   const file = `research/published/${slug}.md`;
-  const { data, content } = matter(read(file));
+  const { data, content } = parse(file);
   const extra = [];
   if (data.theme && !themeSlugs.includes(data.theme)) {
     extra.push(`  ERROR  unknown theme "${data.theme}"`);
@@ -159,7 +184,8 @@ for (const slug of [...researchSlugs].sort()) {
   report.push({ file, words, msgs: [...fm, ...msgs] });
 }
 
-// Topic reading orders must point at real posts in that topic
+// Topic reading orders must point at real posts. A slug from another topic is a
+// deliberate cross-listing: it shows on this hub too, but its own topic stays its home.
 const topicsSrc = read('lib/topics.ts');
 for (const t of topicSlugs) {
   const block = topicsSrc.split(`slug: '${t}'`)[1]?.split(/slug:\s*'/)[0] ?? '';
@@ -168,10 +194,7 @@ for (const t of topicSlugs) {
     if (!blogSlugs.has(s)) {
       report.push({ file: 'lib/topics.ts', words: 0, msgs: [`  ERROR  topic "${t}" lists missing post "${s}"`] });
       errors++;
-      continue;
     }
-    // A slug from another topic in a reading order is a deliberate cross-listing:
-    // it shows on this hub too, but the post's own topic stays its home.
   }
 }
 

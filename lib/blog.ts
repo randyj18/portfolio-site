@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
-import matter from 'gray-matter';
 import { dateKey, normalizeDate, parseMonthYear } from './dates';
 import { countWords, firstParagraph, internalLinks, readingMinutes } from './markdown';
+import { parseFrontMatter } from './frontmatter';
 import { getTopic, topics, type Topic } from './topics';
 
 /*
@@ -94,7 +94,7 @@ function readPost(slug: string): BlogPost | null {
   const fullPath = path.join(blogsDirectory, `${slug}.md`);
   if (!fs.existsSync(fullPath)) return null;
   const raw = fs.readFileSync(fullPath, 'utf8');
-  const { data, content } = matter(raw);
+  const { data, content } = parseFrontMatter(raw, fullPath);
 
   let title = typeof data.title === 'string' ? data.title : undefined;
   let description = typeof data.description === 'string' ? data.description : undefined;

@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import matter from 'gray-matter';
 import { dateKey, normalizeDate } from './dates';
+import { parseFrontMatter } from './frontmatter';
 import { countWords, firstParagraph, internalLinks, readingMinutes } from './markdown';
 
 /*
@@ -107,7 +107,7 @@ function toPaperRefs(value: unknown): PaperRef[] {
 function readNote(slug: string): ResearchPaper | null {
   const fullPath = path.join(researchDirectory, `${slug}.md`);
   if (!fs.existsSync(fullPath)) return null;
-  const { data, content } = matter(fs.readFileSync(fullPath, 'utf8'));
+  const { data, content } = parseFrontMatter(fs.readFileSync(fullPath, 'utf8'), fullPath);
   const body = content.trim();
   const title = typeof data.title === 'string' ? data.title : body.match(/^#\s+(.+)$/m)?.[1] ?? slug;
   const theme = typeof data.theme === 'string' ? data.theme : 'other';
