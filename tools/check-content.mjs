@@ -170,11 +170,8 @@ for (const t of topicSlugs) {
       errors++;
       continue;
     }
-    const { data } = matter(read(`blogs/published/${s}.md`));
-    if (data.topic !== t) {
-      report.push({ file: 'lib/topics.ts', words: 0, msgs: [`  ERROR  "${s}" is in ${t}'s reading order but its topic is "${data.topic}"`] });
-      errors++;
-    }
+    // A slug from another topic in a reading order is a deliberate cross-listing:
+    // it shows on this hub too, but the post's own topic stays its home.
   }
 }
 

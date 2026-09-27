@@ -26,7 +26,7 @@ export default function TopicsIndexPage() {
 
       <ul className="mt-12 grid max-w-5xl gap-5 md:grid-cols-2">
         {topics.map((topic) => {
-          const posts = getPostsForTopic(topic);
+          const posts = getPostsForTopic(topic, { crossListed: true });
           return (
             <li key={topic.slug} className="rounded-xl border border-ink/10 bg-surface p-6">
               <h2 className="text-3xl font-extrabold uppercase leading-none text-ink">

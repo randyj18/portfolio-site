@@ -12,6 +12,14 @@ export const site = {
   locale: 'en_CA',
 } as const;
 
+/** Default social preview image (public/og.png), used by every public page. */
+export const ogImage = {
+  url: '/og.png',
+  width: 1200,
+  height: 630,
+  alt: 'Randy Jones: AI strategy and product leadership. Writing on how organizations actually adopt AI.',
+};
+
 export const nav = [
   { href: '/blog', label: 'Writing' },
   { href: '/research', label: 'Research' },

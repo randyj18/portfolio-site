@@ -1,569 +1,73 @@
-# The $1.5 Million Question: A Practitioner's Framework for Build vs Buy in the Agentic AI Era
-
-**Subtitle:** When custom AI agents justify the cost, and when they're just expensive theater
-**Target Length:** 2,600-3,000 words
-**Cluster:** Strategy & Market Analysis
-**Status:** Complete
-
+---
+title: When a custom AI agent is worth building
+description: Most teams should pilot enterprise AI they can buy, wired to their systems with MCP, before building anything. Building pays in a few narrow cases.
+topic: vendors-and-platforms
+published: 2025-11
+updated: 2026-09
 ---
 
-## Quick Navigation
-- [The Decision Every Executive Faces](#the-decision-every-executive-faces)
-- [Why Agentic AI Changes Everything](#why-agentic-ai-changes-everything)
-- [The Real Costs: Beyond the Sticker Price](#the-real-costs-beyond-the-sticker-price)
-- [When Custom May Make Sense: The 10%](#when-custom-may-make-sense-the-10)
-- [When Off-the-Shelf Wins: The 90%](#when-off-the-shelf-wins-the-90)
-- [The Decision Framework: How to Choose](#the-decision-framework-how-to-choose)
-- [The Hidden Costs Everyone Forgets](#the-hidden-costs-everyone-forgets)
-- [Getting Started: How to Evaluate Your Position](#getting-started-how-to-evaluate-your-position)
-- [What Success Actually Looks Like](#what-success-actually-looks-like)
-- [The Honest Assessment](#the-honest-assessment)
-- [Key Considerations](#key-considerations)
+Sooner or later someone proposes building your own AI: an internal chat tool with the company's name on it, or a custom agent that runs a workflow end to end. My default answer is not yet. Pilot what you can buy, connect it to your own systems, and build only for the gaps the pilot proves are real. There are good reasons to build, but they are narrower than most proposals suggest.
 
-## The Decision Every Executive Faces
+## Most of a chat tool is already built
 
-A common scenario: Your CTO proposes building a custom AI agent tailored to organizational workflows. Cost: $600K-$1.5M for development, plus $5K-$20K monthly maintenance.
+A custom chat interface means building a text box, conversation history, file uploads, sign-in and user management, markdown rendering and a mobile layout. Vendors with far more engineers than your team have solved all of that, and none of it makes your organization better at anything a competitor couldn't match by buying the same product.
 
-Alternative: off-the-shelf AI subscriptions at $200-$400 monthly.
+The usual reasons for building anyway don't survive much questioning:
 
-A 100x cost difference.
+- Control. The models still belong to someone else. A thin wrapper around OpenAI's or Anthropic's API gives you control of a user interface, and you still depend on their API.
+- Our own branding. A logo on a chat window is vanity.
+- We don't trust third parties. Fair, but check what the enterprise plans actually commit to. Anthropic's Enterprise plan, for example, [lists audit logs, custom data retention, customer-managed encryption keys, US-only inference and a HIPAA-ready option with a BAA](https://support.claude.com/en/articles/9797531-what-is-the-enterprise-plan). A lot of trust concerns can be settled in a contract, and a home-built tool usually sends your data to the same model providers anyway.
+- Integration with internal systems. This is the closest to a real reason, and it's what [MCP servers](/blog/model-context-protocols) are for. You need a connector, not a new interface.
 
-Your CTO claims the custom solution delivers 10x value. Your CFO remains skeptical. Your Head of Product wants both.
+Security worries deserve a better answer than a custom interface. When Samsung employees pasted sensitive data into ChatGPT in 2023, the company [restricted generative AI tools and started on in-house ones](https://techcrunch.com/2023/05/02/samsung-bans-use-of-generative-ai-tools-like-chatgpt-after-april-internal-data-leak/). That closes one route, but a custom tool won't stop someone using a personal account on their phone. What lasts is a sanctioned tool good enough that people don't go around it, inside a [sandbox](/blog/sandboxing-safe-early-access) with sensible data rules.
 
-The choice matters: Organizations either over-invest in custom development that doesn't deliver ROI, or under-invest while competitors build genuine differentiation. The ratio of custom-build projects that deliver positive ROI versus those that create expensive technical debt favors commercial solutions in most cases.
+## Agents raise the stakes both ways
 
-Agentic AI changes this equation fundamentally.
+The same logic applies to agents, with more riding on it. An assistant suggests and you decide. An agent plans and carries out multi-step work on its own. The line between the two keeps moving: GitHub Copilot, once the standard example of an assistant, now includes a [cloud agent](https://docs.github.com/en/copilot/concepts/agents/coding-agent/about-coding-agent) that researches a repository, plans a change and makes it on a branch for someone to review.
 
-[↑ Back to top](#quick-navigation)
+A badly built chatbot gets ignored. A badly built agent makes mistakes at scale, with your systems' permissions. A well-built one can take over a whole workflow, which is exactly why teams want their own. Both the cost of failure and the payoff go up, so the case for building has to be stronger.
 
----
+## When building pays
 
-## Why Agentic AI Changes Everything
+I'd consider building when at least one of these is true.
 
-First, let's get clear on what we're actually talking about.
+A compliance requirement no vendor will sign. Some work can't leave a controlled environment, or needs residency or controls nobody sells. The test is whether a vendor will sign a contract that meets your requirements. If one will, don't build. That list keeps shrinking: Google made Gemini [generally available on air-gapped Google Distributed Cloud](https://cloud.google.com/blog/topics/hybrid-cloud/gemini-is-now-available-anywhere) in August 2025. If the answer is still no, you're choosing between a custom interface with approved models and no AI at all, which is a different calculation.
 
-**Assistive AI:**
-- You do the work
-- AI suggests next steps
-- You approve or reject
-- Repeat
+Orchestration that's genuinely yours. If an agent has to query a dozen internal systems, apply business rules built up over years and trigger actions across them, off-the-shelf connectors won't get you all the way. My test: if you can describe the integration needs in two pages, use MCP servers and a bought tool. If it takes twenty pages to describe the orchestration logic, building may make sense. MCP handles the connections. It doesn't handle [orchestration, state and monitoring](/blog/agentic-ai-interoperability) across a long workflow.
 
-Examples: GitHub Copilot, Grammarly, traditional chatbots.
+A domain application where AI is one component. Think of a radiology tool that shows the images next to the AI's reading and writes structured results into the health record, or a legal research tool whose output lands in the firm's citation format with conflicts already checked. The test I'd apply to any proposal: is this an application that happens to use AI, or a chat window that happens to carry our logo? Two small projects of mine on the [playground](/playground) are the first kind: VOICE-Relay, an end-to-end encrypted relay for voice conversations between AI agents and users, and Game Card Creator, an agent workflow that turns rough card ideas into structured game assets.
 
-**Agentic AI:**
-- You define a task
-- AI plans the approach
-- AI executes multi-step workflows autonomously
-- AI validates results and iterates
-- AI completes the task
+AI is the product. If AI is what you sell, building is the business. If it's a productivity tool for your own people, buy it. Klarna is a useful in-between case: its customer-service assistant, [powered by OpenAI](https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats-in-its-first-month/), handled two-thirds of its customer-service chats in its first month, by Klarna's own count in February 2024. Klarna built the assistant; OpenAI supplied the model.
 
-Examples: Claude Code executing development tasks, AI agents booking travel across multiple systems, autonomous customer service resolution.
+There's also a weaker fifth reason: building to learn. If you want engineers to understand how these systems work, a small internal tool is a good exercise. Call it education, and decide separately whether it should ever become production infrastructure.
 
-([Claude Code: The Agentic Tool Everyone Is Sleeping On](/blog/claude-code-agentic-tool) explores this distinction in depth.)
+## A middle option: managed agent platforms
 
-**The critical difference:** Agentic systems can complete entire workflows without human intervention in the loop. They don't just assist—they execute.
+The choice used to look binary: buy chat seats or build an agent. The vendors have since filled in the middle with platforms for building agents on their infrastructure, inside their governance. As of September 2026:
 
-This changes the build vs buy calculation because:
+- Microsoft's [Copilot Studio](https://www.microsoft.com/en-us/microsoft-365-copilot/pricing/copilot-studio) sells agent capacity at $200 a month for 25,000 Copilot Credits, and Microsoft 365 Copilot users can build and use agents in Copilot Chat at no extra cost. [Agent 365](https://blogs.microsoft.com/blog/2026/03/09/introducing-the-first-frontier-suite-built-on-intelligence-trust/), generally available since May 2026 at $15 per user, is Microsoft's control plane for observing and governing agents.
+- Anthropic's [Claude Managed Agents](https://platform.claude.com/docs/en/about-claude/pricing) bills model tokens plus $0.08 per session-hour of runtime.
+- Google has renamed Vertex AI, its AI development platform, the [Gemini Enterprise Agent Platform](https://cloud.google.com/products/gemini-enterprise-agent-platform).
 
-**1. Custom agents can deliver genuine competitive advantage**
-If your agent orchestrates proprietary workflows that competitors can't replicate, you've built a moat.
+These let you build a custom workflow without owning the runtime, the model integration and the security patching. So the build question becomes which layer you actually need to own. For most teams I suspect the answer is the workflow logic and the connectors, and not the chat interface or the agent runtime.
 
-**2. Off-the-shelf agents are getting incredibly capable**
-ChatGPT Enterprise, Claude for Work, and Microsoft Copilot can now handle workflows that required custom development 18 months ago.
+## Cost both sides the same way
 
-**3. The cost of failure is higher**
-Build a bad chatbot interface and users ignore it. Build a bad autonomous agent and it makes expensive mistakes at scale.
+Custom builds get underestimated because people count the build and forget the years after it. I'd cost both options over three years:
 
-**4. The cost of success is also higher**
-A well-designed agent that automates a 10-person workflow isn't saving salary—it's creating competitive velocity competitors can't match.
+- Build: people, times months, times fully loaded cost, plus infrastructure, model usage and security review, plus a standing owner for as long as it runs. As an example, three engineers for six months at a fully loaded $180,000 a year each comes to $270,000 before any infrastructure or model costs. Keeping half to one engineer on it afterwards adds $90,000 to $180,000 a year at the same rate.
+- Buy: seats, usage, integration work and change management. Seat prices are only part of it now. Microsoft 365 Copilot is [$30 per user per month](https://www.microsoft.com/en-us/microsoft-365-copilot/enterprise) on top of a qualifying Microsoft 365 licence, so 100 users cost $36,000 a year. Anthropic's Enterprise plan is [$20 per seat per month plus usage billed at API rates](https://claude.com/pricing), so you need a usage estimate as well.
 
-The question isn't "should we use AI?" It's "should we build AI systems ourselves or use commercial ones?"
+Then ask whether the custom version is really worth the multiple. My rough rule: if building costs less than twice as much over three years and you genuinely need what it gives you, build it. At three times or more, it needs an exceptional reason.
 
-[↑ Back to top](#quick-navigation)
+Some costs don't show up in either column. The engineers who built it will move on, and whoever inherits it didn't design it. The model provider will still retire versions and change rate limits and prices, so building to avoid lock-in mostly moves the dependency. And every month your team spends maintaining an internal agent is a month not spent on what your customers pay you for.
 
----
+## Pilot before you build
 
-## The Real Costs: Beyond the Sticker Price
+Before committing to a build, run the cheaper experiment. Give 10 to 20 people a commercial tool for two or three months, build MCP servers for the few systems that matter most, and measure time saved, satisfaction and the gaps people hit. Then sort the gaps into genuine needs and preferences. If you do build, build for the genuine gaps rather than a replacement for the whole tool.
 
-Let's do the math properly. Most organizations dramatically underestimate custom development costs.
+Be honest about whether you can build and run it. You need people who have shipped production AI systems, security expertise for something that acts on its own, product people who understand agent workflows, and the capacity to maintain it for three years or more. If any of those is missing, what you build will probably be worse than what you can buy.
 
-### Custom AI Agent Development Costs
+Design the exit before you start. Keep data in portable formats and integrations modular, ideally as MCP servers you could point at a commercial tool later. If you can't move off your own system in a few months, you've built yourself a new [silo](/blog/siloed-information-saas-moat). And judge the result by adoption: if most of the people it was built for don't use it, the money is gone, whatever the demo looked like.
 
-**Development Phase (typical timeline: 4-6 months):**
-- 2 senior AI/ML engineers: $300K-$400K fully loaded
-- 1 product manager: $150K-$200K
-- 1 designer (UX for agentic workflows): $120K-$150K
-- 1 DevOps engineer (infrastructure, deployment): $150K-$180K
-- External AI/ML consultants (architecture review): $50K-$100K
-
-**Subtotal: $770K-$1.03M**
-
-**Infrastructure and Tooling:**
-- Cloud compute for training/inference: $50K-$150K
-- Model API costs during development: $20K-$50K
-- Development tools and licenses: $10K-$30K
-- Security audits and compliance review: $30K-$80K
-
-**Subtotal: $110K-$310K**
-
-**Year One Total: $880K-$1.34M**
-
-Add buffer for scope creep, integration challenges, and iteration: **$1M-$1.5M is realistic.**
-
-### Ongoing Costs (Annual)
-
-**Maintenance and Enhancement:**
-- 1 full-time engineer (maintenance, improvements): $150K-$200K
-- Model API costs (production): $50K-$200K depending on usage
-- Infrastructure: $40K-$100K
-- Security updates, compliance: $20K-$50K
-
-**Annual Ongoing: $260K-$550K**
-
-**Three-Year Total Cost of Ownership: $1.52M-$2.65M**
-
-### Off-the-Shelf AI: First Year Costs
-
-**Enterprise AI Subscriptions:**
-- ChatGPT Enterprise: $60/user/month
-- Claude for Work: $60/user/month
-- Microsoft 365 Copilot: $30/user/month (requires M365 base)
-- Perplexity Enterprise Pro: $40/user/month
-
-**For 100 users:**
-- ChatGPT Enterprise: $72K/year
-- Claude for Work: $72K/year
-- Microsoft Copilot: $36K/year (plus M365 base subscription)
-
-**Integration and Implementation:**
-- MCP server development for internal systems: $50K-$150K
-- Training and change management: $20K-$50K
-- SSO setup and security configuration: $10K-$30K
-
-**Year One Total: $152K-$374K** (assuming ChatGPT Enterprise + integration work)
-
-**Three-Year Total Cost of Ownership: $366K-$774K**
-
-### The Cost Differential
-
-Custom: $1.52M-$2.65M over three years
-Off-the-shelf: $366K-$774K over three years
-
-**You're spending 2-3.5x more for custom.**
-
-Is the value genuinely 2-3.5x better?
-
-For 90% of organizations, the honest answer is no.
-
-But for the 10% where the answer is yes, the ROI is transformational.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## When Custom May Make Sense: The 10%
-
-Based on building custom agentic systems and analyzing when commercial alternatives would have been more effective, several scenarios potentially justify custom development:
-
-**Compliance Requirements No Vendor Meets:** Some regulatory constraints make third-party AI impractical: defense contractors requiring data stay off commercial cloud infrastructure, classified government work in air-gapped environments, highly regulated finance with specific data residency requirements unsupported by vendors (e.g., certain countries lacking major AI vendor data centers), or healthcare research with IRB requirements prohibiting external data transmission.
-
-Enterprise AI typically offers SOC 2 Type II certification, HIPAA compliance via BAA, GDPR compliance, data residency options, SSO, audit logs, and contractual guarantees against training on customer data. What's typically unavailable: true on-premise deployment, arbitrary geographic deployment, custom encryption beyond AES-256, or air-gapped operation.
-
-Consider: Can a vendor sign a contract meeting your requirements? If yes, building custom may be unnecessary. If no and you genuinely need AI, custom becomes worth evaluating.
-
-### Reason 2: Deep Integration with Proprietary Systems
-
-If your AI agent needs to orchestrate complex workflows across internal systems that are unique to your business, custom might make sense.
-
-**Example of genuine need:**
-A healthcare provider building an AI agent that:
-- Queries 15 different internal databases (EHR, scheduling, billing, lab results, imaging, pharmacy)
-- Applies proprietary clinical decision rules developed over 20 years
-- Triggers automated workflows (schedule follow-up, order tests, flag for review)
-- Integrates with medical devices for real-time data
-- Operates within hospital network constraints (latency, security, compliance)
-
-This isn't "integrate with Salesforce." This is "orchestrate proprietary logic that competitors don't have."
-
-([Model Context Protocols: The Connectors That Enable Everything](/blog/model-context-protocols) explains how MCPs can handle much of this—but there's a threshold where custom orchestration makes sense.)
-
-**The test:** Can you describe your integration needs in 2 pages? If yes, use MCP servers. If it takes 20+ pages to document the orchestration logic, consider custom.
-
-**Real-world proof:** I built VOICE-Relay, a custom agentic system for managing complex voice-based workflows. The alternative—trying to force this into an off-the-shelf chatbot—would have delivered 10% of the value. The custom approach was justified because the workflow orchestration was genuinely novel.
-
-### Reason 3: Novel UX That Genuinely Improves Workflows
-
-Most "custom experiences" are vanity. But some are genuinely valuable.
-
-**Examples that justify custom:**
-- **Radiology AI assistant:** Displays DICOM images alongside AI analysis, outputs structured HL7 FHIR formats that auto-populate EHR systems
-- **Legal research agent:** AI generates case law citations mapped directly to litigation management system, with automatic conflict checking
-- **Game development tool:** AI generates game mechanics that feed directly into Unity/Unreal Engine, with real-time playtesting feedback loops
-
-These aren't chat interfaces with logos. They're domain-specific applications where AI is one component of a larger workflow.
-
-**My experience:** I built Game Card Creator, a custom agentic system for generating game content. The UX couldn't exist in a standard chat interface—it needed visual card previews, iterative refinement controls, and direct export to game engines. Custom was justified.
-
-**The test:** Are you building a domain-specific application that happens to use AI, or are you building a chat interface that happens to have your branding?
-
-If the former, custom might make sense. If the latter, you're wasting money.
-
-### Reason 4: Competitive Differentiation Through AI Capabilities
-
-If AI is your product—not just a feature—custom is probably justified.
-
-**Examples:**
-- **Jasper (AI writing):** Their core product IS the AI. Custom is the business.
-- **GitHub Copilot:** Microsoft built custom because coding assistance is strategic differentiation.
-- **Klarna's shopping assistant:** Custom integration with their e-commerce platform creates advantages competitors can't replicate with ChatGPT.
-
-**The test:** Is AI your core product, or is it a productivity tool for your team?
-
-If core product: build custom.
-If productivity tool: buy off-the-shelf.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## When Off-the-Shelf Wins: The 90%
-
-For most organizations, commercial AI is the right answer.
-
-Here's why:
-
-### Speed to Value
-
-**Custom development timeline:**
-- 4-6 months to MVP
-- 2-3 months of iteration based on user feedback
-- 6-9 months to production-ready
-
-**Off-the-shelf timeline:**
-- 2 weeks to pilot with 10 users
-- 4-6 weeks to full rollout with training
-- Immediate access to capabilities
-
-**Time advantage: 6-9 months faster with off-the-shelf.**
-
-In fast-moving markets, 6 months of delay means competitors are already using AI while you're still building.
-
-### Risk Mitigation
-
-**Custom development risks:**
-- Team turnover (lose key engineers mid-project)
-- Scope creep (requirements change during 6-month build)
-- Technical debt (rushed deadlines lead to poor architecture)
-- Model performance (your fine-tuned model underperforms GPT-4 or Claude)
-- Security vulnerabilities (you own the entire attack surface)
-
-**Off-the-shelf risks:**
-- Vendor changes pricing (mitigated by contracts)
-- Vendor goes out of business (unlikely for OpenAI/Anthropic/Google/Microsoft)
-- Service outages (SLAs provide recourse)
-- Feature gaps (you don't get exactly what you want)
-
-Off-the-shelf risks are manageable. Custom development risks can kill projects.
-
-### Capability Access
-
-**What you get with commercial AI:**
-- Frontier models (GPT-4, Claude Sonnet 4.5, Gemini) that cost hundreds of millions to train
-- Continuous improvements as models get better
-- Enterprise features (SSO, audit logs, compliance) built by dedicated teams
-- Support and SLAs
-
-**What you get with custom:**
-- Models you train or fine-tune yourself (almost certainly worse than frontier models)
-- Improvement only when you invest in updates
-- Enterprise features you build yourself
-- Support you provide yourself
-
-Unless you're OpenAI, Anthropic, Google, or Microsoft, you're not building better models.
-
-So why build worse infrastructure around worse models at higher cost?
-
-### Total Cost of Ownership
-
-We already ran the numbers:
-- Custom: $1.52M-$2.65M over three years
-- Off-the-shelf: $366K-$774K over three years
-
-For 100 users, you're saving $750K-$1.88M over three years by buying instead of building.
-
-**What could you do with that capital?**
-- Hire 3-5 more engineers to build actual product features
-- Invest in customer acquisition
-- Build competitive moats in your core business
-
-Every dollar spent on custom AI infrastructure is a dollar not spent on differentiation.
-
-([Custom Chat Interfaces: A Terrible Decision?](/blog/custom-chat-interfaces) explores this calculation in depth for chat-based systems.)
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## The Decision Framework: How to Choose
-
-Use this framework to make the right call:
-
-### Step 1: Define What "Custom" Actually Solves
-
-Be brutally specific about what custom development enables that off-the-shelf doesn't.
-
-**Bad answer:** "We want an AI agent that understands our business and integrates with our systems."
-- This exists. It's called ChatGPT Enterprise + MCP servers.
-
-**Good answer:** "We need an agent that orchestrates 15-step approval workflows across proprietary risk management systems with sub-100ms latency requirements, operating in an air-gapped environment."
-- This is genuinely custom. No off-the-shelf product does this.
-
-**The test:** Can a vendor meet 80% of your requirements? If yes, use them and live with the 20% gap. Custom isn't worth 3x cost for marginal improvements.
-
-### Step 2: Calculate True TCO
-
-Use the cost model above. Be honest about:
-- Fully-loaded engineer salaries ($150K-$200K)
-- Infrastructure and API costs
-- Ongoing maintenance (10-20% of initial dev cost annually)
-- Opportunity cost (what else could the team build?)
-
-**If custom TCO is less than 2x off-the-shelf, and you genuinely need the custom capabilities, build it.**
-
-**If custom TCO is more than 3x off-the-shelf, you need extraordinary justification.**
-
-### Step 3: Assess Organizational Capability
-
-Be ruthlessly honest:
-
-**Do you have:**
-- Engineers with production AI/ML experience? (Not "took a Coursera course"—actual production systems)
-- Security expertise to harden autonomous agents? (Agents can do damage at scale)
-- Product managers who understand agentic workflows? (Different from traditional software)
-- Ongoing capacity to maintain this for 3+ years? (Not "we'll figure it out later")
-
-**If you answered "no" to any of these, your custom agent will likely be worse than commercial alternatives.**
-
-### Step 4: Evaluate the Exit Strategy
-
-If you build custom and it doesn't work out, can you migrate to commercial AI?
-
-**Questions to answer:**
-- Is your data in portable formats, or locked into custom schemas?
-- Are your integrations modular (MCP-based), or tightly coupled to your custom agent?
-- Can you switch to ChatGPT Enterprise in 3 months if needed, or are you locked in?
-
-**If you can't exit gracefully, you're creating a new silo.** ([Siloed Information: How SAAS Companies Protect Their Moat](/blog/siloed-information-saas-moat))
-
-### Step 5: Validate with a Pilot
-
-Before committing $1M+ to custom development, run a pilot with off-the-shelf tools.
-
-**Pilot approach:**
-- 10-20 users for 2-3 months
-- Use ChatGPT Enterprise or Claude for Work
-- Build MCP servers for critical integrations
-- Measure: productivity gains, user satisfaction, feature gaps
-
-**What you'll learn:**
-- Are the gaps genuine, or just preferences?
-- Can off-the-shelf handle 80% of use cases?
-- Is the 20% worth $1M+ in custom development?
-
-Most organizations discover that off-the-shelf handles 90% of needs. The remaining 10% doesn't justify custom.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## The Hidden Costs Everyone Forgets
-
-Even if you decide custom is justified, account for these often-overlooked costs:
-
-### Technical Debt Accumulation
-
-**The reality:** First version ships in 6 months. It works, but it's not elegant.
-
-"We'll refactor later" becomes "we never refactored, and now it's unmaintainable."
-
-**Cost:** 30-50% of ongoing engineering time spent managing technical debt instead of building new capabilities.
-
-### Talent Retention Challenges
-
-**The problem:** You hire talented AI engineers to build your custom agent. They succeed. Now what?
-
-If they stay, they spend years maintaining the same system (boring).
-If they leave, you lose institutional knowledge and have to re-hire (expensive and risky).
-
-**Cost:** 15-25% annual turnover among AI/ML engineers. Each departure costs 6-12 months of productivity and $50K-$100K in recruiting/onboarding.
-
-### Model Provider Dependencies
-
-**The irony:** You built custom to avoid vendor lock-in, but now you're dependent on OpenAI or Anthropic's API.
-
-What happens when:
-- They raise prices 40% (OpenAI did this in 2023)
-- They deprecate the model version you rely on
-- They change rate limits or terms of service
-
-**Cost:** Migrating to a different model provider can require 2-4 months of re-integration and re-tuning work.
-
-### Opportunity Cost
-
-**The big one:** Every hour your team spends building and maintaining a custom AI agent is an hour not spent on core product differentiation.
-
-If you're a fintech company, your moat isn't "we have a custom AI agent." It's "we have the best financial products."
-
-Building AI infrastructure is a distraction from your actual competitive advantage.
-
-**Cost:** Impossible to quantify precisely, but potentially the biggest cost of all.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## Getting Started: How to Evaluate Your Position
-
-Here's the practical playbook:
-
-### For the 90% (Off-the-Shelf Path)
-
-**Phase 1: Pilot Setup**
-- Choose 1-2 enterprise AI platforms (ChatGPT Enterprise, Claude for Work, or Microsoft Copilot)
-- Identify 10-20 pilot users across different roles
-- Set clear success metrics (productivity gains, task completion time, user satisfaction)
-
-**Phase 2: Integration**
-- Build MCP servers for critical internal systems
-- Configure SSO, security, and compliance
-- Train pilot users on effective prompting and workflows
-
-**Phase 3: Evaluation**
-- Measure against success metrics
-- Identify feature gaps (are they genuine needs or nice-to-haves?)
-- Calculate ROI: productivity gains vs subscription cost
-
-**Phase 4: Rollout or Pivot**
-- If pilot succeeds: roll out to broader organization
-- If significant gaps exist: evaluate custom development for specific gaps only (not full replacement)
-
-**Expected outcome:** 80-90% of organizations find off-the-shelf meets needs with MCP integrations.
-
-### For the 10% (Custom Development Path)
-
-**Phase 1: Requirements and Feasibility**
-- Document specific capabilities that off-the-shelf can't provide
-- Validate these are genuine needs, not preferences
-- Assess organizational capability (team, budget, timeline)
-- Calculate full TCO (3-year projection)
-
-**Phase 2: Architecture and Proof of Concept**
-- Design system architecture
-- Build proof of concept for riskiest components
-- Validate model performance on real data
-- Test integration with critical systems
-
-**Phase 3: Build vs Buy Final Decision**
-- If POC succeeds and ROI is clear: proceed with full development
-- If POC reveals challenges or marginal ROI: pivot to off-the-shelf with targeted customization
-
-**Phase 4: Development (if proceeding)**
-- Iterative development with user testing
-- Security hardening and compliance review
-- Phased rollout starting with pilot users
-
-**Expected outcome:** 50-60% of organizations planning custom development discover during POC that off-the-shelf + MCP is sufficient.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## What Success Actually Looks Like
-
-If you do build custom, here's what good looks like:
-
-**Clear, measurable differentiation:**
-- "Our AI agent automates 47% of customer service inquiries that competitors handle manually" (measurable competitive advantage)
-- "Our clinical decision support AI reduces diagnostic errors by 23%" (measurable patient outcomes)
-- "Our underwriting agent processes applications 5x faster than competitors" (measurable speed advantage)
-
-**Not:** "We have our own AI that feels more on-brand."
-
-**Sustainable maintenance model:**
-- Dedicated team (not "whoever has time")
-- Clear ownership and roadmap
-- Budget allocated for ongoing improvements
-
-**Not:** "The team that built it will maintain it when they're not working on other stuff."
-
-**User adoption above 60%:**
-- If you build it and only 30% of intended users actually use it, you've wasted money
-- High adoption = you solved a real problem
-
-**Not:** "We built it, so people should use it."
-
-**Modular architecture with exit strategy:**
-- Can swap components without rebuilding everything
-- Data is portable, not locked in custom formats
-- Integration layer (MCP-based) is reusable even if you switch AI providers
-
-**Not:** "We've built a monolith that we're stuck with forever."
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## The Honest Assessment
-
-Consider why many organizations pursue custom AI:
-
-Common justifications that may not hold up: "We want control" (control of UI rather than value creation), "We want our own AI" (potentially vanity versus strategy), "We don't trust third parties" (while using their models), "We want to differentiate" (by building commodity infrastructure versus actual differentiation).
-
-These may represent theatrical justifications for expensive projects unlikely to deliver ROI.
-
-The genuine 10% (with compliance requirements no vendor meets, proprietary workflows creating real competitive moats, novel UX transforming productivity) may achieve significant advantages competitors can't replicate.
-
-The distinction: intellectual honesty about whether you're solving problems commercial AI can't address, or building because it feels transformative.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## Key Considerations
-
-**Consider off-the-shelf when:**
-- Commercial platforms (ChatGPT Enterprise, Claude for Work, Microsoft Copilot) meet 80%+ of needs
-- Internal system integration possible via MCP servers
-- Speed, lower cost, and reduced risk valued over marginal customization
-- AI serves as productivity tool versus core product
-
-**Consider custom when:**
-- Compliance requirements no vendor can meet exist
-- Proprietary workflows create genuine competitive advantage
-- Novel UX requirements transform productivity
-- AI represents core product differentiation
-- Organizational capability exists for 3+ year build and maintenance
-- TCO analysis shows clear ROI despite 2-3x higher cost
-
-For most organizations: potential savings of $750K-$1.88M over three years could fund actual differentiation.
-
-For the genuine 10%: measured implementation creating competitive moats competitors can't replicate.
-
-The challenge: accurately assessing which category applies.
-
-([The SAAS Reckoning: Evolution in the AI Era](/blog/saas-evolution-ai-era) explores how this dynamic is reshaping the entire software industry.)
-
-**TLDR:** Custom AI agents cost $1M-$1.5M year one + $260K-$550K annually vs off-the-shelf at $152K-$374K year one (3-year TCO: $1.52M-$2.65M custom vs $366K-$774K commercial). Only 10% of organizations have genuine custom needs: compliance no vendor meets, deep proprietary integrations, novel domain-specific UX, or AI as core product. The 90% who build custom for "control" or "differentiation" waste capital without corresponding ROI. Decision framework: define what custom actually solves (be specific), calculate true 3-year TCO, assess organizational capability honestly, validate exit strategy, pilot off-the-shelf first. Hidden costs: technical debt accumulation, talent retention challenges, model provider dependencies, opportunity cost. Smart path: off-the-shelf + MCP servers for integration captures 90% of value at 30% of cost. Pilot with commercial platforms before committing to custom development.
-
----
-
-**Related Posts:**
-- [Custom Chat Interfaces: A Terrible Decision?](/blog/custom-chat-interfaces)
-- [Claude Code: The Agentic Tool Everyone Is Sleeping On](/blog/claude-code-agentic-tool)
-- [The SAAS Reckoning: Evolution in the AI Era](/blog/saas-evolution-ai-era)
-- [Model Context Protocols: The Connectors That Enable Everything](/blog/model-context-protocols)
-
----
-
-**Published:** November 2025
-**Word Count:** ~2,950 words
+The line keeps moving in the buyer's favour. Each vendor release absorbs another reason to build, and the managed agent platforms absorb more. What I don't know yet is whether that leaves custom agents as a niche for the genuinely unusual, or just moves the build decision up a layer, from the model and the interface to the workflow itself.

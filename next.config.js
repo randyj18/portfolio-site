@@ -9,11 +9,17 @@ const retiredPosts = {
   'finance-tech-divide-ai-investment': '/blog/beyond-roi-measuring-ai-value',
   'custom-chat-interfaces': '/blog/build-vs-buy-agentic-ai',
   'multi-cloud-ai-strategy-2025': '/blog/cloud-provider-diversification',
+  'knowledge-tax-ai-amplification': '/blog/duplicated-solution-problem',
+  'resistance-to-adoption-ai-change': '/blog/shadow-ai-organizational-intelligence',
+  'prompt-engineering-skills-gap': '/blog/reskilling-at-scale-ai-era',
+  'data-storage-reality': '/blog/metadata-matters',
   // Unfinished template that was publicly reachable; kept in blogs/drafts/
   'model-rankings': '/blog',
 };
 
-const retiredResearch = {};
+const retiredResearch = {
+  'deepseek-v3': '/research/deepseek-r1',
+};
 
 const nextConfig = {
   reactStrictMode: true,

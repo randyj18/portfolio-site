@@ -7,7 +7,7 @@ import Prose from '@/components/site/Prose';
 import { getAllBlogPosts } from '@/lib/blog';
 import { formatMonth, isoDate } from '@/lib/dates';
 import { getAllResearchSlugs, getRelatedPapers, getResearchBySlug } from '@/lib/research';
-import { site } from '@/lib/site';
+import { ogImage, site } from '@/lib/site';
 
 export const dynamicParams = false;
 
@@ -30,7 +30,9 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
       publishedTime: isoDate(note.published),
       modifiedTime: isoDate(note.updated ?? note.published),
       authors: [site.name],
+      images: [ogImage],
     },
+    twitter: { card: 'summary_large_image', title: note.title, description: note.description, images: [ogImage.url] },
   };
 }
 

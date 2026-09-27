@@ -11,11 +11,14 @@ interface PostListProps {
   /** Number the items (for reading paths). */
   numbered?: boolean;
   headingLevel?: 'h2' | 'h3' | 'h4';
+  /** On a topic hub: label posts whose home is a different topic. */
+  contextTopic?: string;
 }
 
-export function PostMeta({ post, withTopic = false }: { post: BlogPost; withTopic?: boolean }) {
+export function PostMeta({ post, withTopic = false, contextTopic }: { post: BlogPost; withTopic?: boolean; contextTopic?: string }) {
   const parts: string[] = [];
   if (withTopic) parts.push(post.cluster);
+  else if (contextTopic && post.topic !== contextTopic) parts.push(`From ${post.cluster}`);
   parts.push(`${post.readingMinutes} min read`);
   if (post.updated) parts.push(`Updated ${formatMonth(post.updated)}`);
   return <p className="mt-2 text-sm text-muted">{parts.join(' · ')}</p>;
@@ -27,6 +30,7 @@ export default function PostList({
   withTopic = false,
   numbered = false,
   headingLevel = 'h3',
+  contextTopic,
 }: PostListProps) {
   const Heading = headingLevel;
   const List = numbered ? 'ol' : 'ul';
@@ -51,7 +55,7 @@ export default function PostList({
             {withDescription && (
               <p className="mt-1.5 max-w-2xl text-[0.975rem] leading-relaxed text-muted text-pretty">{post.description}</p>
             )}
-            <PostMeta post={post} withTopic={withTopic} />
+            <PostMeta post={post} withTopic={withTopic} contextTopic={contextTopic} />
           </div>
         </li>
       ))}

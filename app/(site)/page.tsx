@@ -91,7 +91,7 @@ export default function HomePage() {
         </h2>
         <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {topics.map((topic) => {
-            const count = getPostsForTopic(topic).length;
+            const count = getPostsForTopic(topic, { crossListed: true }).length;
             return (
               <li key={topic.slug} className="group relative flex flex-col rounded-xl border border-ink/10 bg-surface p-6 transition-colors hover:border-accent/60">
                 <h3 className="text-2xl font-extrabold uppercase leading-none text-ink">

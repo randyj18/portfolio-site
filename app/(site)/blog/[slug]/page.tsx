@@ -16,7 +16,7 @@ import {
 import { isoDate } from '@/lib/dates';
 import { extractHeadings } from '@/lib/markdown';
 import { getResearchBySlug } from '@/lib/research';
-import { site } from '@/lib/site';
+import { ogImage, site } from '@/lib/site';
 import { getTopic } from '@/lib/topics';
 
 export const dynamicParams = false;
@@ -40,7 +40,9 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
       publishedTime: isoDate(post.published),
       modifiedTime: isoDate(post.updated ?? post.published),
       authors: [site.name],
+      images: [ogImage],
     },
+    twitter: { card: 'summary_large_image', title: post.title, description: post.description, images: [ogImage.url] },
   };
 }
 

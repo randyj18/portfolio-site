@@ -25,7 +25,7 @@ export function generateMetadata({ params }: { params: { topic: string } }): Met
 export default function TopicPage({ params }: { params: { topic: string } }) {
   const topic = getTopic(params.topic);
   if (!topic) notFound();
-  const posts = getPostsForTopic(topic);
+  const posts = getPostsForTopic(topic, { crossListed: true });
   const others = topics.filter((t) => t.slug !== topic.slug);
 
   return (
@@ -59,7 +59,7 @@ export default function TopicPage({ params }: { params: { topic: string } }) {
           {posts.length} {posts.length === 1 ? 'post' : 'posts'}, in suggested reading order
         </h2>
         <div className="mt-4">
-          <PostList posts={posts} numbered headingLevel="h3" />
+          <PostList posts={posts} numbered headingLevel="h3" contextTopic={topic.slug} />
         </div>
       </section>
 

@@ -152,13 +152,19 @@ export function getBlogBySlug(slug: string): BlogPost | null {
   return getAllBlogPosts().find((p) => p.slug === slug) ?? null;
 }
 
-/** Posts in a topic, in the topic's reading order, then anything else in that topic by date. */
-export function getPostsForTopic(topic: Topic): BlogPost[] {
-  const all = getAllBlogPosts().filter((p) => p.topic === topic.slug);
+/**
+ * Posts in a topic, in the topic's reading order, then anything else in that topic
+ * by date. A topic's readingOrder may also list a post whose own topic is different
+ * (a cross-listing); those are included only when `crossListed` is true, so the
+ * writing index still shows every post once, under its own topic.
+ */
+export function getPostsForTopic(topic: Topic, { crossListed = false }: { crossListed?: boolean } = {}): BlogPost[] {
+  const all = getAllBlogPosts();
+  const own = all.filter((p) => p.topic === topic.slug);
   const ordered = topic.readingOrder
     .map((slug) => all.find((p) => p.slug === slug))
-    .filter((p): p is BlogPost => Boolean(p));
-  const rest = all.filter((p) => !topic.readingOrder.includes(p.slug));
+    .filter((p): p is BlogPost => Boolean(p) && (crossListed || p!.topic === topic.slug));
+  const rest = own.filter((p) => !topic.readingOrder.includes(p.slug));
   return [...ordered, ...rest];
 }
 
