@@ -1,9 +1,15 @@
-/* Custom fonts */
+/*
+ * Winner Sans Soft (trial cut, 70 glyphs, no apostrophe or colon). Still used by
+ * /gphl, /playoffhockey, /workouts and the playground demos through `font-display`
+ * and the heading base style below. The public site uses the `font-heading` family
+ * (Barlow Condensed, loaded in app/(site)/layout.tsx) instead. See SITE-REFRESH-NOTES.md.
+ */
 @font-face {
   font-family: 'Winner Sans Soft';
   src: url('/fonts/WinnerSansSoft-CondRegular.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -11,6 +17,7 @@
   src: url('/fonts/WinnerSansSoft-CondBold.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -18,11 +25,41 @@
   src: url('/fonts/WinnerSansSoft-CondBlack.otf') format('opentype');
   font-weight: 900;
   font-style: normal;
+  font-display: swap;
 }
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Design tokens for the public site (see tailwind.config.ts). RGB triplets. */
+:root {
+  --paper: 246 244 239;
+  --surface: 255 255 255;
+  --ink: 25 35 50;
+  --muted: 75 85 100;
+  --accent: 214 81 23;
+  --accent-ink: 163 63 18;
+  --night: 25 35 50;
+  --night-ink: 242 238 230;
+  --night-muted: 176 184 196;
+  --night-accent: 242 166 90;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: 16 21 29;
+    --surface: 24 31 43;
+    --ink: 234 230 222;
+    --muted: 167 176 188;
+    --accent: 232 124 58;
+    --accent-ink: 242 164 104;
+    --night: 11 15 22;
+    --night-ink: 242 238 230;
+    --night-muted: 167 176 188;
+    --night-accent: 242 166 90;
+  }
+}
 
 @layer base {
   body {
@@ -32,11 +69,64 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-display;
   }
+
+  /* Public site shell (app/(site)/layout.tsx and the playground index). */
+  .site {
+    @apply min-h-screen bg-paper text-ink font-sans;
+    color-scheme: light;
+  }
+
+  .site :is(h1, h2, h3, h4, h5, h6) {
+    @apply font-heading;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .site {
+      color-scheme: dark;
+    }
+  }
+
+  .site ::selection {
+    background: rgb(var(--accent) / 0.25);
+  }
+
+  .site :focus-visible {
+    outline: 3px solid rgb(var(--accent));
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .skip-link {
+    @apply sr-only;
+  }
+  .skip-link:focus {
+    @apply not-sr-only fixed left-4 top-4 z-50 rounded-md bg-ink px-4 py-2 text-paper;
+  }
+
+  /* Small uppercase label above headings. */
+  .eyebrow {
+    @apply font-sans text-xs font-semibold uppercase tracking-[0.18em] text-accent-ink;
+  }
+
+  /* Inline text link outside of prose. */
+  .text-link {
+    @apply text-accent-ink underline decoration-accent-ink/40 decoration-1 underline-offset-[0.2em] transition-colors hover:decoration-accent-ink;
+  }
+
+  .container-site {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
   }
 
   .gradient-text {
@@ -48,338 +138,188 @@
   }
 }
 
-/* Smooth scrolling */
+/* Smooth scrolling, unless the reader prefers reduced motion. */
 html {
   scroll-behavior: smooth;
 }
 
-/* Blog prose container and styling */
-.blog-prose {
-  max-width: 100%;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .site *,
+  .site *::before,
+  .site *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/*
+ * Long-form reading styles for posts and research notes.
+ * Body text is set in the serif at 18-20px with a ~68 character measure.
+ */
+.prose-site {
+  @apply font-serif text-ink;
   font-size: 1.125rem;
-  line-height: 1.75;
+  line-height: 1.7;
+  font-feature-settings: 'kern', 'liga';
+  hanging-punctuation: first;
 }
 
-.blog-prose p {
-  color: #192332;
-  margin-bottom: 1rem;
-  line-height: 1.75;
-  font-size: 1.25rem;
+@media (min-width: 768px) {
+  .prose-site {
+    font-size: 1.1875rem;
+  }
 }
 
-.blog-prose h2 {
-  font-size: 2.25rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(75, 85, 100, 0.2);
+.prose-site > * + * {
+  margin-top: 1.1em;
 }
 
-.blog-prose h3 {
-  font-size: 1.875rem;
-  font-weight: 500;
-  margin-bottom: 0.75rem;
-  margin-top: 1.5rem;
+.prose-site :is(p, li) {
+  text-wrap: pretty;
 }
 
-.blog-prose h4 {
-  color: #4B5564;
-  font-size: 1.25rem;
-  font-weight: 500;
-  margin-bottom: 0.75rem;
-  margin-top: 1.5rem;
-}
-
-.blog-prose ul,
-.blog-prose ol {
-  color: #4B5564;
-  margin: 1.5rem 0;
-  padding-left: 2rem;
-}
-
-.blog-prose li {
-  color: #4B5564;
-  margin-bottom: 0.5rem;
-  font-size: 1.25rem;
-}
-
-.blog-prose a {
-  color: #D65117;
-  text-decoration: underline;
-  text-decoration-color: rgba(214, 81, 23, 0.3);
-  text-underline-offset: 0.2em;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.blog-prose a:hover {
-  color: #FAAE1B;
-  text-decoration-color: rgba(250, 174, 27, 0.5);
-}
-
-.blog-prose strong {
-  color: #4B5564;
-  font-weight: 600;
-}
-
-.blog-prose code {
-  color: #12BD6E;
-  background-color: rgba(18, 189, 110, 0.1);
-  padding: 0.375rem 0.375rem;
-  border-radius: 0.25rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-}
-
-.blog-prose pre {
-  background-color: #192332;
-  color: #EDDDCC;
-  padding: 1.5rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  overflow-x: auto;
-}
-
-.blog-prose blockquote {
-  border-left: 4px solid #B8860B;
-  background-color: rgba(184, 134, 11, 0.05);
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-  border-radius: 0 0.5rem 0.5rem 0;
-  font-style: italic;
-  color: #4B5564;
-  font-weight: 500;
-}
-
-.blog-prose hr {
-  border-color: rgba(214, 81, 23, 0.2);
-  margin: 3rem 0;
-}
-
-/* Blog prose table styling */
-.blog-prose table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 2rem 0;
-  border: 1px solid rgba(75, 85, 100, 0.2);
-  border-radius: 0.5rem;
-  overflow: hidden;
-}
-
-.blog-prose table thead {
-  background-color: rgba(214, 81, 23, 0.1);
-}
-
-.blog-prose table th {
-  border: 1px solid rgba(75, 85, 100, 0.2);
-  padding: 1rem;
-  text-align: left;
-  font-weight: 600;
-  color: #192332;
-  background-color: rgba(214, 81, 23, 0.05);
-}
-
-.blog-prose table td {
-  border: 1px solid rgba(75, 85, 100, 0.2);
-  padding: 1rem;
-  color: #4B5564;
-  font-size: 1rem;
-}
-
-.blog-prose table tbody tr:nth-child(even) {
-  background-color: rgba(184, 134, 11, 0.02);
-}
-
-.blog-prose table tbody tr:hover {
-  background-color: rgba(214, 81, 23, 0.05);
-}
-
-/* Blog prose headings - dark slate blue to slate gradient */
-.blog-prose h2,
-.blog-prose h3 {
-  background-image: linear-gradient(to right, #192332, #4B5564);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-}
-
-/* Blog prose links styling */
-.prose a {
-  color: #D65117;
-  text-decoration: underline;
-  text-decoration-color: rgba(214, 81, 23, 0.3);
-  text-underline-offset: 0.2em;
-  font-weight: 600;
-  transition: all 0.3s ease;
-}
-
-.prose a:hover {
-  color: #FAAE1B;
-  text-decoration-color: rgba(250, 174, 27, 0.5);
-}
-
-/* Research prose container and styling - for dark backgrounds */
-.research-prose {
-  max-width: 100%;
-  font-size: 1.125rem;
-  line-height: 1.75;
-}
-
-.research-prose p {
-  color: #4B5564;
-  margin-bottom: 1rem;
-  line-height: 1.75;
-  font-size: 1.25rem;
-}
-
-.research-prose h2 {
-  color: #EDDDCC;
-  font-size: 2.25rem;
+.prose-site h2 {
+  @apply font-heading text-ink;
+  font-size: 1.75rem;
+  line-height: 1.1;
   font-weight: 700;
-  margin-bottom: 1.5rem;
-  margin-top: 3rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid rgba(75, 85, 100, 0.2);
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  margin-top: 2.2em;
+  margin-bottom: -0.2em;
+  scroll-margin-top: 5rem;
+  text-wrap: balance;
 }
 
-.research-prose h3 {
-  color: #EDDDCC;
-  font-size: 1.875rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  margin-top: 2rem;
-}
-
-.research-prose h4 {
-  color: #EDDDCC;
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-  margin-top: 1.5rem;
-}
-
-.research-prose ul,
-.research-prose ol {
-  color: #4B5564;
-  margin: 1.5rem 0;
-  padding-left: 2rem;
-}
-
-.research-prose li {
-  color: #4B5564;
-  margin-bottom: 0.5rem;
+.prose-site h3 {
+  @apply font-sans text-ink;
   font-size: 1.125rem;
+  line-height: 1.35;
+  font-weight: 700;
+  margin-top: 1.8em;
+  margin-bottom: -0.4em;
+  scroll-margin-top: 5rem;
 }
 
-.research-prose a {
-  color: #FAAE1B;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
+.prose-site h4 {
+  @apply font-sans text-muted;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: 1.5em;
 }
 
-.research-prose a:hover {
-  color: #D65117;
+.prose-site a {
+  @apply text-accent-ink underline decoration-accent-ink/40 decoration-1 transition-colors;
+  text-underline-offset: 0.18em;
 }
 
-.research-prose strong {
-  color: #EDDDCC;
-  font-weight: 600;
+.prose-site a:hover {
+  @apply decoration-accent-ink;
 }
 
-.research-prose code {
-  color: #FAAE1B;
-  background-color: rgba(25, 35, 50, 0.6);
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-  font-size: 0.875rem;
-  font-weight: 500;
+.prose-site strong {
+  font-weight: 650;
 }
 
-.research-prose pre {
-  background-color: rgba(25, 35, 50, 0.6);
-  color: #EDDDCC;
-  padding: 1.5rem;
-  border-radius: 0.25rem;
-  border: 1px solid rgba(75, 85, 100, 0.2);
-  overflow-x: auto;
-  margin: 1.5rem 0;
+.prose-site :is(ul, ol) {
+  padding-left: 1.35em;
 }
 
-.research-prose pre code {
-  background-color: transparent;
-  padding: 0;
-  font-size: 0.875rem;
+.prose-site ul {
+  list-style: disc;
 }
 
-.research-prose blockquote {
-  border-left: 4px solid #FAAE1B;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+.prose-site ol {
+  list-style: decimal;
+}
+
+.prose-site li + li {
+  margin-top: 0.4em;
+}
+
+.prose-site li::marker {
+  color: rgb(var(--muted));
+}
+
+.prose-site blockquote {
+  @apply border-l-2 border-accent pl-5 text-muted;
   font-style: italic;
-  color: #4B5564;
-  margin: 1.5rem 0;
 }
 
-.research-prose hr {
-  border-color: rgba(75, 85, 100, 0.2);
-  margin: 3rem 0;
+/* "Updated September 2026: ..." notes are blockquotes marked by the renderer. */
+.prose-site .update-note {
+  @apply rounded-md border border-ink/10 bg-surface px-5 py-4 font-sans text-[0.95rem] not-italic leading-relaxed text-ink;
+  border-left: 3px solid rgb(var(--accent));
 }
 
-/* Research prose table styling */
-.research-prose table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 2rem 0;
-  border: 1px solid rgba(75, 85, 100, 0.2);
-  border-radius: 0.25rem;
-  overflow: hidden;
+.prose-site .update-note p + p {
+  margin-top: 0.6em;
 }
 
-.research-prose table thead {
-  background-color: rgba(250, 174, 27, 0.1);
+.prose-site hr {
+  @apply my-10 border-ink/10;
 }
 
-.research-prose table th {
-  border: 1px solid rgba(75, 85, 100, 0.2);
-  padding: 0.75rem;
-  text-align: left;
-  font-weight: 600;
-  color: #EDDDCC;
+.prose-site code {
+  @apply rounded bg-ink/[0.06] px-1.5 py-0.5 font-mono text-[0.85em];
 }
 
-.research-prose table td {
-  border: 1px solid rgba(75, 85, 100, 0.2);
-  padding: 0.75rem;
-  color: #4B5564;
+.prose-site pre {
+  @apply overflow-x-auto rounded-lg border border-ink/10 bg-surface p-4 text-sm leading-relaxed;
 }
 
-.research-prose table tbody tr:hover {
-  background-color: rgba(25, 35, 50, 0.3);
+.prose-site pre code {
+  @apply bg-transparent p-0 text-[0.85rem];
 }
 
-/* Footnote styling for research prose */
-.research-prose sup {
-  color: #FAAE1B;
-  font-weight: 600;
+.prose-site .table-wrap {
+  @apply -mx-4 overflow-x-auto px-4 sm:mx-0 sm:px-0;
 }
 
-.research-prose sup a {
-  color: #FAAE1B;
+.prose-site table {
+  @apply w-full border-collapse font-sans text-[0.95rem] leading-snug;
+}
+
+.prose-site th {
+  @apply border-b-2 border-ink/20 py-2 pr-4 text-left align-bottom font-semibold;
+}
+
+.prose-site td {
+  @apply border-b border-ink/10 py-2 pr-4 align-top;
+}
+
+.prose-site img {
+  @apply rounded-md;
+}
+
+/* GFM footnotes */
+.prose-site .footnotes {
+  @apply mt-12 border-t border-ink/10 pt-6 font-sans text-sm text-muted;
+}
+
+.prose-site .footnotes h2 {
+  @apply sr-only;
+}
+
+.prose-site sup a {
   text-decoration: none;
+  font-weight: 600;
 }
 
-.research-prose sup a:hover {
-  color: #D65117;
+/* Heading anchor links added by the renderer */
+.prose-site .heading-anchor {
+  @apply ml-2 font-sans text-base font-normal text-muted no-underline opacity-0 transition-opacity;
 }
 
-/* Custom scrollbar */
+.prose-site :is(h2, h3):hover .heading-anchor,
+.prose-site .heading-anchor:focus-visible {
+  opacity: 1;
+}
+
+/* Scrollbar: keep the older beige treatment for other routes, neutral on the site. */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -394,4 +334,12 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-slate/50;
+}
+
+html:has(.site) body {
+  background: rgb(var(--paper));
+}
+
+html:has(.site) ::-webkit-scrollbar-track {
+  background: rgb(var(--paper));
 }

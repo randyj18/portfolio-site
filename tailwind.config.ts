@@ -9,7 +9,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Strategic Nature-Inspired Palette (2025)
+        // Site redesign (2026) tokens. Values live in CSS variables in app/globals.css
+        // so the public site can switch to a dark palette with prefers-color-scheme.
+        paper: 'rgb(var(--paper) / <alpha-value>)',
+        surface: 'rgb(var(--surface) / <alpha-value>)',
+        ink: 'rgb(var(--ink) / <alpha-value>)',
+        muted: 'rgb(var(--muted) / <alpha-value>)',
+        accent: 'rgb(var(--accent) / <alpha-value>)',
+        'accent-ink': 'rgb(var(--accent-ink) / <alpha-value>)',
+        night: 'rgb(var(--night) / <alpha-value>)',
+        'night-ink': 'rgb(var(--night-ink) / <alpha-value>)',
+        'night-muted': 'rgb(var(--night-muted) / <alpha-value>)',
+        'night-accent': 'rgb(var(--night-accent) / <alpha-value>)',
+
+        // Original palette (2025). Still used by /gphl, /playoffhockey, /workouts
+        // and the playground demos, so keep these as they are.
         navy: {
           DEFAULT: '#192332',
           darker: '#130CC9',
@@ -44,6 +58,9 @@ const config: Config = {
         },
       },
       fontFamily: {
+        // Loaded with next/font in app/(site)/layout.tsx.
+        heading: ['var(--font-heading)', '"Arial Narrow"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-serif)', 'Charter', 'Georgia', 'Cambria', '"Times New Roman"', 'serif'],
         sans: [
           '-apple-system',
           'BlinkMacSystemFont',

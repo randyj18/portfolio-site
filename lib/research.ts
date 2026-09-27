@@ -1,140 +1,159 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { dateKey, normalizeDate } from './dates';
+import { countWords, firstParagraph, internalLinks, readingMinutes } from './markdown';
+
+/*
+ * Research notes live in research/published/<slug>.md with YAML front matter:
+ *
+ *   ---
+ *   title: DeepSeek-R1 and reasoning from reinforcement learning
+ *   description: One or two sentences for cards and meta description.
+ *   theme: cheaper-models              # a slug from researchThemes below
+ *   papers:
+ *     - title: "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via RL"
+ *       url: https://arxiv.org/abs/2501.12948
+ *       authors: DeepSeek-AI
+ *       date: 2025-01
+ *   published: 2025-11                 # when the note was written
+ *   updated: 2026-09                   # optional
+ *   ---
+ */
 
 const researchDirectory = path.join(process.cwd(), 'research/published');
+
+export interface ResearchTheme {
+  slug: string;
+  name: string;
+  short: string;
+}
+
+// PROVISIONAL: finalized after the content review.
+export const researchThemes: ResearchTheme[] = [
+  { slug: 'cheaper-models', name: 'Cheaper, smaller models', short: 'How the cost of capable models keeps falling.' },
+  { slug: 'agents-that-learn', name: 'Agents that learn from experience', short: 'Training agents without armies of human demonstrations.' },
+  { slug: 'beyond-next-token', name: 'Beyond next-token prediction', short: 'Architectures that try something other than predicting the next word.' },
+  { slug: 'physical-world', name: 'Robots and the physical world', short: 'Connecting language models to perception and action.' },
+];
+
+export interface PaperRef {
+  title: string;
+  url?: string;
+  authors?: string;
+  date?: string;
+  venue?: string;
+}
 
 export interface ResearchPaper {
   slug: string;
   title: string;
-  tier: string;
+  description: string;
+  theme: string;
+  themeName: string;
+  papers: PaperRef[];
   published?: string;
-  arxiv?: string;
-  authors?: string;
-  impact: string;
+  updated?: string;
+  words: number;
+  readingMinutes: number;
   content: string;
   excerpt?: string;
+  blogLinks: string[];
+  researchLinks: string[];
 }
 
-export interface ResearchTier {
-  name: string;
-  papers: ResearchPaper[];
+const isProd = process.env.NODE_ENV === 'production';
+let cache: ResearchPaper[] | null = null;
+
+function toPaperRefs(value: unknown): PaperRef[] {
+  if (!Array.isArray(value)) return [];
+  return value
+    .filter((v): v is Record<string, unknown> => typeof v === 'object' && v !== null)
+    .map((v) => ({
+      title: String(v.title ?? ''),
+      url: typeof v.url === 'string' ? v.url : undefined,
+      authors: typeof v.authors === 'string' ? v.authors : undefined,
+      date: normalizeDate(v.date) ?? (typeof v.date === 'string' ? v.date : undefined),
+      venue: typeof v.venue === 'string' ? v.venue : undefined,
+    }))
+    .filter((p) => p.title);
 }
 
-export function getAllResearchSlugs(): string[] {
-  const fileNames = fs.readdirSync(researchDirectory);
-  return fileNames
-    .filter(fileName => fileName.endsWith('.md'))
-    .map(fileName => fileName.replace(/\.md$/, ''));
-}
-
-export function getResearchBySlug(slug: string): ResearchPaper | null {
-  try {
-    const fullPath = path.join(researchDirectory, `${slug}.md`);
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
-    const { data, content } = matter(fileContents);
-
-    // Extract title from content (first # heading)
-    const titleMatch = content.match(/^#\s+(.+)$/m);
-    const title = titleMatch ? titleMatch[1] : slug;
-
-    // Extract tier from frontmatter pattern
-    const tierMatch = content.match(/\*\*Tier:\*\*\s+(.+)$/m);
-    const tier = tierMatch ? tierMatch[1] : 'Uncategorized';
-
-    // Extract published date
-    const publishedMatch = content.match(/\*\*Published:\*\*\s+(.+)$/m);
-    const published = publishedMatch ? publishedMatch[1] : undefined;
-
-    // Extract arXiv link
-    const arxivMatch = content.match(/\*\*arXiv:\*\*\s+\[([^\]]+)\]\(([^)]+)\)/m);
-    const arxiv = arxivMatch ? arxivMatch[2] : undefined;
-
-    // Extract authors
-    const authorsMatch = content.match(/\*\*Authors:\*\*\s+(.+)$/m);
-    const authors = authorsMatch ? authorsMatch[1] : undefined;
-
-    // Extract impact
-    const impactMatch = content.match(/\*\*Impact:\*\*\s+(.+)$/m);
-    const impact = impactMatch ? impactMatch[1] : 'TBD';
-
-    // Create excerpt (first paragraph after metadata)
-    const contentWithoutMetadata = content
-      .replace(/^#.+$/m, '')
-      .replace(/\*\*Tier:\*\*.+$/m, '')
-      .replace(/\*\*Published:\*\*.+$/m, '')
-      .replace(/\*\*arXiv:\*\*.+$/m, '')
-      .replace(/\*\*Authors:\*\*.+$/m, '')
-      .replace(/\*\*Impact:\*\*.+$/m, '')
-      .replace(/^---$/m, '')
-      .trim();
-
-    const firstParagraph = contentWithoutMetadata.split('\n\n')[0];
-    const excerpt = firstParagraph?.substring(0, 200) + (firstParagraph?.length > 200 ? '...' : '');
-
-    return {
-      slug,
-      title,
-      tier,
-      published,
-      arxiv,
-      authors,
-      impact,
-      content,
-      excerpt,
-    };
-  } catch (error) {
-    console.error(`Error reading research paper: ${slug}`, error);
-    return null;
-  }
+function readNote(slug: string): ResearchPaper | null {
+  const fullPath = path.join(researchDirectory, `${slug}.md`);
+  if (!fs.existsSync(fullPath)) return null;
+  const { data, content } = matter(fs.readFileSync(fullPath, 'utf8'));
+  const body = content.trim();
+  const title = typeof data.title === 'string' ? data.title : body.match(/^#\s+(.+)$/m)?.[1] ?? slug;
+  const theme = typeof data.theme === 'string' ? data.theme : 'other';
+  const themeName = researchThemes.find((t) => t.slug === theme)?.name ?? 'Other notes';
+  const words = countWords(body);
+  const excerpt = firstParagraph(body);
+  return {
+    slug,
+    title,
+    description: typeof data.description === 'string' ? data.description : excerpt,
+    theme,
+    themeName,
+    papers: toPaperRefs(data.papers),
+    published: normalizeDate(data.published),
+    updated: normalizeDate(data.updated),
+    words,
+    readingMinutes: readingMinutes(words),
+    content: body,
+    excerpt,
+    blogLinks: internalLinks(body, 'blog'),
+    researchLinks: internalLinks(body, 'research').filter((s) => s !== slug),
+  };
 }
 
 export function getAllResearchPapers(): ResearchPaper[] {
-  const slugs = getAllResearchSlugs();
-  const papers = slugs
-    .map(slug => getResearchBySlug(slug))
-    .filter((paper): paper is ResearchPaper => paper !== null);
-
-  return papers;
+  if (cache) return cache;
+  const notes = fs
+    .readdirSync(researchDirectory)
+    .filter((f) => f.endsWith('.md'))
+    .map((f) => readNote(f.replace(/\.md$/, '')))
+    .filter((n): n is ResearchPaper => n !== null)
+    .sort((a, b) => dateKey(b.papers[0]?.date) - dateKey(a.papers[0]?.date) || a.title.localeCompare(b.title));
+  if (isProd) cache = notes;
+  return notes;
 }
 
-export function getResearchByTier(): ResearchTier[] {
-  const allPapers = getAllResearchPapers();
-  const tierMap = new Map<string, ResearchPaper[]>();
-
-  // Define tier order
-  const tierOrder = [
-    'Market-Defining Transformation',
-    'Paradigm Shifter (3-5 year horizon)',
-    'Major Market Enabler (2-4 year horizon)',
-  ];
-
-  allPapers.forEach(paper => {
-    const tier = paper.tier;
-    if (!tierMap.has(tier)) {
-      tierMap.set(tier, []);
-    }
-    tierMap.get(tier)!.push(paper);
-  });
-
-  // Sort by predefined tier order
-  return tierOrder
-    .filter(tier => tierMap.has(tier))
-    .map(tier => ({ name: tier, papers: tierMap.get(tier)! }));
+export function getAllResearchSlugs(): string[] {
+  return getAllResearchPapers().map((n) => n.slug);
 }
 
+export function getResearchBySlug(slug: string): ResearchPaper | null {
+  return getAllResearchPapers().find((n) => n.slug === slug) ?? null;
+}
+
+export function getResearchByTheme(): { theme: ResearchTheme; papers: ResearchPaper[] }[] {
+  const all = getAllResearchPapers();
+  const groups = researchThemes
+    .map((theme) => ({ theme, papers: all.filter((p) => p.theme === theme.slug) }))
+    .filter((g) => g.papers.length > 0);
+  const other = all.filter((p) => !researchThemes.some((t) => t.slug === p.theme));
+  if (other.length) groups.push({ theme: { slug: 'other', name: 'Other notes', short: '' }, papers: other });
+  return groups;
+}
+
+/** Notes in the same theme first, then notes this one links to. */
 export function getRelatedPapers(currentSlug: string, limit: number = 3): ResearchPaper[] {
-  const currentPaper = getResearchBySlug(currentSlug);
-  if (!currentPaper) return [];
-
-  const allPapers = getAllResearchPapers();
-
-  // Prioritize papers from same tier
-  const sameTier = allPapers
-    .filter(paper => paper.slug !== currentSlug && paper.tier === currentPaper.tier);
-
-  const otherPapers = allPapers
-    .filter(paper => paper.slug !== currentSlug && paper.tier !== currentPaper.tier);
-
-  return [...sameTier, ...otherPapers].slice(0, limit);
+  const current = getResearchBySlug(currentSlug);
+  if (!current) return [];
+  return getAllResearchPapers()
+    .filter((p) => p.slug !== currentSlug)
+    .map((p) => ({
+      p,
+      score:
+        (p.theme === current.theme ? 2 : 0) +
+        (current.researchLinks.includes(p.slug) ? 3 : 0) +
+        (p.researchLinks.includes(currentSlug) ? 2 : 0),
+    }))
+    .filter((x) => x.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map((x) => x.p);
 }
+
+/** Blog posts that cite this research note are computed in the page via lib/blog. */
