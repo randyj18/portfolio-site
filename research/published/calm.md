@@ -1,73 +1,33 @@
-# CALM: A Different Way to Think
-
-**Tier:** Paradigm Shifter (3-5 year horizon)
-**Published:** October 2025
-**arXiv:** [2510.27688](https://arxiv.org/abs/2510.27688)
-**Authors:** Tsinghua University, WeChat AI/Tencent
-**Impact:** High-risk, high-reward—potentially transformative or incremental
-
+---
+title: CALM and predicting several tokens at once
+description: Tencent's CALM predicts one vector that stands for four tokens, matching a baseline with about a third less compute at small scale. Nobody has shown yet that it scales.
+theme: new-architectures
+status: early-research
+papers:
+  - title: "Continuous Autoregressive Language Models"
+    url: https://arxiv.org/abs/2510.27688
+    authors: Shao et al. (WeChat AI, Tencent; Tsinghua University)
+    date: 2025-10
+published: 2025-11
+updated: 2026-09
 ---
 
-What if language models didn't predict one token at a time? What if they predicted meaning?
+Language models write one token at a time, and every token costs a full pass through the model. CALM (Continuous Autoregressive Language Models), from Tencent's WeChat AI with a co-author at Tsinghua University, tries to put more into each step.
 
-CALM (Continuous Autoregressive Language Models) asks that question and demonstrates it's not just theoretical. But whether it scales to change how we build AI or remains an academic curiosity is genuinely uncertain.
+It works in two stages. First, an autoencoder learns to compress a chunk of K tokens into a single continuous vector, and to rebuild the tokens from that vector with over 99.9% accuracy. Then a language model learns to predict the next vector instead of the next token, so generating text takes K times fewer steps. The main experiments use K = 4.
 
-## The Core Idea
+Predicting a continuous vector means there is no probability for each possible next token, and much of the usual toolkit depends on those probabilities. The authors built replacements: an energy-based output head that produces the next vector in a single step (they also tried diffusion and flow-matching heads, which need several sampling steps and did worse), an evaluation metric called BrierLM because perplexity can't be computed, and a way to control sampling without likelihoods.
 
-**Today's models**: Predict discrete tokens sequentially. "The" → "cat" → "sat" → "on" → "the" → "mat".
+The experiments are small. The models range from 371 million to 1.82 billion parameters, trained on about 230 billion tokens from the Pile. The headline comparison is that the 371M CALM model matched the BrierLM score of a 281M standard Transformer with 44% fewer training FLOPs and 34% fewer inference FLOPs. The code and checkpoints are [on GitHub](https://github.com/shaochenze/calm) under an MIT licence.
 
-**CALM**: Compresses 4 tokens into a single continuous vector, then predicts the next vector. Think of it as predicting chunks of meaning instead of individual words.
+## Why I think it matters
 
-**The efficiency gains at small scale (371M-1.8B parameters):**
-- 44% fewer training FLOPs
-- 34% fewer inference FLOPs
-- 4× fewer prediction steps
-- Same quality as baseline models
+CALM asks a good question: whether each generation step should carry a single token or a bigger unit of meaning. If the answer holds at scale, text could be generated in fewer, richer steps, and inference would get cheaper.
 
-If that scales to frontier models, it could reshape the economics of AI. If.
+I wouldn't plan around it yet. What I'd watch for is a result at tens of billions of parameters with quality intact, and a way to do reinforcement learning without token probabilities. The paper is candid about the second problem: reinforcement learning methods usually work by "increasing the log-probability of rewarded samples, a quantity that CALM cannot directly compute." The same gap makes distillation from a larger teacher model harder. Until those are solved, the proven savings come from [quantization](/research/4bit-quantization), mixture-of-experts models and speculative decoding.
 
-## Why This Might Be Revolutionary
+A related idea has reached production in a simpler form. DeepSeek-V3 trains with a multi-token prediction objective and reuses that part of the model for speculative decoding. Its guess at the second token is accepted 85 to 90% of the time, which gives 1.8 times the generation speed ([technical report](https://arxiv.org/abs/2412.19437)). That approach keeps discrete tokens and a normal probability for each one, so it fits more easily into existing training and serving pipelines.
 
-**The paradigm shift**: We've been treating language as discrete symbols because that's how we write it. But meaning isn't discrete—it's continuous, contextual, and compositional.
+## Since then
 
-CALM bets that matching the representation to the reality could unlock dramatic efficiency gains. Predicting "meaning chunks" instead of tokens means:
-- Fewer autoregressive steps (faster generation)
-- More information per prediction (better compression)
-- Potential for much longer context understanding
-
-**If it scales**, we're talking about 30-40% cost reductions across the entire AI inference stack. For cloud providers doing billions of daily inferences, that's transformative.
-
-## Why This Might Not Change Anything
-
-**The brutal reality: It's only proven up to 1.8B parameters.**
-
-Every architecture that works beautifully at small scale has failed at frontier scale. Attention wasn't supposed to scale past 512 tokens. Dense transformers weren't supposed to work beyond 1B parameters. Yet here we are with 100B+ parameter models and million-token contexts.
-
-**The specific challenges:**
-- Can't integrate with RLHF (current alignment methods require token-level probabilities)
-- Semantic drift potential in long sequences
-- Unclear how continuous representations handle complex reasoning
-- Two-stage training adds engineering complexity
-- No evidence it works at GPT-4 scale
-
-**The honest assessment**: This could be the next big thing, or it could be an elegant idea that doesn't survive contact with scale.
-
-## What Makes It Worth Watching
-
-The research is rigorous. The efficiency gains at demonstrated scales are real. The authors open-sourced everything, enabling rapid validation by the community.
-
-And critically: **they're asking the right question**. Should we be predicting tokens or meaning? That's not a minor architectural tweak—it's questioning a fundamental assumption.
-
-Sometimes the biggest breakthroughs come from realizing everyone was solving the wrong problem. CALM might be that, or it might confirm the current approach is correct.
-
-## The Bottom Line for Decision-Makers
-
-**Don't bet your infrastructure on CALM yet.** But if you're planning 2-3 year AI roadmaps, track whether this scales.
-
-If someone demonstrates CALM working at 70B+ parameters with preserved quality and RLHF integration, the entire inference economics conversation changes. That's a non-trivial "if," but the potential return is 10x efficiency gains.
-
-In the meantime, proven efficiency techniques (quantization, speculative decoding, MoE) deliver 2-4x gains right now. Take those wins. Watch CALM for the next wave.
-
----
-
-**Technical note**: CALM uses a high-fidelity autoencoder (>99.9% reconstruction) to compress K tokens into continuous vectors, then trains a generative model to predict next vectors using energy-based or flow matching heads. Evaluation uses BrierLM metric since continuous prediction makes traditional perplexity intractable.
+As of September 2026, CALM is still a single [arXiv version](https://arxiv.org/abs/2510.27688) with no venue listed, and I haven't found results at a larger scale from the authors or anyone else. It sits alongside other attempts to change what a model predicts or remembers, such as [LLM-JEPA](/research/llm-jepa) and [Nested Learning](/research/nested-learning). None of them has yet been shown at the scale of the models people use every day.

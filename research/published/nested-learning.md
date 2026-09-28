@@ -1,101 +1,38 @@
-# Nested Learning: Teaching AI to Remember
-
-**Tier:** Paradigm Shifter (3-5 year horizon)
-**Published:** November 2025
-**arXiv:** [NL.pdf](http://abehrouz.github.io/files/NL.pdf)
-**Authors:** Ali Behrouz, Vahab Mirrokni - Google Research
-**Impact:** Potentially transformative approach to continual learning and long-context processing
-
+---
+title: Nested Learning and models that keep learning
+description: Google's Nested Learning gives models memories that update at different speeds, so they might keep learning. Promising at 1.3B parameters, unproven beyond.
+theme: new-architectures
+status: early-research
+papers:
+  - title: "Nested Learning: The Illusion of Deep Learning Architectures"
+    url: https://arxiv.org/abs/2512.24695
+    authors: Behrouz et al. (Google Research)
+    date: 2025-12
+    venue: NeurIPS 2025
+published: 2025-11
+updated: 2026-09
 ---
 
-What if AI models could learn new information without forgetting what they already know? What if the architecture that processes information and the rules that train it were fundamentally the same thing?
+Language models learn in two separate phases. Training sets the weights. After that, the model can only work with what fits in its context window, and anything it picks up during a conversation is gone afterwards. Fine-tuning new knowledge in tends to erode what the model already knew, a problem known as catastrophic forgetting. Nested Learning, from Ali Behrouz, Meisam Razaviyayn, Peilin Zhong and Vahab Mirrokni at Google Research, is an attempt to blur the line between learning and using.
 
-Nested Learning from Google Research asks these questions and delivers a surprisingly elegant answer: treat the entire model as interconnected optimization problems, each operating at different timescales.
+Its central claim is that a model's architecture and the optimizer that trains it are the same kind of thing: nested optimization problems, each with its own flow of information and its own update rate. Seen that way, an optimizer such as Adam is itself a kind of memory: it compresses information about past gradients. The paper builds three things on this idea ([arXiv](https://arxiv.org/abs/2512.24695)):
 
-## The Core Problem
+- More expressive optimizers, with deeper memory of past gradients or more powerful learning rules.
+- A continuum memory system: instead of a split between short-term and long-term memory, a spectrum of memory modules that update at different frequencies, loosely inspired by the different speeds of brain waves.
+- Hope, a self-modifying sequence model that learns its own update rule, combined with the continuum memory. It builds on Google's earlier Titans architecture.
 
-**Catastrophic forgetting**: When models learn new tasks, they overwrite knowledge from previous tasks. Today's LLMs are constrained to either the immediate context of their input window or static information from pre-training.
+The experiments are at 760 million parameters (trained on 30 billion tokens) and 1.3 billion parameters (100 billion tokens). At both sizes Hope had the lowest perplexity in the paper's language-modelling comparison, ahead of a standard Transformer and recurrent models such as RetNet, RWKV-7 and Titans. At 1.3B, its perplexity on Wikitext was 14.39 against 17.92 for the Transformer. The paper also reports results on long-context retrieval, continual learning and few-shot tasks.
 
-**The current workaround**: Freeze weights and hope the model learned enough. Fine-tuning helps for narrow domains but degrades general capability. In-context learning works but is limited by context windows.
+## Why I think it matters
 
-**Nested Learning's bet**: What if we designed models that inherently manage multiple timescales of memory, from immediate context to permanent knowledge?
+Continual learning is one of the real gaps in today's systems. A model that could take in new information without forgetting what it knew would remove the trade-off between a general model and a specialized one, and it would make context-window limits much less central to how systems are designed. The idea that architecture and training are one kind of process is elegant, and if it holds up it could simplify how people think about model memory.
 
-## The Key Insight
+The evidence is at 1.3 billion parameters, far below the models people use, and the paper has no experiments on the post-training steps, such as instruction tuning and reinforcement learning, that turn a base model into a usable assistant. Self-modifying models may also be harder to test and verify. What I'd watch: whether Google or anyone else shows Hope at tens of billions of parameters, whether it survives standard post-training, and whether other labs replicate the results.
 
-The paper's central thesis is profound: **architecture and training rules are fundamentally the same concept—just different levels of optimization.**
+## Since then
 
-This isn't a minor reframing. It suggests that the distinction we draw between "model structure" and "learning algorithm" is artificial. Both are optimization processes operating at different frequencies.
+A version of the paper was published at NeurIPS 2025, and the full paper was posted to arXiv at the end of December 2025. I haven't found released code. Google has continued the line of work on memory: in December 2025 it published a post on Titans and MIRAS, about helping models keep a long-term memory ([Google Research](https://research.google/blog/titans-miras-helping-ai-have-long-term-memory/)).
 
-## Three Core Contributions
+As of September 2026 I haven't seen a scaled-up Hope model, or evidence that the approach is in Gemini. A related idea has reached production in another form: models that mix attention with recurrent layers now ship at scale, such as NVIDIA's Nemotron 3 Super, a hybrid of Mamba and Transformer layers with 120 billion parameters in total ([report](https://arxiv.org/abs/2604.12374)). That doesn't tell us whether Nested Learning will scale, but it does show that alternatives to the plain Transformer can.
 
-### Deep Optimizers
-
-Reconceptualize optimizers as associative memory modules that remember how previous examples behaved. This produces improved momentum-based formulations that account for relationships between data samples, making training more robust to imperfect data.
-
-### Continuum Memory Systems (CMS)
-
-Instead of discrete memory types (short-term vs. long-term), CMS introduces a spectrum of memory modules updating at different frequencies. Think of it like brain waves—some update nearly instantly, others very slowly.
-
-This lets the model balance:
-- **Short-term context** (sequence models)
-- **Long-term knowledge storage** (feedforward networks)
-- **Everything in between** (gradient updates at various rates)
-
-### Hope Architecture
-
-A self-modifying recurrent architecture that validates the theory. Key features:
-- Unbounded in-context learning through self-referential optimization
-- CMS blocks for extended context handling
-- Dynamic memory optimization during inference
-
-## Results Worth Noting
-
-**At 1.3B parameters trained on 100B tokens:**
-- Outperformed Transformer++ on language modeling
-- Beat modern recurrent models (RetNet, DeltaNet) on common-sense reasoning
-- Superior performance on Needle-in-Haystack tasks vs. TTT and Mamba2
-- Lower perplexity across benchmarks
-
-The results are genuinely impressive for this scale. But that's also the honest caveat: 1.3B parameters is far from frontier.
-
-## Why This Might Matter
-
-**If Nested Learning scales**, we get models that:
-- Continuously learn without forgetting
-- Process arbitrarily long contexts efficiently
-- Adapt to new domains without degrading on old ones
-
-For enterprise AI, that's transformative. No more choosing between "general capability" and "domain specialization." No more context window limitations driving architecture decisions.
-
-**The theoretical elegance is compelling.** Unifying architecture and optimization into a single framework is the kind of simplification that often precedes major advances. Physics has shown that beautiful mathematics often reflects reality.
-
-## Why This Might Not Change Anything
-
-**Scale is everything, and we don't know if this scales.**
-
-The paper demonstrates results at 1.3B parameters. The gap between "works at 1B" and "works at 100B+" has killed many promising architectures. State space models looked revolutionary at small scale too.
-
-**Practical concerns:**
-- Integration with RLHF and alignment methods is unaddressed
-- Production deployment complexity is unknown
-- Whether CMS's benefits compound or plateau at scale is untested
-- Self-modifying architectures introduce verification challenges
-
-**The honest take**: This is high-quality research with genuine theoretical depth. Whether it survives the scaling laws is genuinely uncertain.
-
-## The Business Implication
-
-**Don't restructure your ML infrastructure yet.** But if you're thinking about long-term AI architecture (2-3+ year horizons), track this closely.
-
-The specific things to watch:
-- Does Google scale Hope to 7B+? 70B+?
-- Can CMS integrate with standard alignment pipelines?
-- Do other labs replicate and extend the results?
-
-If those boxes get checked, Nested Learning could fundamentally change how we think about model memory and continual learning. That's a significant "if," but the potential payoff is substantial.
-
-In the meantime, proven approaches to context extension and efficient fine-tuning deliver real value today. Don't wait for paradigm shifts when incremental gains are available.
-
----
-
-**Technical note**: Nested Learning frames models as multi-level optimization problems where each level (architecture components, optimizers, training dynamics) updates at different frequencies. The Hope architecture implements this through CMS blocks that create a spectrum from fast-updating attention to slow-updating parameters, enabling the model to optimize its own memory during inference.
+For other attempts to change what a model predicts or remembers, see [CALM](/research/calm) and [LLM-JEPA](/research/llm-jepa).
