@@ -45,6 +45,7 @@ More text, with [links to other posts](/blog/some-slug) in context.
 > Updated November 2026: A dated correction or development goes in a blockquote that starts with "Updated". The site renders it as an update note.
 ```
 
+- Wrap any front matter value that contains ": " in double quotes, or the YAML won't parse (`npm run check:content` catches this).
 - `title`: short, plain and specific, ideally under 60 characters. It renders in capitals in a condensed face, so shorter reads better. Avoid clickbait shapes ("X: Why Y (And What Z)") and numbers used as hooks.
 - `description`: the dek under the title, card text and meta description. Say what the post argues.
 - `topic`: a slug from `lib/topics.ts`. Add the post to that topic's `readingOrder` where it belongs, or it is appended at the end of the hub.
@@ -75,7 +76,8 @@ The ideas are Randy's. Write the way a thoughtful practitioner talks to a peer.
 
 - Link 2 to 4 related posts in context, with descriptive anchor text. Don't force links.
 - Research notes can be linked as `/research/<slug>`.
-- `npm run check:content` fails on broken internal links, unknown topics, dashes and legacy boilerplate, and warns about filler phrases, US spellings and link counts.
+- `npm run check:content` fails on invalid front matter, broken internal links, unknown topics, dashes and legacy boilerplate, and warns about filler phrases, US spellings and link counts.
+- If you merge or retire a post, move its ideas into the surviving post, delete the file, and add a permanent redirect in `next.config.js` so the old URL keeps working.
 
 ### 5. Verify
 
@@ -84,9 +86,11 @@ The ideas are Randy's. Write the way a thoughtful practitioner talks to a peer.
 
 ## Research notes
 
-Same conventions, in `research/published/<slug>.md`, with `theme` (a slug from `researchThemes` in `lib/research.ts`) instead of `topic`, and a `papers` list:
+Same conventions, in `research/published/<slug>.md`, with `theme` (a slug from `researchThemes` in `lib/research.ts`) instead of `topic`, an optional `status` (`in-use`, `published-result` or `early-research`), and a `papers` list:
 
 ```yaml
+theme: cheaper-models
+status: published-result
 papers:
   - title: "Paper title as published"
     url: https://arxiv.org/abs/xxxx.xxxxx

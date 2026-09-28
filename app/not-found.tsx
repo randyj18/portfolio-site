@@ -4,7 +4,8 @@ import SiteShell from '@/components/site/SiteShell';
 export default function NotFound() {
   return (
     <SiteShell>
-      <div className="container-site max-w-3xl py-16 sm:py-24">
+      <div className="container-site">
+        <div className="max-w-3xl py-16 sm:py-24">
         <p className="eyebrow">404</p>
         <h1 className="mt-3 text-6xl font-extrabold uppercase leading-[0.9] text-ink sm:text-7xl">Page not found</h1>
         <p className="mt-5 font-serif text-xl leading-relaxed text-muted">
@@ -27,6 +28,7 @@ export default function NotFound() {
             </Link>
           </li>
         </ul>
+        </div>
       </div>
     </SiteShell>
   );

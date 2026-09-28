@@ -110,5 +110,10 @@ export const startHere: string[] = [
   'beyond-roi-measuring-ai-value',
 ];
 
-/** Posts featured on the homepage. */
-export const featured: string[] = startHere.slice(0, 4);
+/** Posts featured on the homepage: a spread across topics. */
+export const featured: string[] = [
+  'pilot-purgatory-ai-projects',
+  'ai-budget-democratizing-innovation',
+  'compensation-ai-era',
+  'build-vs-buy-agentic-ai',
+];

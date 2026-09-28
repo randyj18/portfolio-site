@@ -36,37 +36,27 @@ docker run -p 3000:3000 portfolio-site
 ### Tech Stack
 - **Framework:** Next.js 14 (App Router)
 - **Language:** TypeScript
-- **Styling:** Tailwind CSS + custom design system
-- **Animations:** Framer Motion
-- **Fonts:** System font stack (Inter body, sans-serif headings)
+- **Styling:** Tailwind CSS, with design tokens as CSS variables (light and dark)
+- **Content:** Markdown with YAML front matter in `blogs/published/` and `research/published/`
+- **Fonts:** Barlow Condensed (headings) and Source Serif 4 (long-form text) through `next/font`; system sans for interface text
 
 ### Project Structure
 ```
 app/
-  layout.tsx          # Root layout with metadata
-  page.tsx            # Home page
-  globals.css         # Global styles & Tailwind config
-components/
-  Hero.tsx            # Hero section with intro
-  Philosophy.tsx      # Approach & methodology
-  Capabilities.tsx    # Skills & expertise areas
-  Contact.tsx         # Contact & CTAs
-  Footer.tsx          # Site footer
-public/               # Static assets (future)
+  layout.tsx              # Root layout and default metadata
+  (site)/                 # Public pages: home, /blog, /blog/topics, /research, /about
+  playground/             # Playground index and demos
+  feed.xml/, sitemap.ts, robots.ts, not-found.tsx
+components/site/          # Site shell, post lists, Markdown renderer, contents list
+lib/                      # Content loading (blog.ts, research.ts), topics.ts, site.ts
+blogs/published/          # Posts (blogs/drafts/ is never rendered)
+research/published/       # Research notes
+tools/check-content.mjs   # npm run check:content
 ```
 
 ### Design System
 
-**Color Palette** (Canadian nature-inspired):
-- **Lake Blue:** `#2B5F75` (primary, brand)
-- **Forest Green:** `#3A5F4A` (secondary accent)
-- **Aurora Green:** `#6FC49C` (highlights, CTAs)
-- **Granite Gray:** `#4A5568` (text, borders)
-- **Birch White:** `#F8F9FA` (backgrounds)
-
-**Typography:**
-- **Display:** Space Grotesk, bold, large scale
-- **Body:** Inter, regular/medium, comfortable line height
+Tokens live in `app/globals.css` and `tailwind.config.ts`: `paper`, `surface`, `ink`, `muted`, `accent`, `accent-ink` and `night`, built on the site's navy (#192332), warm off-white and burnt orange. The older palette tokens (navy, beige, gold, bronze and so on) are still defined because /gphl, /playoffhockey, /workouts and the playground demos use them.
 
 ## Integration with AI-Hub
 
@@ -91,18 +81,11 @@ const caseStudies = await fetch('http://hub:8080/api/blog')
 
 ### Content Updates
 
-Edit these files to customize:
-- **Hero stats:** `components/Hero.tsx` (lines 33-43)
-- **Philosophy principles:** `components/Philosophy.tsx`
-- **Capabilities:** `components/Capabilities.tsx`
-- **Contact info:** `components/Contact.tsx`
-
-### Adding New Sections
-
-1. Create new component in `components/`
-2. Import in `app/page.tsx`
-3. Add to Home component render
-4. Style with Tailwind + custom colors from `tailwind.config.ts`
+- **Posts and research notes:** follow the writing conventions in `CLAUDE.md`, then run `npm run check:content`.
+- **Topic hubs, reading order, homepage picks:** `lib/topics.ts`
+- **Name, email, LinkedIn, navigation:** `lib/site.ts`
+- **Home and About copy:** `app/(site)/page.tsx` and `app/(site)/about/page.tsx`
+- **Redirects for moved or merged posts:** `next.config.js`
 
 ### Building & Testing
 
@@ -156,8 +139,8 @@ Portfolio site is configured for Vercel deployment. To deploy:
 
 ### Key Files
 - [app/layout.tsx](app/layout.tsx) - Metadata & root layout
-- [app/page.tsx](app/page.tsx) - Home page structure
-- [components/Hero.tsx](components/Hero.tsx) - Hero section
+- [app/(site)/page.tsx](app/(site)/page.tsx) - Home page
+- [lib/topics.ts](lib/topics.ts) - Topic hubs and reading order
 - [tailwind.config.ts](tailwind.config.ts) - Design system config
 - [Dockerfile](Dockerfile) - Container definition
 - [docker-compose.yml](../../docker-compose.yml) - Hub orchestration

@@ -62,16 +62,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Start here */}
+      {/* Selected writing */}
       {picks.length > 0 && (
         <section aria-labelledby="start-heading" className="container-site mt-16 sm:mt-20">
           <div className="grid gap-8 lg:grid-cols-[1fr_2fr] lg:gap-16">
             <div>
               <h2 id="start-heading" className="text-4xl font-extrabold uppercase leading-none text-ink sm:text-5xl">
-                Start here
+                Selected writing
               </h2>
               <p className="mt-4 max-w-sm leading-relaxed text-muted">
-                The posts that best explain how I think about adopting AI inside an organization.
+                A few posts that show how I think about AI inside an organization. The writing page has a suggested reading order.
               </p>
               <p className="mt-4">
                 <Link href="/blog" className="text-sm font-semibold text-accent-ink hover:underline">
