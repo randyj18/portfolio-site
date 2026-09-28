@@ -40,7 +40,7 @@ Screenshots are in `review/before/` (the old site) and `review/after/` (this bra
 | Writing index | `review/before/blog-index-desktop.jpg`, `blog-index-mobile.jpg` | `review/after/blog-index-desktop.jpg`, `blog-index-mobile.jpg` |
 | Topic hub | (none existed) | `review/after/topic-hub-desktop.jpg` |
 | Post | `review/before/post-desktop.jpg`, `post-mobile.jpg` | `review/after/post-long-desktop.jpg` (sidebar contents), `post-table-desktop.jpg`, `post-mobile.jpg`, `post-dark-desktop.jpg` |
-| Research | `review/before/research-index-desktop.jpg`, `research-post-desktop.jpg` | `review/after/research-index-desktop.jpg`, `research-note-desktop.jpg` |
+| Research | `review/before/research-index-desktop.jpg`, `research-post-desktop.jpg` | `review/after/research-index-desktop.jpg`, `research-index-mobile.jpg`, `research-note-desktop.jpg` |
 | About | (was homepage sections) | `review/after/about-desktop.jpg` |
 | Playground index | `review/before/playground-desktop.jpg` (blank until JavaScript ran) | `review/after/playground-desktop.jpg` |
 | 404 | (Next.js default) | `review/after/not-found-desktop.jpg` |
