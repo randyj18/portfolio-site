@@ -1,265 +1,61 @@
-# Agentic AI Interoperability: Why 87% Say Integration Is Crucial But Nobody's Solving It
-
-**Subtitle:** The missing layer between AI agents and legacy systems, and why MCPs aren't enough
-**Target Length:** 2,200-2,600 words
-**Cluster:** Systems & Architecture
-**Status:** Complete
-
+---
+title: The orchestration gap that MCP doesn't close
+description: MCP gives agents access to your systems. Multi-step work across them needs state, recovery and coordination, and most of that is still yours to build.
+topic: agents-and-tools
+published: 2025-11
+updated: 2026-09
 ---
 
-## Quick Navigation
-- [The Integration Tax Nobody Talks About](#the-integration-tax-nobody-talks-about)
-- [What MCPs Don't Solve: The Orchestration Gap](#what-mcps-dont-solve-the-orchestration-gap)
-- [The Architecture We Actually Need](#the-architecture-we-actually-need)
-- [What Actually Works: Patterns from the Field](#what-actually-works-patterns-from-the-field)
-- [The Practical Reality Check](#the-practical-reality-check)
-- [Why This Gap Keeps Pilots in Purgatory](#why-this-gap-keeps-pilots-in-purgatory)
-- [Considerations for Organizations Evaluating Agentic AI](#considerations-for-organizations-evaluating-agentic-ai)
-- [The Uncomfortable Reality](#the-uncomfortable-reality)
-- [The Bigger Picture: Trajectory and Timing](#the-bigger-picture-trajectory-and-timing)
-- [The Bottom Line](#the-bottom-line)
+Most of the agent integration story in 2025 was about access. The [Model Context Protocol](/blog/model-context-protocols) made it much easier for an AI agent to reach your CRM, your order system and your documentation, and that was real progress. But access is the easy half. The hard half is getting an agent to finish a multi-step job across those systems: keep track of where it is, recover when step five times out, undo step three when step six fails, and hand a person a clean summary when it gets stuck. That's orchestration, and I think it's where a lot of agentic pilots stall.
 
-Here's a revealing statistic: 87% of organizations rate interoperability as crucial to agentic AI adoption, yet 60% cite integration with legacy systems as their primary obstacle.
+The surveys are consistent with this, though none of them measured it directly. In [UiPath's 2025 report](https://www.uipath.com/newsroom/agentic-ai-report-findings), a survey of 252 US IT executives, 87% said interoperability between different AI technologies was essential or significant, and lack of integration with other business applications was the top limitation of the AI tools they already had. In a separate [Deloitte pulse check](https://www.deloitte.com/us/en/what-we-do/capabilities/applied-artificial-intelligence/blogs/pulse-check-series-latest-ai-developments/ai-adoption-challenges-ai-trends.html), nearly 60% of AI leaders named integrating with legacy systems, along with risk and compliance, as their main challenges in adopting agentic AI. [MIT's NANDA group](https://mlq.ai/media/quarterly_decks/v0.1_State_of_AI_in_Business_2025_Report.pdf), looking at why generative AI pilots stall, found custom tools failing on "integration complexity and lack of fit with existing workflows", although it named the deeper problem as learning: systems that don't retain feedback or adapt. Reading all of that as an orchestration problem is my interpretation, and I've written separately about [why pilots stall](/blog/pilot-purgatory-ai-projects) more generally.
 
-Everyone knows what needs to happen, but comprehensive solutions remain elusive.
+## What MCP covers and what it leaves to you
 
-The immediate response has been Model Context Protocols. MCPs represent real infrastructure (16,000+ servers deployed, 8M+ downloads by April 2025), and the integration layer is actively being built.
+MCP handles discovery, authentication and the tool call itself. The [current spec](https://modelcontextprotocol.io/specification/2026-07-28/server/tools) is explicit about what it doesn't hold. The protocol has no session, so a server that needs to remember something between calls hands back a handle, and errors come back in a form the model can use to correct itself and retry. Everything above a single call belongs to whatever runs the workflow.
 
-But consider what's often overlooked: **MCPs solve data connectivity, not workflow orchestration.**
+Take a support escalation: look up the customer in the CRM, check the order database, search the documentation, apply a fix, escalate anything unusual, log the interaction and send a confirmation. MCP can give an agent access to every one of those systems. It says nothing about the order of the steps, what to record after each one, how long to wait on a slow API, when to retry, how to reverse the fix when the confirmation fails, or what happens when two agents pick up the same case.
 
-They provide AI agents access to your tools but don't enable multi-step autonomous workflows that navigate errors, maintain state, and recover from failures.
+## What the missing layer needs
 
-That gap (between "the AI can call your API" and "the AI can complete complex tasks autonomously") is where 88-95% of agentic AI pilots stall.
+The pieces orchestration has to supply are familiar from ordinary software, which is part of why the gap is easy to miss:
 
-([Pilot Purgatory: Why 90% of AI Projects Never Scale](/blog/pilot-purgatory-ai-projects) explores why these numbers are so brutal.)
+- State: which step a run is on, what it has gathered and what is pending, kept outside the model's context window.
+- Recovery: detecting failures, deciding whether a retry makes sense, backing off, and keeping partial progress.
+- Transactions: when step four of seven fails, something has to decide whether to undo the earlier steps, retry or pause for a person. Traditional systems use transaction managers and compensating actions (the saga pattern) for this.
+- Coordination: locks and conflict rules for when several agents touch the same records.
+- Context: what to keep and what to summarize as a long run piles up data.
+- Observability: what every run is doing now, where runs get stuck, and how often each kind of workflow succeeds.
 
-Let me show you what the actual problem is, and what solving it requires.
+Calling MCP the solution to AI integration is a bit like calling HTTP the solution to web applications. HTTP was necessary, but nobody shipped a web application on HTTP alone. They also needed application servers, databases, caches and load balancers.
 
-## The Integration Tax Nobody Talks About
+## Patterns I'd use
 
-Consider what integration means in the agentic AI context versus traditional implementations.
+Give the workflow explicit states and deterministic rules for moving between them. The model does the work inside a state; code decides the transitions. VOICE-Relay, one of the demos on my [playground](/playground), uses states like `INITIATED`, `DATA_GATHERING`, `VALIDATION`, `EXECUTION`, `CONFIRMATION` and `COMPLETED` this way. Predictable transitions stop one confused step from cascading into the next.
 
-Traditional API integration handles point-to-point connectivity: systems expose endpoints, other systems call them, data flows back and forth, and developers orchestrate the process.
+Make each step safe to run twice, and save a checkpoint after each one. If step four fails, resume from checkpoint three instead of paying to redo the first three steps.
 
-Agentic AI integration requires orchestration: AI must discover available resources, authenticate autonomously, execute multi-step workflows across systems, handle errors and recover without human intervention, and maintain state across asynchronous operations.
+Put a circuit breaker in front of each external system. Track its failures, and when it's failing often (say, more than three of the last ten calls), stop calling it for a while: return cached data or escalate, then try again later. One flaky dependency then degrades a few runs instead of all of them.
 
-Current tooling emphasizes connectivity while largely ignoring autonomous orchestration.
+When the agent hits ambiguity or an error it can't handle, escalate with context: the current state, the steps so far, the relevant data and the options. The person can decide quickly and the run can resume where it stopped.
 
-### What MCPs Actually Solve
+Between agents, prefer events to direct calls. When one agent finishes, it publishes an event and the next picks it up. That keeps them loosely coupled and asynchronous, and it scales more gracefully than agents calling each other.
 
-Model Context Protocols excel at three specific challenges:
+Start with bounded workflows of three to five steps, with clear success criteria and failure modes you understand. Pull shared pieces (state storage, retry logic, circuit breakers, escalation routing) into common code once you've built the same thing twice, and not before. Put observability in from the first workflow, because without it debugging is guesswork. If you expect to run several agents later, design for events and locking now, since retrofitting them is harder.
 
-**Data Access:** MCPs standardize how AI systems connect to external data sources. Build one MCP server, and any MCP-compatible AI can use it, eliminating the need for custom integrations per AI provider.
+Good coding agents already work this way internally. [Claude Code](/blog/claude-code-agentic-tool), for example, plans, edits, runs the tests, reads the failures and tries again, which is a small orchestration loop with state and recovery built in.
 
-**Authentication:** Standard patterns (OAuth 2.1, API keys, session tokens) replace custom auth implementations for every service.
+## What has changed since November 2025
 
-**Discovery:** MCP servers expose capability schemas, enabling AI systems to understand available tools and parameters through structured responses.
+When I first wrote this, I guessed orchestration frameworks would emerge within 12 to 18 months and shared standards within 24 to 36. The first half arrived roughly on schedule:
 
-([Model Context Protocols: The Connectors That Enable Everything](/blog/model-context-protocols) explores the technical architecture in detail.)
+- [LangGraph 1.0](https://www.langchain.com/blog/langchain-langgraph-1dot0), released in October 2025, saves a run's state so it picks up where it left off after a restart, supports checkpoints, and can pause for human approval.
+- [AutoGen is now in maintenance mode](https://github.com/microsoft/autogen), and Microsoft points new users to [Microsoft Agent Framework](https://github.com/microsoft/agent-framework), which has graph-based workflows, checkpointing and human-in-the-loop steps.
+- For agents talking to other agents, A2A, the protocol Google started and [handed to the Linux Foundation](https://www.linuxfoundation.org/press/linux-foundation-launches-the-agent2agent-protocol-project-to-enable-secure-intelligent-communication-between-ai-agents) in June 2025, [reached version 1.0](https://github.com/a2aproject/A2A/releases) in March 2026.
+- MCP itself added a [Tasks extension](https://blog.modelcontextprotocol.io/posts/2026-07-28/) for long-running work.
 
-These capabilities work well for connectivity. The challenge emerges elsewhere.
+Integration still sits near the top of the survey lists. UiPath, which sells orchestration software and so has a stake in the answer, found in [a mid-2026 survey of 590 executives and IT practitioners](https://ir.uipath.com/news/detail/463/stuck-in-agentic-ai-pilot-purgatory-uipath-survey-points-to-orchestration-as-key-to-scaling-enterprise-deployments) that integration with existing workflows and systems was the second most cited obstacle to deploying agents (37%), just behind data quality (38%).
 
-[↑ Back to top](#quick-navigation)
+As far as I can see, there's still no shared way to define a workflow, its state and its recovery rules across vendors. A workflow built in LangGraph lives in LangGraph. So the gap has changed shape. You no longer have to build orchestration from scratch, but you do have to choose a framework, and that choice is its own kind of lock-in. The reasoning in [build versus buy](/blog/build-vs-buy-agentic-ai) applies here too.
 
----
-
-## What MCPs Don't Solve: The Orchestration Gap
-
-MCPs provide tool access but not workflow orchestration. The distinction becomes clear in any implementation beyond simple tool calls.
-
-### The Real-World Failure Mode
-
-Consider an AI agent handling customer support escalations across an 8-step workflow: query CRM, check order database, search documentation, execute resolution, escalate exceptions, log interactions, and send confirmations.
-
-MCPs provide access to each system (CRM, orders, documentation, ticketing, email). What remains absent: orchestration logic for step sequencing, state management across asynchronous operations, error handling for timeouts, retry logic for failures, rollback capabilities, and coordination when multiple agents access shared resources.
-
-This gap explains why 60% of organizations cite integration as their barrier. Connectivity exists; autonomous workflow orchestration doesn't.
-
-### What Orchestration Actually Requires
-
-The missing orchestration layer needs several critical components:
-
-**State Management:** Agentic workflows require persistent state tracking across multiple steps over time. MCPs offer stateless tool calls without standardized workflow state persistence.
-
-**Error Handling and Recovery:** Autonomous agents must detect failures, determine retry appropriateness, implement backoff strategies, escalate to humans when appropriate, and preserve partial progress. MCPs define error codes but lack autonomous recovery patterns.
-
-**Transaction Semantics:** When step 4 of a 7-step workflow fails, should you roll back previous steps, preserve progress and retry, or escalate and pause? Traditional software has transaction managers and saga patterns; agentic AI workflows lack standardized equivalents.
-
-**Multi-Agent Coordination:** Concurrent agent operations require concurrency control, locks, and conflict resolution. These remain unsolved in agentic orchestration.
-
-**Context Window Management:** As workflows accumulate data, context windows fill. Deciding what to preserve versus summarize, maintaining critical state while dropping verbose details, and streaming large results without overwhelming the AI all lack standard patterns.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## The Architecture We Actually Need
-
-Real agentic systems (like VOICE-Relay for voice workflows or Game Card Creator for content generation) reveal the missing orchestration layer's requirements:
-
-### Layer 1: MCP Servers (Connectivity)
-
-This layer exists and is growing rapidly (16,000+ deployments), handling data access, authentication, and discovery.
-
-### Layer 2: Orchestration Framework (The Gap)
-
-The missing layer requires workflow definition standards for step sequencing and branching, conditional logic, error policies, state persistence, and escalation points. It needs state management services tracking execution history, gathered data, workflow position, and pending operations. Error recovery patterns (retry with backoff, circuit breakers, compensating transactions, escalation triggers) must be standardized. Coordination services should handle distributed locking, event-driven agent coordination, conflict resolution, and workflow versioning.
-
-### Layer 3: Monitoring and Observability (Largely Absent)
-
-Autonomous workflows need visibility into current agent activities, workflow bottlenecks, failure patterns, and success rates per workflow type. Without observability infrastructure (the agentic equivalent of Datadog or New Relic), you're operating blind.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## What Actually Works: Patterns from the Field
-
-Building production agentic systems reveals several effective orchestration patterns:
-
-**Explicit State Machines:** Define clear state transitions rather than allowing implicit workflow management. VOICE-Relay, for instance, uses explicit states (INITIATED → DATA_GATHERING → VALIDATION → EXECUTION → CONFIRMATION → COMPLETED) with deterministic transition rules. AI operates within states while transitions follow predictable patterns, preventing cascading failures.
-
-**Idempotent Operations with Checkpointing:** Progress checkpoints enable resumption without repeating expensive operations. If step 4 fails, resume from checkpoint 3 rather than regenerating previous steps. This reduces waste and enables graceful recovery.
-
-**Circuit Breakers for External Systems:** Track success/failure rates per service. When failure rates exceed thresholds (e.g., >30% over 10 requests), open the circuit, return cached data or escalate, then periodically retry. This prevents cascading failures and maintains partial functionality during degradation.
-
-**Context-Preserving Escalation:** When agents encounter ambiguity or errors, provide humans with complete workflow context (current state, previous steps, relevant data, available options). This preserves efficiency (humans handle only exceptions), maintains decision context, and enables workflow resumption.
-
-**Event-Driven Multi-Agent Coordination:** Use event publishing rather than direct agent-to-agent calls. When Agent A completes a task, it publishes an event; Agent B listens and triggers the next step. This creates loose coupling, enables asynchronous execution, and scales naturally.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## The Practical Reality Check
-
-Let's be honest about where we are:
-
-**What exists today:**
-- MCPs for connectivity (maturing rapidly)
-- Individual orchestration solutions (every organization builds their own)
-- Basic workflow tools (LangChain, AutoGen, CrewAI—but no standards)
-
-**What doesn't exist:**
-- Standard orchestration patterns for agentic workflows
-- Shared state management protocols
-- Industry-wide error recovery frameworks
-- Multi-agent coordination standards
-
-**What this means:**
-
-If you're building agentic AI systems today, you're building orchestration infrastructure yourself.
-
-That's not necessarily wrong—early movers who solve this well will have advantages competitors can't easily replicate.
-
-But it means the "integration problem" isn't close to solved, even with 16,000 MCP servers deployed.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## Why This Gap Keeps Pilots in Purgatory
-
-Back to the original statistic: 88-95% of AI pilots never scale.
-
-Now you can see why.
-
-**Pilot phase:**
-- Simple, single-step use cases work fine with MCPs
-- "AI queries database and returns answer" → This works
-- "AI generates report from three data sources" → This works
-
-**Scaling phase:**
-- Complex, multi-step workflows reveal orchestration gaps
-- "AI autonomously handles customer escalations across 7 systems with error recovery" → This doesn't work
-- Organizations hit the orchestration wall
-- No standard solutions exist
-- Custom development is expensive and risky
-- Pilots stay in pilot phase
-
-The technology works. The integration layer (MCPs) exists. But the orchestration layer—the thing that enables autonomous multi-step workflows—is missing.
-
-([The $1.5 Million Question: Build vs Buy in the Agentic AI Era](/blog/build-vs-buy-agentic-ai) explores when custom development is justified vs when off-the-shelf makes sense.)
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## Considerations for Organizations Evaluating Agentic AI
-
-Organizations exploring agentic AI integration might consider several strategic approaches:
-
-**Connectivity Foundation:** MCPs offer a mature ecosystem for data access to high-value sources (CRM, documentation, databases). The question is whether to build custom integrations or leverage existing infrastructure that can deploy in weeks rather than months.
-
-**Workflow-Specific Orchestration:** Rather than attempting comprehensive orchestration frameworks, organizations might start with bounded workflows (3-5 steps, clear success criteria, understood error modes) implementing explicit state machines, checkpoint-based persistence, and exception handling. This approach enables learning orchestration patterns on contained problems where failures don't cascade.
-
-**Pattern Abstraction Timing:** As multiple workflows emerge, consider when to extract common patterns (state persistence, retry logic, circuit breakers, escalation routing). The tradeoff: premature abstraction creates complexity, but implementing identical logic repeatedly wastes resources.
-
-**Observability Investment:** Without visibility into state transitions, workflow bottlenecks, MCP server performance, and stuck workflows, debugging becomes guesswork. The question is whether to leverage existing tools (Datadog, New Relic, structured logging) or build custom solutions.
-
-**Multi-Agent Architecture:** Designing for single-agent systems that later need multi-agent coordination often requires significant rework. Event-driven communication, resource locking, and workflow versioning from the start add marginal complexity but enable future scaling.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## The Uncomfortable Reality
-
-MCPs represent necessary but insufficient infrastructure for agentic AI. They solve data connectivity, and the ecosystem shows real momentum (16,000+ servers).
-
-Yet positioning MCPs as "the solution to AI integration" resembles selling HTTP as "the solution to web applications." HTTP provides foundation, but web applications require application servers, databases, caching, load balancers, CDNs, and orchestration frameworks.
-
-MCPs function as the HTTP layer. Orchestration, state management, error recovery, and multi-agent coordination remain largely unsolved at the ecosystem level.
-
-Organizations relying solely on MCPs for agentic AI integration may encounter orchestration limitations within 3-6 months of deploying beyond simple tool calls. Success likely requires recognizing this gap early and implementing orchestration infrastructure (built or purchased) layered atop MCPs.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## The Bigger Picture: Trajectory and Timing
-
-Based on current trends, several developments seem plausible:
-
-**12-18 months:** MCPs may become commodity infrastructure as orchestration frameworks (open-source and commercial) emerge. Standards around workflow definition and state management could begin forming, potentially yielding platforms addressing both connectivity and orchestration.
-
-**24-36 months:** Mature orchestration tooling and standardized multi-agent coordination patterns might enable complex agentic workflows without custom infrastructure, potentially closing the integration gap for 80% of use cases.
-
-**Strategic Timing Considerations:** Organizations deploying agentic AI now face building orchestration infrastructure themselves. Those waiting 18-24 months might access commercial or open-source solutions. The question: does competitive advantage from early deployment justify custom orchestration's cost and complexity? For some organizations, yes. For most, timing remains uncertain.
-
-([Claude Code: The Agentic Tool Everyone Is Sleeping On](/blog/claude-code-agentic-tool) shows what cutting-edge agentic systems can already do—and highlights how much orchestration they handle internally.)
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## The Bottom Line
-
-87% of organizations identify interoperability as crucial for agentic AI adoption. They're likely correct, though the definition of interoperability matters.
-
-Interoperability extends beyond "can the AI call my APIs?" (which MCPs address) to "can the AI execute complex, multi-step workflows across systems with autonomous error handling, state management, and recovery?" (which lacks comprehensive solutions at scale).
-
-The gap between tool access and autonomous workflow orchestration explains why most pilots struggle to scale.
-
-Organizations recognizing this gap and implementing lightweight orchestration for specific workflows may see meaningful results. Those expecting MCPs alone to solve integration might encounter orchestration limitations that impede scaling.
-
-The technology functions. The connectivity layer is emerging. The orchestration layer remains in early development.
-
-That's the current state of agentic AI interoperability in late 2025.
-
----
-
-**Related Posts:**
-- [Model Context Protocols: The Connectors That Enable Everything](/blog/model-context-protocols)
-- [Claude Code: The Agentic Tool Everyone Is Sleeping On](/blog/claude-code-agentic-tool)
-- [Pilot Purgatory: Why 90% of AI Projects Never Scale](/blog/pilot-purgatory-ai-projects)
-- [The $1.5 Million Question: Build vs Buy in the Agentic AI Era](/blog/build-vs-buy-agentic-ai)
-
----
-
-**TLDR:** 87% rate interoperability as crucial for agentic AI adoption, but 60% cite integration as primary barrier. MCPs address connectivity (16,000+ servers deployed) through tool access, authentication, and discovery, but autonomous workflow orchestration lacks standard solutions. The gap between API calls and complex multi-step autonomous workflows explains why 88-95% of pilots stall. Missing orchestration layer requires workflow definition standards, state persistence, error recovery patterns, circuit breakers, escalation protocols, and multi-agent coordination. Effective patterns include explicit state machines, idempotent operations with checkpointing, circuit breakers, context-preserving escalation, and event-driven coordination. Current state: connectivity exists (MCPs maturing), orchestration doesn't (organizations build custom). Potential timeline: 12-18 months for orchestration frameworks, 24-36 months for standardization. Strategic considerations: build orchestration infrastructure now versus waiting for ecosystem maturation.
-
----
-
-**Published:** November 2025
-**Word Count:** ~2,580 words
+I don't know whether a cross-vendor workflow standard will emerge, or whether orchestration will stay inside frameworks and platforms for good. Until that's clearer, I'd keep workflows small, make every state transition visible, and choose the framework I'd be least unhappy to be stuck with.

@@ -1,197 +1,63 @@
-# From Local Optima to Synthetic Cognitive Capitalism: How AI Is Quietly Rewriting Economic Power
-
-**Subtitle:** The transformer plateau, the rise of world models, and the new economics of intelligence
-**Target Length:** 2,000-2,400 words
-**Cluster:** Systems & Architecture
-**Status:** Complete
-
+---
+title: Synthetic cognitive capitalism
+description: A speculative argument that the bigger AI shift is economic. Know-how becomes capital, compute works like currency, and owning the context matters most.
+topic: agents-and-tools
+published: 2025-11
+updated: 2026-09
 ---
 
-## Quick Navigation
-- [The Local Optimum: Transformers as a Plateau](#the-local-optimum-transformers-as-a-plateau)
-- [Why We Cling to the Plateau](#why-we-cling-to-the-plateau)
-- [Parallel Exploration: The Quiet Shift](#parallel-exploration-the-quiet-shift)
-- [The Emergence of Synthetic Cognitive Capitalism](#the-emergence-of-synthetic-cognitive-capitalism)
-- [Intelligence and Compute as Currency](#intelligence-and-compute-as-currency)
-- [Where the Trends Point](#where-the-trends-point)
-- [The Opportunity for Individuals](#the-opportunity-for-individuals)
-- [The Bottom Line](#the-bottom-line)
+This is the most speculative post on this site: a view about where things are heading, and I expect parts of it to be wrong.
 
-The transformer architecture—the engine behind GPT-4, Claude, and Gemini—may represent one of the most successful local optima in the history of technology.
+Two things are happening at once. Companies are scaling large language models about as far as money allows, while some of the people who built this era suspect that path is a local optimum: a peak, but maybe not the highest one. Underneath the argument about architectures, I think the economics are shifting in a way that will matter more than which approach wins. Intelligence, human and synthetic, is starting to behave like capital. I call that synthetic cognitive capitalism.
 
-It unleashed a trillion-dollar wave of investment, reshaped the labor market, and forced every boardroom in the world to have an "AI strategy." But a local optimum is still a local optimum. It is a peak in the landscape, but not necessarily the highest one.
+## Doubts from inside the field
 
-We are witnessing a subtle but profound shift. While the commercial world races to scale transformers to their absolute limit, the research frontier has arguably already moved on. And the economic system emerging from this transition isn't just "capitalism with more software." It is **synthetic cognitive capitalism**—a system where intelligence itself (human and synthetic) becomes a distinct, deployable, and compounding form of capital.
+For about five years the recipe was more data plus more compute. The doubts about it come from people who know the recipe best, though they aren't all the same doubt.
 
-Here is how the landscape is actually shifting, and why the "scale is all you need" narrative might be hiding the real economic transformation.
+Ilya Sutskever, a co-founder of Safe Superintelligence, described it as a change of era in a [November 2025 interview](https://www.dwarkesh.com/p/ilya-sutskever-2): "From 2012 to 2020, it was the age of research. From 2020 to 2025, it was the age of scaling," and now it's "back to the age of research again, just with big computers." He also said that what labs are doing now "will go some distance and then peter out," and that today's models "generalize dramatically worse than people."
 
-## The Local Optimum: Transformers as a Plateau
+Yann LeCun's objection is narrower than it's often reported. His target is the way language models learn, by reconstructing their input one token at a time, and the transformer itself isn't the issue: V-JEPA 2, a world model he co-authored, [uses transformers](https://arxiv.org/html/2506.09985) for both its encoder and its predictor. In a 2025 paper, he and two co-authors took the finding from vision research that training in embedding space is ["far superior"](https://arxiv.org/abs/2509.14252) to reconstructing the input and tried it on language models (my [research note on LLM-JEPA](/research/llm-jepa) covers it). He has since started [AMI Labs](https://amilabs.xyz), a company building systems that understand the real world, keep a persistent memory, and can reason and plan. One of its four offices is in Montreal.
 
-For the last five years, the recipe was simple: more data + more compute = better intelligence.
+Richard Sutton's doubt is about goals. On a [September 2025 episode of the same podcast](https://www.dwarkesh.com/p/richard-sutton), he argued that predicting the next token is "not a substantive goal," and that language models "have the ability to predict what a person would say. They don't have the ability to predict what will happen." His alternative is learning from experience: act, see what happens, adjust. Meta's work on [early experience](/research/early-experience) is a small step in that direction.
 
-But leading researchers are increasingly vocal about the limits of this curve.
+Llion Jones, one of the authors of the original transformer paper, co-founded Sakana AI in Tokyo, which works on nature-inspired approaches such as [evolving new models by merging existing ones](https://sakana.ai/evolutionary-model-merge/) and [Continuous Thought Machines](https://sakana.ai/ctm/), which use the timing of neuron activity, loosely modelled on the brain. And Noam Brown, who co-created the poker AIs Libratus and Pluribus and worked on Cicero at Meta, has been working on another exit at OpenAI: letting models think longer when they answer. He describes himself as a [foundational contributor](https://noambrown.com/) to OpenAI's reasoning models, starting with o1. My note on [test-time scaling](/research/s1-test-time-scaling) covers a cheap open version of that idea.
 
-**Ilya Sutskever**, co-founder of OpenAI and now founder of Safe Superintelligence Inc. (SSI), has suggested that the "Age of Scaling"—where progress came primarily from brute-force pre-training—is concluding. In his view, we are entering an "Age of Research" (or Discovery), where the gains come not just from making the model bigger, but from fundamentally new paradigms of learning.
+These five aren't making the same argument, and a handful of researchers isn't a consensus, though that's what I originally called it. What they share, as I read them, is a doubt that scaling pre-training alone gets to where the most ambitious people want to go. Plenty of other work sits off the main road too, from [predicting meaning in chunks instead of single tokens](/research/calm) to [models that keep learning without forgetting](/research/nested-learning).
 
-**Yann LeCun**, Meta’s Chief AI Scientist (who is set to launch his own AI research company focused on Advanced Machine Intelligence in late 2025), has been even more blunt. He frequently describes Auto-Regressive LLMs as a "dead end" for true intelligence, arguing that they lack the "World Models" necessary to plan, reason, and understand physical reality.
+Whether we're actually on a plateau is an open question. METR found that the length of tasks frontier AI agents can complete, measured by how long they take a skilled person, [doubled roughly every seven months for six years](https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/). In its [September 2026 review of Claude Opus 5.5](https://metr.org/blog/2026-09-22-claude-opus-5-5/), METR called the model "an incremental improvement" and said its data "is insufficient for distinguishing consistent, accelerating, or decelerating rates of improvement." Anyone who tells you confidently which one we're on is guessing, me included.
 
-**Richard Sutton**, the father of Reinforcement Learning, echoed this sentiment in a recent conversation with Dwarkesh Patel. He argued that LLMs, by definition, lack "goals"—they are masterful mimics of human text but do not inherently "want" to achieve outcomes in the world. He contrasts this with the "Bitter Lesson" of experiential learning, suggesting that true agency requires systems that learn from interaction, not just static datasets.
+## Why the money stays on the known curve
 
-Even **Llion Jones**, one of the original authors of the "Attention Is All You Need" paper that introduced the transformer, left Google to found Sakana AI with a specific mandate: to move *beyond* the transformer. In a recent interview on Machine Learning Street Talk, he described building an environment where researchers are explicitly encouraged to explore "weird" ideas that don't fit the current scaling dogma, utilizing evolutionary model merges and nature-inspired architectures.
+Most of the money still goes to scaling, and I think the reason is that scaling is measurable. "Double the cluster and the loss drops by this much" fits in a spreadsheet and justifies a budget. "We need a new approach to world models" has no guaranteed return and is hard to defend to a board that can see what everyone else is doing. So institutional capital flows to the local optimum, which is safe, measurable and profitable for now, while a lot of intellectual capital drifts toward the alternatives.
 
-The consensus among the people who built the current era is striking: the transformer is a productive plateau, not the final destination.
+Some of the data centres being built today may end up running architectures nobody has designed yet. That's a reasonable bet, as long as the people making it know it's a bet. Organizations do the same thing on a smaller scale when they fund only what's already proven, which is why I argue for a portfolio of small bets, like an [AI budget for every employee](/blog/ai-budget-democratizing-innovation).
 
-[↑ Back to top](#quick-navigation)
+The shift also changes what governance has to cover. Rules written around what a model says, such as hallucination and bias in training data, will have gaps once systems plan and act on their own. The risk moves from content to behaviour, which is part of why I think [governance should come from people who build things](/blog/ai-governance-without-theater).
 
----
+## Intelligence as capital
 
-## Why We Cling to the Plateau
+Industrial capitalism combined labour and machinery. The information economy aggregated and distributed data, which is where the SaaS moat came from. My argument is that intelligence itself, human and synthetic, is becoming a form of capital: something a firm accumulates, and that compounds.
 
-If the architects of the revolution are looking for the exit, why is the market still pouring billions into the existing architecture?
+A company that captures how its best people solve problems, such as how an engineering failure was diagnosed or how a hard contract was negotiated, is building an asset it can reuse at close to zero marginal cost. That changes the shape of the firm. The old model was to hire people, train them and hope they stay. The new one is to hire people, use their work to train synthetic systems, and compound what they know.
 
-Because scaling is **measurable**.
+Put that bluntly and it sounds dystopian, and parts of it could be. It raises questions I can't answer yet: whose know-how it is, what people get for it, and what happens to a craft once a system can do the routine version. I'd rather organizations used the capacity it frees up to [redesign roles and compete at a higher level](/blog/human-ai-collaboration-design) than to cut, but I don't think that outcome is automatic.
 
-In an organization, it is easy to sell a metric. "If we double the cluster size, loss goes down by X%." That is a investable proposition. It fits into a spreadsheet. It justifies a budget.
+If the argument holds, knowledge capture becomes a large part of what a company is worth, and the everyday record of how a business thinks (tickets, decision notes, code reviews, the reasoning behind a call) becomes raw material worth keeping.
 
-Research—"we need to invent a new paradigm for World Models"—is messy. It has no guarantee of return. It is hard to explain to a board of directors why you aren't just doing what everyone else is doing.
+## Compute as currency
 
-This creates a temporary divergence:
-- **Institutional Capital** flows toward the Local Optimum (Transformers) because it is safe, measurable, and currently profitable.
-- **Intellectual Capital** flows toward the Global Optimum (New Architectures) because researchers know the current curve is flattening.
+Sam Altman has said that ["compute is going to be the currency of the future"](https://lexfridman.com/sam-altman-2-transcript/). The market is starting to act that way. SF Compute runs a [marketplace where buyers reserve GPU time and resell what they don't use](https://sfcompute.com/), and Silicon Data publishes [daily GPU rental price indices](https://www.silicondata.com/) on Bloomberg and Refinitiv, which it pitches as benchmarks for swaps and futures.
 
-This dynamic explains why we see massive data centers being built for models that might be obsolete by the time the concrete dries. It also explains the importance of [The AI Budget: Democratizing Innovation Through Trust](/blog/ai-budget-democratizing-innovation). You cannot navigate this shift if your organization only funds "proven" paths. You need a portfolio of bets.
+My twist is that compute on its own is turning into a commodity, and commodities rarely hold their margins. What stays scarce is coherence: getting agents to work together, checking what they produce, and deciding what they should work on in the first place. The people and companies who own the context, a deep understanding of a particular business problem, will have leverage over those who only own the compute.
 
-[↑ Back to top](#quick-navigation)
+As I read them, the rival research camps disagree about architecture but converge on planning: a system's ability to simulate what might happen before it acts. An AI that can try a thousand versions of a marketing campaign in simulation and run the best one is, in economic terms, richer than a person who can run one. An organization that can simulate a supply-chain disruption and reroute ahead of it holds something like resilience capital. The same logic is why I expect more software to be sold on outcomes than on workflows, so that you pay for the customer acquired rather than the CRM seat.
 
----
+## What individuals can do
 
-## Parallel Exploration: The Quiet Shift
+This is the hopeful part. If intelligence is capital, individuals can own some of it in a way that wasn't possible before. You couldn't run a factory line from your garage. You can run a small fleet of agents from a laptop.
 
-While the giants consolidate, the edges are exploring.
+That opens room for one-person companies that work across borders, small specialist firms that compete with large consultancies, and people using tools like [Claude Code](/blog/claude-code-agentic-tool) to build software for niche problems that big vendors ignore. I expect we'll see very small teams doing work that used to take hundreds of people. How common that becomes, and how long the advantage lasts once everyone has the same tools, I don't know. Creating things has never been cheaper. Distribution is still hard, though AI helps there too.
 
-**Noam Brown** at OpenAI (creator of the poker-playing AI Libratus and Diplomacy-playing Cicero) is working to bridge the gap between "System 1" (fast, intuitive token prediction) and "System 2" (slow, deliberate reasoning). His recent work suggests that the next leap in performance comes not from training larger models, but from allowing models to "think" for longer at test time—trading compute for reasoning depth.
+If I had to act on this today, I'd do three things regardless of which architecture wins: keep the data and the record of how decisions get made, get good at orchestrating and checking agents rather than just prompting them, and fund small experiments with the next approaches alongside the current ones.
 
-This aligns with the **Sakana AI** approach of evolutionary algorithms. Instead of training one massive model, they are exploring how to merge and evolve smaller, specialized models—a biological approach to intelligence rather than an industrial one.
-
-This is where [Adaptable Governance: Why Your AI Policy Is Already Obsolete](/blog/ai-governance-without-theater) becomes critical. If your governance structure is built entirely around the risks of Large Language Models (hallucination, bias in training data), what happens when the dominant architecture shifts to Agentic Reasoners or World Models?
-
-The shift from "predicting the next word" to "planning the next action" changes the risk profile entirely. It moves the challenge from *content safety* to *behavioral safety*.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## The Emergence of Synthetic Cognitive Capitalism
-
-As we move beyond the transformer plateau, a new economic logic is taking hold.
-
-We are entering a phase of **Synthetic Cognitive Capitalism**.
-
-In industrial capitalism, value was generated by the efficient combination of labor and machinery.
-In the information age, value was generated by the aggregation and distribution of data (the SaaS moat).
-
-In this new era, **intelligence itself is a form of capital.**
-
-It is not just a tool; it is a stock. A company that builds a proprietary dataset of *reasoning traces* (how to solve a specific engineering problem, how to negotiate a contract) is accumulating a capital asset that pays dividends in the form of zero-marginal-cost labor.
-
-This changes the nature of the firm.
-- **Old Model:** Hire humans, train them, hope they stay.
-- **New Model:** Hire humans, use their work to train synthetic systems, compound the intelligence.
-
-This sounds dystopian if you view it through a zero-sum lens. But the reality is more nuanced. It means that **knowledge capture** becomes the primary driver of enterprise value.
-
-[The Data Storage Reality: Adapt or Become Uncompetitive](/blog/data-storage-reality) is not just about hard drive space; it's about preserving the raw material for this new form of capital. If you aren't storing the artifacts of your business's cognition, you are effectively burning capital.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## Intelligence and Compute as Currency
-
-In this system, compute and intelligence function like currency.
-
-We are already seeing this. "Compute arbitrage" is becoming a real business model. Companies are trading GPU hours like commodities. But the deeper layer is the **intelligence leverage**.
-
-Consider the interaction between **Yann LeCun** and **Noam Brown**. They may disagree on the architecture (World Models vs. System 2 LLMs), but they agree on the currency: **planning**.
-
-The ability for a system to *simulate a future* before acting is the ultimate economic lever.
-- An AI that can simulate 1,000 marketing campaigns and run the best one is "wealthier" in cognitive terms than a human who can run one.
-- An organization that can simulate a supply chain disruption and re-route automatically possesses a form of "resilience capital."
-
-This leverage is why [The SAAS Reckoning: Evolution in the AI Era](/blog/saas-evolution-ai-era) is inevitable. Traditional SaaS companies sell workflows. Synthetic Cognitive Capitalists sell *outcomes*. You don't pay for the CRM; you pay for the "Customer Acquired."
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## Where the Trends Point
-
-We can identify the direction of travel without making foolish predictions.
-
-**1. The decoupling of Headcount from Output**
-The link between "number of employees" and "economic output" is breaking. We will see 10-person companies with the output of 1,000-person firms. This isn't just about automation; it's about *amplification*.
-
-**2. The Rise of "Intelligence Orchestrators"**
-The most valuable employees won't be the ones who do the work, but the ones who can architect the systems that do the work. This is the "Prompt Engineering Skills Gap" evolved into the "Agent Orchestration Gap."
-
-**3. Redistribution of Power to the Efficient**
-In a world of abundant intelligence, the scarce resource is **coherence**.
-- Who can make the agents work together?
-- Who can verify the output?
-- Who can define the goals?
-
-Those who own the *context* (the unique understanding of the business problem) gain leverage over those who merely own the *compute* (which becomes a commodity).
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## The Opportunity for Individuals
-
-This is the optimistic conclusion that often gets missed.
-
-If intelligence is capital, then **individuals can now own capital** in a way that was previously impossible.
-
-In the industrial age, you couldn't own a factory line in your garage.
-In the synthetic cognitive age, you *can* own a fleet of agents on your laptop.
-
-This opens the door for:
-- **Micro-MNCs:** One-person multinational corporations.
-- **Hyper-Specialized Boutiques:** Small teams that leverage AI to compete with global consultancies.
-- **The "Artisan" Technologist:** Individuals who use [Claude Code](/blog/claude-code-agentic-tool) and other tools to build bespoke software solutions that solve niche problems ignored by big tech.
-
-The barrier to entry for *creation* has never been lower. The barrier to entry for *distribution* remains high, but intelligence helps navigate that too.
-
-The transformer plateau is not the end of the road. It is just the end of the beginning. The real economic shift—the move from "software eats the world" to "intelligence powers the world"—is just starting.
-
-And for those who are paying attention, it is the greatest opportunity for leverage we have ever seen.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## The Bottom Line
-
-The transformer architecture is a local optimum—a powerful, profitable, but ultimately limited plateau. While the market obsesses over scaling it, the research frontier (led by figures like Sutskever, LeCun, and Sutton) is already moving toward World Models, System 2 reasoning, and nature-inspired architectures.
-
-This shift heralds the arrival of **Synthetic Cognitive Capitalism**, where intelligence becomes a deployable capital asset. In this new economy, power accrues not just to those who own the compute, but to those who can orchestrate intelligence to solve novel problems.
-
-For individuals and organizations, the strategy is clear: don't just consume the current models. Build the infrastructure (data pipelines, governance, orchestration skills) to leverage the *next* paradigm. The goal is not to compete with the machine, but to become the architect of its output.
-
----
-
-**Related Posts:**
-- [The AI Budget: Democratizing Innovation Through Trust](/blog/ai-budget-democratizing-innovation)
-- [Adaptable Governance: Why Your AI Policy Is Already Obsolete](/blog/ai-governance-without-theater)
-- [The SAAS Reckoning: Evolution in the AI Era](/blog/saas-evolution-ai-era)
-- [Claude Code: The Agentic Tool Everyone Is Sleeping On](/blog/claude-code-agentic-tool)
-- [The Data Storage Reality: Adapt or Become Uncompetitive](/blog/data-storage-reality)
-
----
-
-**TLDR:** Transformers are a productive "local optimum," but leaders like Ilya Sutskever and Yann LeCun argue scaling has plateaued, shifting focus to "World Models" and "Age of Research." This transition drives "Synthetic Cognitive Capitalism," where intelligence (human + synthetic) functions as a capital asset. While institutional money chases safe, measurable transformer scaling, intellectual capital is moving toward reasoning and planning architectures. This shifts economic power to those who can *orchestrate* intelligence, decoupling headcount from output and allowing individuals/small teams to compete with giants. Success requires treating intelligence as a compounding asset and preparing for the post-transformer era.
-
----
-
-**Published:** November 2025
-**Word Count:** ~2,100 words
+The question I can't answer is who ends up owning the compounding: the firms that capture the know-how, the people it came from, or the model providers everyone rents from.
