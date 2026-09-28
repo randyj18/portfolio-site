@@ -1,90 +1,37 @@
-# DreamGym: When Robots Learn to Dream
-
-**Tier:** Major Market Enabler (2-4 year horizon)
-**Published:** November 2025
-**arXiv:** [2511.03773](https://arxiv.org/abs/2511.03773)
-**Authors:** Meta AI, UC Berkeley, University of Chicago
-**Impact:** Unlocks robotics, autonomous vehicles, industrial automation
-
+---
+title: Training agents in an imagined environment
+description: DreamGym has a language model imagine how a website would respond, so an agent can practise with reinforcement learning. Real gains on web benchmarks, nothing physical yet.
+theme: learning-from-experience
+status: early-research
+papers:
+  - title: "Scaling Agent Learning via Experience Synthesis"
+    url: https://arxiv.org/abs/2511.03773
+    authors: Chen et al. (Meta Superintelligence Labs, FAIR at Meta, University of Chicago, UNC, UC Berkeley)
+    date: 2025-11
+published: 2025-11
+updated: 2026-09
 ---
 
-Training AI agents in the real world is expensive, dangerous, and slow. Physical robots break. Autonomous vehicles can't practice rare accidents. Industrial systems can't afford downtime for learning.
+Reinforcement learning lets an agent improve by trying things and keeping what works, but for language agents the trying is the expensive part. Real environments are slow, hard to reset, and often don't report whether an attempt succeeded. The DreamGym paper's own conclusion is that "the key bottleneck in RL for LLM agents lies in the quality and structure of interaction data."
 
-DreamGym's breakthrough: What if agents could practice in their imagination?
+DreamGym, from Meta Superintelligence Labs and FAIR with the University of Chicago, UNC and UC Berkeley, replaces much of that interaction with an experience model: a language model that reasons step by step about how the environment would respond to each action, and what reward the agent should get. Three design choices keep the imagined experience useful. A replay buffer seeded with real offline data grounds the imagined transitions and keeps growing during training. The experience model and the agent are updated together, so the imagined environment keeps pace with what the agent actually does. And the experience model generates new tasks aimed at whatever the agent currently finds hard, a built-in curriculum.
 
-Not traditional simulation with physics engines. Something stranger and more powerful—using AI to dream up realistic experiences for other AIs to learn from.
+The results come from three text-based benchmarks: WebShop (online shopping), ALFWorld (household tasks described in text) and WebArena-Lite (web navigation), using Llama and Qwen models of 3 to 8 billion parameters.
 
-## The Innovation
+- On WebArena, where running reinforcement learning against the real environment is impractical, DreamGym-trained agents beat all baselines by more than 30%. Absolute success rates stayed low, between about 9% and 15% in the paper's main table.
+- On WebShop and ALFWorld, agents trained only on synthetic experience performed on par with agents trained by standard reinforcement learning (GRPO and PPO) on 80,000 real interactions.
+- Training first in DreamGym and then with 5,000 real interactions gave more than a 40% improvement over training from scratch in the real environment, while using less than 10% of the real data.
 
-**Traditional simulation**: Build detailed physics models, render realistic environments, hope it transfers to reality.
-- Expensive (requires expert engineering)
-- Brittle (physics models miss crucial details)
-- Limited (hard to simulate complex software environments)
+## Why I think it matters
 
-**DreamGym's approach**: Use an LLM to reason about what would happen if an agent took different actions, generate synthetic experiences that are causally coherent, and train agents on those imagined outcomes.
+If a language model can stand in for an environment that wasn't built for training, teams can use reinforcement learning on software tasks where it used to be impractical. The pattern I find most usable is the warm start: most of the practice in an imagined environment, then a small amount of real interaction to finish. It is the same bet as [early experience](/research/early-experience), from much of the same team, pushed one step further.
 
-**The key insight**: Agents don't need perfectly realistic environments. They need experiences that are "sufficiently diverse, informative, and causally grounded."
+The scope is narrower than the name suggests. The paper tests agents working in text and on websites. Physical robots are a different problem, with different evidence (see [robot foundation models](/research/multimodal-world-models)). Imagined experience can also drift from reality over long sequences, and the experience model needs real data to stay grounded, which the authors build in.
 
-## The Results Are Wild
+## Since then
 
-**WebArena** (complex web navigation): >300% improvement over baselines. This is the first approach to make reinforcement learning viable in this environment.
+As of September 2026 the paper is still an arXiv preprint, last revised in November 2025, with no listed venue, and I haven't found public code. Its sibling paper, [early experience](/research/early-experience), was accepted at ICML 2026.
 
-**WebShop and ALFWorld**: Matched 80,000 real interactions using zero real interactions during training.
+The idea of practising inside a learned model of the world has a longer history in games and robotics. A separate paper from the same autumn, Dreamer 4 by Danijar Hafner and colleagues, trained an agent inside a learned world model of Minecraft and reported "the first agent to obtain diamonds in Minecraft purely from offline data, without environment interaction" ([paper](https://arxiv.org/abs/2509.24527), September 2025).
 
-**Sim-to-real transfer**: +40-64% performance improvement when fine-tuning on real environments using less than 10% of typical data requirements.
-
-**Minecraft** (via Dreamer 4): First agent to obtain diamonds from offline data only, using 100× less data than previous methods.
-
-The pattern is consistent: **90% reduction in real-world data needs** while maintaining or exceeding baseline performance.
-
-## Why This Unlocks Embodied AI at Scale
-
-**Robotics**: Train dangerous or expensive behaviors synthetically, transfer to reality with minimal real-world fine-tuning. Your robot can practice failing thousands of times in simulation before ever touching a real object.
-
-**Autonomous vehicles**: Synthetically generate rare edge cases (accidents, extreme weather, unusual road conditions) that would be dangerous and expensive to collect in reality.
-
-**Industrial automation**: Test process changes and failure modes without risking production downtime or equipment damage.
-
-**Web and software agents**: Enable RL training in environments that are hard to reset and automate. This was previously impossible.
-
-## The Economics Shift
-
-**Before**: Training a capable robot requires thousands of hours of real-world data collection at massive cost.
-
-**After**: Train 90% in synthetic experience, fine-tune with 10% real-world data.
-
-**Impact**: Robot training costs drop from prohibitive to manageable. What cost millions now costs tens of thousands.
-
-That's not incremental—that's the difference between "economically viable" and "too expensive to attempt" for most applications.
-
-## The Bigger Picture
-
-Meta researcher Jason Weston: "The bottleneck in agent RL wasn't the policy—it was the experience."
-
-DreamGym removes that bottleneck. When you can generate high-quality training experiences synthetically, the limiting factor becomes compute (which is commoditizing) instead of expensive physical data collection.
-
-**This is why multiple major labs** (Meta, DeepMind, OSU) reached similar conclusions simultaneously: We're at an inflection point where LLM-based world models are good enough to train capable agents.
-
-## What's Still Hard
-
-Synthetic experience isn't perfect. It can drift from reality in long rollouts. It requires some real data to ground the world model. And transferring to reality still requires careful fine-tuning.
-
-But the gap between "requires millions in real data" and "requires tens of thousands" is the gap between "impossible for most organizations" and "feasible for anyone serious about automation."
-
-## The Timeline
-
-**Now**: Research demonstrations, early pilots in controlled environments
-
-**1-2 years**: Industrial robotics deployments using synthetic pre-training + real fine-tuning
-
-**2-4 years**: Home robots and autonomous systems trained primarily on synthetic experience
-
-**4+ years**: Embodied AI becomes economically viable at scale
-
-The technology works. The question is how fast organizations can integrate it into development workflows and how quickly the sim-to-real transfer techniques mature.
-
-For anyone building with AI agents, robots, or autonomous systems: This is the path to making it economically viable. Start experimenting now.
-
----
-
-**Technical note**: DreamGym uses a reasoning-based experience model with Chain-of-Thought to generate state transitions, an experience replay buffer co-evolving with the agent's policy, and a curriculum task generator using reward-entropy heuristics to create progressively challenging scenarios.
+> Updated September 2026: an earlier version of this note described DreamGym as a robotics result, overstated its WebArena gain and credited it with Dreamer 4's Minecraft result. The note has been rewritten from the paper.

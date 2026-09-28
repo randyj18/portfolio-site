@@ -1,170 +1,53 @@
-# 4-Bit Quantization: Frontier AI Fits in Your Pocket
-
-**Tier:** Major Market Enabler (2-4 year horizon)
-**Published:** 2023-2024
-**Key Papers:** [QLoRA](https://arxiv.org/abs/2305.14314), [AWQ](https://arxiv.org/abs/2306.00978) (MLSys 2024 Best Paper)
-**Impact:** Enabling datacenter-to-edge transition
-
+---
+title: Running large models in 4 bits
+description: Storing weights in 4 bits instead of 16 cuts memory about fourfold with little loss. It decides what runs where, and it's now part of how models ship.
+theme: cheaper-models
+status: in-use
+papers:
+  - title: "GPTQ: Accurate Post-Training Quantization for Generative Pre-trained Transformers"
+    url: https://arxiv.org/abs/2210.17323
+    authors: Frantar et al. (IST Austria, ETH Zurich)
+    date: 2022-10
+    venue: ICLR 2023
+  - title: "QLoRA: Efficient Finetuning of Quantized LLMs"
+    url: https://arxiv.org/abs/2305.14314
+    authors: Dettmers et al. (University of Washington)
+    date: 2023-05
+  - title: "AWQ: Activation-aware Weight Quantization for On-Device LLM Compression and Acceleration"
+    url: https://arxiv.org/abs/2306.00978
+    authors: Lin et al. (MIT, with SJTU, NVIDIA and others)
+    date: 2023-06
+    venue: MLSys 2024 (Best Paper)
+published: 2025-11
+updated: 2026-09
 ---
 
-Here's a number that changes everything: 4.
+Most of a language model's size is its weights, and most models are trained with each weight stored in 16 bits. Quantization stores them in fewer. At 4 bits, the weights of a 70-billion-parameter model shrink from about 140 GB to about 35 GB, and a 7-billion-parameter model fits in about 3.5 GB. Those are weight-only figures: a running model also needs memory for its working state (the KV cache), which grows with the length of the conversation.
 
-Not four billion parameters. Not four GPUs. Just four bits per parameter—and it enables running a 70 billion parameter model on a single consumer GPU instead of a server rack.
+The hard part is doing this without wrecking quality. Three papers from 2022 and 2023 made 4 bits a practical default.
 
-The implications cascade from there.
+GPTQ, from IST Austria and ETH Zurich, quantizes a trained model one layer at a time and uses second-order information about each layer to compensate for the rounding errors it introduces. It could quantize a 175-billion-parameter model "in approximately four GPU hours" with little loss of accuracy, and it reported generation speedups of about 3.25 times on an Nvidia A100 and 4.5 times on an A6000.
 
-## What 4-Bit Quantization Achieves
+AWQ, from Song Han's lab at MIT and collaborators, starts from the observation that about 1% of the weights matter far more than the rest, and that you find them by looking at the activations flowing through the model rather than at the weights themselves. Instead of keeping those weights at higher precision, it scales the important channels so everything can stay at 4 bits, which keeps the hardware path simple. Its inference engine ran more than three times faster than the standard Hugging Face 16-bit implementation, and it won the best paper award at MLSys 2024.
 
-**Standard precision (FP16)**: Each parameter requires 16 bits (2 bytes)
-- 7B model: 14GB memory
-- 70B model: 138GB (requires multiple datacenter GPUs)
+QLoRA, from the University of Washington, is a fine-tuning method rather than a way to serve models. It freezes a 4-bit copy of the model and trains small adapter layers on top, using a 4-bit "NormalFloat" data type shaped for weights that follow a bell curve. That made it possible to fine-tune a 65-billion-parameter model on a single 48 GB GPU, where ordinary 16-bit fine-tuning needed more than 780 GB.
 
-**4-bit quantization**: Each parameter requires 4 bits (0.5 bytes)
-- 7B model: 3.5GB (fits on high-end phones)
-- 70B model: 35GB (fits on single consumer GPU)
+## Why I think it matters
 
-**The breakthrough**: Doing this with negligible quality degradation.
+Quantization decides where a model can run, and that affects privacy, latency and the shape of the bill. A model on your own hardware is a fixed cost instead of a per-token charge, and your data stays in the building. If you'd rather not own hardware, open-weight models are also offered by several clouds, which changes the lock-in picture ([when multi-provider AI is worth the premium](/blog/cloud-provider-diversification)).
 
-## How It Works Without Breaking Quality
+I'd still test any quantized model on your own tasks before relying on it. A 2025 study of reasoning models found 4-bit weight-only quantization close to lossless, while "lower bit-widths introduce significant accuracy risks", with the damage depending on model size and task difficulty ([Liu et al., COLM 2025](https://arxiv.org/abs/2504.04823)).
 
-Three major techniques emerged in 2023-2024:
+Two limits are worth stating plainly. A 70B model at 4 bits still doesn't fit on a single consumer graphics card: Nvidia's largest, the RTX 5090, has [32 GB](https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5090/). It fits on 48 GB workstation cards and on machines with large unified memory. And running models locally hasn't replaced the cloud. Even Apple pairs its on-device model with a [server model built for its Private Cloud Compute](https://machinelearning.apple.com/research/apple-foundation-models-2025-updates).
 
-**QLoRA (University of Washington)**:
-- Uses NormalFloat4 (NF4) instead of uniform quantization
-- Insight: Neural network weights follow normal distributions, not uniform distributions
-- Allocates more precision near zero (where most values cluster), less in the tails
-- Result: Information-theoretically optimal for normally distributed data
+## Since then
 
-**AWQ (MIT, MLSys Best Paper)**:
-- Protects the 1% most salient weights from aggressive quantization
-- Uses activation patterns (not weight values) to identify critical parameters
-- Maintains full 4-bit representation (no mixed precision) for hardware efficiency
-- Result: Minimal quality loss while staying fully quantized
+The main change since these papers is that low precision moved from a compression step applied after training into how models are trained and shipped.
 
-**GPTQ (ICLR 2023)**:
-- One-shot quantization using layer-wise optimization
-- Can quantize 175B parameter models in ~4 GPU hours
-- Uses Hessian information to compensate for quantization errors
-- Result: Fast quantization with strong quality preservation
+- OpenAI's open-weight gpt-oss models (August 2025) were post-trained with their mixture-of-experts weights in the 4-bit MXFP4 format, so the 120B model runs on a single 80 GB GPU and the 20B model within 16 GB ([gpt-oss](https://github.com/openai/gpt-oss)).
+- Google's quantization-aware Gemma 3 releases (April 2025) cut the 27B model from 54 GB to 14.1 GB, small enough for a 24 GB RTX 3090 ([Google](https://developers.googleblog.com/en/gemma-3-quantized-aware-trained-state-of-the-art-ai-to-consumer-gpus/)). For a single gaming card, that's the realistic size class.
+- Apple compressed its roughly 3-billion-parameter on-device model to 2 bits per weight by training with quantization in mind (June 2025, same Apple link above).
+- Moonshot used quantization-aware training on Kimi K2 Thinking (November 2025) so that it runs natively in INT4 ([model card](https://huggingface.co/moonshotai/Kimi-K2-Thinking)).
+- Nvidia pretrained a 12B model in its 4-bit NVFP4 format on 10 trillion tokens with results comparable to an 8-bit baseline ([paper](https://arxiv.org/abs/2509.25149)), and its Nemotron 3 Super, with 120 billion parameters in total, was pretrained in NVFP4 ([report](https://arxiv.org/abs/2604.12374), April 2026).
 
-## The Performance Numbers
-
-**Memory Reduction**: 4× less memory (16-bit to 4-bit)
-
-**Inference Speed**: 3-4× faster
-- AWQ on RTX 4090: 3× speedup
-- GPTQ on A100: 3.25× speedup
-- LMDeploy 4-bit: 3.16× faster
-
-**Quality Preservation**: Minimal to negligible degradation on benchmarks
-
-**The sweet spot**: 4-bit maintains quality. Drop to 3-bit and quality degrades significantly.
-
-## The Economics: 10× Cost Reduction
-
-**Infrastructure costs**:
-- 70B model in FP16: Requires 2× A100 80GB GPUs (~$60k hardware)
-- 70B model in 4-bit: Single A100 80GB GPU (~$30k hardware)
-- **50% infrastructure cost savings**
-
-**API costs (for high-volume users)**:
-- Same hardware serves 3-4× more requests (due to speed improvement)
-- Reduces $/million tokens by equivalent factor
-- Break-even vs cloud APIs often within days for high-volume use cases
-
-**Edge deployment**:
-- Eliminate per-request data transmission costs
-- Zero ongoing API costs after one-time model download
-- Amortized over millions of inferences, cost approaches zero
-
-## Real-World Edge Deployment
-
-**Smartphones** (56.7% of on-device AI market):
-- 7B models running at 15-32 tokens/sec
-- Real-time translation without cloud
-- Privacy-preserving voice assistants
-- Qualcomm Snapdragon 8 Gen3, Apple M-series deployed
-
-**Automotive** (fastest-growing segment):
-- Advanced Driver Assistance with real-time scene understanding
-- In-vehicle assistants with natural conversation
-- No dependency on network connectivity
-- Eliminates 100-500ms cloud latency
-
-**Manufacturing** (Industry 4.0):
-- Real-time quality inspection with vision models
-- Predictive maintenance with sensor fusion
-- Air-gapped environments (no cloud connectivity allowed)
-- Deterministic latency for robotics control
-
-## The Market Opportunity
-
-**On-Device AI Market**:
-- 2024: $8.60-17.61B
-- 2030: $36.64-66.47B
-- 2033: $115.74B (aggressive projection)
-- CAGR: 26.6-27.9%
-
-**Key drivers**:
-- Privacy regulations (GDPR, CCPA) pushing processing to edge
-- Latency requirements (real-time applications can't tolerate cloud roundtrip)
-- Cost reduction (cloud API costs mounting for high-volume users)
-- Offline capability (emerging markets, inconsistent connectivity)
-
-## The Paradigm Shift
-
-**2020-2022**: "AI requires cloud" (GPT-3 era, models too large for local deployment)
-
-**2023**: "AI can run locally" (Llama + quantization prove viability)
-
-**2024-2025**: "AI should run locally" (privacy, cost, latency advantages clear)
-
-**2026+**: "AI primarily runs locally" (edge-first architecture becomes default)
-
-## What This Enables
-
-**For enterprises**:
-- Hybrid architecture: cloud for training, edge for inference
-- Data sovereignty through local processing (regulatory compliance)
-- Fixed hardware costs vs variable API costs (budget predictability)
-
-**For consumers**:
-- No data leaves device (privacy)
-- Works without connectivity (offline capability)
-- Instant responses (zero latency)
-- No ongoing AI subscription fees
-
-**For developers**:
-- Deploy powerful models on consumer hardware
-- Build privacy-preserving applications
-- Reduce operational costs 10×
-- Iterate rapidly on edge devices
-
-## The Trade-Off Reality
-
-**What works**: 4-bit quantization of 1B+ parameter models for inference
-
-**What's harder**:
-- Sub-1B models have less redundancy to compress
-- Mathematical reasoning tasks show some degradation
-- Extreme outlier values can cause quality issues
-- 2-bit and below typically unacceptable
-
-**Best practice**:
-- Use 4-bit for inference (3-4× speedup, minimal quality loss)
-- Keep training in FP16/BF16 (QLoRA enables 4-bit training but needs decompression)
-- Test thoroughly on your specific use case
-
-## The Bottom Line
-
-4-bit quantization doesn't just make models smaller—it fundamentally changes where AI can run.
-
-When a frontier model drops from "requires datacenter" to "runs on a phone," the entire application landscape transforms. Privacy-preserving AI becomes default. Offline AI becomes standard. Cost per inference drops toward zero.
-
-**The on-device AI market growing to $115B by 2033** isn't speculation—it's the inevitable result of making frontier capabilities accessible at the edge.
-
-Organizations still designing cloud-only AI architectures are building for yesterday's constraints. The future is edge-first, and 4-bit quantization is what makes it possible.
-
----
-
-**Technical note**: QLoRA achieves 16× memory reduction through NF4 quantization + double quantization (quantizing the quantization constants) + paged optimizers. AWQ uses activation-aware per-channel scaling to protect salient weights without mixed precision. GPTQ employs layer-wise Optimal Brain Quantization with Hessian-based error compensation.
+What I don't know is how far below 4 bits general-purpose models can go before the savings stop being worth the quality loss. Apple's 2-bit model is small, and so far the large open models have stopped at about 4. DeepSeek's 8-bit training of V3 is covered in [the DeepSeek note](/research/deepseek-r1).

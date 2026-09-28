@@ -1,63 +1,48 @@
-# Synthetic Data: AI That Trains Itself
-
-**Tier:** Market-Defining Transformation
-**Published:** 2023-2024 (Multiple breakthrough papers)
-**Key Papers:** [Textbooks Are All You Need](https://arxiv.org/abs/2306.11644), [Self-Instruct](https://arxiv.org/abs/2212.10560)
-**Impact:** Already happening, accelerating rapidly
-
+---
+title: Training models on synthetic data
+description: Small models trained partly on text written by bigger models can beat much larger ones. Synthetic data can lower privacy risk, but it isn't anonymous by default.
+theme: learning-from-experience
+status: in-use
+papers:
+  - title: "Self-Instruct: Aligning Language Models with Self-Generated Instructions"
+    url: https://arxiv.org/abs/2212.10560
+    authors: Wang et al. (University of Washington, Allen Institute for AI and others)
+    date: 2022-12
+    venue: ACL 2023
+  - title: "Textbooks Are All You Need"
+    url: https://arxiv.org/abs/2306.11644
+    authors: Gunasekar et al. (Microsoft Research)
+    date: 2023-06
+  - title: "Phi-4 Technical Report"
+    url: https://arxiv.org/abs/2412.08905
+    authors: Abdin et al. (Microsoft Research)
+    date: 2024-12
+published: 2025-11
+updated: 2026-09
 ---
 
-What if I told you that a 1.3 billion parameter model trained on synthetic data could outperform models 10x larger trained on trillions of real tokens? That's not speculation. That's Microsoft's Phi-1, and it's already deployed.
+Two papers from 2022 and 2023 showed that text written by a language model can be good training data for another model, or even for itself.
 
-## The Breakthrough
+Self-Instruct, from the University of Washington, the Allen Institute for AI and others, started with 175 hand-written tasks and had GPT-3 generate about 52,000 new instructions with inputs and answers, filtered out the invalid and repetitive ones, and then fine-tuned GPT-3 on the result. The tuned model improved by 33 points (absolute) on a benchmark of unseen tasks, putting it roughly level with OpenAI's InstructGPT-001, which had been trained on private user data and human annotations. It was an early, cheap demonstration of a model bootstrapping its own instruction data.
 
-Instead of scraping the internet for training data, we're using LLMs to generate their own training data. High-quality, diverse, targeted examples that would cost millions to collect from humans.
+Microsoft's phi-1, described in "Textbooks Are All You Need", applied the idea to code with a focus on quality. The 1.3-billion-parameter model was trained on about 6 billion tokens of web code filtered for "textbook quality" plus about 1 billion tokens of textbooks and exercises written by GPT-3.5. It scored 50.6% on the HumanEval coding benchmark, well ahead of StarCoder (33.6%), a 15.5-billion-parameter model trained on a trillion tokens. Phi-2 extended the approach to general language: 2.7 billion parameters, trained on 1.4 trillion tokens "from multiple passes on a mixture of Synthetic and Web datasets", which Microsoft reported as matching or beating models up to 25 times its size on complex benchmarks ([Microsoft Research](https://www.microsoft.com/en-us/research/blog/phi-2-the-surprising-power-of-small-language-models/)).
 
-**The approach is elegant:**
-1. Start with a small foundation model
-2. Have it generate synthetic examples for tasks you care about
-3. Filter for quality and diversity
-4. Train on the synthetic dataset
-5. Repeat
+The lesson was that quality beat volume, and a strong model could supply the quality. Both phi models also relied on a lot of carefully filtered real data, which tends to get lost in the retelling.
 
-Microsoft's Phi series proved this scales. Their 2.7B parameter Phi-2 matches 13B+ parameter models using 250B synthetic tokens instead of the trillions competitors require.
+## Why I think it matters
 
-## Why This Unlocks Regulated Industries
+I think the advantage shifts from who has the most data to who can generate the right data for a particular use, which favours domain expertise over data hoarding. A team that understands its problem well can describe the examples it needs and have a model produce them, then check them.
 
-**The problem**: Healthcare, finance, and legal sectors sit on mountains of data they legally can't use for AI training. HIPAA, GDPR, and privacy laws create insurmountable barriers.
+Quality matters even more with synthetic data than with real data. Training models on the output of earlier models, generation after generation, makes them lose the rarer parts of the original data, an effect the authors named model collapse ([Nature, 2024](https://www.nature.com/articles/s41586-024-07566-y)). My practical reading is to keep real data in the mix and filter hard.
 
-**The solution**: Synthetic data is truly anonymous[^1]. No patient identifiers. No financial records. No privileged communications. Just statistically similar data that enables model training without exposing sensitive information.
+The privacy argument needs more care than it usually gets. Synthetic data can reduce how much sensitive data you train on, but it isn't anonymous by default: a generator trained on personal records can reproduce parts of them. The European Data Protection Board's view is that an AI model trained on personal data counts as anonymous only if it is "very unlikely" both to identify the people in its training data and to give up their data through queries ([EDPB Opinion 28/2024](https://www.edpb.europa.eu/news/news/2024/edpb-opinion-ai-models-gdpr-principles-support-responsible-ai_en)). In July 2026 the EDPB added guidelines on anonymization with three tests: no record isolation, no linkage and no inference ([EDPB](https://www.edpb.europa.eu/news/edpb-sheds-light-on-anonymisation-and-web-scraping-for-generative-ai-and-adopts-final-version_en)). I'd expect a synthetic dataset built from personal data to be judged against the same tests.
 
-**Real impact:**
-- Healthcare: Train diagnostic AI without exposing patient data
-- Finance: Build fraud detection without customer records
-- Legal: Create contract analysis tools without privilege concerns
-- Any regulated industry: Unlock AI without regulatory nightmares
+## Since then
 
-## The B2B Market Opportunity
+Synthetic data became standard practice rather than a bet. Phi-4 (14 billion parameters, December 2024) "strategically incorporates synthetic data throughout the training process", and Microsoft reports that it surpassed its teacher model, GPT-4, on STEM-focused questions ([report](https://arxiv.org/abs/2412.08905)). Reasoning models are routinely trained on generated reasoning: [DeepSeek R1](/research/deepseek-r1) used about 800,000 samples mostly generated by the model itself, and [s1](/research/s1-test-time-scaling) trained on 1,000 traces written by Gemini.
 
-By end of 2024, 60% of AI training data is projected to be synthetic. The enterprise LLM market is growing at 26-29% CAGR, reaching $41-71B by 2033.
+There's also a twist. DeepSeek says it deliberately used no synthetic data to pretrain its V3 base model, but found that some web pages "contain a significant number of OpenAI-model-generated answers" ([DeepSeek-R1, revised version](https://arxiv.org/abs/2501.12948)). Model-written text is now part of the web that everyone trains on.
 
-**Why organizations are adopting:**
-- **Cost**: Eliminate expensive human annotation ($0.10-$5 per label)
-- **Speed**: Generate training data in hours, not months
-- **Privacy**: Zero risk of data breaches or compliance violations
-- **Quality**: Control exactly what your model learns
+Microsoft's own framing has become more measured too. Its March 2026 write-up on a multimodal reasoning model calls generated data "a useful augmentation to high-quality real datasets", and says it is not a replacement for them ([Microsoft Research](https://www.microsoft.com/en-us/research/blog/phi-4-reasoning-vision-and-the-lessons-of-training-a-multimodal-reasoning-model/)).
 
-Companies are already proving ROI. Small models trained on synthetic data match large models at 1/100th the inference cost. When you can get GPT-4 class performance from a 7B parameter model you can run locally, the economics of AI deployment transform.
-
-## The Catch
-
-Quality matters more for synthetic data than real data. Larger synthetic datasets can degrade performance if quality isn't maintained. The field is still learning the best practices for diversity, grounding, and quality control.
-
-But the trajectory is clear: data scarcity is becoming a prompt engineering problem, not an insurmountable barrier.
-
-## What This Means for Strategy
-
-If your AI strategy assumes you need massive proprietary datasets to compete, you're already behind. The competitive advantage is shifting from "who has the most data" to "who can generate the best synthetic data for their specific use case."
-
-That's a very different game, and it favors domain expertise over data hoarding.
-
----
-
-[^1]: Caveat: European Data Protection Board (EDPB) warns that synthetic data may still fall under GDPR if it carries traits from real individuals. Best practice requires differential privacy mechanisms and rejection sampling to ensure true anonymization.
+What I don't know is how far this goes for organizations with sensitive data: whether synthetic records built from, say, customer files will be good enough to train on and safe enough to share. For now I'd treat that as something to test case by case. Agents that generate their own training data from experience are a related idea, covered in [early experience](/research/early-experience).
