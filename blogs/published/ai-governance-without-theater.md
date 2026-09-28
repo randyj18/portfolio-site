@@ -1,307 +1,53 @@
-# AI Governance Without Theater: How to Ship Code at Night and Write Policy by Day
-
-**Subtitle:** Why real governance comes from engineers who've hit the walls, not consultants with frameworks
-**Target Length:** 2,400-2,800 words
-**Cluster:** Governance & Implementation
-**Status:** Complete
-
+---
+title: AI governance without the theatre
+description: Governance people route around protects nothing. Start with a sandbox, a few data tiers, risk-based review and logging, and write policy from what breaks.
+topic: leadership
+published: 2025-11
+updated: 2026-09
 ---
 
-## Quick Navigation
-- [The $3 Million Framework Nobody Implements](#the-3-million-framework-nobody-implements)
-- [Why Governance Often Fails Without Implementation Experience](#why-governance-often-fails-without-implementation-experience)
-- [What Effective Governance Might Look Like](#what-effective-governance-might-look-like)
-- [The Regulatory Reality Check: What 2025 Actually Requires](#the-regulatory-reality-check-what-2025-actually-requires)
-- [A Practitioner's Approach: Considerations for Functional Governance](#a-practitioners-approach-considerations-for-functional-governance)
-- [Potential Timeline: From Analysis to Implementation](#potential-timeline-from-analysis-to-implementation)
-- [Connecting Governance to Compensation and Culture](#connecting-governance-to-compensation-and-culture)
-- [What You Actually Need vs. What Consultants Sell You](#what-you-actually-need-vs-what-consultants-sell-you)
-- [The Bottom Line](#the-bottom-line)
+The sequence is familiar. Legal asks for a comprehensive AI governance framework before anything ships. Consultants arrive with templates. Months later there's a long document, a set of principles nobody can object to, and an approval workflow with so many sign-offs that a simple request takes a quarter. Engineers learn to route around it, sometimes by not calling their work AI at all. The framework exists, and the governance doesn't.
 
-The state of AI governance in early 2025: Trump reversed Biden's AI Executive Order in January. The SEC launched an AI Task Force in August. Thirty-eight states enacted roughly 100 AI laws. The EU AI Act went into effect in August. California's AI rules kicked in October. Colorado delayed its AI Act to June 2026.
+My view is that useful AI governance comes from people who have built things and hit the problems, then written down what worked. Most of my working days go to AI strategy and governance, and I still write code at night; the [playground](/playground) has a few small projects, including VOICE-Relay, an end-to-end encrypted relay for voice conversations between AI agents and people. Even at that scale, building changes what you think a policy needs to say.
 
-No federal framework. No consistency. Limited clarity.
+## What building teaches you about policy
 
-Amid this regulatory landscape, legal teams often request comprehensive AI governance frameworks before proceeding with implementations.
+A few things become obvious once you've built something that handles real data.
 
-The typical response? Hiring consultants who haven't shipped AI to production, debugged hallucinations in customer-facing systems, or explained to CFOs why models leak PII into training data.
+Data protection is mostly architecture. Encrypting a relay end to end forces decisions about where data is processed, what gets logged and who holds the keys. A policy line saying "data must be encrypted" answers none of those.
 
-The result: 12-14 months building governance frameworks that sound impressive in presentations but falter when implemented.
+Human oversight can't mean a person approving every step, or there's no point automating. Oversight has to scale with risk.
 
-There's a pattern here: **real AI governance tends to emerge from engineers who've encountered implementation challenges, then formalized what actually functions, rather than from abstract frameworks.**
+Bias questions get concrete: what happens when a model denies someone a service, how you would detect it, and how fast you could respond. Having answers to those matters more than choosing the ideal fairness metric.
 
-## The $3 Million Framework Nobody Implements
+Prompt injection, data ending up in places it shouldn't and the pressure to ship before accuracy is proven are all easier to govern once you've seen them happen than when you're imagining them.
 
-Consider what governance theater typically looks like:
+## What I'd put in place first
 
-A Fortune 500 company engages a consulting firm to "assess AI readiness and develop governance protocols." The consultants arrive with templates, conduct stakeholder interviews, map risk categories, and produce a 147-page governance framework with detailed policies: AI ethics principles (eloquent but vague), risk assessment matrices (comprehensive but impractical), approval workflows (14 steps, 7 sign-offs, 12-week minimum), model validation requirements (rigorous but unclear implementation), and data classification schemes (theoretically sound, practically unusable).
+Start small and write the policy from what you observe.
 
-Cost: $3 million. Timeline: 12 months. Outcome: Documentation that remains largely unused.
+- A sandbox before the policy. Let a pilot group use a few approved tools with controlled data for a few weeks and watch what they actually do. I've made the longer case for [sandboxing](/blog/sandboxing-safe-early-access) separately.
+- Three data tiers (public, internal, protected), enforced by the infrastructure through access controls, network isolation and automatic classification, rather than by asking people to be careful.
+- Risk tiers for applications. Low risk (internal productivity, easily reversed) runs automatically. Medium risk (customer-facing with a person checking, moderate impact) gets review when it crosses set thresholds. High risk (employment, credit, housing, large financial exposure, regulated decisions) needs human approval.
+- Logging of tools, data, prompts, outputs and user identity, with monitoring for protected data and unusual patterns. That record is what makes you defensible when a regulator asks.
+- Escalation paths, a short written account of how you make AI decisions, and compliance checkpoints for regulated uses.
 
-The gap: consultants who've never debugged prompt injection in production, explained to compliance officers why encryption doesn't prevent data leakage, or navigated accuracy-bias tradeoffs when models need immediate deployment.
+In my estimate, a first working version takes about two months. Classification, the sandbox and the risk tiers take the first two weeks. In weeks three and four, two or three low-risk tools go to 20 to 50 people with logging switched on. Weeks five and six compare what the policy assumed with what actually happened. In weeks seven and eight you write down what works and widen access to 100 or 200 people. Most of the cost is internal time.
 
-Policy built from theory often breaks upon implementation.
+Approval speed matters as much as approval rules. If a medium-risk review takes weeks, people find another way; if it takes a couple of days, most will wait. I've written more about that in the context of [shadow AI](/blog/shadow-ai-organizational-intelligence). Governance works when it's the team people bring ideas to early because it tells them how to ship safely. When it's the team that says no, people stop asking. That's much easier when a central team sets the guardrails and [leaves the decisions to the teams](/blog/distributed-ai-leadership) doing the work.
 
-The data suggests 60% of organizations cite risk and compliance concerns as their top AI adoption barrier, yet much of that risk may represent self-imposed paralysis rather than actual regulatory requirements.
+## Where the rules stand in September 2026
 
-[↑ Back to top](#quick-navigation)
+The regulation moved a lot in the past year. This is a dated snapshot, not legal advice.
 
----
+European Union. The AI Act entered into force in August 2024. Its bans on prohibited practices and its AI literacy duty have applied since February 2025, the obligations for general-purpose AI models since August 2025, and most of the rest since August 2, 2026. The high-risk rules come later than first planned. The "AI Omnibus", proposed in November 2025, agreed in May 2026 and in force since July 27, 2026, [moved them to December 2, 2027](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai) for uses such as employment, education, biometrics and critical infrastructure, and to August 2, 2028 for AI built into regulated products. It also added a ninth prohibited practice, AI that generates non-consensual intimate images or child sexual abuse material, from December 2026. Fines for prohibited practices reach [€35 million or 7% of worldwide turnover](https://artificialintelligenceact.eu/article/99/), whichever is higher, and €15 million or 3% for most other breaches; for SMEs and start-ups, whichever is lower. The Act reaches companies outside the EU when they put AI systems on the EU market or when [their system's output is used in the EU](https://artificialintelligenceact.eu/article/2/). Processing EU residents' data is what triggers the GDPR; on its own it doesn't bring you under the AI Act.
 
-## Why Governance Often Fails Without Implementation Experience
+United States, federal. There is still no comprehensive federal AI law. In January 2025 the new administration [revoked](https://www.federalregister.gov/documents/2025/01/28/2025-01901/initial-rescissions-of-harmful-executive-orders-and-actions) the 2023 AI executive order. A December 2025 [executive order on a national AI framework](https://www.federalregister.gov/documents/2025/12/16/2025-23092/ensuring-a-national-policy-framework-for-artificial-intelligence) set up a Justice Department task force to challenge state AI laws, told the Commerce Department to identify "onerous" ones, tied some federal broadband funding to that list, and called for legislation that would pre-empt conflicting state laws, with exceptions such as child safety. In July 2026 the FTC [proposed a policy statement](https://www.federalregister.gov/documents/2026/07/07/2026-13628/policy-statement-concerning-the-suppression-of-accuracy-in-artificial-intelligence-systems) saying that altering an AI system's truthful outputs, even to comply with a state law, may be deceptive, and it names Colorado's law. Existing law still does much of the work. The Justice Department's [corporate compliance guidance](https://www.justice.gov/criminal/criminal-fraud/page/file/937501/dl?inline), updated in September 2024, asks how companies assess and manage the risks of AI.
 
-A common pattern in failed AI governance:
+States. State legislatures are busy: in the 2025 session, [38 states adopted or enacted around 100 AI measures](https://www.ncsl.org/technology-and-communication/artificial-intelligence-2025-legislation). Colorado's AI Act, first due in February 2026 and then delayed to June 30, 2026, was [repealed and replaced in May 2026](https://leg.colorado.gov/bills/sb26-189) by a law on automated decision-making technology. From January 1, 2027, developers of tools that materially influence consequential decisions (education, employment, housing, lending, insurance, health care, government services) must give deployers documentation, and deployers must tell people when such a tool is in use, explain adverse decisions within 30 days, and offer correction and human review. The attorney general enforces it, and it creates no new private right of action. In California, [civil rights regulations in force since October 2025](https://calcivilrights.ca.gov/2025/06/30/civil-rights-council-secures-approval-for-regulations-to-protect-against-employment-discrimination-related-to-artificial-intelligence/) make clear that automated employment decisions fall under anti-discrimination law and require four years of records, and the privacy regulator's rules add [risk assessments from 2026 and automated decision-making obligations from January 1, 2027](https://cppa.ca.gov/announcements/2025/20250923.html). New York City has required bias audits of hiring tools since 2023, but the state comptroller found in December 2025 that [the city's complaint-driven enforcement was ineffective](https://www.osc.ny.gov/state-agencies/audits/2025/12/02/enforcement-local-law-144-automated-employment-decision-tools).
 
-Compliance teams lead governance initiatives, hire framework-specialized consultants, create policies requiring extensive documentation and approval, engineering teams can't ship under these constraints, engineers route around policies or abandon projects, and organizations fall behind competitors.
+Canada. The proposed federal Artificial Intelligence and Data Act never passed. It was [still in committee as part of Bill C-27](https://www.parl.ca/legisinfo/en/bill/44-1/c-27) when Parliament was prorogued in January 2025, and it died there. As far as I know, no federal replacement has passed since. For a Canadian organization that leaves existing privacy law at home, plus the rules above for anything that reaches the EU or US markets.
 
-The challenge: **governance divorced from implementation reality often creates policies that sound appropriate but prove unworkable.**
+Across all of these, the same few duties keep coming back: tell people when AI is involved in decisions about them, make someone accountable for outcomes, and show that you watch for discrimination. The rest depends on where you operate and which decisions your AI touches. For most companies that's a handful of jurisdictions, not every AI law on the books, and a consultant who sells you coverage of every conceivable risk is selling you the theatre.
 
-Example: A healthcare company required "algorithmic impact assessments" for all AI systems (seemingly responsible). The assessment template ran 47 pages, required data engineering teams couldn't access, and nobody defined "acceptable impact."
-
-Result: The policy existed formally. Engineers avoided labeling anything "AI" to bypass bureaucracy. Shadow IT emerged. Governance theater succeeded while actual governance failed.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## What Effective Governance Might Look Like
-
-Building production AI systems (processing real data, serving users, carrying real consequences) reveals several insights:
-
-Debugging bias in production demonstrates that abstract fairness metrics matter less than concrete questions: "What happens when the model denies service to a protected class? How do we detect it? How do we respond quickly?"
-
-Implementing end-to-end encryption (like in VOICE-Relay) shows that data protection involves architectural decisions about processing locations, logging practices, and maintaining security without breaking functionality, rather than simple checkboxes.
-
-Building agentic workflows reveals that "human oversight" can't mean "approve every step" without defeating automation's purpose. Graduated autonomy levels based on risk seem more practical.
-
-Shipping code while maintaining compliance documentation develops intuition about what governance needs to prevent versus what constitutes performative risk management.
-
-The pattern: **AI governance may fail when led by those who haven't encountered implementation challenges.** Effective governance often emerges from engineers who've debugged bias, data leaks, and prompt injection in production, then formalized working approaches.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## The Regulatory Reality Check: What 2025 Actually Requires
-
-Let's cut through the noise and look at what's actually enforceable in 2025.
-
-### Federal Level: Fragmented and Sector-Specific
-
-**What happened:**
-- January 2025: Trump reversed Biden's AI Executive Order
-- August 2025: SEC launched AI Task Force focused on financial services
-- September 2024: DOJ updated compliance expectations for corporate AI use
-
-**What this means:**
-No comprehensive federal AI framework exists. What you face instead are sector-specific requirements:
-
-- **Financial Services:** SEC oversight of AI in trading, risk assessment, customer service
-- **Healthcare:** HIPAA compliance extends to AI systems processing protected health information
-- **Employment:** EEOC guidance on AI in hiring, promotion, and performance management
-- **Federal Contractors:** Specific requirements if you work with government agencies
-
-The regulatory pattern: enforcement through existing frameworks (HIPAA, FCRA, ECOA) rather than AI-specific legislation.
-
-### State Level: The Compliance Patchwork
-
-**The numbers:** 38 states enacted roughly 100 AI laws in 2024-2025.
-
-**The reality:** Most are narrow and sector-specific. Here's what actually has teeth:
-
-**California (October 2025):**
-- Requires disclosure when AI is used in employment decisions
-- Mandates impact assessments for "high-risk" systems
-- Enforcement through existing consumer protection laws
-
-**Colorado (delayed to June 2026):**
-- Originally scheduled for February 2026, pushed to June 2026 after industry pushback
-- Requires "reasonable care" to avoid algorithmic discrimination
-- Applies to systems making "consequential decisions" (employment, housing, credit, education, healthcare)
-- Notably: enforcement through Attorney General, with private right of action
-
-**New York City (in effect since 2023, actively enforced):**
-- Bias audits required for AI hiring tools
-- Notice requirements to job candidates
-- Companies like HireVue and Pymetrics forced to adapt or lose NYC market
-
-**What you actually need:** Not compliance with 100 laws. You need to understand which states your operations touch and what triggers compliance obligations. For most companies, that's 3-5 states with enforceable requirements.
-
-### International: EU AI Act Sets the Bar
-
-**EU AI Act (in effect August 2025):**
-
-This is the most comprehensive AI regulation globally, and it operates on a risk-based framework:
-
-**Unacceptable Risk (Prohibited):**
-- Social scoring by governments
-- Exploiting vulnerabilities of specific groups
-- Real-time biometric identification in public spaces (with limited exceptions)
-
-**High Risk (Heavy Regulation):**
-- AI in critical infrastructure
-- Employment and worker management
-- Education and vocational training
-- Law enforcement
-- Border control and migration
-
-Requirements for high-risk systems:
-- Risk management processes
-- Data governance and quality requirements
-- Technical documentation
-- Record-keeping and logging
-- Transparency and user information
-- Human oversight
-- Accuracy, robustness, and cybersecurity
-
-**The enforcement reality:** Fines up to €35 million or 7% of global annual revenue (whichever is higher). First major fines expected late 2025/early 2026 as enforcement ramps up.
-
-**Does this apply to your US company?** Yes, if you:
-- Operate in EU markets
-- Process data of EU residents
-- Provide AI services to EU entities
-
-The EU's long-arm jurisdiction means this affects most multinational companies.
-
-### The Pattern Across Jurisdictions
-
-Looking across all these regulations, three requirements emerge consistently:
-
-1. **Transparency:** Disclose when AI is making or influencing decisions
-2. **Accountability:** Someone must be responsible for outcomes
-3. **Fairness:** Demonstrate you're monitoring for bias and discrimination
-
-Everything else is sector-specific or risk-based. The consultant who tells you "you need a comprehensive AI governance framework covering all potential risks" is selling you theater.
-
-What you need is focused compliance with actual obligations, plus the agility to adapt as enforcement evolves.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## A Practitioner's Approach: Considerations for Functional Governance
-
-Organizations building effective AI governance might consider several approaches based on implementation experience:
-
-**Sandboxing Before Policy:** Creating isolated environments where teams experiment with AI tools using controlled data reveals actual risks rather than theoretical ones. This approach generates data about employee behavior, tool preferences, real security gaps, and practical oversight needs within 2-4 weeks. Governance emerges from observed patterns rather than hypotheses.
-
-**Risk-Based Data Classification:** Three-tier classification (Public, Internal, Protected) based on exposure consequences proves more practical than complex multi-level schemes. Infrastructure-level enforcement (API access controls, automated classification, network isolation, audit logging) works better than relying on employee judgment.
-
-**Audit Capability:** The DOJ's September 2024 compliance guidance emphasizes detecting violations before regulators do. Logging tool usage, data access, prompts, outputs, and user identity, combined with monitoring for protected data exposure, unusual patterns, and bias, creates defendable positions during regulatory scrutiny.
-
-**Application Risk Tiers:** Differentiating governance between low-risk applications (internal productivity tools, easily reversible decisions), medium-risk (customer-facing with human verification, moderate impact), and high-risk (employment/credit/housing decisions, large financial exposure, regulatory obligations) prevents blanket policies that block all progress.
-
-**Iteration-Based Refinement:** Rather than defining all policies upfront based on theoretical risks, consider starting with minimal viable governance, deploying AI applications, observing what actually breaks, then formalizing learnings. Example: initial "human reviews all outputs" governance created bottlenecks defeating automation's purpose. Graduated autonomy based on risk scoring (automatic execution for low-risk, threshold-based review for medium-risk, human approval for high-risk) emerged from real constraints.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## Potential Timeline: From Analysis to Implementation
-
-Organizations prioritizing practical implementation over comprehensive planning might consider:
-
-**Weeks 1-2:** Implement basic data classification, establish sandbox environment, define initial risk tiers, identify pilot use cases.
-
-**Weeks 3-4:** Deploy 2-3 low-risk tools in sandbox with 20-50 employee access, implement logging/monitoring, document actual behavior (versus theoretical expectations).
-
-**Weeks 5-6:** Analyze usage patterns, identify policy-reality gaps, adjust governance based on encountered risks, add targeted guardrails.
-
-**Weeks 7-8:** Document working governance framework from pilot learnings, expand to 100-200 employees, implement automated monitoring, create escalation paths.
-
-This approach moves from analysis to working governance with appropriate controls in roughly two months, contrasting with 12-14 month consultant-led processes that often produce unused documentation.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## Connecting Governance to Compensation and Culture
-
-Here's what consultants miss: governance isn't just about preventing bad outcomes. It's about enabling good ones.
-
-**The failure mode:** Governance becomes the team that says "no" to everything. Engineers learn to avoid governance entirely. Shadow IT flourishes. You've created antibodies to your own immune system.
-
-**What works:** Governance becomes the team that says "here's how to ship this safely and fast."
-
-[Compensation in the AI Era](/blog/compensation-ai-era) explores this dynamic in depth: when you reward employees for finding AI use cases, implementing them responsibly, and sharing learnings, governance becomes an enabler, not a blocker.
-
-**The psychological shift:**
-
-**Before:** "I have an idea for using AI, but governance will take 6 months to approve it. Never mind."
-
-**After:** "I have an idea for using AI. I'll test it in the sandbox this week, and if it shows value, governance will help me get it to production within a month."
-
-That shift—from governance as obstacle to governance as accelerator—is what separates organizations that successfully adopt AI from those that don't.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## What You Actually Need vs. What Consultants Sell You
-
-Let's be brutally honest about what AI governance actually requires:
-
-**What consultants sell you:**
-- 147-page governance framework
-- AI Ethics Board with quarterly meetings
-- Comprehensive risk assessment for every AI initiative
-- Detailed model cards documenting every decision
-- Multi-tier approval workflows
-- Extensive training programs for all employees
-- External audits and certifications
-
-**Cost:** $3M+
-**Timeline:** 12-14 months
-**Outcome:** Binders and paralysis
-
-**What you actually need:**
-- Clear data classification (3 tiers)
-- Sandboxed experimentation environment
-- Risk-based governance tiers (low/medium/high)
-- Audit logging and monitoring
-- Escalation paths for high-risk applications
-- Documentation of how you make AI decisions (not 47-page templates)
-- Compliance checkpoints for regulated use cases
-
-**Cost:** $150K-300K (mostly internal time)
-**Timeline:** 2 months to working system
-**Outcome:** Governance that enables shipping while managing real risk
-
-The difference? One is built by people who've shipped AI. The other is built by people who've never debugged a hallucination in production.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## The Bottom Line
-
-The thesis: **Effective AI governance often emerges from those who've encountered implementation challenges.**
-
-Building production AI systems (debugging bias, implementing data protection, navigating regulatory requirements while shipping) develops intuition that frameworks alone struggle to replicate.
-
-Key insights: perfect safety proves impossible (manage risk rather than eliminate it), theory often breaks upon production contact, governance preventing deployment gets circumvented, slow movement costs may exceed contained failure costs, and effective governance tends to emerge from iteration rather than comprehensive upfront planning.
-
-**The regulatory environment remains fragmented:** no federal framework, 38 states with 100 laws, EU AI Act with extraterritorial reach, more regulations emerging.
-
-**The response:** Build governance that can adapt because it's grounded in implementation reality rather than abstract frameworks.
-
-Consider: sandboxing to learn actual risks, building policy from experience, shipping with appropriate controls, iterating as regulations evolve.
-
-Potential timeline: two months from decision to working governance, versus 12-14 months of analysis without deployment.
-
----
-
-**Related Posts:**
-- [Sandboxing: Safe Early Access to AI Tools](/blog/sandboxing-safe-early-access)
-- [The AI Budget: Democratizing Innovation Through Trust](/blog/ai-budget-democratizing-innovation)
-- [Claude Code: The Agentic Tool Everyone Is Sleeping On](/blog/claude-code-agentic-tool)
-- [Compensation in the AI Era: Rewarding Innovation at Every Level](/blog/compensation-ai-era)
-
----
-
-**TLDR:** 60% cite risk/compliance as the top barrier to AI adoption, but most is self-imposed paralysis, not actual requirements. The 2025 regulatory landscape is chaotic (Trump reversed Biden's AI EO in January, but SEC launched an AI Task Force in August; 38 states enacted ~100 AI laws; EU AI Act in effect August 2025), yet no federal framework exists. Traditional consultant-led governance costs $3M+ and takes 12-14 months to produce frameworks nobody follows. Real governance comes from engineers who've debugged bias, data leaks, and prompt injection in production—then formalized what works. The practitioner's approach: implement sandboxing (2-4 weeks), classify data into 3 tiers, build audit capability, define risk tiers for applications, iterate based on what breaks. Timeline: 2 months from decision to working governance versus 12-14 months of consultant-driven paralysis. Governance by day, shipping code at night—that's how you move fast while staying compliant.
-
----
-
-**Published:** November 2025
-**Word Count:** ~2,650 words
+If I had one quarter, I'd build the sandbox, the data tiers and the logging, and write the rest of the policy from what they show. What I can't predict is how the US fight over state laws ends. For now I'd design for the strictest rules you're actually subject to and keep the records that let you prove it.

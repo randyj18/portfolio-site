@@ -1,193 +1,66 @@
-# Reskilling at Scale: How to Prepare 40% of Your Workforce for AI Without Burning $50M on Training Theater
-
-**Subtitle:** Why embedded learning beats classroom training by 3x and costs 70% less
-**Target Length:** 2,400-2,800 words
-**Cluster:** Governance & Implementation
-**Status:** Complete
-
+---
+title: Reskilling for AI happens on the job
+description: Courses and central prompt teams can't build AI skills at scale. People learn by using AI on their own work, with a sandbox, peers and a few hours of foundations.
+topic: leadership
+published: 2025-11
+updated: 2026-09
 ---
 
-## Quick Navigation
-- [The $50M Training Theater Problem](#the-50m-training-theater-problem)
-- [Why Traditional Training Fails at Scale](#why-traditional-training-fails-at-scale)
-- [The Contrarian Insight: It's Not a Training Problem](#the-contrarian-insight-its-not-a-training-problem)
-- [The Systems Approach: Three Interconnected Pieces](#the-systems-approach-three-interconnected-pieces)
-- [The Critical Skills for the AI Era](#the-critical-skills-for-the-ai-era)
-- [The Embedded Learning Framework](#the-embedded-learning-framework)
-- [Case Study: BMW's AI Innovation Spaces](#case-study-bmws-ai-innovation-spaces)
-- [The Cost Comparison](#the-cost-comparison)
-- [The Teaching Perspective](#the-teaching-perspective)
-- [Paths Forward](#paths-forward)
-- [Questions to Consider](#questions-to-consider)
-- [The Bottom Line](#the-bottom-line)
+Most large AI training efforts follow the same plan. Commission a curriculum, schedule a few dozen hours on how models work, test people and count completions. Some organizations add a small team of prompt engineers to write the prompts everyone else will use. A year later the completion numbers look good and not much about the work has changed.
 
----
+The need is real. In BCG's January 2024 survey of more than 1,400 executives, leaders expected [almost half their workforce to need reskilling in generative AI within three years, while only 6% of companies had trained more than a quarter of their people](https://www.bcg.com/publications/2024/from-potential-to-profit-with-genai). In the World Economic Forum's [Future of Jobs Report 2025](https://reports.weforum.org/docs/WEF_Future_of_Jobs_Report_2025.pdf), 63% of employers named skills gaps as the biggest barrier to transforming their business, and 85% said they planned to prioritize upskilling. I don't doubt the need. What I doubt is the usual method.
 
-40% of the workforce will need reskilling in the next three years because of AI (IBM research). Not 5%. Not just the "AI team." 40%.
+## Why classroom-first training struggles
 
-87% of executives see the skill gap coming. Fewer than half have a plan. Even among those with plans, only 6% are upskilling their workforce "meaningfully." The rest spend millions on training programs that struggle to work, scale, and deliver ROI.
+I see four problems with putting the course first.
 
-Consider the term "training theater," the corporate equivalent of security theater. It looks like action. It feels productive. It checks a compliance box. But what does it accomplish?
+Transfer is hard. Knowing what a prompt is doesn't mean knowing how to use AI on your own messy task, with your own data, under a real deadline.
 
-By 2028, 92% of business leaders expect at least 20% of their workforce to be overcapacity due to AI productivity gains. Translation: reskill people fast or manage layoffs. The scale is staggering: 1.1 billion jobs will be transformed in the next decade (World Economic Forum). Not eliminated, transformed. But transformation without preparation may be just chaos.
+One curriculum fits nobody. Marketing, finance, legal and engineering need different things. A shared 40-hour course bores the engineers and loses the marketers.
 
-The question: If traditional training cannot solve this at scale, what can?
+Skills fade without practice. A program that ends with a test and no application afterwards decays quickly.
 
-## The $50M Training Theater Problem
+Curricula lag. An enterprise course takes months to build, and by the time people finish it the tools have changed.
 
-A familiar pattern: Mid-sized organization with 5,000 employees decides to "get serious about AI readiness." They hire consultants, build curriculum, schedule training sessions. The typical enterprise reskilling budget breakdown (consulting $200/employee, LMS platform $150, instructor-led training $2,000, lost productivity $3,000, travel and facilities $400, ongoing support $300) totals $6,050 per employee or $30,250,000 for 5,000 employees, assuming everything goes perfectly.
+I call the result training theatre. It looks like action, it's easy to count and easy to budget, which is why it persists.
 
-What actually happens: Months 1-3, consulting firm conducts "AI readiness assessment," produces 200-page deck confirming what you knew (you need to upskill). Months 4-6, curriculum development (generic modules on "AI fundamentals" applying to any industry, nothing specific to your workflows, data, challenges). Months 7-12, training rollout (employees sit through 40 hours of theoretical content learning what transformers are, what tokens mean, how neural networks work conceptually). Month 13, testing and certification (employees pass, leadership celebrates, initiative declared successful). Month 14, reality hits.
+## Prompting is a literacy
 
-Employees return to actual jobs discovering the training was largely disconnected from what they need to do. Theoretical knowledge doesn't translate to practical application. Tools learned aren't tools available at work. Use cases presented were generic, not role-specific.
+The other common move is to centralize. In the 1990s many organizations had a webmaster, one person or team who owned the website. That made sense for a while. Once every department needed a web presence, the webmaster became a queue, and eventually the role faded because the skill had to be everywhere. Typing and searching went the same way: tasks that once belonged to specialists and became things everyone does.
 
-Within 6 months, retention drops to 15-20%. Within a year, it's like the training never happened. Thirty million dollars. 15% retention. $200,000 per percentage point of retained knowledge. This is training theater.
+"Prompt engineer" is on the same path, faster. My expectation is that a central prompt team becomes a queue within months: requests pile up from marketing, finance and legal, waits grow, and people go back to doing it themselves with whatever tools they can find. The hiring picture has moved too. When Microsoft asked leaders in 2025 which AI roles they were considering, the [top ten](https://www.microsoft.com/en-us/worklab/work-trend-index/2025-the-year-the-frontier-firm-is-born) included AI trainers, data specialists, security specialists and agent specialists. Prompt engineer wasn't among them.
 
-[↑ Back to top](#quick-navigation)
+The underlying reason is that domain knowledge matters more than prompt technique. A finance analyst who knows financial modelling can learn to prompt for financial analysis in hours. A prompt specialist will never know finance, legal and marketing as well as the people doing that work, and the hard part of a good prompt is knowing what you need and noticing when the answer is wrong. Anthropic now describes [context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents), deciding everything the model sees rather than only how the instruction is worded, as the natural progression of prompt engineering. That's a design skill, and it sits close to the work.
 
----
+In my view basic prompt literacy covers four things: knowing what models do well and badly, including how to spot a confident wrong answer; refining through iteration; knowing which data can go into which tool; and choosing the right tool for the job.
 
-## Why Traditional Training Fails at Scale
+## The bigger gap is workflow design
 
-Four fundamental issues:
+What separates people who use AI as a smarter autocomplete from people who change how their work gets done is workflow design. That means splitting a job into the parts AI can do and the parts that need a person's judgment, adding checks so the output improves over time, and letting AI act on its own within limits you set. That last part is what people usually mean by "agentic".
 
-**1. Learning Transfer Is Hard:** Educational research shows only 10-20% of classroom learning translates to behavior change without structured application support. For technical skills like AI implementation, that number drops further. You can teach what prompt engineering is, but that doesn't mean someone will know how to optimize prompts for their specific workflow when back at their desk facing a real problem.
+Take a monthly financial report as an illustration. Done by hand, an analyst pulls the data, builds charts, writes the narrative and formats the deck: say four to six hours. With basic prompting, the analyst pastes data into a chat tool and gets a draft narrative, but still pulls the data and builds the charts: maybe three to four hours. With the workflow redesigned, AI pulls data from defined sources on a schedule, builds charts from templates and drafts the narrative with anomalies flagged, and the analyst spends perhaps half an hour reviewing and correcting. Better prompts get you the middle version. Redesigning the work gets you the last one, and only someone who understands the report can do that redesign.
 
-**2. One-Size-Fits-All Doesn't Fit Anyone:** Marketing needs different AI skills than finance, finance different than legal, legal different than engineering. Enterprise training programs treating AI as monolithic (everyone gets the same 40-hour curriculum because it's easier to build and cheaper to deliver) result in Marketing sitting through unneeded technical content, Engineering through basic concepts they understand, everyone bored or overwhelmed, nobody getting what they actually need.
+## Learning inside the work
 
-**3. Skills Decay Without Practice:** Hermann Ebbinghaus demonstrated the forgetting curve in 1885: without reinforcement, we forget 50% of new information within an hour, 70% within 24 hours, 90% within a week. Traditional training programs deliver content in compressed timeframes, test for understanding, then nothing (no reinforcement, no application, no feedback loops). Skills decay faster than you can deploy them.
+So I'd reverse the usual order: give people access first, inside guardrails, and let the learning follow. That takes a few pieces, most of which I've written about separately. An [AI budget](/blog/ai-budget-democratizing-innovation) lets people try tools on their own problems without asking permission for each experiment. A [sandbox](/blog/sandboxing-safe-early-access) with the data rules enforced by the infrastructure makes mistakes cheap, the way a driving school starts in a parking lot. A searchable record of experiments and a few informal channels let people share what worked and what didn't. And recognition, sometimes money, goes to people whose ideas others adopt, [regardless of rank](/blog/compensation-ai-era).
 
-**4. Pace of Change Exceeds Curriculum Cycles:** AI capabilities evolve faster than curriculum development cycles. It takes 6-12 months to design, build, and deploy enterprise training programs. By the time employees complete it, tools have evolved, new capabilities have shipped, best practices have changed. You're training people for a version of AI that's already outdated.
+A rough sequence: access and guidelines in the first week; people working on real problems and sharing early wins over the next two months; the best uses moving into production by month three to six; and by the end of the first year, repeated questions turning into documentation and common workflows into templates.
 
-[↑ Back to top](#quick-navigation)
+Formal training still has a place. BMW runs Digital Boost, which it calls [the biggest training program in its history](https://www.press.bmwgroup.com/global/article/detail/T0443793EN/learning-for-the-future-%E2%80%93-with-artificial-intelligence-and-virtual-reality?language=en), preparing some 80,000 employees for digital work, with AI as one of its focal points. It also gives staff a [GenAI self-service platform and an AI Assistant](https://www.bmwgroup.com/en/innovation/artificial-intelligence.html) that let people without a technical background build their own AI solutions into their work. Courses at scale, paired with tools people can build with, is a reasonable model. What I'd avoid is the course on its own.
 
----
+> Updated September 2026: The first version of this post described a BMW program called "AI Innovation Spaces". I couldn't find any record of it, so this section now describes what BMW has published about its own approach.
 
-## The Contrarian Insight: It's Not a Training Problem
+## A small foundation still helps
 
-Reskilling often fails when you treat it as a training problem. It's a systems problem. Organizations achieving meaningful AI upskilling aren't necessarily the ones with the best training programs; they're the ones with systems that embed learning into daily workflows.
+Some structured learning is worth it if it's short and tied to practice. I'd plan about 18 hours over three or four weeks, alongside hands-on use:
 
-Consider this counterintuitive approach: you don't train people and then give them access to tools. You give them access to tools within supportive systems, and the learning happens as a natural consequence. Organizations embedding learning into workflows achieve 72% employee engagement versus 39% in traditional training-first approaches.
+- Governance and safety, 2 hours: which data can go into which tool, using examples from your own data classification; where the boundaries are; when to escalate; and what happens if someone makes a mistake. The answer to that last one should be reassuring.
+- Prompting basics, 4 hours: practice on tasks from people's own roles, so everyone leaves with prompts they'll use the next day.
+- Workflow design, 8 hours over two weeks: map a workflow you own, pick a repetitive step, design an experiment, build it with your budget and share the result.
+- Choosing tools, 4 hours: the same tasks tried in several tools, when an agent makes sense and when a chat window is enough, and what each costs.
 
-[↑ Back to top](#quick-navigation)
+Be honest about cost. A distributed approach costs more than a small central team. As an example, at $150 a person a month for budgets, sandbox infrastructure, knowledge sharing and support, a 5,000-person organization would spend $9 million a year, against my rough estimate of $1.5 to 2 million for five specialists and a lead. The difference buys 5,000 people applying AI to their own work, where the central team would have given you five people and a queue.
 
----
+In the curriculum design and technical training I've done, the basics of adult learning hold up. People learn what's relevant to their own work, they learn more when they have some say in what and when, and they keep what they use straight away. Learning inside the work gives you all three. Classroom-first training tends to lose the third, because the gap between learning something and using it is where skills fade.
 
-## The Systems Approach: Three Interconnected Pieces
-
-If reskilling is an organizational design problem, consider three interconnected components:
-
-**1. The AI Budget: Hands-On Experimentation** - Provide $50-150 per month per employee to experiment with AI tools. Traditional approach (train, test, grant access, hope for application) versus embedded learning approach (provide safe access, employees solve real problems, learning through application, skills develop through use). The budget funds experimentation. Experimentation drives learning. Learning happens in context, not abstraction. An employee automating a tedious workflow learns more about AI capabilities in a week of hands-on experimentation than in 40 hours of classroom training, solving a real problem they care about, with immediate feedback. This is how humans actually learn: purposeful practice with real stakes, not passive consumption of theoretical content.
-
-**2. Sandboxing: Safe Practice Environments** - AI Budgets operate within controlled environments where data classification is enforced at infrastructure level (no accidentally pasting customer PII into ChatGPT), network isolation prevents access to production systems (can't break critical workflows), audit trails capture everything (full visibility), clear escalation paths exist (successful experiments move to production quickly). This creates conditions for "deliberate practice," working at the edge of abilities with immediate feedback in safe environments. Like driving school: practice in parking lots, then quiet streets, then progressively complex environments with instructor feedback. Sandboxes are the parking lot. Employees can try things, make mistakes, learn from failures without catastrophic consequences.
-
-**3. Compensation: Rewarding Applied Intelligence** - When an employee uses their AI budget to discover a workflow optimization saving their team 10 hours per week, what happens? Traditional approach: "Great job! Here's a shout-out in the team meeting." Systems approach: "Great job! Here's $25K for generating measurable value." This creates an incentive structure rewarding applied intelligence, regardless of role or rank. A junior analyst automating a painful manual process gets compensated the same as a VP doing the same thing, because the value to the organization is the same. This motivates people to develop skills (not to pass tests or get certifications, but to generate real value they'll be rewarded for), and signals what the organization values (practical application over theoretical knowledge). This is merit-based learning. The curriculum isn't predetermined by training designers; it's discovered by employees solving real problems, with the organization capturing and amplifying what works.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## The Critical Skills for the AI Era
-
-Most organizations focus on understanding AI technology (how models work, what architectures exist, limitations). That's useful for AI specialists but mostly irrelevant for the other 95% of the workforce.
-
-Skills that actually matter at scale:
-
-**1. AI Governance and Ethics:** Not "understanding bias" in abstract sense, but practical governance (How do I know if this use case is appropriate? What data can I use with this tool? When do I need to escalate? What are the boundaries of acceptable use?). This is learned through practice and clear examples, not theoretical frameworks in slide decks.
-
-**2. Prompt Engineering:** The closest thing to a universal AI skill. The ability to articulate what you need clearly, iterate based on outputs, understand how to structure requests for different tools, recognize when you're hitting model limitations. You cannot learn this from a tutorial. You learn it by writing thousands of prompts, seeing what works, developing intuition. This is exactly what the AI Budget enables: high-volume practice with real stakes.
-
-**3. Agentic Workflow Design:** The skill separating people who use AI as fancy autocomplete from people who transform their work. Understanding what parts of your job can be delegated to AI, how to break complex tasks into AI-solvable components, where humans add unique value AI cannot replicate, how to design feedback loops to improve AI outputs over time. This requires both domain expertise (understanding your actual job) and AI capability knowledge (understanding what AI can do). It cannot be taught in a classroom; it must be developed through experimentation.
-
-**4. Human-AI Collaboration:** Less about technical skills, more about mindset. Treating AI as collaborative tool, not replacement. Understanding when to trust AI outputs and when to question them. Developing judgment about edge cases and exceptions. Building intuition about model behavior through repeated interaction. Again: learned through use, not instruction.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## The Embedded Learning Framework
-
-What works at scale: **Phase 1 (Week 1):** Roll out AI Budget and sandbox access, provide clear governance guidelines, create centralized knowledge repository. **Phase 2 (Weeks 2-8):** Employees experiment with AI tools to solve real problems, cross-functional communities form organically, early wins get documented and shared, learning happens through application. **Phase 3 (Months 3-6):** High-value use cases move to production, employees who generate value are compensated (creating positive feedback loop), knowledge centralized and discoverable (preventing duplication), best practices emerge from practice. **Phase 4 (Months 6-12):** Patterns become playbooks, repeated questions become documentation, common workflows become templates, organization develops institutional knowledge organically.
-
-Notice what's missing: formal training programs, instructor-led sessions, certifications, assessments. Those things can supplement embedded learning but cannot replace it. The learning happens in the flow of work, not separate from it.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## Case Study: BMW's AI Innovation Spaces
-
-Rather than building an AI training curriculum and rolling it out to 150,000+ employees, BMW created "AI Innovation Spaces," physical and digital environments where employees at all levels could experiment with AI tools on real business problems. The approach: accessible infrastructure (no special permissions or lengthy approvals; access to AI tools and data within governed boundaries), real problems (actual challenges from their work, not toy examples), cross-functional collaboration (shop floor workers, engineers, managers, executives working together; hierarchy flattens when everyone's learning), capture and share (successful experiments documented and made available across the organization).
-
-Results: thousands of employee-generated AI applications, measurable productivity improvements across manufacturing, logistics, and design, cultural shift from "AI is something IT does" to "AI is a tool I use," organic skill development without formal training mandates. The "curriculum" emerged from what employees actually needed to solve the problems they actually faced. BMW didn't reskill 40% of their workforce through training. They created systems where reskilling happened as a natural consequence of giving people tools and problems worth solving.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## The Cost Comparison
-
-**Traditional Training Theater (5,000 employees):** Consulting, curriculum, delivery ($30.25M), retention after 12 months (15%), effective cost per retained skill (~$40,000), time to impact (12-18 months), scalability (poor, requires scheduling, facilities, instructors).
-
-**Embedded Learning Systems Approach (5,000 employees):** AI Budget $100/month, Sandbox infrastructure $20/month, Knowledge capture $10/month, Compensation for innovation (variable), Governance and support $15/month, totaling $145/month per employee or $10,200,000 annually. $10.2M versus $30.25M (66% cost reduction).
-
-But the comparison isn't just dollars: Engagement (Traditional 39%, Embedded 72%), Skills Retention (Traditional 15% after 12 months, Embedded 70%+ because skills are actively used), Time to Impact (Traditional 12-18 months, Embedded immediate), Scalability (Traditional linear cost increase with headcount, Embedded infrastructure scales with minimal marginal cost), Adaptation Speed (Traditional 6-12 month curriculum update cycles, Embedded continuous).
-
-The systems approach isn't just cheaper. It's better. More engagement, better retention, faster impact, easier to scale.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## The Teaching Perspective
-
-Adult learners need three things: **Relevance** (understanding why this matters to their actual work, specifically; embedded learning provides authentic relevance because employees solve their own problems), **Agency** (control over their learning path; embedded learning lets employees pursue skills they need, when needed, in context that matters; this taps into Self-Determination Theory's autonomy driver, intrinsic motivation stronger than extrinsic mandates), **Application** (using knowledge immediately, or it decays; traditional training creates massive gaps between learning and application; embedded learning collapses that gap to zero, you learn by doing).
-
-This isn't revolutionary pedagogy. It's basic learning science applied to organizational systems. Training theater persists not because it works, but because it's easy to measure (hours completed, certifications earned) and easy to budget (predictable costs, clear deliverables). Embedded learning is harder to quantify upfront, but outcomes are dramatically better.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## Paths Forward
-
-Organizations considering this approach might explore phased implementation: defining data governance and classification, building sandbox environments, designing AI budget frameworks, launching pilots with 100-200 employees, expanding organization-wide with communities of practice, building centralized repositories for experiments and learnings, integrating compensation for high-value innovations, analyzing usage patterns and doubling down on what works, and embedding into performance management and culture. Timeline: 6 months to full deployment, 12 months to embedded culture (compare to 18-month training programs delivering 15% retention).
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## Questions to Consider
-
-Structure can emerge from practice. The best curriculum for your organization may be discovered through experimentation, not predetermined by trainers who don't do your actual jobs. Some employees will waste time on dead ends; that's called learning. The cost of failed experiments is dramatically lower than the cost of training programs delivering no practical skills. Measure outcomes, not credentials. Can the employee use AI to generate value? That's the only competency that matters. Certifications don't predict performance; application does. Compliance can coexist with embedded learning. Provide required training as foundation, then enable hands-on practice within compliant boundaries. The sandbox ensures experimentation happens safely. BMW is manufacturing. If it works on a factory floor, it works in your office. The principles scale across industries; specific implementation varies, but the approach holds.
-
-[↑ Back to top](#quick-navigation)
-
----
-
-## The Bottom Line
-
-40% of the workforce needs reskilling in three years. Consider whether to spend $50M on training theater delivering 15% retention and 12-18 month time to impact, or build systems embedding learning into workflows for $10M with 72% engagement, 70%+ retention, and immediate impact.
-
-The difference isn't the training. It's the systems: AI Budget (funds experimentation), Sandboxing (makes practice safe), Compensation (rewards applied intelligence). Together, these create conditions where reskilling happens organically, continuously, and in context.
-
-This isn't about teaching people about AI. It's about creating organizational systems where learning AI capabilities becomes a natural consequence of doing their jobs better. You don't train your way to AI readiness. You design systems that make AI readiness inevitable.
-
-The 40% reskilling challenge isn't a training problem. It's an organizational design problem. And it's solvable.
-
----
-
-**Related Posts:**
-- [The AI Budget: Democratizing Innovation Through Trust](/blog/ai-budget-democratizing-innovation)
-- [Sandboxing: Safe Early Access to AI Tools](/blog/sandboxing-safe-early-access)
-- [Compensation in the AI Era: Rewarding Innovation at Every Level](/blog/compensation-ai-era)
-- [Shadow AI to Organizational Intelligence](/blog/shadow-ai-organizational-intelligence)
-
----
-
-**TLDR:** 40% of workforce needs AI reskilling in 3 years (IBM), yet 87% of execs lack plans and only 6% are upskilling "meaningfully." Traditional training theater costs $30M+ for 5,000 employees, delivers 15% retention after 12 months, takes 12-18 months to show impact. The systems approach (AI Budget $50-150/employee/month for hands-on experimentation, Sandboxing safe practice environments, Compensation rewarding applied intelligence) costs $10M for same headcount, achieves 72% engagement versus 39% traditional, delivers 70%+ skills retention because learning happens in workflow, shows immediate impact. The contrarian insight: reskilling often fails when treated as training problem. It's a systems problem. Organizations embedding learning into daily workflows achieve 3x engagement and 66% cost reduction. BMW case study: AI Innovation Spaces enabled thousands of employee-generated applications through accessible infrastructure, real problems, cross-functional collaboration, knowledge capture, proving embedded learning scales from shop floor to executive suite. Critical skills (AI governance, prompt engineering, agentic workflow design, human-AI collaboration) cannot be taught in classrooms; they must be developed through purposeful practice with real stakes. Consider whether you train your way to AI readiness or design systems that make it inevitable.
-
----
-
-**Published:** November 2025
-**Word Count:** ~2,750 words
+What I'm still unsure about is how to measure capability without falling back on certificates. The best test I have is simple: can someone show you a piece of their work that AI made better, and explain how they checked it?
