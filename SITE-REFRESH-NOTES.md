@@ -346,3 +346,15 @@ These are the ones only you can answer, most important first. Each change log ha
 | `app/not-found.tsx`, `app/sitemap.ts`, `app/robots.ts`, `app/feed.xml/route.ts` | 404, sitemap, robots and feed |
 | `next.config.js` | Redirects |
 | `review/` | Screenshots and per-post change logs |
+
+## Decisions after Randy's review (September 28, 2026)
+
+- No role or employer anywhere on the site. The footer and the About page now say the views are his own and don't represent his employer.
+- The title stays "AI Strategy & Product Leader". Experience reads "more than a dozen years".
+- "Policy by day, code at night" is gone. He splits his time between strategy and building, more of his work now involves building agentic systems (kept generic on purpose), and his spare-time projects are built with AI agents writing the code.
+- Personal lines kept generic: the knowledge-enablement line now says "a national role to a global one". The sandbox and curriculum lines stand.
+- First-hand tool use added, without naming the employer: GitHub Copilot in VS Code for nearly all his work, most of it not programming; Claude Code for his own projects; MCP servers daily. See About ("Work where the agent works"), the Claude Code post and the MCP post.
+- The Microsoft stack post stays. The rewrite is generic and built on public product documentation.
+- The Copilot pricing table stays, labelled as list prices as of September 2026.
+- The homepage and "Start here" picks stay as chosen.
+- `/gphl` and `/gphl/draft` have a `main` landmark again.

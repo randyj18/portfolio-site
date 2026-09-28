@@ -43,7 +43,9 @@ export default function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-night-ink/10">
-        <p className="container-site py-6 text-xs text-night-muted">© {year} Randy Jones</p>
+        <p className="container-site py-6 text-xs text-night-muted">
+          © {year} Randy Jones. The views here are my own and don&apos;t represent my employer.
+        </p>
       </div>
     </footer>
   );

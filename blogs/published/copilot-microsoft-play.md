@@ -12,7 +12,7 @@ The details below are as of September 2026. They change often, so check Microsof
 
 ## What you can buy
 
-Microsoft has started calling Microsoft 365 Copilot simply [Microsoft Copilot](https://learn.microsoft.com/en-us/microsoft-365/copilot/microsoft-365-copilot-privacy), though the price lists still use the old name. The main options:
+Microsoft has started calling Microsoft 365 Copilot simply [Microsoft Copilot](https://learn.microsoft.com/en-us/microsoft-365/copilot/microsoft-365-copilot-privacy), though the price lists still use the old name. The main options, at list prices as of September 2026:
 
 | Option | What you get | List price |
 |---|---|---|

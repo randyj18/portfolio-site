@@ -15,8 +15,12 @@ export const metadata: Metadata = {
 
 const principles = [
   {
+    title: 'Work where the agent works',
+    body: 'I do nearly all of my work in VS Code with an AI agent alongside me, and most of it isn’t programming. Planning, operational tasks, writing and career development all happen there, with MCP servers connecting the agent to the tools I use.',
+  },
+  {
     title: 'Strategy from people who have shipped',
-    body: 'A lot of AI roadmaps are written by people who have never built the thing, and they run into walls nobody predicted. I spend my days on governance and strategy and my evenings writing code, and each keeps the other grounded.',
+    body: 'A lot of AI roadmaps are written by people who have never built the thing, and they run into walls nobody predicted. I split my time between strategy and building, and each keeps the other grounded.',
   },
   {
     title: 'Guardrails that make it easier to start',
@@ -47,7 +51,7 @@ const help = [
   },
   {
     area: 'Hands-on technical work',
-    detail: 'Full-stack development, AI integration, voice interfaces, cloud architecture and systems integration.',
+    detail: 'Building with AI coding agents: full-stack apps, MCP servers and tool integrations, voice interfaces, and cloud deployment.',
   },
   {
     area: 'Data and analytics',
@@ -68,8 +72,9 @@ export default function AboutPage() {
           <h1 className="mt-3 text-6xl font-extrabold uppercase leading-[0.9] text-ink sm:text-7xl">Randy Jones</h1>
           <div className="mt-6 space-y-4 font-serif text-xl leading-relaxed text-ink text-pretty">
             <p>
-              I work on AI strategy and product leadership. I have spent more than a decade across strategy, product,
-              technology and organizational change, and I still build things myself: the{' '}
+              I work on AI strategy and product leadership, and I&apos;ve spent more than a dozen years across strategy,
+              product, technology and organizational change. More of my work now involves building agentic systems, not
+              just planning for them. I also build things in my spare time, with AI agents doing the coding: the{' '}
               <Link href="/playground" className="text-link">
                 playground
               </Link>{' '}
@@ -125,7 +130,8 @@ export default function AboutPage() {
         </h2>
         <p className="mt-4 max-w-2xl leading-relaxed text-muted">
           Email is the best way to reach me. My full resume, with specific projects, companies and dates, is available on
-          request; tell me a little about what you&apos;re working on.
+          request; tell me a little about what you&apos;re working on. The views on this site are my own and don&apos;t
+          represent my employer.
         </p>
         <ul className="mt-6 flex flex-wrap gap-3">
           <li>

@@ -28,8 +28,8 @@ export default function HomePage() {
             </h1>
             <div className="mt-6 space-y-4 font-serif text-lg leading-relaxed text-night-ink/90 sm:text-xl">
               <p>
-                I&apos;m Randy Jones. I work on AI strategy and product leadership, and I still write code, which keeps the
-                strategy honest.
+                I&apos;m Randy Jones. I work on AI strategy and product leadership, and I still build software, with AI agents
+                writing the code. Building keeps the strategy honest.
               </p>
               <p>
                 I write about the unglamorous part of AI adoption: giving people room to experiment safely, and making sure

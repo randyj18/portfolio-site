@@ -8,7 +8,7 @@ updated: 2026-09
 
 The sequence is familiar. Legal asks for a comprehensive AI governance framework before anything ships. Consultants arrive with templates. Months later there's a long document, a set of principles nobody can object to, and an approval workflow with so many sign-offs that a simple request takes a quarter. Engineers learn to route around it, sometimes by not calling their work AI at all. The framework exists, and the governance doesn't.
 
-My view is that useful AI governance comes from people who have built things and hit the problems, then written down what worked. Most of my working days go to AI strategy and governance, and I still write code at night; the [playground](/playground) has a few small projects, including VOICE-Relay, an end-to-end encrypted relay for voice conversations between AI agents and people. Even at that scale, building changes what you think a policy needs to say.
+My view is that useful AI governance comes from people who have built things and hit the problems, then written down what worked. Most of my working days go to AI strategy and governance, and more of them now go to building agentic systems. I also build small projects in my spare time, with AI agents writing the code; the [playground](/playground) has a few, including VOICE-Relay, an end-to-end encrypted relay for voice conversations between AI agents and people. Even at that scale, building changes what you think a policy needs to say.
 
 ## What building teaches you about policy
 

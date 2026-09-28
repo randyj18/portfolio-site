@@ -8,7 +8,7 @@ updated: 2026-09
 
 An AI assistant is only as useful as what it can reach. If you wanted one to answer questions from your calendar, your CRM, your wiki and your ticketing system, each of those used to need its own integration, built separately for each AI product, each with its own authentication and quirks. Switch assistants and you rebuilt the lot.
 
-The Model Context Protocol (MCP) is the attempt to turn that into a shared plug. You wrap a system once in an MCP server, and any AI application that speaks MCP can use it. [Anthropic released it in November 2024](https://www.anthropic.com/news/model-context-protocol). As of September 2026 it's the closest thing the industry has to a standard for connecting assistants and agents to tools and data, which is why I think it's worth understanding even if you never write a line of it.
+The Model Context Protocol (MCP) is the attempt to turn that into a shared plug. You wrap a system once in an MCP server, and any AI application that speaks MCP can use it. [Anthropic released it in November 2024](https://www.anthropic.com/news/model-context-protocol). As of September 2026 it's the closest thing the industry has to a standard for connecting assistants and agents to tools and data, which is why I think it's worth understanding even if you never write a line of it. I use MCP servers every day, at work and on my own projects, and they're a large part of why an agent can do real work instead of just talking about it.
 
 ## How a call works
 

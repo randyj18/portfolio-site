@@ -6,7 +6,7 @@ published: 2025-11
 updated: 2026-09
 ---
 
-When I moved from Canadian Division knowledge enablement to a global role, I expected to see different problems at a bigger scale. What I mostly saw was the same problems being solved again, by teams in different regions who didn't know about each other's work. I watched the same solution get built three times.
+When I moved from a national role to a global one, I expected to see different problems at a bigger scale. What I mostly saw was the same problems being solved again, by teams in different regions who didn't know about each other's work. I watched the same solution get built three times.
 
 Nobody involved was careless. The person solving a problem in one office had no reasonable way to find out that someone in another office had solved it months earlier. That is the duplicated solution problem: the organization pays for the same thing several times, and what each team learned stays with that team.
 

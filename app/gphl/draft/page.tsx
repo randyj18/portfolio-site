@@ -59,7 +59,7 @@ export default function DraftResultsPage() {
   const byCash = [...teams].sort((a, b) => b.left - a.left);
 
   return (
-    <div className="min-h-screen bg-off-white px-4 py-10 sm:px-6 sm:py-14">
+    <main className="min-h-screen bg-off-white px-4 py-10 sm:px-6 sm:py-14">
       <div className="mx-auto max-w-6xl">
         <header className="mb-8">
           <Link href="/gphl" className="text-sm font-semibold text-bronze hover:text-navy">
@@ -167,6 +167,6 @@ export default function DraftResultsPage() {
           </div>
         </section>
       </div>
-    </div>
+    </main>
   );
 }

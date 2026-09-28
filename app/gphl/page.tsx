@@ -165,7 +165,7 @@ function Pairs({ rows, cols = 1 }: { rows: [string, string | number][]; cols?: 1
 
 export default function GphlPage() {
   return (
-    <div className="min-h-screen bg-off-white px-4 py-10 sm:px-6 sm:py-14">
+    <main className="min-h-screen bg-off-white px-4 py-10 sm:px-6 sm:py-14">
       <div className="mx-auto max-w-4xl">
         <header className="mb-8">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-bronze">{SEASON} season</p>
@@ -266,6 +266,6 @@ export default function GphlPage() {
           Questions go to Randy in the group chat. Last updated {UPDATED}.
         </footer>
       </div>
-    </div>
+    </main>
   );
 }
