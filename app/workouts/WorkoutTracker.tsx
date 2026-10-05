@@ -3,8 +3,19 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useAuth } from '../playoffhockey/_lib/auth';
 import { PROGRAMS, type Day, type BlockStyle } from './_lib/programs';
+import SessionGenerator from './SessionGenerator';
+import SessionHistory from './SessionHistory';
+import FreeformEntry from './FreeformEntry';
 
 const STORAGE_KEY = 'rj-workout-checks-v1';
+
+type Tab = 'today' | 'log' | 'history' | 'programs';
+const TABS: { id: Tab; label: string }[] = [
+  { id: 'today', label: 'Today' },
+  { id: 'log', label: 'Log' },
+  { id: 'history', label: 'History' },
+  { id: 'programs', label: 'Programs' },
+];
 
 const BLOCK_ACCENT: Record<BlockStyle, string> = {
   warmup: 'text-slate',
@@ -22,6 +33,7 @@ export default function WorkoutTracker() {
   const [checks, setChecks] = useState<Record<string, boolean>>({});
   const [loaded, setLoaded] = useState(false);
   const [activeProgram, setActiveProgram] = useState(PROGRAMS[0].id);
+  const [tab, setTab] = useState<Tab>('today');
 
   // Load saved state once on mount.
   useEffect(() => {
@@ -69,10 +81,37 @@ export default function WorkoutTracker() {
           Sign out
         </button>
       </div>
-      <p className="text-slate text-sm mb-8">
-        Signed in as {user?.email}. Check-offs save to this device.
+      <p className="text-slate text-sm mb-6">
+        Signed in as {user?.email}. Sessions save to the cloud; program check-offs save to this device.
       </p>
 
+      {/* Top-level tabs */}
+      <div className="flex gap-2 mb-8 border-b border-slate/15">
+        {TABS.map((t) => {
+          const active = t.id === tab;
+          return (
+            <button
+              key={t.id}
+              onClick={() => setTab(t.id)}
+              className={
+                'px-4 py-3 text-sm font-semibold transition-colors -mb-px border-b-2 ' +
+                (active
+                  ? 'border-orange-burnt text-navy'
+                  : 'border-transparent text-slate hover:text-navy')
+              }
+            >
+              {t.label}
+            </button>
+          );
+        })}
+      </div>
+
+      {tab === 'today' && <SessionGenerator />}
+      {tab === 'log' && <FreeformEntry />}
+      {tab === 'history' && <SessionHistory />}
+
+      {tab === 'programs' && (
+      <>
       {/* Program tabs */}
       <div className="flex flex-wrap gap-2 mb-8">
         {PROGRAMS.map((p) => {
@@ -211,6 +250,8 @@ export default function WorkoutTracker() {
           );
         })}
       </div>
+      </>
+      )}
     </div>
   );
 }

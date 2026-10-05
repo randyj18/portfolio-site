@@ -88,5 +88,16 @@
         allow read: if true;
         allow write: if isCommissioner();
       }
+
+      // Training log (/workouts): owner-only. Meta doc plus a sessions
+      // subcollection; only the commissioner's own uid can touch either.
+      match /workoutUsers/{uid} {
+        allow read, write: if isCommissioner() && request.auth.uid == uid;
+
+        match /sessions/{sessionId} {
+          allow read, create, update: if isCommissioner() && request.auth.uid == uid;
+          allow delete: if false;
+        }
+      }
     }
   }
