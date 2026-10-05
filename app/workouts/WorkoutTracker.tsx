@@ -7,7 +7,7 @@ import SessionGenerator from './SessionGenerator';
 import SessionHistory from './SessionHistory';
 import FreeformEntry from './FreeformEntry';
 
-const STORAGE_KEY = 'rj-workout-checks-v1';
+const STORAGE_KEY = 'rj-workout-checks-v2';
 
 type Tab = 'today' | 'log' | 'history' | 'programs';
 const TABS: { id: Tab; label: string }[] = [

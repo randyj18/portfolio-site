@@ -5,7 +5,7 @@ Private training log for the site owner. Four tabs:
 - **Today** — generates a full-body session and logs it (`SessionGenerator.tsx`).
 - **Log** — freeform notes, stored as typed (`FreeformEntry.tsx`).
 - **History** — past sessions from Firestore (`SessionHistory.tsx`).
-- **Programs** — the original static checklists (`programs.ts`), check-offs in localStorage.
+- **Programs** — add-on checklists (`programs.ts`): warm-up & joint prep, one-arm chin-up progression, hockey season prep. Check-offs in localStorage.
 
 ## Generator rules (`_lib/generator.ts`)
 
