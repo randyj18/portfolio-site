@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 // `tbc: true` shows a "to confirm" tag; clear it once a rule or date is settled.
 const SEASON = '2026-27';
 const YAHOO_URL = 'https://hockey.fantasysports.yahoo.com/hockey/45937';
-const UPDATED = 'September 27, 2026';
+const UPDATED = 'October 5, 2026';
 
 type Row = { label: string; detail?: string; tbc?: boolean };
 
@@ -105,6 +105,20 @@ const TRADES: Row[] = [
   { label: 'Trade talk has its own chat', detail: 'Offers and trade chatter go in the separate GPHL trade chat.' },
 ];
 
+// Add one row per regular-season week. `how` is 'Top score' or 'Goalie goal'.
+type Week = { week: number; dates: string; winner: string; team: string; how: 'Top score' | 'Goalie goal'; detail: string };
+const WEEKLY: Week[] = [
+  {
+    week: 1,
+    dates: 'Sep 29 – Oct 4',
+    winner: 'Mike',
+    team: 'Mack Jack’s team',
+    how: 'Goalie goal',
+    detail: 'Shesterkin scored on Oct 1 against Tampa. James had the top score (311.75) but the goalie goal takes the $10.',
+  },
+];
+const WEEKLY_PRIZE = 10;
+
 const TEAMS: [string, string][] = [
   ['Hockey Tonk', 'Randy'],
   ['8 Ball Corner Pocket', 'Daryl'],
@@ -113,7 +127,7 @@ const TEAMS: [string, string][] = [
   ['Formerly Daryl’s Admirer', 'James'],
   ['Letterkenny Irish', 'Sunny'],
   ['Whoomp There It Is', 'Drew (Andrew)'],
-  ['Mac Jack', 'Mike'],
+  ['Mack Jack’s team', 'Mike'],
 ];
 
 function Tbc({ show }: { show?: boolean }) {
@@ -206,6 +220,55 @@ export default function GphlPage() {
                 </li>
               ))}
             </ol>
+          </Card>
+
+          <Card title="Weekly prizes" className="md:col-span-2">
+            <div className="overflow-x-auto">
+              <table className="w-full min-w-[520px] text-left text-sm">
+                <thead className="text-xs uppercase tracking-wide text-slate">
+                  <tr>
+                    <th className="py-2 pr-3">Week</th>
+                    <th className="py-2 pr-3">Winner</th>
+                    <th className="py-2 pr-3">How</th>
+                    <th className="py-2">What happened</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[...WEEKLY].reverse().map((w) => (
+                    <tr key={w.week} className="border-t border-navy/5 align-top">
+                      <td className="py-2.5 pr-3">
+                        <span className="font-semibold text-navy">{w.week}</span>
+                        <span className="block whitespace-nowrap text-xs text-slate">{w.dates}</span>
+                      </td>
+                      <td className="py-2.5 pr-3">
+                        <span className="font-semibold text-navy">{w.winner}</span>
+                        <span className="block text-xs text-slate">{w.team}</span>
+                      </td>
+                      <td className="py-2.5 pr-3">
+                        <span
+                          className={`inline-block whitespace-nowrap rounded-full px-2 py-0.5 text-xs font-semibold ${
+                            w.how === 'Goalie goal' ? 'bg-gold-light/25 text-bronze' : 'bg-navy/5 text-navy'
+                          }`}
+                        >
+                          {w.how}
+                        </span>
+                      </td>
+                      <td className="py-2.5 text-slate">{w.detail}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-3 text-sm text-slate">
+              Winnings so far:{' '}
+              {Object.entries(
+                WEEKLY.reduce<Record<string, number>>((acc, w) => ({ ...acc, [w.winner]: (acc[w.winner] || 0) + WEEKLY_PRIZE }), {})
+              )
+                .sort((a, b) => b[1] - a[1])
+                .map(([m, v]) => `${m} $${v}`)
+                .join(', ')}
+              .
+            </p>
           </Card>
 
           <Card title="Money">
